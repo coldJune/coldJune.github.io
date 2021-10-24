@@ -1,0 +1,4238 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="true" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico#/images/favicon-16x16-next.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="软考备考">
+<meta property="og:type" content="article">
+<meta property="og:title" content="架构设计师备考">
+<meta property="og:url" content="http://coldjune.com/2021/07/22/架构设计师备考/index.html">
+<meta property="og:site_name" content="Stay Hungary">
+<meta property="og:description" content="软考备考">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/知识点分布.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/层次化存储结构.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/主存编制.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/磁盘例题.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/进程的状态.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/前趋图.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/生产者消费者问题.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/PV操作.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/PV和前趋图结合.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/死锁问题.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/PV例题1.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/PV例题2.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/PV例题3.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/银行家算法.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/页式存储.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/段式存储.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/段页式存储.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/FIFO算法.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/页式存储例题.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/页面置换算法例题.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/页面置换例题2.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/索引文件结构.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/树型目录结构.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/位示图法.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/索引文件结构例题1.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/位示图例题.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/微内核操作系统.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/三级模式两级映射.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/数据库设计过程.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/ER模型.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/E-R模型转换.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/关系1.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/交.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/并.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/差.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/关系1.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/笛卡尔积.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/投影.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/选择.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/关系2.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/联结.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/部分函数依赖.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/传递函数依赖.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/键.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/键例题1.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/键例题2.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/键例题3.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/范式.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/范式例题1.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/模式分解例题1.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/模式分解例题2.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/并发控制.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/并发存在的问题.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/分布式数据库.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/数据库优化.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/数据仓库.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/七层模型.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/七层模型例题1.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/网络技术标准与协议.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/三次握手.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/可靠传输.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/DNS查询.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/DNS例题.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/网络分层设计.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/DAS.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/NAS.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/SAN.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/IPSAN.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/Raid.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/Raid5.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/物联网分层.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/物联网核心技术.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/云计算服务类型.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/信息系统概念.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/政府信息化与电子政务.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/客户关系管理.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/供应链管理.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/商业智能.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/商业智能.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/表示集成.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/数据集成.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/控制集成.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/国家电子商务标准体系.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/瀑布模型.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/增量模型.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/螺旋模型.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/构建组装模型.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/V模型、喷泉模型和RAD.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/其他经典模型.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/统一过程.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/敏捷开发方法.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/UML.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/需求分类和需求获取.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/需求分析.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/数据流图.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/STD.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/ER图.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/业务流程重组.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/系统结构.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/测试阶段.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/范围管理.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/时间管理.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/单代号网络图.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/双代号网络图.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/双代号网络图求解.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/自由时差例题.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/甘特图.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/挣值曲线.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/质量模型.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/外部和内部质量.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/PDCA循环.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/质量工具.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/项目管理三角形.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/变更控制.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/版本控制.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/风险承受能力.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/两层CS架构.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/三层CS架构1.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/三层CS架构2.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/三层BS架构.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/混合架构风格.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/RIA.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/mushup.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/SOA实现方式.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/WebService.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/ESB.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/评估方法.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/基于场景的方式.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/架构权衡分析法.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/软件架构分析法.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/软件产品线.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/双生命周期模型.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/SEI模型.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/三生命周期模型.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/中间件技术.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/主要中间件.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/Corba.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/J2EE.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/NET1.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/NET2.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/主动MVC.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/被动MVC.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/MVP设计模式.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/对称加密技术.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/非对称加密技术.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/信息摘要.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/数字签名.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/PKI公钥体系运作流程.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/PKI公钥体系分层.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/信息系统安全保障层次.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/各个网络层次的安全保障.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/DDoS.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/防火墙.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/入侵检测流程.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/入侵检测特点.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/可靠性指标.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/串联系统.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/并联系统.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/N模冗余系统.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/混合系统.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/N版本程序设计.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/恢复块方法.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/双机容错.jpg">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%A4%87%E8%80%83/%E9%94%AE%E4%BE%8B%E9%A2%981%E5%9B%BE.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%A4%87%E8%80%83/%E9%94%AE%E4%BE%8B%E9%A2%982%E5%9B%BE.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%A4%87%E8%80%83/%E9%94%AE%E4%BE%8B%E9%A2%983%E5%9B%BE.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%A4%87%E8%80%83/%E6%A8%A1%E5%BC%8F%E5%88%86%E8%A7%A3%E4%BE%8B%E9%A2%981%E7%AD%94%E6%A1%88.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%A4%87%E8%80%83/%E6%A8%A1%E5%BC%8F%E5%88%86%E8%A7%A3%E4%BE%8B%E9%A2%981%E7%AD%94%E6%A1%881.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%A4%87%E8%80%83/%E6%A8%A1%E5%BC%8F%E5%88%86%E8%A7%A3%E4%BE%8B%E9%A2%981%E7%AD%94%E6%A1%882.png">
+<meta property="og:image" content="http://coldjune.com/2021/07/22/架构设计师备考/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%A4%87%E8%80%83/%E6%A8%A1%E5%BC%8F%E5%88%86%E8%A7%A3%E4%BE%8B%E9%A2%982%E7%AD%94%E6%A1%88.png">
+<meta property="og:updated_time" content="2021-10-24T05:50:56.302Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="架构设计师备考">
+<meta name="twitter:description" content="软考备考">
+<meta name="twitter:image" content="http://coldjune.com/2021/07/22/架构设计师备考/知识点分布.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://coldjune.com/2021/07/22/架构设计师备考/"/>
+
+
+
+
+
+  <title>架构设计师备考 | Stay Hungary</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+		<a href="https://github.com/coldJune" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stay Hungary</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Programming is an art form</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://coldjune.com/2021/07/22/架构设计师备考/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="邓小俊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay Hungary">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">架构设计师备考</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-07-22T20:25:44+08:00">
+                2021-07-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/软考/" itemprop="url" rel="index">
+                    <span itemprop="name">软考</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2021/07/22/架构设计师备考/" class="leancloud_visitors" data-flag-title="架构设计师备考">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  27,260
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  94
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  软考备考
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="软考备考"><a href="#软考备考" class="headerlink" title="软考备考"></a>软考备考</h1><p><img src="/2021/07/22/架构设计师备考/知识点分布.png" alt="知识点分布"></p>
+<h2 id="计算机组成与体系结构"><a href="#计算机组成与体系结构" class="headerlink" title="计算机组成与体系结构"></a>计算机组成与体系结构</h2><h3 id="Flynn分类法"><a href="#Flynn分类法" class="headerlink" title="Flynn分类法"></a>Flynn分类法</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">体系结构类型</th>
+<th style="text-align:center">结构</th>
+<th style="text-align:center">关键特性</th>
+<th style="text-align:center">代表</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">单指令流单数据流(SISD)</td>
+<td style="text-align:center">控制部分:一个<br>处理器:一个<br>主存模块:一个</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">单处理器系统</td>
+</tr>
+<tr>
+<td style="text-align:center">单指令流多数据流(SIMD)</td>
+<td style="text-align:center">控制部分:一个<br>处理器:多个<br>主存模块:多个</td>
+<td style="text-align:center">各处理器以异步的形式执行同一条指令</td>
+<td style="text-align:center">并行处理机<br><font color="red">阵列处理机</font><br>超级向量处理机</td>
+</tr>
+<tr>
+<td style="text-align:center">多指令流单数据流(MISD)</td>
+<td style="text-align:center">控制部分:多个<br>处理器:一个<br>主存模块:多个</td>
+<td style="text-align:center">被证明不可能，至少是不实际</td>
+<td style="text-align:center">目前没有，有文献称流水线计算机为此类</td>
+</tr>
+<tr>
+<td style="text-align:center">多指令多数据流(MIMD)</td>
+<td style="text-align:center">控制部分:多个<br>处理器:多个<br>主存模块:多个</td>
+<td style="text-align:center">能够实现作业、任务、指令等各级全面并行</td>
+<td style="text-align:center">多处理机系统<br>多计算机</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>阵列处理机：适合数组类的运算，比如二维数组</li>
+</ul>
+<h3 id="CISC与RISC"><a href="#CISC与RISC" class="headerlink" title="CISC与RISC"></a>CISC与RISC</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">指令系统类型</th>
+<th style="text-align:center">指令</th>
+<th style="text-align:center">寻址方式</th>
+<th style="text-align:center">实现方式</th>
+<th style="text-align:center">其它</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">CISC(复杂)</td>
+<td style="text-align:center">数量多，使用频率差别大，可变长格式</td>
+<td style="text-align:center">支持多种</td>
+<td style="text-align:center">微程序控制技术(微码)</td>
+<td style="text-align:center">研制周期长</td>
+</tr>
+<tr>
+<td style="text-align:center">RISC(精简)</td>
+<td style="text-align:center">数量少，使用频率接近，订长格式，大部分为单周期指令，操作寄存器，只有Load/Store操作内存</td>
+<td style="text-align:center">支持方式少</td>
+<td style="text-align:center">增加了通用寄存器；硬布线逻辑控制为主；适合采用流水线</td>
+<td style="text-align:center">优化编译，有效支持高级语言</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="流水线"><a href="#流水线" class="headerlink" title="流水线"></a>流水线</h3><h3 id="存储系统"><a href="#存储系统" class="headerlink" title="存储系统"></a>存储系统</h3><p><img src="/2021/07/22/架构设计师备考/层次化存储结构.png" alt="层次化存储结构"></p>
+<h4 id="Cache"><a href="#Cache" class="headerlink" title="Cache"></a>Cache</h4><blockquote>
+<p>提高CPU数据输入输出的速率，突破冯·诺伊曼瓶颈，即CPU与存储系统间数据传送带宽的限制</p>
+</blockquote>
+<ul>
+<li>在计算机存储系统体系中，Cache是访问速度最快的层次(因寄存器在CPU中，大多数时候未将寄存器放在存储体系中讨论，<font color="red">最快的有寄存器选寄存器，没有选Cache</font>)</li>
+<li>使用Cache改善性能的依据是程序的局部性原理</li>
+</ul>
+<p>如果以$h$代表对Cache的访问命中率，$t_1$表示Cache的周期时间，$t_2$表示主存储器周期时间，以读操作为例，使用“Cache+主存储器”的系统的平均周期为$t_3$，则:</p>
+<script type="math/tex; mode=display">t_3=h\times t_1 +(1-h)\times t_2</script><p>其中，$(1-h)$又称为失效率(未命中率)</p>
+<h4 id="局部性原理"><a href="#局部性原理" class="headerlink" title="局部性原理"></a>局部性原理</h4><ul>
+<li>时间局部性</li>
+<li>空间局部性</li>
+<li>工作集理论：工作集是进程运行时被频繁访问的页面集合</li>
+</ul>
+<h4 id="主存"><a href="#主存" class="headerlink" title="主存"></a>主存</h4><h5 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h5><ul>
+<li>随机存取存储器:掉电信息丢失<ul>
+<li>DRAM(Dynamic RAM, 动态RAM) -SDRAM</li>
+<li>SRAM(Static RAM, 静态RAM)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>只读存储器:掉电信息不丢失<ul>
+<li>MROM(Mask ROM，掩模式ROM)</li>
+<li>PROM(Programmable ROM，一次可编程ROM)</li>
+<li>EPROM(Erasable PROM，可擦除的PROM)</li>
+<li>闪速存储器(flash memory，闪存)</li>
+</ul>
+</li>
+</ul>
+<h5 id="编址"><a href="#编址" class="headerlink" title="编址"></a>编址</h5><p><img src="/2021/07/22/架构设计师备考/主存编制.png" alt="主存编制"></p>
+<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><p>内存地址从AC000H到C7FFFH，共有_K个地址单元，如果该内存地址按字(16bit)编址，由28片存储器芯片构成。已知构成此内存的芯片每片由16K个存储单元，则该芯片每个存储单元存储_位<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+<h4 id="磁盘结构与参数"><a href="#磁盘结构与参数" class="headerlink" title="磁盘结构与参数"></a>磁盘结构与参数</h4><blockquote>
+<p>存取时间=寻道时间+等待时间(平均定位时间+转动延迟)<br><em>寻道时间指磁头移动到磁道所需的时间；等待时间为等待读写的扇区转到磁头下方所用的时间</em></p>
+</blockquote>
+<h4 id="例题2"><a href="#例题2" class="headerlink" title="例题2"></a>例题<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></h4><p><img src="/2021/07/22/架构设计师备考/磁盘例题.png" alt="磁盘例题"></p>
+<h3 id="校验码"><a href="#校验码" class="headerlink" title="校验码"></a>校验码</h3><h3 id="并行处理"><a href="#并行处理" class="headerlink" title="并行处理"></a>并行处理</h3><h2 id="系统配置与性能评价"><a href="#系统配置与性能评价" class="headerlink" title="系统配置与性能评价"></a>系统配置与性能评价</h2><h3 id="性能指标"><a href="#性能指标" class="headerlink" title="性能指标"></a>性能指标</h3><ul>
+<li>字长和数据通路宽度</li>
+<li>主存容量和存取速度</li>
+<li><p>运算速度</p>
+<ul>
+<li>主频与CPU时钟周期</li>
+<li>CPI与IPC</li>
+<li>MIPS与MFLOPS<blockquote>
+<script type="math/tex; mode=display">MIPS = 指令条数/(执行时间\times 10^6)=主频/CPI=主频\times IPC</script><script type="math/tex; mode=display">MFLOPS = 浮点操作次数/(执行时间\times 10^6)</script></blockquote>
+</li>
+</ul>
+</li>
+<li><p>吞吐量与吞吐率</p>
+</li>
+<li>响应时间与完成时间</li>
+<li>兼容性<h3 id="阿姆达尔解决方案"><a href="#阿姆达尔解决方案" class="headerlink" title="阿姆达尔解决方案"></a>阿姆达尔解决方案</h3></li>
+</ul>
+<p>对系统中某组件采用某种更快的执行方式，所获得的系统性能的改变程度，取决于该组件被使用的频率，或所占总执行时间的比例。加速比计算公式如下：</p>
+<script type="math/tex; mode=display">R=\frac{T_p}{T_i}=\frac{1}{(1-F_e)+F_e/S_e}</script><p>其中，$T_p$表示不使用改进组件时完成整个任务的时间，$T_i$表示使用改进组件时完成整个任务的时间。<br>加速比主要取决于两个因素：</p>
+<ul>
+<li>在原有的系统上，能被改进的部分在总执行时间中所占的比例。这个值称为改进比例，记为$F_e$，它总小于1</li>
+<li>通过改进的执行方式所取得的性能提高，即如果整个系统使用了改进的执行方式，那么系统的执行速度会有多少提高，这个值等于在原来条件下系统执行时间与使用改进组件后系统的执行时间之比，记为$S_e$，它总大于1</li>
+</ul>
+<h4 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h4><p>在计算机系统中，某一功能的处理时间为整个系统运行时间的50%，若使该功能的处理速度加快10倍，根据Amdahl定律，这样做可以使整个系统的性能提高_倍。若要使整个系统的性能提高1.5倍，则该功能的处理速度应加快__倍。<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup></p>
+<h3 id="性能评价方法"><a href="#性能评价方法" class="headerlink" title="性能评价方法"></a>性能评价方法</h3><ul>
+<li>时钟频率法<blockquote>
+<p>CPU、片面性极大，早期方式</p>
+</blockquote>
+</li>
+<li>指令执行速度法<blockquote>
+<p>单位时间执行指令数，片面性大(只衡量加法指令)</p>
+</blockquote>
+</li>
+<li>等效指令速度法(吉普森混合法)<blockquote>
+<p>每条指令使用概率乘以每条指令执行时间，相当于取平均值，依然局限在运算能力</p>
+</blockquote>
+</li>
+<li>数据处理速率法(PDR)<blockquote>
+<p>会考虑存储交互性</p>
+</blockquote>
+</li>
+<li>综合理论性能法(CTP)<blockquote>
+<p>考虑每一个处理部件、计算单元的有效计算率，根据字长调整，比较平衡地取得每个计算单位理论的性能值</p>
+</blockquote>
+</li>
+<li>基准程序法<ul>
+<li>Dhrystone基准程序</li>
+<li>Linpack基准程序</li>
+<li>Whetstone基准程序</li>
+<li>SPEC基准程序(SPECmark、SPECint、SPECfp、SPECrate)</li>
+<li>TPC基准程序<ul>
+<li>TPC-A：OLTP环境下的数据库和硬件性能</li>
+<li>TPC-B：不包括网络的纯事务处理，模拟企业计算环境</li>
+<li>TPC-C：联机订货系统</li>
+<li>TPC-D、TPC-H、TPC-R：决策支持系统</li>
+<li>TPC-E：大型企业信息服务系统</li>
+<li>TPC-W：通过Internet进行市场服务和销售的商业行为</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="性能检测方法"><a href="#性能检测方法" class="headerlink" title="性能检测方法"></a>性能检测方法</h3><ul>
+<li>软件监控：使用软件对系统性能数据进行采集分析，此方法会消耗较多的系统资源</li>
+<li>硬件监控：使用专用硬件设备对系统性能进行采集分析，适用于高负载的计算机系统 </li>
+</ul>
+<h2 id="操作系统基本原理"><a href="#操作系统基本原理" class="headerlink" title="操作系统基本原理"></a>操作系统基本原理</h2><h3 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h3><ul>
+<li><p>状态<br><img src="/2021/07/22/架构设计师备考/进程的状态.png" alt="进程的状态"></p>
+</li>
+<li><p>前趋图<br><img src="/2021/07/22/架构设计师备考/前趋图.png" alt="前趋图"></p>
+<blockquote>
+<p>考虑哪些有先后，哪些可并行。前趋图描述一系列活动的先后约束关系。</p>
+</blockquote>
+</li>
+<li><p>同步与互斥<br>互斥：在同一时刻只允许一个进程使用一个资源<br>同步：速度有差异，在一定情况下等待<br><img src="/2021/07/22/架构设计师备考/生产者消费者问题.png" alt="生产者消费者问题"></p>
+</li>
+<li><p>PV 操作</p>
+<blockquote>
+<p>临界资源：诸进程间需要互斥方式对其进行共享的资源，如打印机、磁带机等<br>临界区：每个进程中访问临界资源的那段代码称为临界区<br>信号量：一种特殊的变量(控制临界资源是否能够访问，为1其实就是锁)</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/2021/07/22/架构设计师备考/PV操作.png" alt="PV操作"></p>
+<p>单缓冲区生产者、消费者问题PV原语描述，S1初始值为1，S2初始值为0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">生产者:</span><br><span class="line">    生产一个产品;</span><br><span class="line">    P(S1);</span><br><span class="line">    送产品到缓冲区;</span><br><span class="line">    V(S2);</span><br><span class="line"></span><br><span class="line">消费者:</span><br><span class="line">    P(S2);</span><br><span class="line">    从缓冲区取产品;</span><br><span class="line">    V(S1);</span><br><span class="line">    消费产品;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>PV操作与前趋图结合<br><img src="/2021/07/22/架构设计师备考/PV和前趋图结合.png" alt="PV和前趋图结合"></p>
+</li>
+<li><p>死锁问题</p>
+<blockquote>
+<p>一个进程等待一件不可能发生的事，则进程死锁。如果一个或多个进程产生死锁，就会造成系统死锁<br>四大条件：环路等待、互斥、保持和等待、不剥夺<br>死锁的预防：打破四大条件<br>死锁的避免：有序资源分配法、<font color="red">银行家算法</font></p>
+</blockquote>
+</li>
+<li><p>银行家算法</p>
+<blockquote>
+<p>当一个进程对资源的最大需求量不超过系统的资源数时可以接纳该进程<br>进程可以分期请求资源，但请求的总数不能超过最大需求量<br>当系统现有的资源不能满足进程尚需资源数时，对进程的请求可以推迟分配，但总能使进程在有限的时间里得到资源</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/2021/07/22/架构设计师备考/死锁问题.png" alt="死锁问题"></p>
+<h4 id="例题-2"><a href="#例题-2" class="headerlink" title="例题"></a>例题</h4><ul>
+<li>例题1<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup><br><img src="/2021/07/22/架构设计师备考/PV例题1.png" alt="PV例题1"></li>
+<li>例题2<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup><br><img src="/2021/07/22/架构设计师备考/PV例题2.png" alt="PV例题2"></li>
+<li>例题3<sup id="fnref:6"><a href="#fn:6" rel="footnote">6</a></sup><br><img src="/2021/07/22/架构设计师备考/PV例题3.png" alt="PV例题3"></li>
+<li>例题4<sup id="fnref:7"><a href="#fn:7" rel="footnote">7</a></sup><br>系统有3个进程，A、B、C。这3个进程都需要5个系统资源。则系统至少有多少个资源不可能发生死锁。</li>
+<li>例题5<sup id="fnref:8"><a href="#fn:8" rel="footnote">8</a></sup><br><img src="/2021/07/22/架构设计师备考/银行家算法.png" alt="银行家算法"></li>
+</ul>
+<h3 id="存储管理"><a href="#存储管理" class="headerlink" title="存储管理"></a>存储管理</h3><h4 id="页式存储"><a href="#页式存储" class="headerlink" title="页式存储"></a>页式存储</h4><p><img src="/2021/07/22/架构设计师备考/页式存储.png" alt="页式存储"></p>
+<ul>
+<li>优点：利用率高，碎片小，分配及管理简单</li>
+<li>缺点：增加了系统开销(查表)；可能产生抖动现象</li>
+</ul>
+<h4 id="段式存储"><a href="#段式存储" class="headerlink" title="段式存储"></a>段式存储</h4><p><img src="/2021/07/22/架构设计师备考/段式存储.png" alt="段式存储"></p>
+<h4 id="段页式存储"><a href="#段页式存储" class="headerlink" title="段页式存储"></a>段页式存储</h4><p><img src="/2021/07/22/架构设计师备考/段页式存储.png" alt="段页式存储"></p>
+<ul>
+<li>优点：空间浪费小，存储共享容易，存储保护容易，能动态链接</li>
+<li>缺点：由于管理软件的增加，复杂性和开销也随之增加，需要的硬件以及占用的内容也有所增加，使得执行速度大大下降</li>
+</ul>
+<h4 id="快表"><a href="#快表" class="headerlink" title="快表"></a>快表</h4><p>快表是一块小容量的相联存储器(Associative Memory)，由高速缓存器组成，速度快，并且可以从硬件上保证按内容并行查找，一般用来存放当前访问最频繁的少数活动页面的页号。</p>
+<h4 id="页面置换算法"><a href="#页面置换算法" class="headerlink" title="页面置换算法"></a>页面置换算法</h4><ul>
+<li>最优(Optimal,OPT)算法</li>
+<li>随机(RAND)算法</li>
+<li><font color="red">先进先出(FIFO)算法</font>：有可能产生抖动。例如432143543215序列，用3个页面，比4个缺页要少<br><img src="/2021/07/22/架构设计师备考/FIFO算法.png" alt="FIFO算法"></li>
+<li><font color="red">最近最少使用(LRU)算法</font>：不会抖动<h4 id="例题-3"><a href="#例题-3" class="headerlink" title="例题"></a>例题</h4></li>
+<li>例题1<sup id="fnref:9"><a href="#fn:9" rel="footnote">9</a></sup><br><img src="/2021/07/22/架构设计师备考/页式存储例题.png" alt="页式存储例题"></li>
+<li>例题2<sup id="fnref:10"><a href="#fn:10" rel="footnote">10</a></sup><br><img src="/2021/07/22/架构设计师备考/页面置换算法例题.png" alt="页面置换算法例题"></li>
+<li>例题3<sup id="fnref:11"><a href="#fn:11" rel="footnote">11</a></sup><br><img src="/2021/07/22/架构设计师备考/页面置换例题2.png" alt="页面置换例题2"></li>
+</ul>
+<h3 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h3><h4 id="索引文件结构"><a href="#索引文件结构" class="headerlink" title="索引文件结构"></a>索引文件结构</h4><p><img src="/2021/07/22/架构设计师备考/索引文件结构.png" alt="索引文件结构"></p>
+<h4 id="文件系统和树型目录结构"><a href="#文件系统和树型目录结构" class="headerlink" title="文件系统和树型目录结构"></a>文件系统和树型目录结构</h4><ul>
+<li>文件属性:只读文件属性(R)、存档属性(A)、系统文件(S)、隐藏文件(H)</li>
+<li>文件名组成:驱动器号、路径、主文件名、扩展名</li>
+<li><font color="red">绝对路径:是从盘符开始的路径</font></li>
+<li><font color="red">相对路径:是从当前路径开始的路径</font><br><img src="/2021/07/22/架构设计师备考/树型目录结构.png" alt="树型目录结构"><br>若当前路径为D1，要求F2路径，则绝对路径为：/D1/W2/F2，相对路径：W2/F2</li>
+</ul>
+<h4 id="空闲存储空间的管理"><a href="#空闲存储空间的管理" class="headerlink" title="空闲存储空间的管理"></a>空闲存储空间的管理</h4><ul>
+<li>空闲区表法(空闲文件目录)</li>
+<li>空闲链表法</li>
+<li><font color="red">位示图法</font></li>
+<li>成组连接法<br><img src="/2021/07/22/架构设计师备考/位示图法.png" alt="位示图法"><h4 id="例题-4"><a href="#例题-4" class="headerlink" title="例题"></a>例题</h4></li>
+<li><p>例题1<sup id="fnref:12"><a href="#fn:12" rel="footnote">12</a></sup><br><img src="/2021/07/22/架构设计师备考/索引文件结构例题1.png" alt="索引文件结构例题1"></p>
+</li>
+<li><p>例题2<sup id="fnref:13"><a href="#fn:13" rel="footnote">13</a></sup><br><img src="/2021/07/22/架构设计师备考/位示图例题.png" alt="位示图例题"></p>
+</li>
+</ul>
+<h3 id="设备管理"><a href="#设备管理" class="headerlink" title="设备管理"></a>设备管理</h3><h4 id="数据传输控制方式"><a href="#数据传输控制方式" class="headerlink" title="数据传输控制方式"></a>数据传输控制方式</h4><ul>
+<li><font color="red">程序控制方式</font>（程序查询方式）：最低级的，CPU介入最多—查询，外设处于被动</li>
+<li><font color="red">程序中断方式</font>：外设可以主动触发，效率更高</li>
+<li><font color="red">DMA方式</font>(直接存取控制方式)：由专门的DMA控制器控制外设与内存的数据交换</li>
+<li>通道</li>
+<li>输入输出处理机</li>
+</ul>
+<h3 id="微内核操作系统"><a href="#微内核操作系统" class="headerlink" title="微内核操作系统"></a>微内核操作系统</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">实质</th>
+<th style="text-align:center">优点</th>
+<th style="text-align:center">缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">单体内核</td>
+<td style="text-align:center">将图形、设备驱动及文件系统等功能全部在内核中实现，运行在内核状态和同一地址空间</td>
+<td style="text-align:center">减少进程间通信和状态切换的系统开销，获得较高的运行效率</td>
+<td style="text-align:center">内核庞大，占用资源较多且不易裁剪<br>系统的稳定性和安全性不好</td>
+</tr>
+<tr>
+<td style="text-align:center">微内核</td>
+<td style="text-align:center">只实现基本功能，将图形系统、文件系统、设备驱动及通信功能放在内核之外</td>
+<td style="text-align:center">内核精炼，便于裁剪和移植<br>系统服务程序运行在用户地址空间，系统的可靠性、稳定性和安全性较高<br>可用于分布式系统</td>
+<td style="text-align:center">用户状态和内核状态需要频繁切换，从而导致系统效率不如单体内核</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="/2021/07/22/架构设计师备考/微内核操作系统.png" alt="微内核操作系统"></p>
+<h2 id="数据库系统"><a href="#数据库系统" class="headerlink" title="数据库系统"></a>数据库系统</h2><h3 id="三级模式-两级映射"><a href="#三级模式-两级映射" class="headerlink" title="三级模式-两级映射"></a>三级模式-两级映射</h3><p><img src="/2021/07/22/架构设计师备考/三级模式两级映射.png" alt="三级模式两级映射"></p>
+<h3 id="数据库设计过程"><a href="#数据库设计过程" class="headerlink" title="数据库设计过程"></a>数据库设计过程</h3><p><img src="/2021/07/22/架构设计师备考/数据库设计过程.png" alt="数据库设计过程"></p>
+<h3 id="E-R模型"><a href="#E-R模型" class="headerlink" title="E-R模型"></a>E-R模型</h3><p><img src="/2021/07/22/架构设计师备考/ER模型.png" alt="ER模型"></p>
+<ul>
+<li>集成的方法<ol>
+<li>多个局部E-R图一次集成</li>
+<li>逐步集成，用累加的方式一次集成两个局部E-R</li>
+</ol>
+</li>
+<li>集成产生的冲突及解决方法<ol>
+<li>属性冲突：包括属性域冲突和属性取值冲突</li>
+<li>命名冲突：包括同名异义和异名同义</li>
+<li>结构冲突：包括同一对象在不同应用中具有不同的抽象，以及同一实体在不同局部E-R图中所包含的属性个数和属性排列次序不完全相同</li>
+</ol>
+</li>
+<li>E-R模型转关系模式<ol>
+<li>一个实体转换为一个关系模式</li>
+<li>1:1联系：最少可以转成2个关系模式，一个实体对应一个关系模式，将联系放入任何一个实体都可</li>
+<li>1:n联系：最少可以转成2个关系模式，一个实体对应一个关系模式，可以把联系记录在n的一端</li>
+<li>m:n联系： 最少可以转成3个关系模式，一个实体对应一个关系模式，联系需要一个单独的关系模式记录</li>
+</ol>
+</li>
+</ul>
+<h4 id="例题-5"><a href="#例题-5" class="headerlink" title="例题"></a>例题</h4><ul>
+<li>例题1<sup id="fnref:14"><a href="#fn:14" rel="footnote">14</a></sup><br><img src="/2021/07/22/架构设计师备考/E-R模型转换.png" alt="E-R模型转换"></li>
+</ul>
+<h3 id="关系代数"><a href="#关系代数" class="headerlink" title="关系代数"></a>关系代数</h3><blockquote>
+<p>并、交、差、<font color="red">笛卡尔积、投影、选择、联结</font></p>
+</blockquote>
+<ul>
+<li><p>交并差<br><img src="/2021/07/22/架构设计师备考/关系1.png" alt="关系1"><br><img src="/2021/07/22/架构设计师备考/交.png" alt="交"><br><img src="/2021/07/22/架构设计师备考/并.png" alt="并"><br><img src="/2021/07/22/架构设计师备考/差.png" alt="差"></p>
+</li>
+<li><p>笛卡尔积、投影、选择<br><img src="/2021/07/22/架构设计师备考/关系1.png" alt="关系1"><br><img src="/2021/07/22/架构设计师备考/笛卡尔积.png" alt="笛卡尔积"><br><img src="/2021/07/22/架构设计师备考/投影.png" alt="投影"><br><img src="/2021/07/22/架构设计师备考/选择.png" alt="选择"></p>
+</li>
+<li><p>联结<br><img src="/2021/07/22/架构设计师备考/关系2.png" alt="关系2"><br><img src="/2021/07/22/架构设计师备考/联结.png" alt="联结"></p>
+</li>
+</ul>
+<h3 id="规范化理论"><a href="#规范化理论" class="headerlink" title="规范化理论"></a>规范化理论</h3><blockquote>
+<p>价值与用途：非规范化的关系模式，可能存在的问题包括：数据冗余，更新异常、插入异常、删除异常</p>
+</blockquote>
+<h4 id="函数依赖"><a href="#函数依赖" class="headerlink" title="函数依赖"></a>函数依赖</h4><blockquote>
+<p>设R(U)是属性U上的一个关系模式，X和Y是U的子集，r为R的任一关系，如果对于r中的任意两个元组u，v，只要有$u[X]=v[X]$，就有$u[Y]=v[Y]$,则称X函数决定Y，或称Y函数依赖于X，记为$X\rightarrow Y$</p>
+</blockquote>
+<p><img src="/2021/07/22/架构设计师备考/部分函数依赖.png" alt="部分函数依赖"><br><img src="/2021/07/22/架构设计师备考/传递函数依赖.png" alt="传递函数依赖"></p>
+<h4 id="键"><a href="#键" class="headerlink" title="键"></a>键</h4><p><img src="/2021/07/22/架构设计师备考/键.png" alt="键"></p>
+<ul>
+<li>求解候选键<ol>
+<li>将关系模式的函数依赖关系用“有向图”的方式表示</li>
+<li>找入度为0的属性，并以该属性集合为起点，尝试遍历有向图，若能正常遍历图中所有结点，则该属性集即为关系模式的候选键</li>
+<li>若入度为0的属性不能遍历图中所有结点，则需要尝试性地将一些中间结点(即有入度，也有出度的结点)并入入度为0的属性集中，直至该集合能遍历所有结点，集合为候选键</li>
+</ol>
+</li>
+</ul>
+<h5 id="例题-6"><a href="#例题-6" class="headerlink" title="例题"></a>例题</h5><ul>
+<li>例题1<sup id="fnref:15"><a href="#fn:15" rel="footnote">15</a></sup><br><img src="/2021/07/22/架构设计师备考/键例题1.png" alt="键例题1"></li>
+<li>例题2<sup id="fnref:16"><a href="#fn:16" rel="footnote">16</a></sup><br><img src="/2021/07/22/架构设计师备考/键例题2.png" alt="键例题2"></li>
+<li>例题3<sup id="fnref:17"><a href="#fn:17" rel="footnote">17</a></sup><br><img src="/2021/07/22/架构设计师备考/键例题3.png" alt="键例题3"></li>
+</ul>
+<h4 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h4><p><img src="/2021/07/22/架构设计师备考/范式.png" alt="范式"></p>
+<ul>
+<li>第一范式(1NF)：在关系模式R中，当且仅当所有域只包含原子值，即每个分量都是不可再分的数据项，则陈R是第一范式</li>
+<li>第二范式(2NF)：当且仅当R是第一范式，且第一个非主属性完全依赖主键(<font color="red">不存在部分依赖</font>)时，则称R是第二范式</li>
+<li>第三范式(3NF)：当且仅当R是1NF，且E中没有非主属性传递依赖的码时，则称R是第三范式</li>
+<li>BC范式(BCNF)：设R是一个关系模式，F是它的依赖集，R属于BCNF当且仅当其F中每个依赖的决定因素必定包含R的某个候选码</li>
+</ul>
+<h5 id="例题-7"><a href="#例题-7" class="headerlink" title="例题"></a>例题</h5><ul>
+<li>例题1<sup id="fnref:18"><a href="#fn:18" rel="footnote">18</a></sup><br><img src="/2021/07/22/架构设计师备考/范式例题1.png" alt="范式例题1"></li>
+</ul>
+<h4 id="模式分解"><a href="#模式分解" class="headerlink" title="模式分解"></a>模式分解</h4><ul>
+<li><font color="red">保持函数依赖分解</font><blockquote>
+<p>设数据库模式$\sigma = \{R1,R2,\dots,Rk\}$是关系模式R的一个分解，F是R上的函数依赖集，$\sigma$中每个模式Ri上的FD集是Fi。如果$\{F1,F2,\dots,Fk\}$与F是等价的(即相互逻辑蕴涵)，那么称分解$\sigma$保持FD。</p>
+</blockquote>
+</li>
+<li><p>无损分解</p>
+<blockquote>
+<p>有损即不能还原，无损即可以还原</p>
+</blockquote>
+</li>
+<li><p>无损联接分解</p>
+<blockquote>
+<p>指将一个关系模式分解成若干个关系模式后，通过自然联接和投影等运算仍能还原到原来的关系模式。</p>
+</blockquote>
+</li>
+</ul>
+<p>定理：如果R的分解为$\sigma={R_1,R_2}$，F为R所满足的函数依赖集合，分解$\sigma$具有无损联接性的充分必要条件是：</p>
+<script type="math/tex; mode=display">R_1\cap R_2 \rightarrow (R_1-R_2)</script><p>或</p>
+<script type="math/tex; mode=display">R_1 \cap R_2 \rightarrow (R_2-R_1)</script><p>其中，$R_1\cap R_2 $表示模式的交，为$R_1$与$R_2$中公共属性组成，$R_1-R_2$或$R_2-R_1$表示模式的差集，$R_1-R_2$表示$R_1$中去除$R_1$和$R_2$的公共属性所组成。当模式R分解成两个关系模式$R_1$和$R_2$时，如果$R_1$与$R_2$的公共属性能函数决定$R_1$中或$R_2$中的其它属性，这样的分解就具有无损联接性。(<font color="red">只适用于一分为二的分解</font>)</p>
+<h5 id="例题-8"><a href="#例题-8" class="headerlink" title="例题"></a>例题</h5><ul>
+<li><p>例题1<sup id="fnref:19"><a href="#fn:19" rel="footnote">19</a></sup><br><img src="/2021/07/22/架构设计师备考/模式分解例题1.png" alt="模式分解例题1"></p>
+</li>
+<li><p>例题2<sup id="fnref:20"><a href="#fn:20" rel="footnote">20</a></sup><br><img src="/2021/07/22/架构设计师备考/模式分解例题2.png" alt="模式分解例题2"></p>
+</li>
+</ul>
+<h3 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h3><p><img src="/2021/07/22/架构设计师备考/并发控制.png" alt="并发控制"></p>
+<ul>
+<li>并发存在的问题<br><img src="/2021/07/22/架构设计师备考/并发存在的问题.png" alt="并发存在的问题"></li>
+</ul>
+<h4 id="封锁协议"><a href="#封锁协议" class="headerlink" title="封锁协议"></a>封锁协议</h4><ul>
+<li>一级封锁协议。事务T在修改数据R之前必须先对其加X锁，直到事务结束才释放。<font color="red">可防止丢失修改</font></li>
+<li>二级封锁协议。一级封锁协议加上事务T在读取数据R之前先对其加S锁，读完后即可释放S锁。<font color="red">可防止丢失修改，还可防止读“脏”数据</font></li>
+<li>三级封锁协议。一级封锁协议加上事务T在读取数据R之前先对其加S锁，直到事务结束才释放。<font color="red">可防止丢失修改，防止读“脏”数据与防止数据重复读</font></li>
+<li>两阶段协议。可串行化，可能发生死锁</li>
+</ul>
+<h3 id="数据库完整性约束"><a href="#数据库完整性约束" class="headerlink" title="数据库完整性约束"></a>数据库完整性约束</h3><ul>
+<li>实体完整性约束：给数据表定义主键，约束的是主键的值不能为空和重复</li>
+<li>参照完整性约束：外键完整性约束，允许为空</li>
+<li>用户自定义完整性约束：可以设置属性值的要求<br>触发器：应对复杂的完整性约束，通过脚本约束一些复杂要求。上诉三种只能应付简单的要求。</li>
+</ul>
+<h3 id="数据库安全"><a href="#数据库安全" class="headerlink" title="数据库安全"></a>数据库安全</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">措施</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">用户标识和鉴定</td>
+<td style="text-align:center">最外层的安全保护措施，可以使用用户账户、口令及随机数检验等方式</td>
+</tr>
+<tr>
+<td style="text-align:center">存取控制</td>
+<td style="text-align:center">对用户进行授权，包括操作类型（如查找、插入、删除、修改等动作）和数据对象（主要是数据范围）的权限</td>
+</tr>
+<tr>
+<td style="text-align:center">密码存储和传输</td>
+<td style="text-align:center">对远程终端信息用密码传输</td>
+</tr>
+<tr>
+<td style="text-align:center">视图的保护</td>
+<td style="text-align:center">对视图进行授权</td>
+</tr>
+<tr>
+<td style="text-align:center">审计</td>
+<td style="text-align:center">使用一个专用文件或数据库，自动将用户对数据库的所有操作记录下来</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="数据备份"><a href="#数据备份" class="headerlink" title="数据备份"></a>数据备份</h3><ul>
+<li>冷备份：也称静态备份，是将数据库正常关闭，在停止状态下，将数据库的文件全部备份(复制)下来</li>
+<li>热备份：也称为动态备份，是利用备份软件，在数据库正常运行的状态下，将数据库中的数据文件备份出来</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">备份方式</th>
+<th style="text-align:left">优点</th>
+<th style="text-align:left">缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">冷备份</td>
+<td style="text-align:left">非常快速的备份方法(只需复制文件)；<br>容易归档(简单复制即可)；<br>容易恢复到某个时间点上(只需将文件再复制回去)；<br>能与归档方法相结合，做数据库“最佳状态”的恢复；<br>低度维护，高度安全</td>
+<td style="text-align:left">单独使用时，只能提供到某一时间点上的恢复；<br>在实施备份的全过程中，数据库必须要作备份而不能做其它工作；<br>若磁盘空间有限只能复制到磁带等其它外部存储设备上，速度会很慢；<br>不能按表或按用户恢复</td>
+</tr>
+<tr>
+<td style="text-align:center">热备份</td>
+<td style="text-align:left">可在表空间或数据库文件级备份，备份时间短；<br>备份时数据库仍可使用；<br>可达到秒级恢复(恢复到某一时间点上)；<br>可对几乎所有数据库实体做恢复；<br>恢复是快速的</td>
+<td style="text-align:left">不能出错，否则后果严重；<br>若热备份不成功所得结果不可用于时间点的恢复；<br>困难于维护，所以特别小心，不允许”以失败告终”</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>完全备份：备份所有数据</li>
+<li><font color="red">差量备份：仅备份上一次完全备份之后变化的数据</font></li>
+<li>增量备份：备份上一次备份之后变化的数据</li>
+</ul>
+<h4 id="转储"><a href="#转储" class="headerlink" title="转储"></a>转储</h4><ul>
+<li>静态海量转储：在系统中无运行事务时进行，每次转储全部数据库</li>
+<li>静态增量转储：在系统中无运行事务时进行，每次只转储上一次转储后更新过的数据</li>
+<li>动态海量转储：转储期间允许对数据库进行存取或修改，每次转储全部数据库</li>
+<li>动态增量转储：转储期间允许对数据库进行存取和修改，每次只转储上一次转储后更新过的数据。</li>
+</ul>
+<p>日志文件：事务日志是针对数据库改变所做的记录，它可以记录针对数据库的任何操作，并将记录结果保存在独立的文件中</p>
+<h3 id="数据库故障与恢复"><a href="#数据库故障与恢复" class="headerlink" title="数据库故障与恢复"></a>数据库故障与恢复</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">故障关系</th>
+<th style="text-align:center">故障原因</th>
+<th style="text-align:center">解决方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">事务本身的可预期故障</td>
+<td style="text-align:center">本身逻辑</td>
+<td style="text-align:center">在程序中预先设置RollBack语句</td>
+</tr>
+<tr>
+<td style="text-align:center">事务本身的不可预期故障</td>
+<td style="text-align:center">算术溢出、违反存储保护</td>
+<td style="text-align:center">由DBMS的恢复子系统通过日志，撤销事务对数据库的修改，回退到事务初始状态</td>
+</tr>
+<tr>
+<td style="text-align:center">系统故障</td>
+<td style="text-align:center">系统停止运转</td>
+<td style="text-align:center">通常使用检查点法</td>
+</tr>
+<tr>
+<td style="text-align:center">介质故障</td>
+<td style="text-align:center">外存被破坏</td>
+<td style="text-align:center">一般使用日志重做业务</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="分布式数据库"><a href="#分布式数据库" class="headerlink" title="分布式数据库"></a>分布式数据库</h3><p><img src="/2021/07/22/架构设计师备考/分布式数据库.png" alt="分布式数据库"></p>
+<ul>
+<li>分布透明性<ul>
+<li>分片透明性<ul>
+<li>水平分片</li>
+<li>垂直分片</li>
+<li>混合分片</li>
+</ul>
+</li>
+<li>位置透明性</li>
+<li>局部数据模型透明性</li>
+</ul>
+</li>
+<li>分布式数据库管理系统-组成<ul>
+<li>LDBMS</li>
+<li>GDBMS</li>
+<li>全局数据字典</li>
+<li>通信管理(CM)</li>
+</ul>
+</li>
+<li>分布式数据库管理系统-结构<ul>
+<li>全局控制集中的DDBMS</li>
+<li>全局控制分散的DDBMS</li>
+<li>全局控制部分分散的DDBMS</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据库优化"><a href="#数据库优化" class="headerlink" title="数据库优化"></a>数据库优化</h3><p><img src="/2021/07/22/架构设计师备考/数据库优化.png" alt="数据库优化"></p>
+<h3 id="数据仓库与数据挖掘"><a href="#数据仓库与数据挖掘" class="headerlink" title="数据仓库与数据挖掘"></a>数据仓库与数据挖掘</h3><ul>
+<li>面向主题</li>
+<li>集成的</li>
+<li>相对稳定的(非易失的)</li>
+<li>反映历史变化<br><img src="/2021/07/22/架构设计师备考/数据仓库.png" alt="数据仓库"></li>
+</ul>
+<h4 id="数据挖掘方法分类"><a href="#数据挖掘方法分类" class="headerlink" title="数据挖掘方法分类"></a>数据挖掘方法分类</h4><ul>
+<li>方法<ul>
+<li>决策树</li>
+<li>神经网络</li>
+<li>遗传算法</li>
+<li>关联规则挖掘算法</li>
+</ul>
+</li>
+<li>分类<ul>
+<li>关联分析：挖掘出隐藏在数据间的相互关系</li>
+<li>序列模式分析：侧重点是分析数据间的前后关系(因果关系)</li>
+<li>分类分析：为每一个记录赋予一个标记再按标记分类</li>
+<li>聚类分析：分类分析法的逆过程</li>
+</ul>
+</li>
+</ul>
+<h3 id="联邦数据库"><a href="#联邦数据库" class="headerlink" title="联邦数据库"></a>联邦数据库</h3><blockquote>
+<p>联邦数据库系统(FDBS)是一个彼此协作却又相互独立的成员数据库(CDBS)的集合，它将成员数据库系统按不同程度进行集成，对该系统整体提供控制和协同操作的软件叫做联邦数据库管理系统(FDBMS)</p>
+</blockquote>
+<ul>
+<li>联邦数据库特征<ul>
+<li>分布性</li>
+<li>异构性</li>
+<li>自治性</li>
+<li>透明性</li>
+</ul>
+</li>
+<li>联邦数据库分类<ul>
+<li>紧耦合</li>
+<li>松耦合</li>
+</ul>
+</li>
+</ul>
+<h3 id="NoSQL"><a href="#NoSQL" class="headerlink" title="NoSQL"></a>NoSQL</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">关系数据库模式</th>
+<th style="text-align:left">NoSQL模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">并发支持</td>
+<td style="text-align:center">支持并发、效率低</td>
+<td style="text-align:left">并发性能高</td>
+</tr>
+<tr>
+<td style="text-align:center">存储与查询</td>
+<td style="text-align:center">关系表方式存储、SQL查询</td>
+<td style="text-align:left">海量数据存储、查询效率高</td>
+</tr>
+<tr>
+<td style="text-align:center">扩展方式</td>
+<td style="text-align:center">向上扩展，升级服务器</td>
+<td style="text-align:left">向外扩展，扩展集群</td>
+</tr>
+<tr>
+<td style="text-align:center">索引方式</td>
+<td style="text-align:center">B树、哈希等</td>
+<td style="text-align:left">键值索引</td>
+</tr>
+<tr>
+<td style="text-align:center">应用领域</td>
+<td style="text-align:center">面向通用领域</td>
+<td style="text-align:left">特定应用领域</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>缺点(存疑，目前已经算是比较成熟)</li>
+<li>成熟度不够，大量关键特性有待实现</li>
+<li>开源数据库产品的支持力度有限</li>
+<li>数据挖掘与商务智能支持不足，现有的产品无法直接使用NoSQL数据库</li>
+<li>NoSQL数据库专家较少，大部分都处于学习阶段<blockquote>
+<p>SQL + NoSQL = MoreSQL/NewSQL</p>
+</blockquote>
+</li>
+</ul>
+<p><em>Redis、MongoDB、Flare…</em></p>
+<h3 id="反规划化"><a href="#反规划化" class="headerlink" title="反规划化"></a>反规划化</h3><blockquote>
+<p>由于规范化会使表不断地拆分，从而导致数据表过多。这样虽然减少了数据冗余，提高了增、删、改的速度，但会增加查询的工作量。系统需要进行多次连接，才能进行查询操作，使得系统效率大大下降。</p>
+</blockquote>
+<ul>
+<li>技术手段<ul>
+<li>增加派生性冗余列</li>
+<li>增加冗余列</li>
+<li>重新组表</li>
+<li>分割表</li>
+</ul>
+</li>
+</ul>
+<h3 id="大数据基本概念"><a href="#大数据基本概念" class="headerlink" title="大数据基本概念"></a>大数据基本概念</h3><blockquote>
+<p>数据量(Volume)、速度(Velocity)、多样性(Variety)、值(Value)</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">比较纬度</th>
+<th style="text-align:center">传统数据</th>
+<th style="text-align:center">大数据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">数据量</td>
+<td style="text-align:center">GB或TB级</td>
+<td style="text-align:center">PB级或以上</td>
+</tr>
+<tr>
+<td style="text-align:center">数据分析需求</td>
+<td style="text-align:center">现有数据的分析和检测</td>
+<td style="text-align:center">深度分析(关联分析、回归分析)</td>
+</tr>
+<tr>
+<td style="text-align:center">硬件平台</td>
+<td style="text-align:center">高端服务器</td>
+<td style="text-align:center">集群平台</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><font color="red">大数据处理系统应具有的重要特性</font><ul>
+<li>高度可扩展性</li>
+<li>高性能</li>
+<li>高度容错</li>
+<li>支持异构环境</li>
+<li>较短的分析延迟</li>
+<li>易用且开放的接口</li>
+<li>较低成本</li>
+<li>向下兼容性</li>
+</ul>
+</li>
+</ul>
+<h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><h3 id="OSI-RM七层模型"><a href="#OSI-RM七层模型" class="headerlink" title="OSI/RM七层模型"></a>OSI/RM七层模型</h3><p><img src="/2021/07/22/架构设计师备考/七层模型.png" alt="七层模型"></p>
+<h4 id="例题-9"><a href="#例题-9" class="headerlink" title="例题"></a>例题</h4><ul>
+<li>例题1<sup id="fnref:21"><a href="#fn:21" rel="footnote">21</a></sup><br><img src="/2021/07/22/架构设计师备考/七层模型例题1.png" alt="七层模型例题1"></li>
+</ul>
+<h3 id="网络技术标准与协议"><a href="#网络技术标准与协议" class="headerlink" title="网络技术标准与协议"></a>网络技术标准与协议</h3><ul>
+<li>TCP/IP协议：Internet，可扩展，可靠，应用最广，牺牲速度和效率</li>
+<li>IPX/SPX协议：NOVELL，路由，大型企业网</li>
+<li><p>NETBEUI协议：IBM，非路由，快速<br><img src="/2021/07/22/架构设计师备考/网络技术标准与协议.png" alt="网络技术标准与协议"></p>
+</li>
+<li><p>TCP</p>
+<ul>
+<li>三次握手<br><img src="/2021/07/22/架构设计师备考/三次握手.png" alt="三次握手"></li>
+<li>可靠传输<br><img src="/2021/07/22/架构设计师备考/可靠传输.png" alt="可靠传输"></li>
+</ul>
+</li>
+<li><p>DHCP</p>
+<ol>
+<li>客户机/服务器模型</li>
+<li>租约默认为8天</li>
+<li>当租约过半时，客户机需要向DHCP服务器申请续租</li>
+<li>当租约超过87.5%时，如果仍然没有和当初提供IP的DHCP服务器联系上，则开始联系其他的DHCP服务器</li>
+<li>固定分配、动态分配和自动分配</li>
+<li>169.254.X.X（Windows）和0.0.0.0（Unix）说明未和DHCP服务器联系上</li>
+</ol>
+</li>
+<li><p>DNS协议</p>
+<ul>
+<li>递归查询：服务器必须回答目标IP与域名的映射关系。<font color="red">主机向本地域名服务器的查询采用递归查询</font></li>
+<li>迭代查询：服务器收到一次迭代查询回复一次结果，这个结果不一定是目标IP与域名的映射关系，也可以是其它DNS服务器的地址。<font color="red">本地域名服务器向根域名服务器的查询<strong>通常采用</strong>迭代查询</font><br><img src="/2021/07/22/架构设计师备考/DNS查询.png" alt="DNS查询"></li>
+</ul>
+</li>
+</ul>
+<h4 id="例题-10"><a href="#例题-10" class="headerlink" title="例题"></a>例题</h4><ul>
+<li>例题1<sup id="fnref:22"><a href="#fn:22" rel="footnote">22</a></sup><br><img src="/2021/07/22/架构设计师备考/DNS例题.png" alt="DNS例题.png"></li>
+</ul>
+<h3 id="网络规划与设计"><a href="#网络规划与设计" class="headerlink" title="网络规划与设计"></a>网络规划与设计</h3><ul>
+<li>网络规划原则<ul>
+<li>实用性原则</li>
+<li>开放性原则</li>
+<li>先进性原则</li>
+</ul>
+</li>
+<li>网络设计任务<ul>
+<li>确定网络总体目标</li>
+<li>确定总体设计原则</li>
+<li>通信子网设计</li>
+<li>资源子网设计</li>
+<li>设备选型</li>
+<li>网络操作系统与服务器资源设备</li>
+<li>网络安全设计</li>
+</ul>
+</li>
+<li>网络设计原则<ul>
+<li>可用性：指网络或网络设备可用于执行预期任务时间所占总量的百分比</li>
+<li>可靠性：网络设备或计算机持续执行预定功能的可能性</li>
+<li>可恢复性：指网络从故障中恢复的难易程度和时间</li>
+<li>适应性：指在用户改变应用要求时网络的应变能力</li>
+<li>可伸缩性：指网络技术或设备随着用户需求的增长而扩充的能力</li>
+</ul>
+</li>
+<li>网络实施原则<ul>
+<li>可靠性原则</li>
+<li>安全性原则</li>
+<li>高效性原则</li>
+<li>可扩展性原则</li>
+</ul>
+</li>
+<li>网络实施步骤<ul>
+<li>工程实施计划</li>
+<li>网络设备到货验收</li>
+<li>设备安装</li>
+<li>系统测试</li>
+<li>系统试运行</li>
+<li>用户培训</li>
+<li>系统转换</li>
+</ul>
+</li>
+</ul>
+<h4 id="逻辑设计"><a href="#逻辑设计" class="headerlink" title="逻辑设计"></a>逻辑设计</h4><blockquote>
+<p>利用需求分析和现有网络体系分析的结果来设计逻辑网络结构，最后得到一份逻辑网络设计文档</p>
+</blockquote>
+<ul>
+<li>逻辑网络设计图</li>
+<li>IP地址方案</li>
+<li>安全方案</li>
+<li>具体的软硬件、广域网连接设备和基本服务</li>
+<li>招聘和培训网络员工的具体说明</li>
+<li>对软硬件、服务、员工和培训的费用初步估计</li>
+</ul>
+<h4 id="物理网络设计"><a href="#物理网络设计" class="headerlink" title="物理网络设计"></a>物理网络设计</h4><blockquote>
+<p>物理网络设计是对逻辑网络设计的物理实现，通过对设备的具体物理分布、运行环境等确定，确保网络的物理连接服务逻辑连接的要求</p>
+</blockquote>
+<ul>
+<li>网络物理结构图和布线方案</li>
+<li>设备和部件的详细列表清单</li>
+<li>软硬件和安装费用的估算</li>
+<li>安装日程表，详细说明服务的时间以及期限</li>
+<li>安装后的测试计划</li>
+<li>用户的培训计划</li>
+</ul>
+<h4 id="分层设计"><a href="#分层设计" class="headerlink" title="分层设计"></a>分层设计</h4><ul>
+<li>接入层：向本地网段提供用户接入</li>
+<li>汇聚层：网络访问策略控制、数据包处理、过滤、寻址</li>
+<li>核心层：数据交换</li>
+</ul>
+<p><img src="/2021/07/22/架构设计师备考/网络分层设计.png" alt="网络分层设计"></p>
+<h3 id="无线网"><a href="#无线网" class="headerlink" title="无线网"></a>无线网</h3><ul>
+<li><p>分类</p>
+<ul>
+<li>无线局域网(WLAN,802.11,WI-FI)</li>
+<li>无线城域网(WMAN,802.16,WiMax)</li>
+<li>无线广域网(WWAN,3G/4G)</li>
+<li>无线个人网(WPAN,802.15,Bluetooth)</li>
+</ul>
+</li>
+<li><p>优势</p>
+<ul>
+<li>移动性</li>
+<li>灵活性</li>
+<li>成本低</li>
+<li>容易扩充</li>
+</ul>
+</li>
+<li><p>无线局域网接入方式</p>
+<ul>
+<li>有接入点模式</li>
+<li>无接入点模式(对等模式)</li>
+</ul>
+</li>
+</ul>
+<h3 id="网络接入技术"><a href="#网络接入技术" class="headerlink" title="网络接入技术"></a>网络接入技术</h3><ul>
+<li><p>有限接入</p>
+<ul>
+<li>公用交换电话网络(PSTN)-(POS机，传真)</li>
+<li>数字数据网(DDN)</li>
+<li>综合业务数字网(ISDN)</li>
+<li>非对称数字用户线路(ADSL)-<font color="red">介质是电话线，上下行不等</font></li>
+<li>同轴光纤技术(HFC)-<font color="red">有线电视网络</font></li>
+</ul>
+</li>
+<li><p>无线接入</p>
+<ul>
+<li>IEEE 802.11(WiFi)</li>
+<li>IEEE 802.15(蓝牙Bluetooth)</li>
+<li>红外(IrDA)</li>
+<li>WAPI</li>
+</ul>
+</li>
+<li><p>3G</p>
+<ul>
+<li>WCDMA</li>
+<li>CDMA2000</li>
+<li>TD-SCDMA</li>
+</ul>
+</li>
+<li><p>4G</p>
+<ul>
+<li>LET-Advanced<ul>
+<li>TDD(时分):由TD-SCDMA发展而来</li>
+<li>FDD(频分):由WCDMA发展而来</li>
+</ul>
+</li>
+<li>WirelessMAN- Advanced(802.16m)(WiMAX)</li>
+</ul>
+</li>
+</ul>
+<h3 id="网络存储技术"><a href="#网络存储技术" class="headerlink" title="网络存储技术"></a>网络存储技术</h3><h4 id="分类-1"><a href="#分类-1" class="headerlink" title="分类"></a>分类</h4><ul>
+<li><p>直连式存储(DAS)：服务器直接和存储相连，可以接磁盘阵列，最原始的一种方式，适用于数据量不大，业务不复杂的场景<br><img src="/2021/07/22/架构设计师备考/DAS.png" alt="DAS"></p>
+</li>
+<li><p>网络附加存储(NAS)：存储附加于网络之上，<font color="red">即插即用的存储</font>，是一台存储服务器。<font color="red">网络在某些时间节点很繁忙，是由于NAS未将存储网络和业务网络分开导致</font><br><img src="/2021/07/22/架构设计师备考/NAS.png" alt="NAS"></p>
+</li>
+<li><p>存储区域网络(SAN)：将业务网络和存储网络完全分开，存储网络使用光纤网络，速率远高于IP网络，<font color="red">是首次提出业务网络和存储网络分开的技术</font>，性能卓越，<font color="red">缺点只有成本高</font><br><img src="/2021/07/22/架构设计师备考/SAN.png" alt="SAN"></p>
+</li>
+<li><p>IPSAN(iSCSI)：SAN的廉价方案，性能比SAN低<br><img src="/2021/07/22/架构设计师备考/IPSAN.png" alt="IPSAN"></p>
+</li>
+</ul>
+<h4 id="Raid"><a href="#Raid" class="headerlink" title="Raid"></a>Raid</h4><ul>
+<li><font color="red">Raid0(条块化)</font>:性能最高，并行处理，无冗余，损坏无法恢复</li>
+<li><p><font color="red">Raid1(镜像结构)</font>:可用性，可恢复性好，仅有50%利用率<br><img src="/2021/07/22/架构设计师备考/Raid.png" alt="Raid"></p>
+<blockquote>
+<p>Raid0磁盘利用率为100&amp;，访问速度最快。Raid1磁盘利用率为50%，具备纠错功能。现在企业采用Raid0+1</p>
+</blockquote>
+</li>
+<li><p><font color="red">Raid0+1(Raid10)</font>:Raid0与Raid1长处的结合，高效也可靠，利用率也只有50%</p>
+</li>
+<li>Raid3(奇偶校验并行传送): N+1模式，有固定的校验盘，坏一个盘可恢复</li>
+<li><p><font color="red">Raid5(分布式奇偶校验的<strong>独立磁盘</strong>)</font>: N+1模式，无固定的校验盘，坏一个盘可恢复(相比Raid3，优势在于降低整个系统的磁盘出错损坏的概率)<br><img src="/2021/07/22/架构设计师备考/Raid5.png" alt="Raid5"></p>
+<blockquote>
+<p>Raid5磁盘利用率为(n-1)/n，具有容错功能</p>
+</blockquote>
+</li>
+<li><p>Raid6(两种存储的奇偶校验):N+2模式，无固定的校验盘，坏两个盘可恢复</p>
+</li>
+</ul>
+<h3 id="IPv6"><a href="#IPv6" class="headerlink" title="IPv6"></a>IPv6</h3><blockquote>
+<p>IPv6是设计用于替代现行版本IP协议(IPv4)的下一代IP协议</p>
+</blockquote>
+<ul>
+<li><p>特点</p>
+<ul>
+<li>IPv6地址长度为128位，<font color="red">地址空间增大了$2^{96}$倍</font></li>
+<li>灵活的IP报文头部格式。使用一系列固定格式的扩展头部取代了IPv4种可变长度的选项字段。IPv6中选项部分的出现方式也有所变化，是路由器可以简单路过选项而不做任何处理，加快了报文处理速度</li>
+<li>IPv6简化了报文头部格式，字段只有8个，加快报文转发，提高了吞吐量</li>
+<li>提高安全性。身份认证和隐私权是IPv6的关键特性</li>
+<li>支持更多的服务类型</li>
+<li>允许协议继续演变，增加新的功能，使之适应未来技术的发展</li>
+</ul>
+</li>
+<li><p>地址分类</p>
+<ul>
+<li>单播地址(Unicast):用于单个接口的标识符</li>
+<li>任播地址(Anycast):泛播地址。一组接口的标识符，<font color="red">IPv4广播地址</font></li>
+<li>组播地址(Multicast):IPv6的组播在功能上与IPv4中的组播类似</li>
+</ul>
+</li>
+</ul>
+<h3 id="物联网"><a href="#物联网" class="headerlink" title="物联网"></a>物联网</h3><blockquote>
+<p>物联网(The Internet of Things)是实现物物相连的互联网络，其内涵包含两个方面：第一，物联网的核心和基础仍然是互联网，是在互联网基础上延伸和扩展的网络；第二，其用户端延伸和扩展到了任何物体与物体之间，使其进行信息交换和通信</p>
+</blockquote>
+<ul>
+<li>感知层：识别物体、采集信息。如：二维码、RFID、摄像头、传感器</li>
+<li>网络层：传递信息和处理信息。通信网与互联网的融合网络、网络管理中心、信息中心和智能处理中心等</li>
+<li><p>应用层：解决信息处理和人机交互的问题<br><img src="/2021/07/22/架构设计师备考/物联网分层.png" alt="物联网分层"></p>
+</li>
+<li><p>RFID</p>
+<blockquote>
+<p>射频识别技术(Radio Frequency Identification,RFID)，又称电子标签，是一种通信技术，可通过无线电讯号识别特定目标并读写相关数据，而无需识别系统与特定目标之间建立机械或光学接触。该技术是物联网的一项核心技术，很多物联网应用都离不开它。</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>RFID的基本组成部分通常包括：标签、阅读器、天线</p>
+</blockquote>
+<ul>
+<li>二维码</li>
+</ul>
+<blockquote>
+<p>二维码是用某种特定的几何图形按一定规律在平面(二维方向上)分布的黑白相间的图形记录数据符号信息的。在代码编制上巧妙地利用构成计算机内部逻辑基础的0、1比特流的概念，使用若干个与二进制相对应的几何形体来表示文字数值信息，通过图像输入设备或光电扫描设备自动识读以实现信息自动处理</p>
+</blockquote>
+<p>二维码常用的码制有：Data Matrix,Maxi Code,Aztec,QR Code,Vericode,PDF417,U1tacode,Code 49,Code 16k</p>
+<ul>
+<li>PDF417<ul>
+<li>若采用扩展的字母数字压缩格式，可容纳1850个字符</li>
+<li>若采用二进制/ASCII格式，可容纳1108个字节</li>
+<li>若采用数字压缩格式，可容纳2710个数字</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>传感网</p>
+<blockquote>
+<p>传感网是由随机分布的，集成有传感器(传感器有很多种类型，包括：温度、湿度、速度、气敏等)、数据处理单元和通信单元单元的微小节点，通过自组织的方式构成无线网络</p>
+</blockquote>
+</li>
+<li><p>M2M</p>
+<blockquote>
+<p>M2M是将数据从一台终端传送到另一台终端，也就是机器与机器(Machine to Machine)的对话。但从广义上M2M可代表机器对机器(Machine to Machine)、人对机器(Man to Machine)、机器对人(Machine to Man)、移动网络对机器(Mobile to Machine)之间的连接和通信，它涵盖了所有实现在人、机器、系统之间建立通信连接的技术和手段</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/2021/07/22/架构设计师备考/物联网核心技术.png" alt="物联网核心技术"></p>
+<h3 id="云计算"><a href="#云计算" class="headerlink" title="云计算"></a>云计算</h3><blockquote>
+<p>云计算是一种基于互联网的计算方式，通过这种方式，共享的软硬件资源和信息可以按需提供给计算机和其它设备。云其实是网络、互联网的一种比喻说法。云计算的核心思想，是将大量用网络连接的计算资源统一管理和调度，构成一个计算资源池向用户按需服务。提供资源的网络被称为”云”。</p>
+</blockquote>
+<ul>
+<li>狭义云计算指<font color="red">IT基础设施</font>的交付和使用模式，指通过网络以按需、易扩展的方式获取所需资源</li>
+<li>广义云计算指<font color="red">服务</font>的交付和使用模式，指通过网络以按需、易扩展的方式获得所需服务。这种服务可以是IT和软件、互联网相关、也可是其他服务</li>
+<li>特点<ul>
+<li>集合了大量计算机，规模达到成千上万</li>
+<li>多种软硬件技术相结合</li>
+<li>对客户端设备的要求低</li>
+<li>规模化效应</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>类型</p>
+<ul>
+<li>软件即服务(SaaS)</li>
+<li>平台即服务(PaaS)</li>
+<li>基础设施即服务(IaaS)<br><img src="/2021/07/22/架构设计师备考/云计算服务类型.png" alt="云计算服务类型"></li>
+</ul>
+</li>
+<li><p>应用</p>
+<ul>
+<li>存储服务</li>
+<li>搜索</li>
+<li>科学计算</li>
+<li>安全应用</li>
+<li>软件即服务</li>
+</ul>
+</li>
+</ul>
+<h2 id="企业信息化战略与实施"><a href="#企业信息化战略与实施" class="headerlink" title="企业信息化战略与实施"></a>企业信息化战略与实施</h2><h3 id="信息与信息化的概念"><a href="#信息与信息化的概念" class="headerlink" title="信息与信息化的概念"></a>信息与信息化的概念</h3><ul>
+<li><p>信息</p>
+<ul>
+<li>维纳(Norber Wiener)：信息就是信息，既不是物质也不是能量</li>
+<li>香农(Claude E.Shannon)：信息就是不确定性的减少</li>
+<li>哲学界：信息是事物普遍联系的方式</li>
+<li>其它：信息是事先不知道的报导</li>
+</ul>
+</li>
+<li><p>信息化</p>
+<ul>
+<li>信息化就是计算机、通信和网络技术的现代化</li>
+<li>信息化就是从物质生产占主导地位的社会向信息产业占主导地位社会转变的发展过程</li>
+<li>信息化就是从工业社会向信息社会演进的过程</li>
+</ul>
+</li>
+</ul>
+<h3 id="信息系统的概念"><a href="#信息系统的概念" class="headerlink" title="信息系统的概念"></a>信息系统的概念</h3><blockquote>
+<p>系统指多个元素有机地结合在一起，执行特定的功能以达到特定目标的集合体</p>
+<p><font color="red">信息系统是输入数据，通过加工处理，产生信息的系统</font>，可以是人工的，手动的</p>
+</blockquote>
+<p><img src="/2021/07/22/架构设计师备考/信息系统概念.png" alt="信息系统概念"></p>
+<h3 id="信息系统类型"><a href="#信息系统类型" class="headerlink" title="信息系统类型"></a>信息系统类型</h3><ul>
+<li><p>数据环境分类</p>
+<ul>
+<li>数据文件</li>
+<li>应用数据库：比数据文件的好处<font color="red">不用管具体操作，只需告诉要做什么；便于共享</font></li>
+<li>主题数据库<ul>
+<li>面向业务主题</li>
+<li>信息共享</li>
+<li>一次一处输入系统</li>
+<li>由基本表组成</li>
+</ul>
+</li>
+<li>信息检索系统</li>
+</ul>
+</li>
+<li><p>应用层次分类</p>
+<ul>
+<li>战略级(企业最高管理层)</li>
+<li>战术级(企业中层经理及其管理部门)</li>
+<li>操作级(服务型企业的业务部门)</li>
+<li>事务级(企业的管理业务人员)</li>
+</ul>
+</li>
+</ul>
+<h3 id="信息系统战略规划-方法"><a href="#信息系统战略规划-方法" class="headerlink" title="信息系统战略规划-方法"></a>信息系统战略规划-方法</h3><blockquote>
+<p>以<font color="red">数据处理为核心</font>围绕职能部门需求</p>
+</blockquote>
+<ul>
+<li>企业系统规划法(BSP):通过大量调研了解企业战略目标，通过战略目标拆分，得到一些过程和需要处理的数据，然后进行表格转换。用到了多种矩阵，比如UC矩阵，找出数据和过程相关性</li>
+<li>关键成功因素法(CSF):有目的地找企业的关键成功因素</li>
+<li>战略集合转化法(SST):企业战略是指导信息系统战略的一个前提，把企业战略相关的集合转化成信息战略的集合<br><strong>三种方法结合使用称为BCS方法</strong></li>
+</ul>
+<blockquote>
+<p>以<font color="red">企业内部MIS为核心</font>围绕企业整体需求</p>
+</blockquote>
+<ul>
+<li>战略数据规划法(SDP):以BSP为基础，规划企业全局数据，提出主题数据库的概念</li>
+<li>信息工程法(IE):以BSP为基础，融合SDP。其不仅仅是一门方法，<font color="red">还是一门工程学科，把信息系统开发过程进行了工程化</font></li>
+<li><del>战略栅格法(SG):使用2X2矩阵，从战略影响方面标出企业现有和未来的信息系统组合的特征。对企业生存前景的影响做分析</del></li>
+</ul>
+<blockquote>
+<p>综合考虑企业内外环境，以<font color="red">集成为核心</font>，围绕企业战略需求</p>
+</blockquote>
+<ul>
+<li>价值链分析法(VCA)</li>
+<li>战略一致性模型(SAM)</li>
+</ul>
+<h3 id="政府信息化与电子政务"><a href="#政府信息化与电子政务" class="headerlink" title="政府信息化与电子政务"></a>政府信息化与电子政务</h3><p><img src="/2021/07/22/架构设计师备考/政府信息化与电子政务.png" alt="政府信息化与电子政务"></p>
+<h3 id="企业信息化与电子商务"><a href="#企业信息化与电子商务" class="headerlink" title="企业信息化与电子商务"></a>企业信息化与电子商务</h3><h4 id="企业资源计划-ERP"><a href="#企业资源计划-ERP" class="headerlink" title="企业资源计划(ERP)"></a>企业资源计划(ERP)</h4><ul>
+<li>财会管理<ul>
+<li>会计核算<ul>
+<li>总账</li>
+<li>应收账</li>
+<li>应付账</li>
+<li>现金</li>
+<li>固定资产</li>
+<li>多币制</li>
+</ul>
+</li>
+<li>财务管理<ul>
+<li>财务计划</li>
+<li>控制</li>
+<li>分析</li>
+<li>预测</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>物流管理<ul>
+<li>分销管理</li>
+<li>库存控制</li>
+<li>采购管理</li>
+</ul>
+</li>
+<li>生产控制管理<ul>
+<li>主生产计划</li>
+<li>物料需求计划</li>
+<li>能力需求计划</li>
+<li>车间控制</li>
+<li>制造标准</li>
+</ul>
+</li>
+<li>人力资源管理<ul>
+<li>人力资源规划</li>
+<li>招聘管理</li>
+<li>工资核算</li>
+<li>工时管理</li>
+<li>差旅费核算</li>
+</ul>
+</li>
+</ul>
+<h4 id="客户关系管理-CRM"><a href="#客户关系管理-CRM" class="headerlink" title="客户关系管理(CRM)"></a>客户关系管理(CRM)</h4><p><img src="/2021/07/22/架构设计师备考/客户关系管理.png" alt="客户关系管理"></p>
+<h4 id="供应链管理-SCM"><a href="#供应链管理-SCM" class="headerlink" title="供应链管理(SCM)"></a>供应链管理(SCM)</h4><p><img src="/2021/07/22/架构设计师备考/供应链管理.png" alt="供应链管理"></p>
+<ul>
+<li>设计原则<ul>
+<li>自顶向下和自底向上结合(所有信息化体系的共性，即全局规划加具体实现)</li>
+<li>简洁性原则</li>
+<li>互补性原则</li>
+<li>协调性原则</li>
+<li>动态性原则</li>
+<li>创新性原则</li>
+<li>战略性原则</li>
+</ul>
+</li>
+</ul>
+<h4 id="商业智能-BI"><a href="#商业智能-BI" class="headerlink" title="商业智能(BI)"></a>商业智能(BI)</h4><p><img src="/2021/07/22/架构设计师备考/商业智能.png" alt="商业智能"></p>
+<h4 id="电子数据交换"><a href="#电子数据交换" class="headerlink" title="电子数据交换"></a>电子数据交换</h4><p><img src="/2021/07/22/架构设计师备考/商业智能.png" alt="商业智能"></p>
+<blockquote>
+<p>EDI系统三要素：EDI软件和硬件、通信网络、数据标准化</p>
+</blockquote>
+<ul>
+<li>EDI的特点<ul>
+<li>EDI的使用对象是不同的组织之间，EDI传输的企业间的报文，是企业间信息交流的一种方式</li>
+<li>EDI所传送的资料是一般业务资料，如发票、订单等，而不是指一般性的通知</li>
+<li>EDI传输的报文是格式化的，是符合国际标准的，这是计算机能够自动处理报文的基本前提</li>
+<li>EDI使用的数据通信网络一般是增值网、专用网</li>
+<li>数据传输由收送双方的计算机系统直接传送、交换资料，不需要人工介入操作</li>
+<li>EDI与传真或电子邮件的区别是：传真与电子邮件，需要人工阅读判断处理才能进入计算机系统。人工将资料重复输入计算机系统中，既浪费人力资源，也容易发生错误，而EDI不需要再将有关资料人工重复输入系统</li>
+</ul>
+</li>
+</ul>
+<p><strong>EDI在外贸领域仍在广泛应用</strong></p>
+<h4 id="企业应用集成-常考"><a href="#企业应用集成-常考" class="headerlink" title="企业应用集成(常考)"></a>企业应用集成(常考)</h4><ul>
+<li><p>过度性质的方案，未在数据上真正整合</p>
+<ul>
+<li><p>表示集成(界面集成)<br><img src="/2021/07/22/架构设计师备考/表示集成.png" alt="表示集成"></p>
+</li>
+<li><p>数据集成<br><img src="/2021/07/22/架构设计师备考/数据集成.png" alt="数据集成"></p>
+</li>
+<li><p>控制集成(应用集成，API集成)<br><img src="/2021/07/22/架构设计师备考/控制集成.png" alt="控制集成"></p>
+</li>
+</ul>
+</li>
+<li><p>业务流程集成(过程集成)：会考虑业务流程优化的问题，不局限于企业内部系统</p>
+</li>
+<li><p>存储体和交换数据的角度划分</p>
+<ul>
+<li>消息集成：适用于数据量小，但要求频繁地、立即地、异步地数据交换场合</li>
+<li>共享数据库：实用性强、可以频繁交互、数据的交换属于同步方式</li>
+<li>文件传输：适用于数据量大、交换频度小，即时性要求低的情况</li>
+</ul>
+</li>
+</ul>
+<h3 id="电子商务"><a href="#电子商务" class="headerlink" title="电子商务"></a>电子商务</h3><ul>
+<li><p>四流</p>
+<ul>
+<li><font color="red">信息流</font>(核型)</li>
+<li>资金流(辅助)</li>
+<li>物流(辅助)</li>
+<li><del>商流</del></li>
+</ul>
+</li>
+<li><p>类型</p>
+<ul>
+<li>企业对消费者(B2C)</li>
+<li>企业对企业(B2B)</li>
+<li>消费者对消费者(C2C)</li>
+<li>线上对线下(O2O)</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2021/07/22/架构设计师备考/国家电子商务标准体系.png" alt="国家电子商务标准体系"></p>
+<h3 id="信息系统开发方法"><a href="#信息系统开发方法" class="headerlink" title="信息系统开发方法"></a>信息系统开发方法</h3><ul>
+<li>结构化法<ul>
+<li>用户至上</li>
+<li>严格区分工作节点，每阶段有任务和成果</li>
+<li>强调系统开发过程的整体性和全局性</li>
+<li>系统开发过程工程化，文档资料标准化</li>
+<li>自顶向下，逐步分解(求精)</li>
+</ul>
+</li>
+<li>原型法<ul>
+<li>适用于需求不明确的开发</li>
+<li>包括抛弃式原型和演化式原型</li>
+</ul>
+</li>
+<li>面向对象方法<ul>
+<li>更好的复用性</li>
+<li>关键在于建立一个全面、合理、统一的模型</li>
+<li>分析、设计、实现三个阶段，界限不明确</li>
+</ul>
+</li>
+<li>面向服务方法<ul>
+<li>SO方法有三个主要的抽象级别：操作、服务、业务流程</li>
+<li>SOAD分为三个层次：基础设计层(底层服务构件)、应用结构层(服务之间的接口和服务级协定)和业务组织层(业务流程建模和服务流程编排)</li>
+<li>服务建模：分为服务发现、服务规约和服务实现三个阶段</li>
+</ul>
+</li>
+</ul>
+<h2 id="软件工程"><a href="#软件工程" class="headerlink" title="软件工程"></a>软件工程</h2><h3 id="软件开发模型"><a href="#软件开发模型" class="headerlink" title="软件开发模型"></a>软件开发模型</h3><h4 id="瀑布模型-SDLC"><a href="#瀑布模型-SDLC" class="headerlink" title="瀑布模型(SDLC)"></a>瀑布模型(SDLC)</h4><ul>
+<li><font color="red">结构化方法模型典型代表</font>，用于结构化开发</li>
+<li><strong><font color="red">适合需求明确，二次开发的场景</font></strong>，或按其他方法把需求做明确再按瀑布模型开发</li>
+<li>缺点：需求阶段难以把控<br><img src="/2021/07/22/架构设计师备考/瀑布模型.jpg" alt="瀑布模型"></li>
+</ul>
+<h4 id="增量模型与螺旋模型"><a href="#增量模型与螺旋模型" class="headerlink" title="增量模型与螺旋模型"></a>增量模型与螺旋模型</h4><ul>
+<li><p>增量模型<br><img src="/2021/07/22/架构设计师备考/增量模型.jpg" alt="增量模型"></p>
+</li>
+<li><p>螺旋模型</p>
+<ul>
+<li>由多个模型组合，原型、瀑布模型、演化模型等(题目描述说针对需求不明确的情况只能选原型，<font color="red">遵循最匹配原则</font>)</li>
+<li><font color="red">引入风险分析</font><br><img src="/2021/07/22/架构设计师备考/螺旋模型.jpg" alt="螺旋模型"></li>
+</ul>
+</li>
+</ul>
+<h4 id="构建组装模型-CBSD"><a href="#构建组装模型-CBSD" class="headerlink" title="构建组装模型(CBSD)"></a>构建组装模型(CBSD)</h4><ul>
+<li>把软件开发中的各个模块做成构建，由构建组装形成软件</li>
+<li>极大提高软件开发复用性，减小软件开发总时长，降低软件开发成本，提高软件可靠性<br><img src="/2021/07/22/架构设计师备考/构建组装模型.jpg" alt="构建组装模型"></li>
+</ul>
+<h4 id="V模型、喷泉模型和RAD"><a href="#V模型、喷泉模型和RAD" class="headerlink" title="V模型、喷泉模型和RAD"></a>V模型、喷泉模型和RAD</h4><ul>
+<li><p>V模型</p>
+<ul>
+<li>与瀑布模型接近，测试有更重要的地位</li>
+<li>测试计划提前，有助于尽早发现问题</li>
+<li><font color="red">强调及早进行测试，测试贯穿开发整个过程中</font>
+</li>
+</ul>
+</li>
+<li><p>喷泉模型</p>
+<ul>
+<li><font color="red">面向对象模型</font>
+</li>
+</ul>
+</li>
+<li><p>RAD</p>
+<ul>
+<li>由SDLC和CBSD模型组合而成</li>
+<li><font color="red">能快速构建应用系统</font><br><img src="/2021/07/22/架构设计师备考/V模型、喷泉模型和RAD.jpg" alt="V模型、喷泉模型和RAD"></li>
+</ul>
+</li>
+</ul>
+<h4 id="其他经典模型"><a href="#其他经典模型" class="headerlink" title="其他经典模型"></a>其他经典模型</h4><ul>
+<li>原型和瀑布模型是互补的模型，原型强调在项目初期构造简易系统(界面式或初步系统)，<font color="red">针对需求不明确的情况，只应用于开发中需求分析的阶段</font></li>
+<li>演化模型是指从最初的原型通过多步演化调整，最终变成软件产品</li>
+<li>螺旋模型有原型、演化模型和瀑布模型的特征</li>
+<li>增量模型由原型的思想和瀑布模型的思想构成，先完成一部分再完成一部分，最后完成整个产品(风险小很对)<br><img src="/2021/07/22/架构设计师备考/其他经典模型.jpg" alt="其他经典模型"></li>
+</ul>
+<h3 id="统一过程-UP-RUP"><a href="#统一过程-UP-RUP" class="headerlink" title="统一过程(UP/RUP)"></a>统一过程(UP/RUP)</h3><p><img src="/2021/07/22/架构设计师备考/统一过程.jpg" alt="统一过程"></p>
+<h3 id="敏捷开发方法"><a href="#敏捷开发方法" class="headerlink" title="敏捷开发方法"></a>敏捷开发方法</h3><font color="red">适合小型项目，强调小步快跑</font>
+
+<p><img src="/2021/07/22/架构设计师备考/敏捷开发方法.jpg" alt="敏捷开发方法"></p>
+<h3 id="逆向工程"><a href="#逆向工程" class="headerlink" title="逆向工程"></a>逆向工程</h3><blockquote>
+<p>由已经形成的产品反推设计和需求</p>
+</blockquote>
+<h2 id="需求工程"><a href="#需求工程" class="headerlink" title="需求工程"></a>需求工程</h2><h3 id="OOA"><a href="#OOA" class="headerlink" title="OOA"></a>OOA</h3><blockquote>
+<p>OOA相关概念：对象、类(实体类、边界类、控制类)、抽象、封装、继承与泛化、多态、接口、消息、组件、模式和复用</p>
+</blockquote>
+<h4 id="UML"><a href="#UML" class="headerlink" title="UML"></a>UML</h4><ul>
+<li>图<ul>
+<li>分类<ul>
+<li>结构图/静态图：类图、对象图、包图、组合结构图、构件图、部署图、制品图</li>
+<li>行为图/动态图：用例图(用例)、顺序图/序列图、通信图/协作图、<del>定时图</del>、状态图、活动图、<del>交互概览图</del><font color="red">用例图(用例)分类有歧义，选择时先看其他选项，实在无选择再选这个，大多数时候归为动态，少部分时间归为静态</font></li>
+</ul>
+</li>
+<li>功能<br><font color="red">部署图描述的是软件的构建应该部署在哪个硬件节点上，其他静态图描述的均为关系</font><ul>
+<li>用例图(用例)：表达的是系统和外部的交互关系</li>
+<li>顺序图/序列图：强调按时间关系</li>
+<li>通信图/协作图：与顺序图相同，<font color="red">区别在于没有强调按时间顺序</font></li>
+<li>状态图：表达状态的变迁转移的情况</li>
+<li>活动图：和流程图结构一致<br><img src="/2021/07/22/架构设计师备考/UML.jpg" alt="UML"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="需求分类和需求获取"><a href="#需求分类和需求获取" class="headerlink" title="需求分类和需求获取"></a>需求分类和需求获取</h3><ul>
+<li>分类<ul>
+<li>业务需求</li>
+<li>用户需求</li>
+<li>系统需求<ul>
+<li>功能需求</li>
+<li>性能需求(非功能需求)：响应时间、安全性、可靠性</li>
+<li>设计约束：和功能与性能无关的影响</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>质量展开模型(QFD)<ul>
+<li>基本需求：用户明确提出需要完成的</li>
+<li>期望需求：用户未明确提出但理所应当觉得应该具有的功能</li>
+<li>兴奋需求：用户未提出也没觉得应该做但做了的</li>
+</ul>
+</li>
+<li>获取方法<ul>
+<li>收集资料：了解企业现状</li>
+<li>联合需求计划(开会)：已经获取初步需求，各方人员参会讨论;<font color="red">消耗资源多</font></li>
+<li>用户访谈：找关键角色探讨对需求的想法；流程包括<font color="red">准备访谈、确定访谈对象(3个或3个以下一次)、准备问题(开放式/封闭式)、限制访谈时间(90min之内，长了拆分)、寻找异常和错误情况、做好相应记录、总结访谈</font><ul>
+<li>结构化形式：逻辑层次严谨，依据充分；事先准备问题，有针对性提问；局限性更大</li>
+<li>非结构化形式：开始只有粗略想法，根据访谈进度灵活调整；</li>
+<li>优点：灵活度高，应用范围广，了解细节深入</li>
+<li>缺点：用户忙难安排时间、信息量大难记录</li>
+</ul>
+</li>
+<li>书面调查：用户访谈的补充形式，问卷下发用户；<ul>
+<li>缺点：只能看到结果，不能了解选择时的疑问；用户不认真；问题不容易深入；问卷调查设计有难度；问卷发下去收不全(解释重要性)</li>
+</ul>
+</li>
+<li>情节串联板：可以以讲故事思路将各个环节串联起来</li>
+<li>现场观摩</li>
+<li>参加业务实践</li>
+<li>阅读历史文档：获取数据层次时有效</li>
+<li>抽样调查：数据量大，解决时间，比较有性价比<br><img src="/2021/07/22/架构设计师备考/需求分类和需求获取.jpg" alt="需求分类和需求获取"></li>
+</ul>
+</li>
+</ul>
+<h3 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h3><p><img src="/2021/07/22/架构设计师备考/需求分析.jpg" alt="需求分析"></p>
+<h4 id="数据流图-分层数据流图DFD"><a href="#数据流图-分层数据流图DFD" class="headerlink" title="数据流图(分层数据流图DFD)"></a>数据流图(分层数据流图DFD)</h4><ul>
+<li>数据流：箭头指示的为数据流</li>
+<li>加工：处理数据的部件</li>
+<li>数据存储：存储部件(文件)</li>
+<li>外部实体：位置在系统之外<br><font color="red">顶层图和0层图之间应该保持平衡，即数据流交换应该一致，输入输出要平衡</font><br><img src="/2021/07/22/架构设计师备考/数据流图.jpg" alt="数据流图"></li>
+</ul>
+<h4 id="状态转换图-STD"><a href="#状态转换图-STD" class="headerlink" title="状态转换图(STD)"></a>状态转换图(STD)</h4><blockquote>
+<p>描述业务流程，描述行为</p>
+</blockquote>
+<p><img src="/2021/07/22/架构设计师备考/STD.jpg" alt="STD"></p>
+<h4 id="ER图"><a href="#ER图" class="headerlink" title="ER图"></a>ER图</h4><p><img src="/2021/07/22/架构设计师备考/ER图.jpg" alt="ER图"></p>
+<h4 id="数据字典"><a href="#数据字典" class="headerlink" title="数据字典"></a>数据字典</h4><blockquote>
+<p>解释相关信息</p>
+</blockquote>
+<ul>
+<li>数据元素</li>
+<li>数据结构</li>
+<li>数据流</li>
+<li>数据存储</li>
+<li>加工逻辑<ul>
+<li>结构化语言</li>
+<li>判定树</li>
+<li>判定表</li>
+</ul>
+</li>
+<li>外部实体</li>
+</ul>
+<h2 id="系统设计"><a href="#系统设计" class="headerlink" title="系统设计"></a>系统设计</h2><h3 id="处理流程设计"><a href="#处理流程设计" class="headerlink" title="处理流程设计"></a>处理流程设计</h3><h4 id="业务流程重组"><a href="#业务流程重组" class="headerlink" title="业务流程重组"></a>业务流程重组</h4><blockquote>
+<p>BPR是对<font color="red">企业</font>流程进行<font color="red">根本性</font>的再思考和<font color="red">彻底性</font>的再设计，从而获得可以用诸如成本、质量、服务和速度等方面的业绩来衡量的<font color="red">显著性</font>成就</p>
+</blockquote>
+<p><img src="/2021/07/22/架构设计师备考/业务流程重组.jpg" alt="业务流程重组"></p>
+<h4 id="业务流程管理"><a href="#业务流程管理" class="headerlink" title="业务流程管理"></a>业务流程管理</h4><blockquote>
+<p>BPM是一种以<font color="red">规范化</font>的构造端到端的卓越业务<font color="red">流程</font>为中心，以<font color="red">持续的</font>提高组织业务绩效为目的的<font color="red">系统化</font>方法</p>
+</blockquote>
+<ul>
+<li>PDCA闭环的管理过程<ul>
+<li>明确业务流程所欲获取的成果</li>
+<li>开发或计划系统的方法，实现以上成果</li>
+<li>系统地部署方法，确保全面实施</li>
+<li>根据对业务的检查和分析以及持续的学习活动，评估和审查所执行的方法，并进一步提出计划和实施改进措施</li>
+</ul>
+</li>
+<li>流程管理包含三个层面：规范流程、优化流程和再造流程</li>
+</ul>
+<font color="red">BPM与BRP管理四项最根本的不同就在于流程管理并不要求对所有的流程进行再造。构造卓越的业务流程并不是流程再造，而是根据现有流程的具体情况，对流程进行规范化的设计</font>
+
+<h3 id="人机界面设计"><a href="#人机界面设计" class="headerlink" title="人机界面设计"></a>人机界面设计</h3><ul>
+<li>置于用户控制之下<ul>
+<li>以不强迫用户进入不必要的或不希望的动作的方式来定义交互方式</li>
+<li>提供灵活的交互</li>
+<li>允许用户交互可以被中断和撤销</li>
+<li>当技能级别增加时可以使交互流水化并允许定制交互</li>
+<li>使用户隔离内部技术细节</li>
+<li>设计应允许用户和出现在屏幕上的对象直接交互</li>
+</ul>
+</li>
+<li>减少用户的记忆负担<ul>
+<li>较少对短期记忆的要求</li>
+<li>建立有意义的缺省</li>
+<li>定义直觉性的捷径</li>
+<li>界面的视觉布局应该基于真实世界的隐喻</li>
+<li>以不断进展的方式提示信息</li>
+</ul>
+</li>
+<li>保持界面的一致性<ul>
+<li>允许用户将当前任务放入有意义的语境</li>
+<li>在应用系列内保持一致性</li>
+<li>如果去得交互模型已建立起了用户期望，除非有迫不得已的理由，不要改变它</li>
+</ul>
+</li>
+</ul>
+<h3 id="结构化设计"><a href="#结构化设计" class="headerlink" title="结构化设计"></a>结构化设计</h3><blockquote>
+<p>分为概要设计、详细设计</p>
+</blockquote>
+<ul>
+<li>基本原则<ul>
+<li>自顶向下、逐步求精</li>
+<li>信息隐藏</li>
+<li>模块独立(高内聚、低耦合、复杂度)<ul>
+<li>保持模块的大小适中</li>
+<li>尽可能减少调用的深度</li>
+<li>多扇入、少扇出</li>
+<li>单入口、单出口</li>
+<li>模块的作用域应该在模块之内</li>
+<li>功能应该时可预测的</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="内聚与耦合"><a href="#内聚与耦合" class="headerlink" title="内聚与耦合"></a>内聚与耦合</h4><ul>
+<li>内聚<blockquote>
+<p>内聚程度从高到低</p>
+</blockquote>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">内聚类型</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">功能内聚</td>
+<td style="text-align:left">完成一个单一功能，各个部分协同工作，缺一不可</td>
+</tr>
+<tr>
+<td style="text-align:center">顺序内聚</td>
+<td style="text-align:left">处理元素相关，而且必须顺序执行</td>
+</tr>
+<tr>
+<td style="text-align:center">通信内聚</td>
+<td style="text-align:left">所有处理元素集中在一个数据结构的区域上</td>
+</tr>
+<tr>
+<td style="text-align:center">过程内聚</td>
+<td style="text-align:left">处理元素相关，而且必须按特定的次序执行</td>
+</tr>
+<tr>
+<td style="text-align:center">瞬时内聚(时间内聚)</td>
+<td style="text-align:left">所包含的任务必须在同一时间间隔内执行</td>
+</tr>
+<tr>
+<td style="text-align:center">逻辑内聚</td>
+<td style="text-align:left">完成逻辑上相关的一组任务</td>
+</tr>
+<tr>
+<td style="text-align:center">偶然内聚(巧合内聚)</td>
+<td style="text-align:left">完成一组没有关系或松散关系的任务</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>耦合<blockquote>
+<p>耦合程度由低到高</p>
+</blockquote>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">耦合类型</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">非直接耦合</td>
+<td style="text-align:left">两个模块直接没有直接关系，它们之间的联系完全时通过主模块的控制和调用来实现的</td>
+</tr>
+<tr>
+<td style="text-align:center">数据耦合</td>
+<td style="text-align:left">一组模块借助参数表传递简单数据</td>
+</tr>
+<tr>
+<td style="text-align:center">标记耦合</td>
+<td style="text-align:left">一组模块通过参数表传递记录信息(数据结构)</td>
+</tr>
+<tr>
+<td style="text-align:center">控制耦合</td>
+<td style="text-align:left">模块之间传递的信息中包含用于控制模块内部逻辑的信息</td>
+</tr>
+<tr>
+<td style="text-align:center">外部耦合</td>
+<td style="text-align:left">一组模块都访问同一全局简单变量，而不是通过参数表传递该全局变量的信息</td>
+</tr>
+<tr>
+<td style="text-align:center">公共耦合</td>
+<td style="text-align:left">多个模块都访问同一个公共数据环境</td>
+</tr>
+<tr>
+<td style="text-align:center">内容耦合</td>
+<td style="text-align:left">一个模块直接访问另一个模块的内部数据；一个模块不通过正常入口转到另一个模块的内部；两个模块有一部分程序代码重叠；一个模块有多个入口</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="系统结构-模块结构"><a href="#系统结构-模块结构" class="headerlink" title="系统结构/模块结构"></a>系统结构/模块结构</h4><font color="red">变换型系统结构b重点掌握</font>
+
+<p><img src="/2021/07/22/架构设计师备考/系统结构.jpg" alt="系统结构"></p>
+<h3 id="面向对象设计-设计原则"><a href="#面向对象设计-设计原则" class="headerlink" title="面向对象设计-设计原则"></a>面向对象设计-设计原则</h3><ul>
+<li>单一职责原则：设计目的单一的类</li>
+<li>开放-封闭原则：对扩展开放，对修改封闭</li>
+<li>里氏(Liskov)替换原则：子类可以替换父类</li>
+<li>依赖倒置原则：要依赖于抽象，而不是具体实现；针对接口编程，不要针对实现编程</li>
+<li>接口隔离原则：使用多个专门的接口比使用单一的总接口要好</li>
+<li>组合重用原则：要尽量使用组合，而不是继承关系达到重用的目的</li>
+<li>迪米特(Demeter)原则(最少只是法则)：一个对象应当对其它对象由尽可能少的了解</li>
+</ul>
+<h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><ul>
+<li>架构模式：软件设计中的高层决策，例如C/S结构就属于架构模式，架构模式反映了开发软件系统过程中所作的基本设计决策(B/S、SOA)</li>
+<li>设计模式：主要关注软件系统的设计，与具体的实现语言无关(<font color="red">在进行构件设计时</font>)</li>
+<li>惯用法：最底层的模式，关注软件系统的设计与实现，实现时通过<font color="red">某种特定的程序设计语言</font>来描述构件与构件之间的关系。每种编程语言都有它自己特定的模式，即语言的惯用法。例如引用-计数就是C++语言中的一种惯用法</li>
+</ul>
+<h4 id="分类-2"><a href="#分类-2" class="headerlink" title="分类"></a>分类</h4><ul>
+<li>创建型模式：工厂方法(factory method)模式、抽象工厂(abstract factory)模式、原型(prototype)模式、单例(singleton)模式、构建器(builder)模式</li>
+<li>结构型模式：适配器(adapter)模式、桥接(bridge)模式、组合(composite)模式、装饰(decorator)模式、外观(facade)模式、享元(flyweight)模式、代理(proxy)模式</li>
+<li><p>行为型模式：职责链(chain of responsibility)模式、命令(command)模式、解释器(interpreter)模式、迭代器(iterator)模式、中介者(mediator)模式、备忘录(memento)模式、观察者(observer)模式、状态(state)模式、策略(strategy)模式、模板方法(template method)模式、访问者(visitor)模式</p>
+</li>
+<li><p>创建型模式</p>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">设计模式名称</th>
+<th style="text-align:center">简要说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Abstract Factory<br>抽象工厂模式</td>
+<td style="text-align:center">提供一个接口，可以创建一系列相关或相互依赖的对象，而无需指定它们具体的类</td>
+</tr>
+<tr>
+<td style="text-align:center">Builder<br>构建器模式</td>
+<td style="text-align:center">将一个复杂类的表示与其构造相分离，使得相同的构建过程能够得出不同的表示</td>
+</tr>
+<tr>
+<td style="text-align:center">Factory Method<br>工厂方法模式</td>
+<td style="text-align:center">定义一个创建对象的接口，但由子类决定需要实例化哪一个类，工厂方法使得子类实例化的过程推迟</td>
+</tr>
+<tr>
+<td style="text-align:center">Prototype<br>原型模式</td>
+<td style="text-align:center">用原型实例指定创建对象的类型，并且通过拷贝这个原型来创建新的对象</td>
+</tr>
+<tr>
+<td style="text-align:center">Singleton<br>单例模式</td>
+<td style="text-align:center">保证一个类只有一个实例，并提供一个访问它的全局访问点</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>结构型模式</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">设计模式名称</th>
+<th style="text-align:center">简要说明</th>
+<th style="text-align:center">速记关键字</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Adapter<br>适配器模式</td>
+<td style="text-align:center">将一个类的接口转换成用户希望得到的另一种接口。它使原本不相容的接口得以协同工作</td>
+<td style="text-align:center"><font color="red">转换</font>接口</td>
+</tr>
+<tr>
+<td style="text-align:center">Bridge<br>桥接模式</td>
+<td style="text-align:center">将类的抽象部分和它的实现部分分离开来，使它们可以独立地变化</td>
+<td style="text-align:center">继承树拆分</td>
+</tr>
+<tr>
+<td style="text-align:center">Composite<br>组合模式</td>
+<td style="text-align:center">将对象组合成树型结构以表示“<font color="red">整体-部分</font>”的层次结构，使得用户对单个对象和组合对象的使用具有一致性</td>
+<td style="text-align:center">树形目录结构</td>
+</tr>
+<tr>
+<td style="text-align:center">Decorator<br>装饰模式</td>
+<td style="text-align:center">动态地给一个对象添加一些额外的职责。它提供了用子类扩展功能的一个灵活的替代，比派生一个子类更加灵活</td>
+<td style="text-align:center"><font color="red">附加职责</font></td>
+</tr>
+<tr>
+<td style="text-align:center">Facade<br>外观模式</td>
+<td style="text-align:center">定义一个<font color="red">高层接口</font>，为子系统中的一组接口提供一个一致的外观，从而简化该子系统的使用</td>
+<td style="text-align:center">对外统一接口</td>
+</tr>
+<tr>
+<td style="text-align:center">Flyweight<br>享元模式</td>
+<td style="text-align:center">提供支持大量细粒度对象共享的方法</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Proxy<br>代理模式</td>
+<td style="text-align:center">为其他对象提供一种代理以控制这个对象的访问</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>行为型模式</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">设计模式名称</th>
+<th style="text-align:center">简要说明</th>
+<th style="text-align:center">速记关键字</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Chain of Responsibility<br>职责链模式</td>
+<td style="text-align:center">通过给多个对象处理请求的机会，减少请求的发送者与接收者之间的耦合。将接收对象链接起来，在链中传递请求，直到有一个对象处理这个请求</td>
+<td style="text-align:center"><font color="red">传递职责</font></td>
+</tr>
+<tr>
+<td style="text-align:center">Command<br>命令模式</td>
+<td style="text-align:center">将一个请求封装为一个对象，从而可用不同的请求对客户进行参数化，将请求排队或记录请求日志，支持可撤销操作</td>
+<td style="text-align:center">日志记录，可<font color="red">撤销</font></td>
+</tr>
+<tr>
+<td style="text-align:center">Interpreter<br>解释器模式</td>
+<td style="text-align:center">给定一种语言，定义它的文法表示，并定义一个解释器，该解释器用来根据文法表示来解释语言中的句子</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Iterator<br>迭代器模式</td>
+<td style="text-align:center">提供一种方法来顺序访问一个聚合对象中的各个元素而不需要暴露该对象的内部表示</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Mediator<br>中介者模式</td>
+<td style="text-align:center">用一个中介对象来封装一系列的对象交互，它使各对象不需要显示地相互调用，从而达到低耦合，还可以独立地改变对象间的交互</td>
+<td style="text-align:center">不直接引用</td>
+</tr>
+<tr>
+<td style="text-align:center">Memento<br>备忘录模式</td>
+<td style="text-align:center">在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，从而可以在以后将对象恢复到原先保存的状态</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Observer<br>观察者模式</td>
+<td style="text-align:center">定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并自动更新</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">State<br>状态模式</td>
+<td style="text-align:center">允许一个对象在其内部状态改变时改变它的行为</td>
+<td style="text-align:center">状态变成类</td>
+</tr>
+<tr>
+<td style="text-align:center">Strategy<br>策略模式</td>
+<td style="text-align:center">定义一系列算法，把它们一个个封装起来，并且使它们之间可互相替换，从而让算法可以独立于使用它的用户而变化</td>
+<td style="text-align:center">多方案切换</td>
+</tr>
+<tr>
+<td style="text-align:center">Template Method<br>模板方法模式</td>
+<td style="text-align:center">定义一个操作中的算法骨架，而将一些步骤延迟到子类中，使得子类可以不改变一个算法的接口即可重新定义算法的某些特定步骤</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Vistor<br>访问者模式</td>
+<td style="text-align:center">表示一个作用于对象结构中的各元素的操作，使得在不改变各元素的类的前提下定义作用于这些元素的新操作</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="软件测试"><a href="#软件测试" class="headerlink" title="软件测试"></a>软件测试</h3><h4 id="原则和类型"><a href="#原则和类型" class="headerlink" title="原则和类型"></a>原则和类型</h4><ul>
+<li><p>原则</p>
+<ul>
+<li>尽早、不断地进行测试</li>
+<li>程序员避免测试自己设计的程序</li>
+<li>既要选择有效、合理的数据、也要选择无效、不合理的数据</li>
+<li>修改后进行回归测试</li>
+<li>尚未发现的错误数量与该程序已发现的错误数成正比</li>
+</ul>
+</li>
+<li><p>分类</p>
+<ul>
+<li>动态测试<ul>
+<li>黑盒测试法</li>
+<li>白盒测试发</li>
+<li>灰盒测试法</li>
+</ul>
+</li>
+<li>静态测试<ul>
+<li>桌前检查</li>
+<li>代码走查</li>
+<li>代码审查</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="测试用例设计"><a href="#测试用例设计" class="headerlink" title="测试用例设计"></a>测试用例设计</h4><ul>
+<li>黑盒测试<ul>
+<li>等价类划分：把所有数据进行归类，同一类的选一个进行测试</li>
+<li>边界值分析：端点、略小于下区间的值、略大于大区间的值</li>
+<li>错误推测</li>
+<li>因果图：由果分析因</li>
+</ul>
+</li>
+<li>白盒测试<ul>
+<li>基本路径测试</li>
+<li>循环覆盖测试</li>
+<li><font color="red">逻辑覆盖测试</font>：<font color="red">语句覆盖(层次最低)、判定覆盖(真假分支各走一遍)、条件覆盖(拆分判定)</font>、条件判定覆盖、修正的条件判断覆盖、条件组合覆盖、点覆盖、边覆盖、<font color="red">路径覆盖(层次最高)</font>
+
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="测试阶段"><a href="#测试阶段" class="headerlink" title="测试阶段"></a>测试阶段</h4><ul>
+<li>单元测试：模块级，局部功能，模块相关接口</li>
+<li>集成测试：各个模块联合测试，测试模块之间衔接、接口（增量式组装工作量更大但更全面）</li>
+<li>确认测试</li>
+<li>系统测试：偏重于压力性能等(<font color="red">负载测试(高并发)、强度测试(资源突然下降)、容量测试</font>)<br><img src="/2021/07/22/架构设计师备考/测试阶段.jpg" alt="测试阶段"></li>
+</ul>
+<h4 id="面向对象的测试"><a href="#面向对象的测试" class="headerlink" title="面向对象的测试"></a>面向对象的测试</h4><ul>
+<li>算法层(单元测试)：包括等价类划分测试、组合功能测试（基于判定表的测试）、递归函数测试和多态消息测试</li>
+<li>类层(模块测试)：包括不变式边界测试、模态类测试和非模态类测试</li>
+<li>模板层/类树层(集成测试)：包括多态服务测试和展平测试</li>
+<li>系统层(系统测试)</li>
+</ul>
+<h4 id="测试管理"><a href="#测试管理" class="headerlink" title="测试管理"></a>测试管理</h4><ul>
+<li>测试团队管理</li>
+<li>测试计划管理</li>
+<li><font color="red">错误(缺陷)跟踪管理</font><ul>
+<li>错误植入法：$a_1:b_1=a_2:b_2$，人为植入错误，从结果查看哪些使植入的，按比例估算错误数，以此考核团队成员是否有效发现错误。(估算错误数)</li>
+<li>两组并行测试：$DN=(a\times b)/c$，a代表a团队测出的错误数，b代表b团队测出的错误数，c代表俩团队共同测出的错误数。(估算错误数)</li>
+<li>错误曝光率(DRE)：$DRE=e/(e+d)$，e表示测试阶段发现的问题，d表示用户使用时发现的问题，两者之和为缺陷的总数。(客观、准确，缺点是只有交付之后才能计算)</li>
+</ul>
+</li>
+<li>测试件管理</li>
+</ul>
+<h4 id="软件调试"><a href="#软件调试" class="headerlink" title="软件调试"></a>软件调试</h4><ul>
+<li>软件调试方法<ul>
+<li>蛮力法：主要是想是“通过计算机找错”，低效，耗时</li>
+<li>回溯法：从出错处人工沿控制流程往回追踪，直至发现出错的根源，复杂程度由于回溯路径多，难以实施</li>
+<li>原因排除法：主要思想是演绎和归纳，用二分法实现</li>
+</ul>
+</li>
+<li>软件调试和测试的区别<ul>
+<li>测试的目的是找出存在的错误，而调试的目的是定位错误并修改程序以修正错误</li>
+<li>调试时测试之后的活动，测试和调试在目标、方法和思路上都有所不同</li>
+<li>测试从一个已知的条件开始，使用预先定义的过程，有预知的结果；调试从一个未知的条件开始，结束的过程不可预计</li>
+<li>测试过程可以事先设计，进度可以事先确定；调试不能描述过程或持续时间</li>
+</ul>
+</li>
+</ul>
+<h3 id="系统运行与维护"><a href="#系统运行与维护" class="headerlink" title="系统运行与维护"></a>系统运行与维护</h3><blockquote>
+<p>软件维护时生命周期的一个完整部分。可以将软件维护定义为需要提供软件支持的全部活动，这些活动包括在交付前完成的活动，以及交付后完成的活动。交付前完成的活动包括交付后运行的计划和维护计划等；交付后的活动包括软件修改、培训、帮助资料等</p>
+</blockquote>
+<ul>
+<li>可维护性<ul>
+<li>易分析性：源代码理解容易</li>
+<li>易改变性：修改代码比较容易(耦合度低)</li>
+<li>稳定性</li>
+<li>易测试性</li>
+</ul>
+</li>
+<li>维护类型<ul>
+<li>改正性维护(25%)/正确性维护：用户发现缺陷则修正缺陷</li>
+<li>适应性维护(20%)：环境改变(操作系统、数据环境)，<font color="red">软件需要适应的情况均属于此范畴</font></li>
+<li>完善性维护(50%)：在系统运行过程中扩充功能，改善性能</li>
+<li>预防性维护(5%)：现在不维护将来可能导致问题</li>
+</ul>
+</li>
+</ul>
+<h3 id="软件过程改进-CMMI"><a href="#软件过程改进-CMMI" class="headerlink" title="软件过程改进(CMMI)"></a>软件过程改进(CMMI)</h3><ul>
+<li>阶段式：组织能力成熟度</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">成熟度等级</th>
+<th style="text-align:left">过程域</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">已管理级(项目级)</td>
+<td style="text-align:left">需求管理有、项目计划、配置管理、项目监督与控制、供应商合同管理、度量和分析、过程和产品质量保证</td>
+</tr>
+<tr>
+<td style="text-align:center">已定义级(<font color="red">组织级、文档化、标准化、知识由隐性变为显性</font>)</td>
+<td style="text-align:left">需求开发、技术解决方案、产品集成、验证、确认、组织级过程焦点、组织级过程定义、组织级培训、集成项目管理、风险管理、集成化的团队、决策分析和解决方案、组织级集成环境</td>
+</tr>
+<tr>
+<td style="text-align:center">定量管理级(<font color="red">量化</font>)</td>
+<td style="text-align:left">组织级过程性能、定量项目管理</td>
+</tr>
+<tr>
+<td style="text-align:center">优化级</td>
+<td style="text-align:left">组织级改革与实施、因果分析和解决方案</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>连续式：软件过程能力</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">连续式分组</th>
+<th style="text-align:left">过程域</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">过程管理</td>
+<td style="text-align:left">组织级过程焦点、组织级过程定义、组织级培训、组织级过程性能、组织级改革与实施</td>
+</tr>
+<tr>
+<td style="text-align:center">项目管理</td>
+<td style="text-align:left">项目计划、项目监督与控制、供应商合同管理、集成项目管理、风险管理、集成化的团队、定量项目管理</td>
+</tr>
+<tr>
+<td style="text-align:center">工程</td>
+<td style="text-align:left">需求管理、需求开发、技术解决方案、产品集成、验证、确认</td>
+</tr>
+<tr>
+<td style="text-align:center">支持</td>
+<td style="text-align:left">配置管理、度量和分析、过程和产品质量保证、决策分析和解决方案、组织级集成环境、因果分析和解决方案</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="项目管理"><a href="#项目管理" class="headerlink" title="项目管理"></a>项目管理</h2><h3 id="范围管理"><a href="#范围管理" class="headerlink" title="范围管理"></a>范围管理</h3><ul>
+<li>范围定义<ul>
+<li>产品范围：需求调研获取到的信息</li>
+<li>工作范围：完成项目需要开展的一系列工作</li>
+</ul>
+</li>
+<li>创建WBS：工作包的分解，界定项目范围<br><img src="/2021/07/22/架构设计师备考/范围管理.jpg" alt="范围管理"></li>
+</ul>
+<h3 id="时间管理"><a href="#时间管理" class="headerlink" title="时间管理"></a>时间管理</h3><ul>
+<li>活动定义：把活动找出来</li>
+<li>活动排序：采取拓扑排序的方式</li>
+<li>活动资源估算：人员、时间、物料、服务器、设备等</li>
+<li>活动历时估算：活动需要多少时间<ul>
+<li>三点估算法：$\frac{best+4\times mid+ worst}{6}$</li>
+<li>自下而上的估算：必须先完成WBS分解</li>
+</ul>
+</li>
+<li>制订进度计划：</li>
+<li>进度控制：<br><img src="/2021/07/22/架构设计师备考/时间管理.jpg" alt="时间管理"><h4 id="单代号网络图"><a href="#单代号网络图" class="headerlink" title="单代号网络图"></a>单代号网络图</h4></li>
+<li><font color="red">FS: A完成B才能开始</font></li>
+<li>FF：A完成B才能完成，谁先开始没有约定</li>
+<li>SS：A开始B才能开始</li>
+<li>SF：A开始B才能结束，例如新老系统切换，新系统运行才能下线老系统<br><img src="/2021/07/22/架构设计师备考/单代号网络图.jpg" alt="单代号网络图"></li>
+<li>整推<ul>
+<li>ES：最早开始时间(上一个活动的最大EF)</li>
+<li>EF：最早结束时间(ES+持续时间)</li>
+</ul>
+</li>
+<li>逆推<ul>
+<li>LS：最晚开始时间(LF-持续时间)</li>
+<li>LF：最晚结束时间(下一个节点最小的LS)<br>$总时差=ES-LS=EF-LF$<font color="red">总时差等于0的节点连起来就为关键路径</font>
+<font color="red">关键路径越少越好，否则管理难度增大</font>
+
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="双代号网络图"><a href="#双代号网络图" class="headerlink" title="双代号网络图"></a>双代号网络图</h4><blockquote>
+<p>边表示活动，节点表示事件；虚线画的活动不会给活动名或者给一个活动名而不是给历时(虚活动，虚构出来的活动，表达依赖关系不能直接去掉但不占用资源)</p>
+</blockquote>
+<p><img src="/2021/07/22/架构设计师备考/双代号网络图.jpg" alt="双代号网络图"></p>
+<ul>
+<li>求解关键路径<br>关键路径为1-2-3-4-6-7-9 (A、E、H、I、K)<br><img src="/2021/07/22/架构设计师备考/双代号网络图求解.jpg" alt="双代号网络图求解"></li>
+</ul>
+<h4 id="关键路径法"><a href="#关键路径法" class="headerlink" title="关键路径法"></a>关键路径法</h4><blockquote>
+<p>关键路径法是在制定进度计划时使用的一种进度网络分析技术。关键路线法沿用项目进度网络路线进行正向与反向分析，从而计算出所有计划活动理论上的最早开始与完成日期、最迟开始与完成日期，不考虑任何资源限制</p>
+</blockquote>
+<ul>
+<li>总时差(松弛时间)：在不延误总工期的前提下，该活动的机动时间。活动的总时差等于该活动最迟完成时间与最早完成时间之差，或该活动最迟开始时间之差</li>
+<li>自由时差：在不影响紧后活动的最早开始时间前提下，该活动的机动时间<ul>
+<li>对于有紧后活动的活动，其自由时差等于所有紧后活动最早开始时间减本活动最早完成时间所得之差的最小值</li>
+<li>对于没有紧后活动的活动，也就是以网络计划终点节点为完成节点的活动，其自由时差等于计划工期与本活动最早完成时间之差</li>
+</ul>
+</li>
+<li><p>对于网络计划中以终点节点为完成节点的活动，其自由时差与总时差相等。此外，由于活动的自由时差时其总时差的构成部分，所以，当活动的总时差为零时，其自由时差必然为零，可不必进行专门计算</p>
+</li>
+<li><p>自由时差例题<sup id="fnref:23"><a href="#fn:23" rel="footnote">23</a></sup><br><img src="/2021/07/22/架构设计师备考/自由时差例题.jpg" alt="自由时差例题"></p>
+</li>
+</ul>
+<h3 id="甘特图"><a href="#甘特图" class="headerlink" title="甘特图"></a>甘特图</h3><blockquote>
+<p>细横线：代表计划值；粗横线：代表实际完成值</p>
+</blockquote>
+<p><img src="/2021/07/22/架构设计师备考/甘特图.jpg" alt="甘特图"></p>
+<ul>
+<li>优点：甘特图直观、简单、容易制作，便于理解，能很清晰地标识出直到每一项任务的起始与结束时间，一般适用比较简单的小型项目，可用于WBS的任何层次、进度控制、资源优化、编制资源和费用计划</li>
+<li>缺点：不能系统地表达一个项目所包含的各项工作之间的复杂关系，难以进行定量的计算和分析，以及计划的优化等</li>
+</ul>
+<h3 id="成本管理"><a href="#成本管理" class="headerlink" title="成本管理"></a>成本管理</h3><ol>
+<li>成本估算<ul>
+<li>自顶向下的估算</li>
+<li>自底向上的估算</li>
+</ul>
+</li>
+<li>成本预算<ul>
+<li>直接成本与间接成本：直接成本指由项目组花掉的钱(人力成本等，项目经理能控制的)；间接成本指公摊性质的成本(项目经理无法控制的)，以每天多少成本衡量</li>
+<li>管理储备：项目经理无权动用，要企业高层审批</li>
+<li>零基准预算</li>
+</ul>
+</li>
+<li>成本控制<ul>
+<li>挣值分析</li>
+</ul>
+</li>
+</ol>
+<h4 id="挣值管理"><a href="#挣值管理" class="headerlink" title="挣值管理"></a>挣值管理</h4><ul>
+<li>计算工作量的预算成本(PV)：$PV=计划工作量 \times 预算定额$(<font color="red">顺序3</font>)</li>
+<li>已完成工作量的实际成本(AC)：项目实际花掉的钱，<font color="red">考题一般会直接给出</font>(<font color="red">顺序1</font>)</li>
+<li><font color="red">已完成工作量</font>的预算成本(EV)：$EV=已完成工作量 \times 预算定额$(<font color="red">顺序2</font>)</li>
+<li>完工预算(BAC)：$BAC = 完工时的PV总和$</li>
+<li>进度偏差：$SV=EV-PV$，为负代表进度滞后</li>
+<li>成本偏差：$CV=EV-AC$，为负代表成本超支</li>
+<li>进度绩效指数：$SPI=EV/PV$，小于1表示不好，等于1表示与计划持平，大于1表示超预期</li>
+<li>成本绩效指数：$CPI=EV/AC$，小于1表示不好，等于1表示与计划持平，大于1表示超预期</li>
+<li>剩余工作的成本(ETC)：<br>按计划走(<font color="red">非典型偏差</font>)：$ETC=BAC-EV$<br>不按计划走(<font color="red">典型偏差</font>)：$ETC=\frac{BAC-EV}{CPI}$</li>
+<li>完工预估(EAC)：$EAC=AC+ETC$</li>
+</ul>
+<ul>
+<li>例题1<sup id="fnref:24"><a href="#fn:24" rel="footnote">24</a></sup><blockquote>
+<p>希赛教育在线测试项目涉及对10个函数代码的编写（假设每个函数代码的编写工作量相等），项目由2个程序员进行结对编程，计划在10天内完成，总体预算时1000元，每个函数的平均成本时100元，项目进行到第5天，实际消耗费用时400元，完成了3个函数的编写。</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/2021/07/22/架构设计师备考/挣值曲线.jpg" alt="挣值曲线"></p>
+<h3 id="质量管理"><a href="#质量管理" class="headerlink" title="质量管理"></a>质量管理</h3><ul>
+<li><p>质量模型<br><img src="/2021/07/22/架构设计师备考/质量模型.jpg" alt="质量模型"></p>
+</li>
+<li><p>外部和内部质量<br><img src="/2021/07/22/架构设计师备考/外部和内部质量.jpg" alt="外部和内部质量"></p>
+</li>
+<li><p>质量管理过程(PDCA循环)<br><img src="/2021/07/22/架构设计师备考/PDCA循环.jpg" alt="PDCA循环"></p>
+</li>
+<li><p>质量保证和质量控制</p>
+<ul>
+<li>质量保证一般是<font color="red">每隔一定时间</font>(例如，每个阶段末)进行的，主要通过系统的质量审计和过程分析来保证项目的质量(<font color="red">强调过程</font>)</li>
+<li>质量控制是<font color="red">实时监控项目的具体结果</font>，以判断它们是否符合相关质量标准，制定有效方案，以消除产生质量问题的原因(<font color="red">强调结果</font>)</li>
+<li>一定时间内质量控制的结果也是质量保证的质量审计对象。质量保证的成果又可以指导下一阶段的质量工作，包括质量控制和质量改进</li>
+</ul>
+</li>
+<li><p>质量工具</p>
+<ul>
+<li>核对表：即checklist，清单</li>
+<li>帕累托分析(排列图)：统计错误出现的频次，按从高到底排列，先解决小部分高频次的问题</li>
+<li>因果分析(鱼骨图)：鱼头是要解决的问题，鱼骨是朔源，由果反推因<br><img src="/2021/07/22/架构设计师备考/质量工具.jpg" alt="质量工具"></li>
+</ul>
+</li>
+<li><p>项目管理三角形<br><img src="/2021/07/22/架构设计师备考/项目管理三角形.jpg" alt="项目管理三角形"></p>
+</li>
+</ul>
+<h3 id="配置管理"><a href="#配置管理" class="headerlink" title="配置管理"></a>配置管理</h3><blockquote>
+<p>IEEE对配置项的定义为硬件、软件或二者兼有的集合，为配置管理制定的</p>
+</blockquote>
+<ul>
+<li>在配置管理过程中作为一个单独的实体对待，可作为配置项管理的有：外部交付的软件产品和数据、指定的内部软件工作产品和数据、指定的用于创建或支持软件产品的支持工具、供方/供应商提供的软件和客户提供的设备/软件</li>
+<li>典型配置项：项目计划书、需求文档、设计文档、源代码、可执行代码、测试用例、运行软件所需的各种数据(它们经评审和检查通过后进入软件配置管理(SCM))</li>
+<li>配置项的主要属性：名称、标识符、文件状态、版本、作者和日期等。<font color="red">所有配置项都被保存在配置库里，确保不会混淆、丢失、配置项及其历史记录反映了软件的演化过程</font>
+
+</li>
+</ul>
+<h4 id="配置库"><a href="#配置库" class="headerlink" title="配置库"></a>配置库</h4><ul>
+<li>开发库(动态库、程序员库、工作库；动态系统、开发者系统、开发系统、工作空间)：开发阶段(不断地调整修改阶段用的)，管辖内容程度最低，修改基本没有约束</li>
+<li>受控库(主库、系统库；主系统、受控系统)：完成测试(测试通过)后放入，<font color="red">管理系统的基线</font>，不允许随意修改，修改需要走变更控制流程</li>
+<li><p>产品库(<font color="red">备份库</font>、静态库、软件仓库；静态系统)：<font color="red">完全不能修改</font></p>
+</li>
+<li><p>检查点：只在规定的时间间隔内对项目进行检查，比较实际与计划之间的差异，并根据差异进行调整</p>
+</li>
+<li>里程碑：完成阶段性工作的标志，不同类型的项目里程碑不同</li>
+<li>基线：指一个(或一组)配置项在项目生命周期的不同时间点上通过正式评审而进入正式受控的一种状态，基线是一些重要的里程碑。但相关交付成果要通过正式评审，并作为后续工作的基准和出发点。基线一旦建立后其变化需要受控制</li>
+<li><p>变更控制<br><img src="/2021/07/22/架构设计师备考/变更控制.jpg" alt="变更控制"></p>
+</li>
+<li><p>版本控制</p>
+<ul>
+<li>草稿版：0.YZ</li>
+<li>正式版：X.Y</li>
+<li>修改版：X.YZ<br><img src="/2021/07/22/架构设计师备考/版本控制.jpg" alt="版本控制"></li>
+</ul>
+</li>
+</ul>
+<h3 id="风险管理"><a href="#风险管理" class="headerlink" title="风险管理"></a>风险管理</h3><h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><blockquote>
+<p>关心未来、关心变化、关心选择</p>
+</blockquote>
+<ul>
+<li>风险存在的客观性和普遍性</li>
+<li>某一具体风险发生的偶然性和大量风险发生的必然性</li>
+<li>风险的可变性</li>
+<li>风险的多样性和多层次性</li>
+<li><font color="red">基本属性：随机性和相对性</font></li>
+<li>风险承受能力<br><img src="/2021/07/22/架构设计师备考/风险承受能力.jpg" alt="风险承受能力"></li>
+</ul>
+<h4 id="分类-3"><a href="#分类-3" class="headerlink" title="分类"></a>分类</h4><ul>
+<li>项目风险<ul>
+<li>潜在的预算、进度、人员和组织(<font color="red">预算本身不足</font>)、资源、用户和需求问题</li>
+<li>项目复杂性、规模和结构的不确定性</li>
+</ul>
+</li>
+<li>技术风险<ul>
+<li>潜在的设计、实现、接口、测试和维护方面的问题</li>
+<li>规格说明的多义性、技术上的不确定性、技术陈旧、最新技术(不成熟)</li>
+</ul>
+</li>
+<li>商业风险<ul>
+<li>市场风险：系统虽然很优秀但不是市场真正所想要的</li>
+<li>策略风险：系统不再符合企业的信息系统战略</li>
+<li>销售风险：开发了销售部门不清楚如何推销的系统</li>
+<li>管理风险：由于重点转移或人员变动而失去上级支持(<font color="red">预算足够，但是上层不给</font>)</li>
+<li>预算风险：开发过程没有得到预算或人员的保证(<font color="red">预算足够，但是上层不给</font>)</li>
+</ul>
+</li>
+</ul>
+<h4 id="风险曝光度"><a href="#风险曝光度" class="headerlink" title="风险曝光度"></a>风险曝光度</h4><blockquote>
+<p>风险曝光度(Risk Exposure):计算方法是风险出现的概率乘以风险可能造成的损失</p>
+</blockquote>
+<ul>
+<li>例<blockquote>
+<p>假设正在开发的软件项目可能存在一个未被发现的错误，而这个错误出现的概率是0.5%，给公司造成的损失将是1000000元，那么这个错误的风险曝光度应为$1000000 \times 0.5\%=5000元$</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="项目管理工具"><a href="#项目管理工具" class="headerlink" title="项目管理工具"></a>项目管理工具</h3><ul>
+<li><font color="red">能做什么(项目管理相关的工作辅助)</font>：任务调度、成本估算、资源分配、预算跟踪、人时统计、配置控制、确定关键路径、松弛时间、超前时间和滞后时间，生成一定格式的报表和报告</li>
+<li><font color="red">不能做什么(开发技术相关的辅助工作)</font>：不能指导软件设计人员按软件生存周期各个阶段的适用技术进行设计工作</li>
+</ul>
+<h2 id="软件架构设计"><a href="#软件架构设计" class="headerlink" title="软件架构设计"></a>软件架构设计</h2><h3 id="软件架构风格"><a href="#软件架构风格" class="headerlink" title="软件架构风格"></a>软件架构风格</h3><blockquote>
+<p>架构设计的一个核心问题是能否达到架构级的软件复用<br>架构风格反映了领域中众多系统所共有的结构和语义特性，并指导如何将各个构件有效地组织成一个完整的系统<br>架构风格定义了用于描述系统的术语表和一组指导构建系统的规则</p>
+</blockquote>
+<ul>
+<li>数据流风格：批处理序列、管道-过滤器</li>
+<li>调用/返回风格：主程序/子程序、、面向对象、层次结构</li>
+<li>独立构件风格：进程通信、事件驱动系统(隐式调用)</li>
+<li>虚拟机风格：解释器、基于规则的系统</li>
+<li>仓库风格：数据库系统、超文本系统、黑板系统</li>
+</ul>
+<h4 id="数据流风格"><a href="#数据流风格" class="headerlink" title="数据流风格"></a>数据流风格</h4><ul>
+<li>批处理序列：构件为一系列固定顺序的计算单元，构件之间只通过数据传递交互。每个处理步骤是一个独立的程序，<font color="red">每一步必须在其前一步结束后才能开始，数据必须是完整的，以整体的方式传递。整个处理过程没有用户交互</font></li>
+<li><font color="red">管道-过滤器</font>：每个构件都有一组输入和输出，构件读输入的数据流，经过内部处理，然后产生输出数据流，<font color="red">支持流式处理，不必等一批全部处理完在走下一个</font>。（这个过程通常是通过对输入数据流的变换或计算来完成的，包括通过计算或增加信息以丰富数据、通过浓缩或删除以精简数据、通过改变记录方式以转化数据和递增地转化数据等。）这里的构件称为过滤器，连接件就是数据流传输的管道，将一个过滤器的输出传到另一个过滤器的输入</li>
+</ul>
+<h4 id="调用-返回风格"><a href="#调用-返回风格" class="headerlink" title="调用/返回风格"></a>调用/返回风格</h4><ul>
+<li>主程序/子程序：单线程控制，把问题划分为若干个处理步骤，构件即为主程序和子程序，子程序通常可合成为模块。过程调用作为交互机制，即充当连接件的角色。调用关系具有层次性，其语义逻辑表现为主程序的正确性取决于它调用的子程序的正确性。(<font color="red">结构化开发中常见</font>)</li>
+<li>面向对象：<font color="red">显式调用</font>。构件是对象，对象是抽象数据类型的实例。在抽象数据类型中，数据的表示和它们的相应操作被封装起来，对象的行为体现在其接受和请求的动作。连接件即是对象间交互的方式，对象是通过函数和过程的调用来交互的</li>
+<li>层次结构：构建组织成一个层次结构，连接件通过决定层间如何交互的协议来定义。每层为上一层提供服务，使用下一层的服务，只能见到与自己邻接的层。通过层次结构，可以将大的问题分解为若干个渐进的小问题逐步解决，可以隐藏问题的复杂度，修改某一层，最多影响相邻的两层(通常只能影响上层)(<font color="red">缺点：层次多则效率低、层次划分没有定论</font>)</li>
+</ul>
+<h4 id="独立构件风格"><a href="#独立构件风格" class="headerlink" title="独立构件风格"></a>独立构件风格</h4><ul>
+<li>进程通信：<font color="red">独立构件</font>。构件是独立的过程，连接件是消息传递。构件通常是命名过程，消息传递的方式可以是点对点，异步或同步方式，以及远程过程(方法)调用等</li>
+<li><font color="red">事件驱动系统：隐式调用</font>。构件不直接调用一个过程，而是触发或广播一个或多个事件。构件中的过程在一个或多个事件中注册，当某个事件被触发时，系统自动调用在这个事件中注册的所有过程。一个事件的触发就导致了另一个模块中的过程调用。这种风格中的构件是匿名的过程，它们之间交互的连接件往往是以过程之间的隐式调用来实现的。<font color="red">主要优点是为软件复用提供了强大的支持，为构件的维护和演化带来了方便；其缺点是构件放弃了对系统计算的控制</font>
+
+</li>
+</ul>
+<h4 id="虚拟机风格"><a href="#虚拟机风格" class="headerlink" title="虚拟机风格"></a>虚拟机风格</h4><ul>
+<li>解释器：解释器通常包括一个完成解释工作的解释引擎、一个包含将被解释的代码的存储区、一个记录解释引擎当前工作状态的数据结构，以及一个记录源代码被解释执行的进度的数据结构。具有解释器风格的软件中含有一个虚拟机，<font color="red">可以仿真硬件的执行过程和一些关键应用，其缺点是执行效率比较低</font></li>
+<li>基于规则的系统：基于规则的系统包括规则集、规则解释器、规则/数据选择器和工作内存，一般用在人工智能领域和DSS中</li>
+</ul>
+<h4 id="仓库风格"><a href="#仓库风格" class="headerlink" title="仓库风格"></a>仓库风格</h4><blockquote>
+<font color="red">以数据为核心</font>
+
+
+</blockquote>
+<ul>
+<li>数据库系统：<font color="red">数据共享</font>。构件主要有两大类，一类是中央共享数据源，保存当前系统的数据状态；另一类是多个独立处理单元，处理单元对数据元素进行操作</li>
+<li>黑板系统：包括知识源、黑板和控制三部分。知识源包括若干独立计算的不同单元，提供解决问题的知识。知识源响应黑板的变化，也只修改黑板；黑板是一个全局数据库，包含问题域解空间的全部状态，是知识源相互作用的唯一媒介；知识源响应是通过黑板状态的变化来控制的。黑板系统通常应用在对于解决问题没有确定性算法的软件中(<font color="red">信号处理、问题规划和编译器优化等</font>)</li>
+<li>超文本系统：构件以网状链接方式相互连接，用户可以在构件之间进行按照人类的联想思维方式任意跳转到相关构件。超文本是一种非线性的网状信息组织方式。它以结点为基本单位，链作为结点之间的联想式关联。超文本系统通常应用在互联网领域</li>
+</ul>
+<h4 id="C-S架构"><a href="#C-S架构" class="headerlink" title="C/S架构"></a>C/S架构</h4><ul>
+<li>两层C/S架构<blockquote>
+<p>开发成本较高、客户端程序设计复杂、信息内容和形式单一、用户界面风格不一、<font color="red">软件移植困难、软件维护和升级困难</font>、新技术不能轻易应用</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/2021/07/22/架构设计师备考/两层CS架构.jpg" alt="两层CS架构"></p>
+<ul>
+<li>三层C/S架构<blockquote>
+<p>各层在逻辑上保持相对独立，整个系统的逻辑结构更为清晰，能提高系统和软件的可维护性和可扩展性<br>允许灵活有效地选用相应的平台和硬件系统，具有良好的可升级性和开放性<br>各层可以并行开发，各层也可以选择各自最适合的开发语言<br>功能层有效地隔离表示层与数据层，为严格的安全管理奠定了坚实的基础；整个系统的管理层次也更加合理和可控制</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/2021/07/22/架构设计师备考/三层CS架构1.jpg" alt="三层CS架构1"><br><img src="/2021/07/22/架构设计师备考/三层CS架构2.jpg" alt="三层CS架构2"></p>
+<h4 id="三层B-S架构"><a href="#三层B-S架构" class="headerlink" title="三层B/S架构"></a>三层B/S架构</h4><ul>
+<li>B/S架构缺乏对动态页面的支持能力，没有集成有效的数据库处理功能</li>
+<li>B/S架构的安全性难以控制</li>
+<li>采用B/S架构的应用系统，在数据查询等响应速度上，要远远低于C/S架构</li>
+<li>B/S架构的数据提交一般以页面为单位，数据的动态交互性不强，不利于OLTP应用</li>
+</ul>
+<p><img src="/2021/07/22/架构设计师备考/三层BS架构.jpg" alt="三层BS架构"></p>
+<h4 id="混合架构风格"><a href="#混合架构风格" class="headerlink" title="混合架构风格"></a>混合架构风格</h4><ul>
+<li>内外有别模型：内部C/S发挥性能优势，外部B/S架构</li>
+<li>查改有别模型</li>
+</ul>
+<p><img src="/2021/07/22/架构设计师备考/混合架构风格.jpg" alt="混合架构风格"></p>
+<h4 id="富互联网应用-RIA"><a href="#富互联网应用-RIA" class="headerlink" title="富互联网应用(RIA)"></a>富互联网应用(RIA)</h4><ul>
+<li>RIA结合了C/S架构反应速度快、交互性强的优点、以及B/S架构传播范围广及容易传播的特性</li>
+<li>RIA简化并改进了B/S架构的用户交互</li>
+<li>数据能够被缓存在客户端，从而可以实现一个比基于HTML的响应速度更快且数据往返于服务器的次数更少的用户界面</li>
+</ul>
+<p><img src="/2021/07/22/架构设计师备考/RIA.jpg" alt="RIA"></p>
+<h5 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h5><ul>
+<li>基于HTML和CSS标准的表示</li>
+<li>使用DOM进行动态显示和交互</li>
+<li>使用XML和XLST进行数据交换及相关操作</li>
+<li>使用XMLHttpRequest与服务器进行异步通信</li>
+<li>使用JavaScript绑定一切</li>
+</ul>
+<h4 id="mushup"><a href="#mushup" class="headerlink" title="mushup"></a>mushup</h4><ul>
+<li>RSS：一种用于对网站内容进行描述和同步的格式，是目前最广泛的Web资源发布方式</li>
+<li>REST：从资源的角度看待整个网络，各处的资源由URI确定，客户端的应用通过URI获取资源的表示</li>
+<li>SOAP：一种基于XML的数据格式定义，用来进行Web服务调用过程中的参数调用和返回</li>
+<li>ATOM：一种基于XML的文档格式和基于HTTP的协议，用来聚合网络内容</li>
+</ul>
+<p><img src="/2021/07/22/架构设计师备考/mushup.jpg" alt="mushup"></p>
+<h4 id="基于服务的架构-SOA"><a href="#基于服务的架构-SOA" class="headerlink" title="基于服务的架构(SOA)"></a>基于服务的架构(SOA)</h4><blockquote>
+<p>服务是一种为了满足某项业务需求的操作、规则等的逻辑组合，它包含一系列有序活动的交互，为实现用户目标提供支持</p>
+</blockquote>
+<ul>
+<li>特色：松散耦合、粗粒度(服务&gt;构件&gt;对象)、标准化接口</li>
+<li>与传统构件的区别<ul>
+<li>服务构件粗粒度，传统构件细粒度居多</li>
+<li>服务构件的接口是标准的，主要是WSDL接口，传统构件常以具体API形式出现</li>
+<li>服务构建的实现与语言无关，传统构件绑定某种特定的语言</li>
+<li>服务构件可以通过构件容器提供QoS服务，传统构件完全由程序代码直接控制</li>
+</ul>
+</li>
+<li>实现方式<br><img src="/2021/07/22/架构设计师备考/SOA实现方式.jpg" alt="SOA实现方式"><ul>
+<li>Web Service<br><img src="/2021/07/22/架构设计师备考/WebService.jpg" alt="WebService"></li>
+</ul>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">协议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">发现服务</td>
+<td style="text-align:center"><font color="red">UDDI</font>、DISCO</td>
+</tr>
+<tr>
+<td style="text-align:center">描述服务</td>
+<td style="text-align:center"><font color="red">WSDL</font>、XML Schema</td>
+</tr>
+<tr>
+<td style="text-align:center">消息格式层</td>
+<td style="text-align:center"><font color="red">SOAP</font>、REST</td>
+</tr>
+<tr>
+<td style="text-align:center">编码格式层</td>
+<td style="text-align:center">XML</td>
+</tr>
+<tr>
+<td style="text-align:center">传输协议层</td>
+<td style="text-align:center">HTTP、TCP/IP、SMTP等</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>ESB<br><img src="/2021/07/22/架构设计师备考/ESB.jpg" alt="ESB"><ul>
+<li>提供位置透明性的消息路由和寻址服务</li>
+<li>提供服务注册和命名的管理功能</li>
+<li>支持多种消息传递范型</li>
+<li>支持多种可以广泛使用的传输协议</li>
+<li>支持多种数据格式及其相互转换</li>
+<li>提供日志和监控功能</li>
+</ul>
+</li>
+</ul>
+<h3 id="软件架构评估"><a href="#软件架构评估" class="headerlink" title="软件架构评估"></a>软件架构评估</h3><h4 id="质量属性"><a href="#质量属性" class="headerlink" title="质量属性"></a>质量属性</h4><ul>
+<li><p><font color="red">性能</font></p>
+<blockquote>
+<p>性能(performance)是指系统的<font color="red">响应能力</font>，即要经过多长事件才能对某个事件做出响应，或者在某段时间内系统所能处理的事件的个数。经常用单位事件内所处理事务的数量或系统完成某个事务处理所需的时间来对性能进行定量的表示。性能测试经常要使用基准测试程序（用以测量性能指标的特定事务集或工作量环境）</p>
+</blockquote>
+</li>
+<li><p>可靠性</p>
+<blockquote>
+<p>可靠性(reliability)是软件系统在应用或系统错误面前，在意外或错误使用的情况下维持软件系统的功能特性的基本能力。可靠性通常用平均失效等待时间(Mean Time To Failure，简称MTTF)和平均失效间隔时间(Mean Time Between Failure，简称MTBF)来衡量。在<font color="red">失效率</font>为常数和修复时间很短的情况下，MTTF和MTBF几乎相等</p>
+</blockquote>
+</li>
+<li><p><font color="red">可用性</font></p>
+<blockquote>
+<p>可用性(avaliability)是系统能够正常运行的<font color="red">时间比例</font>。经常用两次故障之间的时间长度或在出现故障时系统能够恢复正常的速度来表示。</p>
+</blockquote>
+</li>
+<li><p><font color="red">安全性</font></p>
+<blockquote>
+<p>安全性(security)时滞系统在向合法用户提供服务的同时能够阻止非授权用户使用的企图或拒绝服务的能力。安全性时根据系统可能收到的安全威胁的类型来分类的。安全性又可划分为<font color="red">机密性、完整性、不可否认性及可控性</font>等特性</p>
+</blockquote>
+</li>
+<li><p><font color="red">可修改性</font></p>
+<blockquote>
+<p>可修改性(modifiability)是指能够快速地以较高的性能价格比对系统进行变更的能力。通常以某些具体的变更为基准，通过考察这些变更的代价衡量可修改性(<font color="red">设计阶段就需要考虑</font>)</p>
+</blockquote>
+</li>
+<li><p>功能性</p>
+<blockquote>
+<p>功能性(functionality)是系统所能完成所期望的工作的能力。一项任务的完成需要系统中许多或大多数构件的相互协作</p>
+</blockquote>
+</li>
+<li><p><del>可变性</del></p>
+<blockquote>
+<p>可变性(changeability)是指系统结构经扩充或变更而成为新体系结构的能力。这种新体系结构应该符合预先定义的规则，在某些具体方面不同于所有的体系结构。当要将某个体系结构作为一系列相关产品(例如，软件产品线)的基础时，可变性是很重要的</p>
+</blockquote>
+</li>
+<li><p><del>互操作性</del></p>
+<blockquote>
+<p>作为系统组成部分的软件不是独立存在的，经常与其它系统或自身环境相互作用。为了支持互操作性(interoperation)，软件体系结构必须为外部可视的功能特性和数据结构提供精心设计的软件入口，程序和用其他编程语言编写的软件系统的交互作用就是互操作性的问题，这种互操作性也影响应用的软件体系结构</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="概念表述"><a href="#概念表述" class="headerlink" title="概念表述"></a>概念表述</h4><ul>
+<li>敏感点：变化值很小但对结果影响很大的点(敏感度很高的值，往往是一个)</li>
+<li>权衡点：影响到多个质量属性的特性，多个都是属于敏感点(多个质量属性的折中)</li>
+<li>风险点：潜在的存在问题的隐患</li>
+<li>非风险点</li>
+</ul>
+<h4 id="评估方法"><a href="#评估方法" class="headerlink" title="评估方法"></a>评估方法</h4><p><img src="/2021/07/22/架构设计师备考/评估方法.jpg" alt="评估方法"></p>
+<ul>
+<li>基于调查问卷(检查表)的方式(最客观的方式)</li>
+<li>基于度量的方式</li>
+<li><font color="red">基于场景的方式</font><br><img src="/2021/07/22/架构设计师备考/基于场景的方式.jpg" alt="基于场景的方式"></li>
+</ul>
+<h5 id="基于场景的方式"><a href="#基于场景的方式" class="headerlink" title="基于场景的方式"></a>基于场景的方式</h5><blockquote>
+<p>确定应用领域的功能和软件架构的结构之间的映射<br>设计用于体现待评估质量属性的场景<br>分析软件架构对场景的支持程度</p>
+</blockquote>
+<ul>
+<li><p>架构权衡分析法(ATAM)<br><img src="/2021/07/22/架构设计师备考/架构权衡分析法.jpg" alt="架构权衡分析法"></p>
+</li>
+<li><p>软件架构分析法(SAAM)<br><img src="/2021/07/22/架构设计师备考/软件架构分析法.jpg" alt="软件架构分析法"></p>
+</li>
+<li><p>成本效益分析法(CBAM)</p>
+</li>
+</ul>
+<h3 id="软件产品线"><a href="#软件产品线" class="headerlink" title="软件产品线"></a>软件产品线</h3><blockquote>
+<p>过程驱动、特定领域、技术支持、以架构为中心</p>
+</blockquote>
+<p><img src="/2021/07/22/架构设计师备考/软件产品线.jpg" alt="软件产品线"></p>
+<ul>
+<li><p>过程模型-双生命周期模型<br><img src="/2021/07/22/架构设计师备考/双生命周期模型.jpg" alt="双生命周期模型"></p>
+</li>
+<li><p>过程模型-SEI模型<br><img src="/2021/07/22/架构设计师备考/SEI模型.jpg" alt="SEI模型"></p>
+</li>
+<li><p><del>过程模型-三生命周期模型</del><br><img src="/2021/07/22/架构设计师备考/三生命周期模型.jpg" alt="三生命周期模型"></p>
+</li>
+</ul>
+<h4 id="组织结构"><a href="#组织结构" class="headerlink" title="组织结构"></a>组织结构</h4><ul>
+<li><font color="red">设立独立的核心资源小组</font>：核心的、行业共性的开发工作(绝大多数部分)</li>
+<li>不设立独立的核心资源小组：核心开发和应用开发在一个小组，但仍然会区分核心部分和应用部分，两者分别对待</li>
+<li>动态的组织结构</li>
+</ul>
+<h4 id="建立方式"><a href="#建立方式" class="headerlink" title="建立方式"></a><font color="red">建立方式</font></h4><ul>
+<li>将现有产品演化为产品线</li>
+<li>用软件产品线替代现有产品集</li>
+<li>全新软件产品线的演化</li>
+<li>全新软件产品线的开发</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:left">演化方式</th>
+<th style="text-align:left">革命方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">基于现有产品</td>
+<td style="text-align:left">基于现有产品架构设计产品线的架构，经演化现有构件，开发产品线构件</td>
+<td style="text-align:left">核心资源的开发基于现有产品集的需求和可预测的、将来的需求的超集</td>
+</tr>
+<tr>
+<td style="text-align:center">全新产品线</td>
+<td style="text-align:left">产品线核心资源随产品新成员的需求而演化</td>
+<td style="text-align:left">开发满足所有预期产品线成员的需求的核心资源</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="中间件技术"><a href="#中间件技术" class="headerlink" title="中间件技术"></a>中间件技术</h3><blockquote>
+<p>中间件是一种独立的系统软件或服务程序，可以帮助分布式应用软件在不同的技术之间共享资源</p>
+</blockquote>
+<ul>
+<li>负责客户机与服务器之间的连接和通信，以及客户机与应用层之间的高效率通信机制</li>
+<li>提供应用层不同服务之间的互操作机制，以及应用层与数据库之间的连接和控制机制</li>
+<li>提供多层架构的应用开发和运行的平台，以及应用开发框架，支持模块化的应用开发</li>
+<li>屏蔽硬件、操作系统、网络和数据库的差异</li>
+<li>提供应用的负载均衡和高可用性、安全机制与管理功能，以及交易管理机制，保证交易的一致性</li>
+<li>提供一组通用的服务去执行不同的功能，避免重复的工作和使应用之间可以协作</li>
+</ul>
+<p><img src="/2021/07/22/架构设计师备考/中间件技术.jpg" alt="中间件技术"></p>
+<h4 id="主要中间件"><a href="#主要中间件" class="headerlink" title="主要中间件"></a>主要中间件</h4><ul>
+<li>远程过程调用</li>
+<li>对象请求代理</li>
+<li>远程方法调用</li>
+<li>面向消息的中间件</li>
+<li>事务处理监控器</li>
+</ul>
+<p><img src="/2021/07/22/架构设计师备考/主要中间件.jpg" alt="主要中间件"></p>
+<ul>
+<li>Corba(公共对象请求代理体系结构)<br><img src="/2021/07/22/架构设计师备考/Corba.jpg" alt="Corba"></li>
+</ul>
+<h3 id="典型应用架构"><a href="#典型应用架构" class="headerlink" title="典型应用架构"></a>典型应用架构</h3><h4 id="J2EE-分布式多层应用程序"><a href="#J2EE-分布式多层应用程序" class="headerlink" title="J2EE-分布式多层应用程序"></a>J2EE-分布式多层应用程序</h4><ul>
+<li>业务层<ul>
+<li>会话Bean：短暂会话</li>
+<li>实体Bean：持久化数据</li>
+<li>消息驱动Bean：会话Bean+JMS<br><img src="/2021/07/22/架构设计师备考/J2EE.jpg" alt="J2EE"></li>
+</ul>
+</li>
+</ul>
+<h4 id="NET"><a href="#NET" class="headerlink" title=".NET"></a>.NET</h4><ul>
+<li>通用语言运行环境：支持多种语言，各语言被转换为通用语言运行规范，在通用语言运行环境上运行(对应java的虚拟机)<br><img src="/2021/07/22/架构设计师备考/NET1.jpg" alt="NET1"><br><img src="/2021/07/22/架构设计师备考/NET2.jpg" alt="NET2"></li>
+</ul>
+<h4 id="NET与J2EE"><a href="#NET与J2EE" class="headerlink" title=".NET与J2EE"></a>.NET与J2EE</h4><ul>
+<li>JVM和CLR：同样思想下的产物</li>
+<li>对多层分布式应用的支持：没有多大差异</li>
+<li>安全性</li>
+<li>应用程序的部署</li>
+<li>可移植性：.NET的可移植性较差(依附于微软自己的操作系统平台)，J2EE可移植性较好</li>
+<li>外部支持：.NET支持语言多一下</li>
+</ul>
+<h4 id="MVC设计模式"><a href="#MVC设计模式" class="headerlink" title="MVC设计模式"></a>MVC设计模式</h4><ul>
+<li>主动MVC<br><img src="/2021/07/22/架构设计师备考/主动MVC.jpg" alt="主动MVC"></li>
+<li>被动MVC<br><img src="/2021/07/22/架构设计师备考/被动MVC.jpg" alt="被动MVC"></li>
+</ul>
+<h4 id="MVP设计模式"><a href="#MVP设计模式" class="headerlink" title="MVP设计模式"></a>MVP设计模式</h4><ul>
+<li>MVP是MVC的变种</li>
+<li>MVP实现了V与M之间的解耦(V不直接使用M，修改V不会影响M)</li>
+<li>MVP更好的支持单元测试(业务逻辑在P中，可以脱离V来测试这些逻辑；可以将一个P用于多个V，而不需要改变P的逻辑)</li>
+<li>MVP中V要处理界面事件，业务逻辑在P中，MVC中界面事件由C处理</li>
+</ul>
+<p><img src="/2021/07/22/架构设计师备考/MVP设计模式.jpg" alt="MVP设计模式"></p>
+<h2 id="信息安全分析与设计"><a href="#信息安全分析与设计" class="headerlink" title="信息安全分析与设计"></a>信息安全分析与设计</h2><h3 id="信息系统安全属性"><a href="#信息系统安全属性" class="headerlink" title="信息系统安全属性"></a>信息系统安全属性</h3><ul>
+<li>保密性：最小授权原则、防暴露、信息加密、物理加密</li>
+<li>完整性：安全协议、校验码、密码校验、数字签名、公证</li>
+<li>可用性：综合保障（IP过滤、业务流控制、路由选择控制、审计跟踪）</li>
+<li>不可抵赖性：数字签名</li>
+</ul>
+<h3 id="对称加密技术"><a href="#对称加密技术" class="headerlink" title="对称加密技术"></a>对称加密技术</h3><ul>
+<li>DES：替换+移位、56位密钥、64位数据块、速度快、密钥易生成<ul>
+<li>3DES(三重DES)：两个56位的密钥K1、K2（加密：K1加密-&gt;K2解密-&gt;K1加密；解密：k1解密-&gt;K2加密-&gt;K1解密）</li>
+</ul>
+</li>
+<li>AES：高级加密标准Rijndael加密法，是美国联邦政府采用的一种区块加密标准。这个标准用来替代原先的DES。堆区要求是“至少与3DES一样安全”</li>
+<li>RC-5：RSA数据安全公司的很多产品都使用了RC-5</li>
+<li>IDEA算法：128位密钥、64位数据块、比DES的加密性好、对计算机功能要求相对低，PGP</li>
+</ul>
+<p><img src="/2021/07/22/架构设计师备考/对称加密技术.jpg" alt="对称加密技术"></p>
+<font color="red">优点：加密速度快、效率高；缺点：加密强度不高、密钥分发困难</font>
+
+<h3 id="非对称加密技术"><a href="#非对称加密技术" class="headerlink" title="非对称加密技术"></a>非对称加密技术</h3><ul>
+<li>RSA：512位（或1024位）密钥、计算量极大、破解难</li>
+<li><font color="red">Elgamal：其基础是Diffie-Hellman密钥交换算法</font></li>
+<li>ECC：椭圆曲线算法</li>
+<li>其它非对称算法包括：<font color="red">背包算法、Rabin、D-H</font></li>
+</ul>
+<p><img src="/2021/07/22/架构设计师备考/非对称加密技术.jpg" alt="非对称加密技术"></p>
+<font color="red">优点：破解难；缺点：加密速度慢，不适合加密大数据量</font>
+
+<h3 id="信息摘要"><a href="#信息摘要" class="headerlink" title="信息摘要"></a>信息摘要</h3><blockquote>
+<p>单向散列函数（单向Hash函数）、固定长度的散列值</p>
+</blockquote>
+<p><img src="/2021/07/22/架构设计师备考/信息摘要.jpg" alt="信息摘要"><br><strong>常用的信息摘要算法有MD5、SHA等，市场上广泛使用的MD5、SHA算法的散列值分别位128位和160位，由于SHA通常采用的密钥长度较长，因此安全性高于MD5</strong></p>
+<h3 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h3><blockquote>
+<p>防抵赖的技术、没有保密的职能只有识别身份的作用</p>
+</blockquote>
+<p><img src="/2021/07/22/架构设计师备考/数字签名.jpg" alt="数字签名"></p>
+<h3 id="数字信封与PGP"><a href="#数字信封与PGP" class="headerlink" title="数字信封与PGP"></a>数字信封与PGP</h3><ul>
+<li><p>数字信封</p>
+<ol>
+<li>发送方将原文用对称加密传输，而将对称密钥用接收方公钥加密发送给对方</li>
+<li>接收方收到电子信封，用自己的私钥解密信封，取出对称密钥解密得到原文</li>
+</ol>
+</li>
+<li><p>PGP协议</p>
+<ul>
+<li>PGP可用于电子邮件、也可以用于文件存储。采用了杂合算法，包括IDEA、RSA、MD5、ZIP数据压缩算法</li>
+<li>PGP承认两种不同的证书格式：PGP证书和X.509证书</li>
+<li>PGP证书包含PGP版本号、证书持有者的公钥、证书持有者的信息、证书拥有者的数字签名、证书的有效期、密钥首选的对称加密算法</li>
+<li>X.509证书包含证书版本、证书的序列号、签名算法标识、证书有效期、证书发行商名字、证书主体名、<font color="red">主体公钥信息</font>、发布者的数字签名</li>
+</ul>
+</li>
+</ul>
+<h3 id="练习题-设计邮件加密系统"><a href="#练习题-设计邮件加密系统" class="headerlink" title="练习题-设计邮件加密系统"></a>练习题-设计邮件加密系统</h3><p>要求邮件以加密方式传输，邮件最大附件内容可达500MB，发送者不可抵赖，若邮件被第三方截获，第三方无法篡改<sup id="fnref:25"><a href="#fn:25" rel="footnote">25</a></sup></p>
+<h3 id="PKI公钥体系"><a href="#PKI公钥体系" class="headerlink" title="PKI公钥体系"></a>PKI公钥体系</h3><blockquote>
+<p>防欺骗</p>
+</blockquote>
+<ul>
+<li><p>运行流程<br><img src="/2021/07/22/架构设计师备考/PKI公钥体系运作流程.jpg" alt="PKI公钥体系运作流程"></p>
+</li>
+<li><p>PKI公钥体系分层</p>
+<blockquote>
+<p>CA、RA、证书受理点、密钥管理中心-KMC</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/2021/07/22/架构设计师备考/PKI公钥体系分层.jpg" alt="PKI公钥体系分层"></p>
+<h3 id="信息系统安全保障层次"><a href="#信息系统安全保障层次" class="headerlink" title="信息系统安全保障层次"></a>信息系统安全保障层次</h3><ul>
+<li>身份认证<ul>
+<li>用户名+口令</li>
+<li>数字证书</li>
+<li>生物特征识别</li>
+</ul>
+</li>
+<li>访问控制<ul>
+<li>自主访问控制(DAC)：权限赋予过程有自主权利，给相应的主体赋予能够访问哪些客体的权限(存在安全风险)</li>
+<li>访问控制列表(ACL)：从客体出发，看哪些主体能访问客体(给资源指定能访问的主体列表)</li>
+<li>强制访问控制(MAC)：对主体和客体分级</li>
+<li>基于角色的访问控制模型(RBAC)</li>
+<li>基于任务的访问控制(TBAC)</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2021/07/22/架构设计师备考/信息系统安全保障层次.jpg" alt="信息系统安全保障层次"></p>
+<h3 id="安全审计与安全系统设计原则"><a href="#安全审计与安全系统设计原则" class="headerlink" title="安全审计与安全系统设计原则"></a>安全审计与安全系统设计原则</h3><ul>
+<li>安全审计的作用<ul>
+<li>震慑、警告</li>
+<li>发现计算机的滥用情况</li>
+<li>提供有效的追纠证据</li>
+<li>帮助发现系统的入侵和漏洞</li>
+<li>帮助发现系统性能上的不足</li>
+</ul>
+</li>
+<li>设计原则<ul>
+<li><font color="red">木桶原则</font>：首先加强短板</li>
+<li>整体性原则</li>
+<li>安全性评价与平衡原则</li>
+<li>标准化和一致性原则</li>
+<li>技术与管理相结合原则</li>
+<li>统筹规划，分步实施原则</li>
+<li>等级性原则</li>
+<li>动态发展原则</li>
+<li>易操作性原则</li>
+</ul>
+</li>
+</ul>
+<h3 id="网络安全-各个网络层次的安全保障"><a href="#网络安全-各个网络层次的安全保障" class="headerlink" title="网络安全-各个网络层次的安全保障"></a>网络安全-各个网络层次的安全保障</h3><ul>
+<li>SET：面向电子商务</li>
+<li>SSL：做选择时不要先对SSL所属的层次做定义，先对其他做判断<br><img src="/2021/07/22/架构设计师备考/各个网络层次的安全保障.jpg" alt="各个网络层次的安全保障"></li>
+</ul>
+<h3 id="网络威胁与攻击"><a href="#网络威胁与攻击" class="headerlink" title="网络威胁与攻击"></a>网络威胁与攻击</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">威胁名称</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">重放攻击(ARP)/ARP欺骗攻击</td>
+<td style="text-align:left">所截获的某次合法的通信数据拷贝，出于非法的目的而被重新发送</td>
+</tr>
+<tr>
+<td style="text-align:center">拒绝服务(DOS)</td>
+<td style="text-align:left">对信息或其它资源的合法访问被无条件地阻止</td>
+</tr>
+<tr>
+<td style="text-align:center">窃听</td>
+<td style="text-align:left">用各种可能的合法或非法的手段窃取系统中的信息资源和敏感信息。例如对通信线路中传输的信号进行搭线监听，或者利用通信设备在工作过程中产生的电磁泄漏截取游用信息等</td>
+</tr>
+<tr>
+<td style="text-align:center">业务流分析</td>
+<td style="text-align:left">通过对系统进行<font color="red">长期监听</font>，利用<font color="red">统计分析方法</font>对诸如通信频度、通信的信息流向、通信总量的变化等参数进行研究，从而发现有价值的通信和规律</td>
+</tr>
+<tr>
+<td style="text-align:center">信息泄露</td>
+<td style="text-align:left">信息被泄露或透露给某个非授权的实体</td>
+</tr>
+<tr>
+<td style="text-align:center">破坏信息的完整性</td>
+<td style="text-align:left">数据被非授权地进行增删、修改或破坏而受到损失</td>
+</tr>
+<tr>
+<td style="text-align:center">非授权访问</td>
+<td style="text-align:left">某一资源被非授权的人、或以非授权的方式使用</td>
+</tr>
+<tr>
+<td style="text-align:center">假冒</td>
+<td style="text-align:left">通过欺骗通信系统(或用户)达到非法用户冒充合法用户，或者特权小的用户冒充特权大的用户的目的。黑客大多时采用假冒进行攻击</td>
+</tr>
+<tr>
+<td style="text-align:center">旁路控制</td>
+<td style="text-align:left">攻击者利用<font color="red">系统的安全缺陷或安全性上的脆弱之处</font>获得非授权的权利或特权。例如，攻击者通过各种攻击手段发现原本应保密，但是却又暴露出来的一些系统“特性”。利用这些“特性”，攻击者可以绕过防线守卫者侵入系统的内部</td>
+</tr>
+<tr>
+<td style="text-align:center">授权侵犯</td>
+<td style="text-align:left">被授权以某一目的的使用某一系统或资源的个人，却将此权限用于其它非授权的目的，也称为“内部攻击”</td>
+</tr>
+<tr>
+<td style="text-align:center">特洛伊木马</td>
+<td style="text-align:left">软件中含有一个察觉不出的或者无害的程序段，当它被执行时，会破坏用户的安全</td>
+</tr>
+<tr>
+<td style="text-align:center">陷阱门</td>
+<td style="text-align:left">在某个系统或某个部件中设置了“机关”，使得当提供特定的输入数据时允许违反安全策略</td>
+</tr>
+<tr>
+<td style="text-align:center">抵赖</td>
+<td style="text-align:left">这是一种来自用户的攻击，比如：否认自己曾经发布过的某条信息，伪造一份对方来行等</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>DoS(拒绝服务)与DDoS<blockquote>
+<p>破坏系统的可用性</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/2021/07/22/架构设计师备考/DDoS.jpg" alt="DDoS"></p>
+<h3 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h3><blockquote>
+<p>防外不防内</p>
+</blockquote>
+<p><img src="/2021/07/22/架构设计师备考/防火墙.jpg" alt="防火墙"></p>
+<ul>
+<li>网络级：层次低，效率高(只检测IP头可以伪造)<ul>
+<li>状态检测：检测TCP/IP连接信息</li>
+</ul>
+</li>
+<li>应用级：层次高，效率低(开箱检查)<ul>
+<li><font color="red">屏蔽子网：在外网和内网之间建立屏蔽子网区/隔离区/DMZ非军事区，既不属于内部网络也不属于外部网络。主要放对外提供服务的服务器</font>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="入侵检测"><a href="#入侵检测" class="headerlink" title="入侵检测"></a>入侵检测</h3><ul>
+<li><p>入侵检测流程<br><img src="/2021/07/22/架构设计师备考/入侵检测流程.jpg" alt="入侵检测流程"></p>
+</li>
+<li><p>入侵检测特点<br><img src="/2021/07/22/架构设计师备考/入侵检测特点.jpg" alt="入侵检测特点"></p>
+</li>
+</ul>
+<h3 id="计算机病毒与木马"><a href="#计算机病毒与木马" class="headerlink" title="计算机病毒与木马"></a>计算机病毒与木马</h3><ul>
+<li>病毒：编制或者在计算机程序中插入的破坏计算机功能或破坏数据，影响计算机使用并且<font color="red">能够自我复制</font>的一组计算机指令或者程序代码。病毒具有：传染性、隐藏性、潜伏性、破坏性、针对性、衍生性、寄生性、未知性</li>
+<li><p>木马：计算机木马是一种后门程序，常被黑客用作<font color="red">控制远程计算机</font>的工具</p>
+</li>
+<li><p>病毒分类</p>
+<ul>
+<li>系统引导型病毒</li>
+<li>文件外壳型病毒</li>
+<li>目录型病毒：破坏目录文件</li>
+<li>蠕虫病毒（Worm）：熊猫烧香、罗密欧与朱丽叶、恶魔、尼达姆、冲击波(感染可执行文件)</li>
+<li>木马（Trojan）：QQ消息尾巴木马</li>
+<li>宏病毒（Macro）：美丽莎（Melissa）、台湾1号(感染Office体系的)</li>
+</ul>
+</li>
+<li>几种代表性病毒<ul>
+<li>CIH病毒：史上唯一破坏硬件的病毒</li>
+<li>红色代码：蠕虫病毒+木马</li>
+</ul>
+</li>
+</ul>
+<h2 id="系统可靠性分析和设计"><a href="#系统可靠性分析和设计" class="headerlink" title="系统可靠性分析和设计"></a>系统可靠性分析和设计</h2><h3 id="系统故障模型"><a href="#系统故障模型" class="headerlink" title="系统故障模型"></a>系统故障模型</h3><blockquote>
+<p>部件失效、物理干扰、操作或设计不当引起的错误状态</p>
+</blockquote>
+<ul>
+<li>表现形式：永久性、间歇性、瞬时性</li>
+<li>逻辑级的故障模型：短路故障、开路故障、桥接故障(物理层次)</li>
+<li>数据结构级的故障：独立差错、算数差错、单向差错</li>
+<li><font color="red">软件故障和软件差错</font>：非法转移、误转移、死循环、空间溢出、数据执行、无理数据</li>
+<li>系统级的故障模型</li>
+</ul>
+<h3 id="可靠性指标"><a href="#可靠性指标" class="headerlink" title="可靠性指标"></a>可靠性指标</h3><p><img src="/2021/07/22/架构设计师备考/可靠性指标.jpg" alt="可靠性指标"></p>
+<ul>
+<li>平均无故障事件(MTTF)：$MTTF = \frac{1}{\lambda}$，$\lambda$为失效率</li>
+<li>平均故障修复时间(MTTR)：$MTTR = \frac{1}{\mu}$，$\mu$为修复率</li>
+<li>平均故障间隔事件(MTBF)：$MTBF=MTTR+MTTF$</li>
+<li>系统可用性：$\frac{MTTF}{MTTR+MTTF}\times 100\%$</li>
+</ul>
+<font color="red">在实际应用中，一般MTTR很小，所以通常认为$MTBF \approx MTTF$</font>
+
+<ul>
+<li>可靠性和可用性<blockquote>
+<font color="red">系统可靠性</font>是系统在规定的时间内及规定的环境条件下，完成规定功能的能力，也就是系统无故障运行的概率
+<font color="red">系统可用性</font>是指在某个给定的时间点上系统能够按照需求执行的效率
+提高可靠性需要强调减少<font color="red">系统中断(故障)的次数</font>，提高可用性需要强调<font color="red">减少从灾难中恢复的事件</font></blockquote>
+</li>
+<li>例<br>假设同一型号的1000台计算机，在规定的条件下工作1000小时，其中有10台出现故障。<br>这种计算机千小时的可靠度R为$\frac{(1000-10)}{1000}=0.99$<br>失效率为$\frac{10}{1000 \times 1000}=1\times 10^{-5}$<br>$MTTF=\frac{1}{1\times 10^{-5}}=10^{5}小时$</li>
+</ul>
+<h3 id="可靠性分析"><a href="#可靠性分析" class="headerlink" title="可靠性分析"></a>可靠性分析</h3><ul>
+<li><p>串联系统<br><img src="/2021/07/22/架构设计师备考/串联系统.jpg" alt="串联系统"></p>
+</li>
+<li><p>并联系统</p>
+<ul>
+<li>失效率可以用$1-R$求得即1减去可靠度<br><img src="/2021/07/22/架构设计师备考/并联系统.jpg" alt="并联系统"></li>
+</ul>
+</li>
+<li><p><del>N模冗余系统</del><br><img src="/2021/07/22/架构设计师备考/N模冗余系统.jpg" alt="N模冗余系统"></p>
+</li>
+<li><p>混合系统<br><img src="/2021/07/22/架构设计师备考/混合系统.jpg" alt="混合系统"></p>
+</li>
+</ul>
+<h3 id="系统容错"><a href="#系统容错" class="headerlink" title="系统容错"></a>系统容错</h3><ul>
+<li>避错技术：测试、验证等</li>
+<li>容错技术<ul>
+<li>结构冗余（硬件冗余、软件冗余）<ul>
+<li>静态冗余（屏蔽冗余、被动冗余、模冗余系统）：通过表决和比较来屏蔽系统的错误，没有过多检测和反复的过程</li>
+<li>动态冗余（主动冗余：备份系统、集群系统）：通过检测定位问题然后进行恢复<ul>
+<li>故障检测</li>
+<li>故障定位</li>
+<li>故障恢复</li>
+</ul>
+</li>
+<li>混合冗余：</li>
+</ul>
+</li>
+<li>信息冗余（校验码）</li>
+<li>事件冗余（重复多次进行相同得计算）</li>
+<li>冗余附加（为实现上述冗余技术所需的资源和技术）</li>
+</ul>
+</li>
+</ul>
+<h4 id="冗余系统"><a href="#冗余系统" class="headerlink" title="冗余系统"></a>冗余系统</h4><ul>
+<li>故障检测</li>
+<li>故障屏蔽</li>
+<li>故障限制</li>
+<li>复执</li>
+<li>故障诊断</li>
+<li>系统重配置</li>
+<li>系统恢复<ul>
+<li>前向恢复：<font color="red">使当前的计算继续下去</font>，把系统恢复成连贯的正确状态，弥补当前状态的不连贯情况</li>
+<li>后向恢复：系统恢复到前一个正确状态，继续执行</li>
+</ul>
+</li>
+<li>系统重新启动</li>
+<li>修复</li>
+<li>系统重组合</li>
+</ul>
+<p>后向恢复简单地把变量恢复到检查点的取值；前向恢复将对一些变量的状态进行修改和处理，且这个恢复过程将由程序设计者设计<br>前向恢复适用于可预见的易定义的的错误；后向恢复可屏蔽不可预见的错误</p>
+<h3 id="软件容错"><a href="#软件容错" class="headerlink" title="软件容错"></a>软件容错</h3><ul>
+<li>N版本程序设计<blockquote>
+<p>与通常软件开发过程不同的是，N版本程序设计增加了三个新的阶段：相异成份规范评审、相异性确认、背对背测试<br>N版本程序的同步、N版本程序之间的通信、表决算法（全等表决、非精确表决、Cosmetie表决）、一致比较问题、数据相异性</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/2021/07/22/架构设计师备考/N版本程序设计.jpg" alt="N版本程序设计"></p>
+<ul>
+<li>恢复块方法<blockquote>
+<p>设计时应保证实现主块和后备块之间的独立性，避免相关错误的产生，使主块和备份块之间的共性错误降到最低程度<br>必须保证验证测试程序的正确性</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/2021/07/22/架构设计师备考/恢复块方法.jpg" alt="N版本程序设计"></p>
+<ul>
+<li>N版本和恢复块比较</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">恢复块方法</th>
+<th style="text-align:center">N版本程序设计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">硬件运行环境</td>
+<td style="text-align:center">单机</td>
+<td style="text-align:center">多机</td>
+</tr>
+<tr>
+<td style="text-align:center">错误检测方法</td>
+<td style="text-align:center">验证测试程序</td>
+<td style="text-align:center">表决</td>
+</tr>
+<tr>
+<td style="text-align:center">恢复策略</td>
+<td style="text-align:center">后向恢复</td>
+<td style="text-align:center">前向恢复</td>
+</tr>
+<tr>
+<td style="text-align:center">实时性</td>
+<td style="text-align:center">差</td>
+<td style="text-align:center">好</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>防卫式程序设计</p>
+<blockquote>
+<p>对于程序中存在的错误和不一致性，通过在程序中包含错误检查代码和错误恢复代码，使得一旦错误发生，程序能撤销错误状态，恢复到一个已知的正确状态中去<br>实现策略：错误检测、破坏估计、错误恢复</p>
+</blockquote>
+</li>
+<li><p>双机容错</p>
+<ul>
+<li>双机热备模式（主系统、备用系统）</li>
+<li>双机互备模式（同时提供不同的服务，心不跳则接管）</li>
+<li>双机双工模式（同时提供相同的服务，集群的一种）</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2021/07/22/架构设计师备考/双机容错.jpg" alt="双机容错"></p>
+<h3 id="集群技术"><a href="#集群技术" class="headerlink" title="集群技术"></a>集群技术</h3><blockquote>
+<p>可伸缩性、高可用性、可管理性、高性价比、高透明性</p>
+</blockquote>
+<ul>
+<li>高性能计算集群</li>
+<li>负载均衡集群<ul>
+<li>基于特定软件的负载均衡</li>
+<li>基于DNS的负载均衡</li>
+<li>基于NAT的负载均衡</li>
+<li>反向代理负载均衡</li>
+<li>混合型负载均衡</li>
+</ul>
+</li>
+<li>高可用性集群</li>
+</ul>
+<h4 id="负载均衡算法"><a href="#负载均衡算法" class="headerlink" title="负载均衡算法"></a>负载均衡算法</h4><ul>
+<li>静态算法：轮转算法、加权轮转算法、最小连接数算法、加权最小连接数算法、源地址哈希散列算法、目标地址哈希散列算法、随机算法</li>
+<li>动态算法：加权百分比算法</li>
+</ul>
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style:none; padding-left: 0;"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">1.</span><span style="display: inline-block; vertical-align: top;">112、4</span><a href="#fnref:1" rev="footnote"> ↩</a></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">2.</span><span style="display: inline-block; vertical-align: top;">C、B</span><a href="#fnref:2" rev="footnote"> ↩</a></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">3.</span><span style="display: inline-block; vertical-align: top;">1.8、3</span><a href="#fnref:3" rev="footnote"> ↩</a></li><li id="fn:4"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">4.</span><span style="display: inline-block; vertical-align: top;">A、C</span><a href="#fnref:4" rev="footnote"> ↩</a></li><li id="fn:5"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">5.</span><span style="display: inline-block; vertical-align: top;">C、A、A</span><a href="#fnref:5" rev="footnote"> ↩</a></li><li id="fn:6"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">6.</span><span style="display: inline-block; vertical-align: top;">D、A、C</span><a href="#fnref:6" rev="footnote"> ↩</a></li><li id="fn:7"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">7.</span><span style="display: inline-block; vertical-align: top;">13，计算公式：a*(n-1)+1</span><a href="#fnref:7" rev="footnote"> ↩</a></li><li id="fn:8"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">8.</span><span style="display: inline-block; vertical-align: top;">B</span><a href="#fnref:8" rev="footnote"> ↩</a></li><li id="fn:9"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">9.</span><span style="display: inline-block; vertical-align: top;">D、B(访问位为1的不能淘汰，只能淘汰为0的)</span><a href="#fnref:9" rev="footnote"> ↩</a></li><li id="fn:10"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">10.</span><span style="display: inline-block; vertical-align: top;">12、5、9</span><a href="#fnref:10" rev="footnote"> ↩</a></li><li id="fn:11"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">11.</span><span style="display: inline-block; vertical-align: top;">B、C(指令一次性读入，只产生一次缺页中断，数据跨页产生两次)</span><a href="#fnref:11" rev="footnote"> ↩</a></li><li id="fn:12"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">12.</span><span style="display: inline-block; vertical-align: top;">C、D</span><a href="#fnref:12" rev="footnote"> ↩</a></li><li id="fn:13"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">13.</span><span style="display: inline-block; vertical-align: top;">D($\frac{4195+1}{32}$)、B(第132字第0位置为：4192，第1位置：4193，第2位置：4194，第3位置：4195)，字从1开始算，位置从0开始算</span><a href="#fnref:13" rev="footnote"> ↩</a></li><li id="fn:14"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">14.</span><span style="display: inline-block; vertical-align: top;">C</span><a href="#fnref:14" rev="footnote"> ↩</a></li><li id="fn:15"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">15.</span><span style="display: inline-block; vertical-align: top;">A
+<img src="/2021/07/22/架构设计师备考/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%A4%87%E8%80%83/%E9%94%AE%E4%BE%8B%E9%A2%981%E5%9B%BE.png" alt="键例题1图"></span><a href="#fnref:15" rev="footnote"> ↩</a></li><li id="fn:16"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">16.</span><span style="display: inline-block; vertical-align: top;">ABCD
+<img src="/2021/07/22/架构设计师备考/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%A4%87%E8%80%83/%E9%94%AE%E4%BE%8B%E9%A2%982%E5%9B%BE.png" alt="键例题2图"></span><a href="#fnref:16" rev="footnote"> ↩</a></li><li id="fn:17"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">17.</span><span style="display: inline-block; vertical-align: top;">B
+<img src="/2021/07/22/架构设计师备考/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%A4%87%E8%80%83/%E9%94%AE%E4%BE%8B%E9%A2%983%E5%9B%BE.png" alt="键例题3图"></span><a href="#fnref:17" rev="footnote"> ↩</a></li><li id="fn:18"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">18.</span><span style="display: inline-block; vertical-align: top;">C、D、A</span><a href="#fnref:18" rev="footnote"> ↩</a></li><li id="fn:19"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">19.</span><span style="display: inline-block; vertical-align: top;">是<img src="/2021/07/22/架构设计师备考/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%A4%87%E8%80%83/%E6%A8%A1%E5%BC%8F%E5%88%86%E8%A7%A3%E4%BE%8B%E9%A2%981%E7%AD%94%E6%A1%88.png" alt="模式分解例题1答案"><img src="/2021/07/22/架构设计师备考/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%A4%87%E8%80%83/%E6%A8%A1%E5%BC%8F%E5%88%86%E8%A7%A3%E4%BE%8B%E9%A2%981%E7%AD%94%E6%A1%881.png" alt="模式分解例题1答案1"><img src="/2021/07/22/架构设计师备考/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%A4%87%E8%80%83/%E6%A8%A1%E5%BC%8F%E5%88%86%E8%A7%A3%E4%BE%8B%E9%A2%981%E7%AD%94%E6%A1%882.png" alt="模式分解例题1答案2"></span><a href="#fnref:19" rev="footnote"> ↩</a></li><li id="fn:20"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">20.</span><span style="display: inline-block; vertical-align: top;">是、否<img src="/2021/07/22/架构设计师备考/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%A4%87%E8%80%83/%E6%A8%A1%E5%BC%8F%E5%88%86%E8%A7%A3%E4%BE%8B%E9%A2%982%E7%AD%94%E6%A1%88.png" alt="模式分解例题2答案"></span><a href="#fnref:20" rev="footnote"> ↩</a></li><li id="fn:21"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">21.</span><span style="display: inline-block; vertical-align: top;">B</span><a href="#fnref:21" rev="footnote"> ↩</a></li><li id="fn:22"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">22.</span><span style="display: inline-block; vertical-align: top;">A</span><a href="#fnref:22" rev="footnote"> ↩</a></li><li id="fn:23"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">23.</span><span style="display: inline-block; vertical-align: top;">程序员A1:2;程序员A2:0；程序员B:0；单元测试A:1；单元测试B:0； 集成测试:0</span><a href="#fnref:23" rev="footnote"> ↩</a></li><li id="fn:24"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">24.</span><span style="display: inline-block; vertical-align: top;">AC:400，EV:300，PV：500，SV=-200，CV=-100，SPI=0.6，CPI=0.75，ETC=700(按计划)/933.33(不按计划走)，EAC=1100(按计划)/1333.33(不按计划)</span><a href="#fnref:24" rev="footnote"> ↩</a></li><li id="fn:25"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">25.</span><span style="display: inline-block; vertical-align: top;">加密解密技术、对称加密技术、数字信封、数字摘要、数字签名</span><a href="#fnref:25" rev="footnote"> ↩</a></li></ol></div></div>
+      
+    </div>
+    
+    
+    
+		<div>
+		  
+		    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-apple"></i>感谢您的阅读-------------</div>
+    
+</div>
+		  
+		</div>
+		<div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2021/07/22/架构设计师备考/">架构设计师备考</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 邓小俊 的个人博客">邓小俊</a></p>
+  <p><span>发布时间:</span>2021年07月22日 - 20:07</p>
+  <p><span>最后更新:</span>2021年10月24日 - 13:10</p>
+  <p><span>原始链接:</span><a href="/2021/07/22/架构设计师备考/" title="架构设计师备考">http://coldjune.com/2021/07/22/架构设计师备考/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://coldjune.com/2021/07/22/架构设计师备考/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+      
+		</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/16/面试记录/" rel="next" title="面试记录">
+                <i class="fa fa-chevron-left"></i> 面试记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">邓小俊</p>
+              <p class="site-description motion-element" itemprop="description">人所恐惧的不是孤独本身，而是害怕承认人本生而孤独的事实</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#软考备考"><span class="nav-number">1.</span> <span class="nav-text">软考备考</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机组成与体系结构"><span class="nav-number">1.1.</span> <span class="nav-text">计算机组成与体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Flynn分类法"><span class="nav-number">1.1.1.</span> <span class="nav-text">Flynn分类法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CISC与RISC"><span class="nav-number">1.1.2.</span> <span class="nav-text">CISC与RISC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流水线"><span class="nav-number">1.1.3.</span> <span class="nav-text">流水线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储系统"><span class="nav-number">1.1.4.</span> <span class="nav-text">存储系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cache"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">Cache</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#局部性原理"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">局部性原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主存"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">主存</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分类"><span class="nav-number">1.1.4.3.1.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#编址"><span class="nav-number">1.1.4.3.2.</span> <span class="nav-text">编址</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例题"><span class="nav-number">1.1.4.4.</span> <span class="nav-text">例题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#磁盘结构与参数"><span class="nav-number">1.1.4.5.</span> <span class="nav-text">磁盘结构与参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例题2"><span class="nav-number">1.1.4.6.</span> <span class="nav-text">例题2</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#校验码"><span class="nav-number">1.1.5.</span> <span class="nav-text">校验码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并行处理"><span class="nav-number">1.1.6.</span> <span class="nav-text">并行处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统配置与性能评价"><span class="nav-number">1.2.</span> <span class="nav-text">系统配置与性能评价</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#性能指标"><span class="nav-number">1.2.1.</span> <span class="nav-text">性能指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阿姆达尔解决方案"><span class="nav-number">1.2.2.</span> <span class="nav-text">阿姆达尔解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#例题-1"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能评价方法"><span class="nav-number">1.2.3.</span> <span class="nav-text">性能评价方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能检测方法"><span class="nav-number">1.2.4.</span> <span class="nav-text">性能检测方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统基本原理"><span class="nav-number">1.3.</span> <span class="nav-text">操作系统基本原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程管理"><span class="nav-number">1.3.1.</span> <span class="nav-text">进程管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#例题-2"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储管理"><span class="nav-number">1.3.2.</span> <span class="nav-text">存储管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#页式存储"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">页式存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#段式存储"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">段式存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#段页式存储"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">段页式存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#快表"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">快表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#页面置换算法"><span class="nav-number">1.3.2.5.</span> <span class="nav-text">页面置换算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例题-3"><span class="nav-number">1.3.2.6.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件管理"><span class="nav-number">1.3.3.</span> <span class="nav-text">文件管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#索引文件结构"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">索引文件结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件系统和树型目录结构"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">文件系统和树型目录结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空闲存储空间的管理"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">空闲存储空间的管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例题-4"><span class="nav-number">1.3.3.4.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设备管理"><span class="nav-number">1.3.4.</span> <span class="nav-text">设备管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据传输控制方式"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">数据传输控制方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微内核操作系统"><span class="nav-number">1.3.5.</span> <span class="nav-text">微内核操作系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库系统"><span class="nav-number">1.4.</span> <span class="nav-text">数据库系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三级模式-两级映射"><span class="nav-number">1.4.1.</span> <span class="nav-text">三级模式-两级映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库设计过程"><span class="nav-number">1.4.2.</span> <span class="nav-text">数据库设计过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E-R模型"><span class="nav-number">1.4.3.</span> <span class="nav-text">E-R模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#例题-5"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系代数"><span class="nav-number">1.4.4.</span> <span class="nav-text">关系代数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#规范化理论"><span class="nav-number">1.4.5.</span> <span class="nav-text">规范化理论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数依赖"><span class="nav-number">1.4.5.1.</span> <span class="nav-text">函数依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#键"><span class="nav-number">1.4.5.2.</span> <span class="nav-text">键</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#例题-6"><span class="nav-number">1.4.5.2.1.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#范式"><span class="nav-number">1.4.5.3.</span> <span class="nav-text">范式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#例题-7"><span class="nav-number">1.4.5.3.1.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模式分解"><span class="nav-number">1.4.5.4.</span> <span class="nav-text">模式分解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#例题-8"><span class="nav-number">1.4.5.4.1.</span> <span class="nav-text">例题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发控制"><span class="nav-number">1.4.6.</span> <span class="nav-text">并发控制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#封锁协议"><span class="nav-number">1.4.6.1.</span> <span class="nav-text">封锁协议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库完整性约束"><span class="nav-number">1.4.7.</span> <span class="nav-text">数据库完整性约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库安全"><span class="nav-number">1.4.8.</span> <span class="nav-text">数据库安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据备份"><span class="nav-number">1.4.9.</span> <span class="nav-text">数据备份</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#转储"><span class="nav-number">1.4.9.1.</span> <span class="nav-text">转储</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库故障与恢复"><span class="nav-number">1.4.10.</span> <span class="nav-text">数据库故障与恢复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式数据库"><span class="nav-number">1.4.11.</span> <span class="nav-text">分布式数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库优化"><span class="nav-number">1.4.12.</span> <span class="nav-text">数据库优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据仓库与数据挖掘"><span class="nav-number">1.4.13.</span> <span class="nav-text">数据仓库与数据挖掘</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据挖掘方法分类"><span class="nav-number">1.4.13.1.</span> <span class="nav-text">数据挖掘方法分类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#联邦数据库"><span class="nav-number">1.4.14.</span> <span class="nav-text">联邦数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NoSQL"><span class="nav-number">1.4.15.</span> <span class="nav-text">NoSQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反规划化"><span class="nav-number">1.4.16.</span> <span class="nav-text">反规划化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大数据基本概念"><span class="nav-number">1.4.17.</span> <span class="nav-text">大数据基本概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机网络"><span class="nav-number">1.5.</span> <span class="nav-text">计算机网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OSI-RM七层模型"><span class="nav-number">1.5.1.</span> <span class="nav-text">OSI/RM七层模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#例题-9"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络技术标准与协议"><span class="nav-number">1.5.2.</span> <span class="nav-text">网络技术标准与协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#例题-10"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络规划与设计"><span class="nav-number">1.5.3.</span> <span class="nav-text">网络规划与设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#逻辑设计"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">逻辑设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#物理网络设计"><span class="nav-number">1.5.3.2.</span> <span class="nav-text">物理网络设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分层设计"><span class="nav-number">1.5.3.3.</span> <span class="nav-text">分层设计</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无线网"><span class="nav-number">1.5.4.</span> <span class="nav-text">无线网</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络接入技术"><span class="nav-number">1.5.5.</span> <span class="nav-text">网络接入技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络存储技术"><span class="nav-number">1.5.6.</span> <span class="nav-text">网络存储技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分类-1"><span class="nav-number">1.5.6.1.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Raid"><span class="nav-number">1.5.6.2.</span> <span class="nav-text">Raid</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPv6"><span class="nav-number">1.5.7.</span> <span class="nav-text">IPv6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#物联网"><span class="nav-number">1.5.8.</span> <span class="nav-text">物联网</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#云计算"><span class="nav-number">1.5.9.</span> <span class="nav-text">云计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#企业信息化战略与实施"><span class="nav-number">1.6.</span> <span class="nav-text">企业信息化战略与实施</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#信息与信息化的概念"><span class="nav-number">1.6.1.</span> <span class="nav-text">信息与信息化的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息系统的概念"><span class="nav-number">1.6.2.</span> <span class="nav-text">信息系统的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息系统类型"><span class="nav-number">1.6.3.</span> <span class="nav-text">信息系统类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息系统战略规划-方法"><span class="nav-number">1.6.4.</span> <span class="nav-text">信息系统战略规划-方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#政府信息化与电子政务"><span class="nav-number">1.6.5.</span> <span class="nav-text">政府信息化与电子政务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#企业信息化与电子商务"><span class="nav-number">1.6.6.</span> <span class="nav-text">企业信息化与电子商务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#企业资源计划-ERP"><span class="nav-number">1.6.6.1.</span> <span class="nav-text">企业资源计划(ERP)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户关系管理-CRM"><span class="nav-number">1.6.6.2.</span> <span class="nav-text">客户关系管理(CRM)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#供应链管理-SCM"><span class="nav-number">1.6.6.3.</span> <span class="nav-text">供应链管理(SCM)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#商业智能-BI"><span class="nav-number">1.6.6.4.</span> <span class="nav-text">商业智能(BI)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#电子数据交换"><span class="nav-number">1.6.6.5.</span> <span class="nav-text">电子数据交换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#企业应用集成-常考"><span class="nav-number">1.6.6.6.</span> <span class="nav-text">企业应用集成(常考)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#电子商务"><span class="nav-number">1.6.7.</span> <span class="nav-text">电子商务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息系统开发方法"><span class="nav-number">1.6.8.</span> <span class="nav-text">信息系统开发方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件工程"><span class="nav-number">1.7.</span> <span class="nav-text">软件工程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#软件开发模型"><span class="nav-number">1.7.1.</span> <span class="nav-text">软件开发模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#瀑布模型-SDLC"><span class="nav-number">1.7.1.1.</span> <span class="nav-text">瀑布模型(SDLC)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#增量模型与螺旋模型"><span class="nav-number">1.7.1.2.</span> <span class="nav-text">增量模型与螺旋模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#构建组装模型-CBSD"><span class="nav-number">1.7.1.3.</span> <span class="nav-text">构建组装模型(CBSD)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#V模型、喷泉模型和RAD"><span class="nav-number">1.7.1.4.</span> <span class="nav-text">V模型、喷泉模型和RAD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他经典模型"><span class="nav-number">1.7.1.5.</span> <span class="nav-text">其他经典模型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#统一过程-UP-RUP"><span class="nav-number">1.7.2.</span> <span class="nav-text">统一过程(UP/RUP)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#敏捷开发方法"><span class="nav-number">1.7.3.</span> <span class="nav-text">敏捷开发方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逆向工程"><span class="nav-number">1.7.4.</span> <span class="nav-text">逆向工程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需求工程"><span class="nav-number">1.8.</span> <span class="nav-text">需求工程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OOA"><span class="nav-number">1.8.1.</span> <span class="nav-text">OOA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UML"><span class="nav-number">1.8.1.1.</span> <span class="nav-text">UML</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需求分类和需求获取"><span class="nav-number">1.8.2.</span> <span class="nav-text">需求分类和需求获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需求分析"><span class="nav-number">1.8.3.</span> <span class="nav-text">需求分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据流图-分层数据流图DFD"><span class="nav-number">1.8.3.1.</span> <span class="nav-text">数据流图(分层数据流图DFD)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#状态转换图-STD"><span class="nav-number">1.8.3.2.</span> <span class="nav-text">状态转换图(STD)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ER图"><span class="nav-number">1.8.3.3.</span> <span class="nav-text">ER图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据字典"><span class="nav-number">1.8.3.4.</span> <span class="nav-text">数据字典</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统设计"><span class="nav-number">1.9.</span> <span class="nav-text">系统设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#处理流程设计"><span class="nav-number">1.9.1.</span> <span class="nav-text">处理流程设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#业务流程重组"><span class="nav-number">1.9.1.1.</span> <span class="nav-text">业务流程重组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#业务流程管理"><span class="nav-number">1.9.1.2.</span> <span class="nav-text">业务流程管理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#人机界面设计"><span class="nav-number">1.9.2.</span> <span class="nav-text">人机界面设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构化设计"><span class="nav-number">1.9.3.</span> <span class="nav-text">结构化设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内聚与耦合"><span class="nav-number">1.9.3.1.</span> <span class="nav-text">内聚与耦合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统结构-模块结构"><span class="nav-number">1.9.3.2.</span> <span class="nav-text">系统结构/模块结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象设计-设计原则"><span class="nav-number">1.9.4.</span> <span class="nav-text">面向对象设计-设计原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计模式"><span class="nav-number">1.9.5.</span> <span class="nav-text">设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念"><span class="nav-number">1.9.5.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分类-2"><span class="nav-number">1.9.5.2.</span> <span class="nav-text">分类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件测试"><span class="nav-number">1.9.6.</span> <span class="nav-text">软件测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原则和类型"><span class="nav-number">1.9.6.1.</span> <span class="nav-text">原则和类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试用例设计"><span class="nav-number">1.9.6.2.</span> <span class="nav-text">测试用例设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试阶段"><span class="nav-number">1.9.6.3.</span> <span class="nav-text">测试阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面向对象的测试"><span class="nav-number">1.9.6.4.</span> <span class="nav-text">面向对象的测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试管理"><span class="nav-number">1.9.6.5.</span> <span class="nav-text">测试管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#软件调试"><span class="nav-number">1.9.6.6.</span> <span class="nav-text">软件调试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统运行与维护"><span class="nav-number">1.9.7.</span> <span class="nav-text">系统运行与维护</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件过程改进-CMMI"><span class="nav-number">1.9.8.</span> <span class="nav-text">软件过程改进(CMMI)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目管理"><span class="nav-number">1.10.</span> <span class="nav-text">项目管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#范围管理"><span class="nav-number">1.10.1.</span> <span class="nav-text">范围管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间管理"><span class="nav-number">1.10.2.</span> <span class="nav-text">时间管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单代号网络图"><span class="nav-number">1.10.2.1.</span> <span class="nav-text">单代号网络图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#双代号网络图"><span class="nav-number">1.10.2.2.</span> <span class="nav-text">双代号网络图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关键路径法"><span class="nav-number">1.10.2.3.</span> <span class="nav-text">关键路径法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#甘特图"><span class="nav-number">1.10.3.</span> <span class="nav-text">甘特图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#成本管理"><span class="nav-number">1.10.4.</span> <span class="nav-text">成本管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#挣值管理"><span class="nav-number">1.10.4.1.</span> <span class="nav-text">挣值管理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#质量管理"><span class="nav-number">1.10.5.</span> <span class="nav-text">质量管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置管理"><span class="nav-number">1.10.6.</span> <span class="nav-text">配置管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置库"><span class="nav-number">1.10.6.1.</span> <span class="nav-text">配置库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#风险管理"><span class="nav-number">1.10.7.</span> <span class="nav-text">风险管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特性"><span class="nav-number">1.10.7.1.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分类-3"><span class="nav-number">1.10.7.2.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#风险曝光度"><span class="nav-number">1.10.7.3.</span> <span class="nav-text">风险曝光度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目管理工具"><span class="nav-number">1.10.8.</span> <span class="nav-text">项目管理工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件架构设计"><span class="nav-number">1.11.</span> <span class="nav-text">软件架构设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#软件架构风格"><span class="nav-number">1.11.1.</span> <span class="nav-text">软件架构风格</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据流风格"><span class="nav-number">1.11.1.1.</span> <span class="nav-text">数据流风格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调用-返回风格"><span class="nav-number">1.11.1.2.</span> <span class="nav-text">调用/返回风格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#独立构件风格"><span class="nav-number">1.11.1.3.</span> <span class="nav-text">独立构件风格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟机风格"><span class="nav-number">1.11.1.4.</span> <span class="nav-text">虚拟机风格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#仓库风格"><span class="nav-number">1.11.1.5.</span> <span class="nav-text">仓库风格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-S架构"><span class="nav-number">1.11.1.6.</span> <span class="nav-text">C/S架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三层B-S架构"><span class="nav-number">1.11.1.7.</span> <span class="nav-text">三层B/S架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#混合架构风格"><span class="nav-number">1.11.1.8.</span> <span class="nav-text">混合架构风格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#富互联网应用-RIA"><span class="nav-number">1.11.1.9.</span> <span class="nav-text">富互联网应用(RIA)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#AJAX"><span class="nav-number">1.11.1.9.1.</span> <span class="nav-text">AJAX</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mushup"><span class="nav-number">1.11.1.10.</span> <span class="nav-text">mushup</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于服务的架构-SOA"><span class="nav-number">1.11.1.11.</span> <span class="nav-text">基于服务的架构(SOA)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件架构评估"><span class="nav-number">1.11.2.</span> <span class="nav-text">软件架构评估</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#质量属性"><span class="nav-number">1.11.2.1.</span> <span class="nav-text">质量属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#概念表述"><span class="nav-number">1.11.2.2.</span> <span class="nav-text">概念表述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#评估方法"><span class="nav-number">1.11.2.3.</span> <span class="nav-text">评估方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#基于场景的方式"><span class="nav-number">1.11.2.3.1.</span> <span class="nav-text">基于场景的方式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件产品线"><span class="nav-number">1.11.3.</span> <span class="nav-text">软件产品线</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#组织结构"><span class="nav-number">1.11.3.1.</span> <span class="nav-text">组织结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#建立方式"><span class="nav-number">1.11.3.2.</span> <span class="nav-text">建立方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中间件技术"><span class="nav-number">1.11.4.</span> <span class="nav-text">中间件技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主要中间件"><span class="nav-number">1.11.4.1.</span> <span class="nav-text">主要中间件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#典型应用架构"><span class="nav-number">1.11.5.</span> <span class="nav-text">典型应用架构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#J2EE-分布式多层应用程序"><span class="nav-number">1.11.5.1.</span> <span class="nav-text">J2EE-分布式多层应用程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET"><span class="nav-number">1.11.5.2.</span> <span class="nav-text">.NET</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NET与J2EE"><span class="nav-number">1.11.5.3.</span> <span class="nav-text">.NET与J2EE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MVC设计模式"><span class="nav-number">1.11.5.4.</span> <span class="nav-text">MVC设计模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MVP设计模式"><span class="nav-number">1.11.5.5.</span> <span class="nav-text">MVP设计模式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信息安全分析与设计"><span class="nav-number">1.12.</span> <span class="nav-text">信息安全分析与设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#信息系统安全属性"><span class="nav-number">1.12.1.</span> <span class="nav-text">信息系统安全属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对称加密技术"><span class="nav-number">1.12.2.</span> <span class="nav-text">对称加密技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非对称加密技术"><span class="nav-number">1.12.3.</span> <span class="nav-text">非对称加密技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息摘要"><span class="nav-number">1.12.4.</span> <span class="nav-text">信息摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字签名"><span class="nav-number">1.12.5.</span> <span class="nav-text">数字签名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字信封与PGP"><span class="nav-number">1.12.6.</span> <span class="nav-text">数字信封与PGP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#练习题-设计邮件加密系统"><span class="nav-number">1.12.7.</span> <span class="nav-text">练习题-设计邮件加密系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PKI公钥体系"><span class="nav-number">1.12.8.</span> <span class="nav-text">PKI公钥体系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息系统安全保障层次"><span class="nav-number">1.12.9.</span> <span class="nav-text">信息系统安全保障层次</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全审计与安全系统设计原则"><span class="nav-number">1.12.10.</span> <span class="nav-text">安全审计与安全系统设计原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络安全-各个网络层次的安全保障"><span class="nav-number">1.12.11.</span> <span class="nav-text">网络安全-各个网络层次的安全保障</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络威胁与攻击"><span class="nav-number">1.12.12.</span> <span class="nav-text">网络威胁与攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#防火墙"><span class="nav-number">1.12.13.</span> <span class="nav-text">防火墙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#入侵检测"><span class="nav-number">1.12.14.</span> <span class="nav-text">入侵检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机病毒与木马"><span class="nav-number">1.12.15.</span> <span class="nav-text">计算机病毒与木马</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统可靠性分析和设计"><span class="nav-number">1.13.</span> <span class="nav-text">系统可靠性分析和设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统故障模型"><span class="nav-number">1.13.1.</span> <span class="nav-text">系统故障模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可靠性指标"><span class="nav-number">1.13.2.</span> <span class="nav-text">可靠性指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可靠性分析"><span class="nav-number">1.13.3.</span> <span class="nav-text">可靠性分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统容错"><span class="nav-number">1.13.4.</span> <span class="nav-text">系统容错</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#冗余系统"><span class="nav-number">1.13.4.1.</span> <span class="nav-text">冗余系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件容错"><span class="nav-number">1.13.5.</span> <span class="nav-text">软件容错</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集群技术"><span class="nav-number">1.13.6.</span> <span class="nav-text">集群技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#负载均衡算法"><span class="nav-number">1.13.6.1.</span> <span class="nav-text">负载均衡算法</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">邓小俊</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">博文包含字数&#58;</span>
+    
+    <span title="博文包含字数">277.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("EdodKu35EbSo4VoLhJYQMd09-gzGzoHsz", "qpErN7JcsIzusWGMNuw1QcxN");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+ 
+</body>
+</html>

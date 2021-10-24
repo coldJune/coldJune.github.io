@@ -1,0 +1,1940 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="true" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico#/images/favicon-16x16-next.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="kaggle," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="接上一篇，主要记录集成模型的训练过程">
+<meta name="keywords" content="kaggle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="House Prices: Advanced Regression Techniques(2)">
+<meta property="og:url" content="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/index.html">
+<meta property="og:site_name" content="Stay Hungary">
+<meta property="og:description" content="接上一篇，主要记录集成模型的训练过程">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_60_0.png">
+<meta property="og:image" content="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_62_0.png">
+<meta property="og:image" content="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_65_0.png">
+<meta property="og:image" content="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_67_0.png">
+<meta property="og:image" content="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_70_0.png">
+<meta property="og:image" content="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_73_0.png">
+<meta property="og:image" content="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_75_0.png">
+<meta property="og:image" content="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_78_0.png">
+<meta property="og:image" content="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_80_0.png">
+<meta property="og:image" content="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_83_0.png">
+<meta property="og:image" content="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_86_0.png">
+<meta property="og:image" content="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_89_0.png">
+<meta property="og:image" content="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_92_0.png">
+<meta property="og:image" content="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_96_3.png">
+<meta property="og:image" content="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_129_0.png">
+<meta property="og:image" content="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_131_0.png">
+<meta property="og:image" content="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_134_2.png">
+<meta property="og:image" content="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_139_3.png">
+<meta property="og:image" content="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_175_2.png">
+<meta property="og:image" content="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_186_2.png">
+<meta property="og:updated_time" content="2019-08-06T12:02:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="House Prices: Advanced Regression Techniques(2)">
+<meta name="twitter:description" content="接上一篇，主要记录集成模型的训练过程">
+<meta name="twitter:image" content="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_60_0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/"/>
+
+
+
+
+
+  <title>House Prices: Advanced Regression Techniques(2) | Stay Hungary</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+		<a href="https://github.com/coldJune" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stay Hungary</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Programming is an art form</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="邓小俊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay Hungary">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">House Prices: Advanced Regression Techniques(2)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-27T19:30:00+08:00">
+                2019-06-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/" class="leancloud_visitors" data-flag-title="House Prices: Advanced Regression Techniques(2)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  11,467
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  49
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  接上一篇，主要记录集成模型的训练过程
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;书接上文，在前文中我们已经了解到机器学习需要经历的基本过程，其中占据大部分篇幅的是数据分析和数据处理的部分，模型的训练反而占比不大。这其中的原因除了因为特征工程在机器学习的整个过程中应有如此大的比重之外，还因为之前训练的模型都是一些简单模型，并不涉及到大量参数的调试。而这里使用的集成学习将会涉及到不少的参数需要调节。</p>
+<h1 id="集成学习概述"><a href="#集成学习概述" class="headerlink" title="集成学习概述"></a>集成学习概述</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;既然已经单独将这部分内容提了出来，那么在进入正式的调参之前，我们先简要看看集成学习是个什么东西吧。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>集成学习</strong>通过构建并结合多个学习器来完成学习任务，其先产生一组“个体学习器”，再用某种策略将它们结合起来。集成的方式又分为<strong>同质集成</strong>和<strong>异质集成</strong>。<strong>同质集成</strong>只包含相同类型的个体学习器，其个体学习器也称为“基学习器”；<strong>异质集成</strong>中的个体学习器是不同类型的，其被称为“组件学习器”。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;根据个体学习器的生成方式集成学习又可以分为两大类，一种是串行生成的序列化方法，其个体学习器之间存在强依赖关系，代表为<strong>Boosting</strong>；另一种是同时生成的并行化方法，其个体学习器之间不存在强依赖关系，代表有<strong>Bagging</strong>和<strong>Random Forest</strong>。<strong>Boosting</strong>是一族可将弱学习器提升为强学习器的算法，它先从初始训练集训练出一个基学习器，再根据其表现调整训练样本的分布，即重新分配每个样本的权重，使表现不好的样本在下次训练时得到更多的关注，直至达到预定的训练次数，最后将所有的基学习器进行加权结合；<strong>Boosting</strong>每一次都是使用的全量数据，而<strong>Bagging</strong>却并不是，它采用有放回的采样的方式来生成训练集，每个基学习器使用不同的训练集来进行训练，有放回的采样使得同一个数据集能够被多次使用从而训练出不同的模型，最后可以通过<em>投票</em>(分类)和<em>平均</em>(回归)来结合各个基学习器的结果；<strong>Random Forest</strong>(RF)是在<strong>Bagging</strong>的基础上进一步在决策树的训练过程中引入随机属性选择,传统的决策树选择划分属性时是在当前节点的属性集合中选择一个最优属性，而在<strong>RF</strong>中是先从该结点的属性集合中随机选择一个包含<em>k</em>个属性的子集，再从子集中选择最优属性。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;集成学习还有很多细节上的东西，包括<strong>Boosting</strong>和<strong>Bagging</strong>的训练过程，基学习器预测结果的结合方式等等，在这里就不再进行一一陈述了。下面让我们进入主题——集成模型的训练吧。</p>
+<h1 id="模型选择"><a href="#模型选择" class="headerlink" title="模型选择"></a>模型选择</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我先创建了一个公用方法，其目的是为了画出网格搜索($GridSearch$)过程中的平均准确率和准确率的变异系数<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>。这两个分数是比较简单的用于衡量一个回归模型好坏的指标，这里将测试和训练进行了对比展示，从而对模型的泛化能力进行评估，对参数选择做出决断。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">def plot_acc_4_grid(grid_cv, param):</span><br><span class="line">        fig = plt.figure(figsize=(10, 10))</span><br><span class="line">        mean_acc = fig.add_subplot(2,1,1)</span><br><span class="line">        std_acc = fig.add_subplot(2,1,2)</span><br><span class="line">        # 训练参数个数</span><br><span class="line">        params_num = len(grid_cv.cv_results_[&apos;params&apos;])</span><br><span class="line">        x_ticks = np.arange(params_num)</span><br><span class="line">        # 把每一次的参数作为横坐标label</span><br><span class="line">        score_label = [list(grid_cv.cv_results_[&apos;params&apos;][i].values())[0] for i in range(params_num)]</span><br><span class="line">        # 平均精确度</span><br><span class="line">        mean_train_score = grid_cv.cv_results_[&apos;mean_train_score&apos;]</span><br><span class="line">        mean_test_score =  grid_cv.cv_results_[&apos;mean_test_score&apos;]</span><br><span class="line">        # 方差</span><br><span class="line">        std_train_score = grid_cv.cv_results_[&apos;std_train_score&apos;]</span><br><span class="line">        std_test_score = grid_cv.cv_results_[&apos;std_test_score&apos;]</span><br><span class="line"></span><br><span class="line">        mean_acc.plot(mean_train_score, &apos;r-o&apos;, label=&apos;mean_train_score&apos;)</span><br><span class="line">        mean_acc.plot(mean_test_score , &apos;b-o&apos;, label=&apos;mean_test_score&apos;)</span><br><span class="line">        mean_acc.set_title(&apos;mean_acc@&apos;+param, fontsize=18)</span><br><span class="line">        mean_acc.set_xticks(x_ticks)</span><br><span class="line">        mean_acc.set_xticklabels(score_label)</span><br><span class="line">        mean_acc.set_xlabel(param, fontsize=18)</span><br><span class="line">        mean_acc.set_ylabel(&apos;mean_acc&apos;, fontsize=18)</span><br><span class="line">        mean_acc.legend(loc=&apos;best&apos;, fontsize=18)</span><br><span class="line">        mean_acc.grid()</span><br><span class="line"></span><br><span class="line">        std_acc.plot(std_train_score,&apos;r-*&apos;, label=&apos;std_train_score&apos;)</span><br><span class="line">        std_acc.plot(std_test_score, &apos;b-*&apos;, label=&apos;std_test_score&apos;)</span><br><span class="line">        std_acc.set_title(&apos;std_acc@&apos;+param, fontsize=18)</span><br><span class="line">        std_acc.set_xticks(x_ticks)</span><br><span class="line">        std_acc.set_xticklabels(score_label)</span><br><span class="line">        std_acc.set_xlabel(param, fontsize=18)</span><br><span class="line">        std_acc.set_ylabel(&apos;std_acc&apos;, fontsize=18)</span><br><span class="line">        std_acc.legend(loc=&apos;best&apos;, fontsize=18)</span><br><span class="line">        std_acc.grid()</span><br><span class="line"></span><br><span class="line">        plt.subplots_adjust(hspace=0.5)</span><br></pre></td></tr></table></figure></p>
+<h2 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们先来尝试一下上面提到的随机森林，这里主要关注的是影响性能的几个参数，罗列如下：</p>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+        text-align: left;
+        word-wrap:break-word;
+        word-break:break-all;
+        white-space:normal;
+        max-width:650px;
+        font-family:SimSun;
+    }
+
+    .dataframe thead th {
+        text-align: center;
+    }
+</style>
+
+<table class="dataframe" style="margin:auto; width:100%;">
+    <thead>
+        <tr>
+            <th>参数</th>
+            <th>详情</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>n_estimators</th>
+            <th>子模型的数量<br>&nbsp;&nbsp;&nbsp;&nbsp;• integer(n_estimators≥1)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;* 默认值为10
+            </th>
+        </tr>
+        <tr>
+            <th>max_depth</th>
+            <th>树的最大深度<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• integer(max_depth≥1)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• None(树会生长到所有叶子节点都分到一个类或者某节点所代表的样本数据已小于min_samples_split)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;* 默认值为None
+            </th>
+        </tr>
+        <tr>
+            <th>max_features</th>
+            <th>在寻找最佳划分时考虑的最大特征数<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• integer(n_features≥max_features≥1)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• float(占所有特征的百分比)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• "auto"(n_features，即所有特征)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• "sqrt"(max_features=sqrt(n_features)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• "log2"(max_features=log2(n_features))<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• None(n_features，即所有特征)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;* 默认值为"auto"
+            </th>
+        </tr>
+        <tr>
+            <th>min_samples_split</th>
+            <th>内部节点分裂所需的最小样本数<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• integer(min_samples_split≥2)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• float(ceil(min_samples_split * n_samples)，即占所有样本的百分比向下取整)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;* 默认值为2
+            </th>
+        </tr>
+        <tr>
+            <th>max_leaf_nodes</th>
+            <th>最大叶节点数<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• integer(max_leaf_nodes≥1)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• None(不限制叶节点个数)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;* 默认值为None
+            </th>
+        </tr>
+        <tr>
+            <th>min_weight_fraction_leaf</th>
+            <th>叶节点最小样本权重总值<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• float(权重总值)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;* 默认值为0
+            </th>
+        </tr>
+        <tr>
+            <th>min_samples_leaf</th>
+            <th>叶节点最小样本数<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• integer(min_samples_leaf≥1)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• float(ceil(min_samples_leaf * n_samples)，即占所有样本的百分比向下取整)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;* 默认值为1
+            </th>
+        </tr>
+        <tr>
+            <th>bootstrap</th>
+            <th>是否使用bootstrap对样本进行采样<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• False(所有子模型的样本一致，子模型强相关)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• True(每个子模型的样本从总样本中有放回采样)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;* 默认值为True
+            </th>
+        </tr>
+        <tr>
+            <th>criterion</th>
+            <th>判断节点是否分裂的使用的计算方法<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• "mse"(均方误差)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• "mae"(平均绝对误差)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;* 默认值为"mse"
+            </th>
+        </tr>
+    </tbody>
+</table>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其中的<code>n_estimators</code>的值一般来说是越大性能越好，泛化能力越强，是单调递增的，但随着子模型的数量增加，训练算法所消耗的资源和时间将会急剧增加，而其性能的提升也会到达瓶颈。其它数值型参数对性能的影响都呈现出有增有减的，而枚举型的例如<code>criterion</code>则需要视情况而定了，需要在实际应用时灵活调整。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们已经对需要调节的参数有了一个直观的认识，知道每个参数代表的含义。但是我们怎么来调节他们呢？在一开始的时候，我选择了一种非常笨重的方式——直接将所有参数塞进<code>GridSearchCV</code>，这导致训练花费了大量的时间。举个例子，不如设想有<em>3</em>个参数需要调节，每个参数取<em>10</em>个待定值，最后需要尝试的组合高达<strong>1000</strong>个之多，而这里的参数有<code>9</code>个，如果是更复杂的神经网络，那基本上就是望山跑死马的事了。我后知后觉得意识到了网格查找的局限性，于是我马上尝试书里提到的随机方法<code>RandomizedSearchCV</code>，并一度以为这样就能完美解决问题，但显然是我过于乐观——最后训练出的模型基本上都是过拟合的，而且参数可控性极低。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了解决这些问题，最后尝试了一种基于贪心策略的坐标下降法，即每一次只调节一个参数，然后选择最优的参数固定下来继续训练下一个参数，这可以大大减少训练所需的资源和时间——将上面的<strong>1000</strong>减少到<strong>30</strong>，只要能保证训练的模型是凸的，就能取得不错的效果。下面让我们来一探究竟吧。</p>
+<ul>
+<li>n_estimators</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先进行调节的是<code>n_estimators</code>这个参数，正如前文所述，这是一个使性能单调递增的参数，我们首先在粗粒度对它训练，观察训练的整体趋势。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.ensemble import RandomForestRegressor</span><br><span class="line">from sklearn.model_selection import GridSearchCV</span><br><span class="line">rf_param = &#123;</span><br><span class="line">    &apos;n_estimators&apos;: np.arange(1, 1000, 100),</span><br><span class="line">&#125;</span><br><span class="line">rf_grid_cv = GridSearchCV(RandomForestRegressor(n_estimators=50), param_grid=rf_param,</span><br><span class="line">                         cv=3, verbose=True, n_jobs=-1)</span><br><span class="line">rf_grid_cv.fit(x_train, y_train)</span><br></pre></td></tr></table></figure></p>
+<pre><code>Fitting 3 folds for each of 10 candidates, totalling 30 fits
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  30 out of  30 | elapsed:  1.8min finished
+GridSearchCV(cv=3, error_score=&#39;raise-deprecating&#39;,
+       estimator=RandomForestRegressor(bootstrap=True, criterion=&#39;mse&#39;, max_depth=None,
+           max_features=&#39;auto&#39;, max_leaf_nodes=None,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=50, n_jobs=None,
+           oob_score=False, random_state=None, verbose=0, warm_start=False),
+       fit_params=None, iid=&#39;warn&#39;, n_jobs=-1,
+       param_grid={&#39;n_estimators&#39;: array([  1, 101, 201, 301, 401, 501, 601, 701, 801, 901])},
+       pre_dispatch=&#39;2*n_jobs&#39;, refit=True, return_train_score=&#39;warn&#39;,
+       scoring=None, verbose=True)
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下面是这<em>10</em>个模型的最终得分情况，我们可以发现训练得分和验证得分有比较大的差距，但是两者的提升都是同步的，不曾出现此消彼长的情况；在子模型数为<em>1~101</em>时两个得分的提高最为明显，之后增加子模型数量对平均分数并未有任何贡献，可见子模型数量带来的性能提升是有瓶颈的。虽然如此，通过观察变异系数可以发现验证集的得分的离散程度还有一定幅度的减小，这意味子模型数量的增加虽然无异于提高分数，但是其使模型更加稳定。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_acc_4_grid(rf_grid_cv, &apos;n_estimators&apos;)</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_60_0.png" alt="png"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大刀阔斧地调参会忽视掉许多细节，比如是否两个取值点刚好错过了可能存在于两者之间的波峰或者波谷，结果是否存在波动等。基于此我们接下来根据上面得到的返回结果确定细粒度调节的区间。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rf_param = &#123;</span><br><span class="line">    &apos;n_estimators&apos;: np.arange(100, 200, 10),</span><br><span class="line">&#125;</span><br><span class="line">rf_grid_cv = GridSearchCV(RandomForestRegressor(n_estimators=50), param_grid=rf_param,</span><br><span class="line">                         cv=3, verbose=True, n_jobs=-1)</span><br><span class="line">rf_grid_cv.fit(x_train, y_train)</span><br></pre></td></tr></table></figure></p>
+<pre><code>Fitting 3 folds for each of 10 candidates, totalling 30 fits
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  30 out of  30 | elapsed:   35.4s finished
+GridSearchCV(cv=3, error_score=&#39;raise-deprecating&#39;,
+       estimator=RandomForestRegressor(bootstrap=True, criterion=&#39;mse&#39;, max_depth=None,
+           max_features=&#39;auto&#39;, max_leaf_nodes=None,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=50, n_jobs=None,
+           oob_score=False, random_state=None, verbose=0, warm_start=False),
+       fit_params=None, iid=&#39;warn&#39;, n_jobs=-1,
+       param_grid={&#39;n_estimators&#39;: array([100, 110, 120, 130, 140, 150, 160, 170, 180, 190])},
+       pre_dispatch=&#39;2*n_jobs&#39;, refit=True, return_train_score=&#39;warn&#39;,
+       scoring=None, verbose=True)
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;不出所料，这里的变异系数存在明显的波动，而最终得分却没什么提升，说明<code>n_estimators</code>是一个适合在粗粒度上进行调节的参数。最后我们选取验证变异系数最小的取值<em>160</em>作为模型中<code>n_estimators</code>参数的最终取值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_acc_4_grid(rf_grid_cv, &apos;n_estimators&apos;)</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_62_0.png" alt="png"></p>
+<ul>
+<li>max_depth</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>max_depth</code>控制着每棵树的深度，随着树的深度越深，子模型的偏差降低而方差升高，当方差升高到一定程度的时候将会使泛化性能下降，也就是出现过拟合现象。如果是一颗完全二叉树，其叶节点的数目为$2^{n-1}$，则这里使用的训练集的数量只需要一颗深度为<em>10</em>的树基本就能将所有实例分布在不同的叶节点上。当然树的结构显然不会如此理想，所以现将深度的查找范围扩大到<em>100</em>进行训练。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rf_param = &#123;</span><br><span class="line">    &apos;max_depth&apos;: np.arange(1, 100),</span><br><span class="line">&#125;</span><br><span class="line">rf_grid_cv = GridSearchCV(RandomForestRegressor(n_estimators=160), param_grid=rf_param,</span><br><span class="line">                         cv=3, verbose=True, n_jobs=-1)</span><br><span class="line">rf_grid_cv.fit(x_train, y_train)</span><br></pre></td></tr></table></figure>
+<pre><code>Fitting 3 folds for each of 99 candidates, totalling 297 fits
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  42 tasks      | elapsed:   31.3s
+[Parallel(n_jobs=-1)]: Done 192 tasks      | elapsed:  3.5min
+[Parallel(n_jobs=-1)]: Done 297 out of 297 | elapsed:  5.5min finished
+
+GridSearchCV(cv=3, error_score=&#39;raise-deprecating&#39;,
+       estimator=RandomForestRegressor(bootstrap=True, criterion=&#39;mse&#39;, max_depth=None,
+           max_features=&#39;auto&#39;, max_leaf_nodes=None,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=160, n_jobs=None,
+           oob_score=False, random_state=None, verbose=0, warm_start=False),
+       fit_params=None, iid=&#39;warn&#39;, n_jobs=-1,
+       param_grid={&#39;max_depth&#39;: array([ 1,  2, ..., 98, 99])},
+       pre_dispatch=&#39;2*n_jobs&#39;, refit=True, return_train_score=&#39;warn&#39;,
+       scoring=None, verbose=True)
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;让我们来看看这些模型的整体表现如何，通过第一张图可以清晰的看到随着深度的增加，模型在变得越来越好，但是我们并不能因此而沾沾自喜，和在训练<code>n_estimators</code>时一样，我们还要考察它的变异系数。前期随着模型得分越来越高，变异系数也在稳步下降，但是在<code>max_depth</code>增长到<em>5</em>的时候，得分的增幅明显放缓，到<em>9</em>之后更是基本保持不变了，而反观验证得分的变异系数，它也基本在同样的节点发生了逆转，在<code>max_depth</code>为<em>6</em>时达到波谷，而后便开始逐步上升，在<em>12</em>之后出现明显的波动，这说明得分开始趋于不稳定，调节这一部分取值并不会有多大好处。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_acc_4_grid(rf_grid_cv, &apos;max_depth&apos;)</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_65_0.png" alt="png"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;到这里我们已经能够基本得到我们想要的取值了，但在确定这个参数之前，为了更准确地估计，我把参数调节的范围缩小到了<em>1~20</em>，希望这能带来更清楚的认识。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rf_param = &#123;</span><br><span class="line">    &apos;max_depth&apos;: np.arange(1, 20),</span><br><span class="line">&#125;</span><br><span class="line">rf_grid_cv = GridSearchCV(RandomForestRegressor(n_estimators=160), param_grid=rf_param,</span><br><span class="line">                         cv=3, verbose=True, n_jobs=-1)</span><br><span class="line">rf_grid_cv.fit(x_train, y_train)</span><br></pre></td></tr></table></figure></p>
+<pre><code>Fitting 3 folds for each of 19 candidates, totalling 57 fits
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  42 tasks      | elapsed:   28.9s
+[Parallel(n_jobs=-1)]: Done  57 out of  57 | elapsed:   44.3s finished
+
+GridSearchCV(cv=3, error_score=&#39;raise-deprecating&#39;,
+       estimator=RandomForestRegressor(bootstrap=True, criterion=&#39;mse&#39;, max_depth=None,
+           max_features=&#39;auto&#39;, max_leaf_nodes=None,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=160, n_jobs=None,
+           oob_score=False, random_state=None, verbose=0, warm_start=False),
+       fit_params=None, iid=&#39;warn&#39;, n_jobs=-1,
+       param_grid={&#39;max_depth&#39;: array([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17,
+       18, 19])},
+       pre_dispatch=&#39;2*n_jobs&#39;, refit=True, return_train_score=&#39;warn&#39;,
+       scoring=None, verbose=True)
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在我们可以看到上面产生极具变化的那一部分的局部放大版了，这时候可以清除地看到验证得分的变异系数发生转变是在<code>max_depth</code>为<em>5</em>的时候，在为<em>12</em>的时候开始出现波动。至于取什么值，我们依然遵循前面的原则，分数尽可能高，而变异系数尽可能低，当然并不是说取对应的分数高和编译系数最低的，因为可能存在变异系数在低谷时得分并不高的情况。最后经过考虑之后暂时选择了<code>max_depth</code>为<em>5</em>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_acc_4_grid(rf_grid_cv, &apos;max_depth&apos;)</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_67_0.png" alt="png"></p>
+<ul>
+<li>max_features</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>max_features</code>决定了算法在分裂节点时需要考虑的最大特征数，其可以通过内置的枚举值通过计算取值也可以通过直接设置数值取值。因为这里的特征数量并不是很多，加上$OneHot$向量后一共有345个，所以我采用了设置数值的方式，这样既能够清晰地看到不同取值对模型的影响，又方便确定具体数值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rf_param = &#123;</span><br><span class="line">    &apos;max_features&apos;: np.arange(1, 345, 10)</span><br><span class="line">&#125;</span><br><span class="line">rf_grid_cv = GridSearchCV(RandomForestRegressor(n_estimators=160, max_depth=5),</span><br><span class="line">                          param_grid=rf_param, cv=3, verbose=True, n_jobs=-1)</span><br><span class="line">rf_grid_cv.fit(x_train, y_train)</span><br></pre></td></tr></table></figure></p>
+<pre><code>Fitting 3 folds for each of 35 candidates, totalling 105 fits
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  42 tasks      | elapsed:    6.3s
+[Parallel(n_jobs=-1)]: Done 105 out of 105 | elapsed:   26.2s finished
+
+GridSearchCV(cv=3, error_score=&#39;raise-deprecating&#39;,
+       estimator=RandomForestRegressor(bootstrap=True, criterion=&#39;mse&#39;, max_depth=5,
+           max_features=&#39;auto&#39;, max_leaf_nodes=None,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=160, n_jobs=None,
+           oob_score=False, random_state=None, verbose=0, warm_start=False),
+       fit_params=None, iid=&#39;warn&#39;, n_jobs=-1,
+       param_grid={&#39;max_features&#39;: array([  1,  11,  21,  31,  41,  51,  61,  71,  81,  91, 101, 111, 121,
+       131, 141, 151, 161, 171, 181, 191, 201, 211, 221, 231, 241, 251,
+       261, 271, 281, 291, 301, 311, 321, 331, 341])},
+       pre_dispatch=&#39;2*n_jobs&#39;, refit=True, return_train_score=&#39;warn&#39;,
+       scoring=None, verbose=True)
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我想这幅图应该是目前为止最直观最简单的一副图了，其趋势非常明显——得分不断上升，变异系数不断下降。由此可知，只要<code>max_features</code>设置为最大值就可以了。甚至还可以在特征工程中人工增加一些特征来提升模型复杂度，充分发挥<code>max_features</code>带来的性能提升。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_acc_4_grid(rf_grid_cv, &apos;max_features&apos;)</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_70_0.png" alt="png"></p>
+<ul>
+<li>min_samples_split</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>min_samples_split</code>同样是一个影响模型偏差/方差的参数，它限定了一个节点分裂所需的最小样本数，其值越大模型越简单，偏差越大方差越小，而调节这个参数就是为了在这之间做一个权衡。<code>min_samples_split</code>参数最小取值为<em>2</em>，基于和训练<code>max_depth</code>时一样的原因，这里将取值限定在<em>2~100</em>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rf_param = &#123;</span><br><span class="line">    &apos;min_samples_split&apos;: np.arange(2,100, 10),</span><br><span class="line">&#125;</span><br><span class="line">rf_grid_cv = GridSearchCV(RandomForestRegressor(n_estimators=160, max_depth=5, max_features=&apos;auto&apos;),</span><br><span class="line">                          param_grid=rf_param, cv=3, verbose=True, n_jobs=-1)</span><br><span class="line">rf_grid_cv.fit(x_train, y_train)</span><br></pre></td></tr></table></figure>
+<pre><code>Fitting 3 folds for each of 10 candidates, totalling 30 fits
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  30 out of  30 | elapsed:   14.2s finished
+
+GridSearchCV(cv=3, error_score=&#39;raise-deprecating&#39;,
+       estimator=RandomForestRegressor(bootstrap=True, criterion=&#39;mse&#39;, max_depth=5,
+           max_features=&#39;auto&#39;, max_leaf_nodes=None,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=160, n_jobs=None,
+           oob_score=False, random_state=None, verbose=0, warm_start=False),
+       fit_params=None, iid=&#39;warn&#39;, n_jobs=-1,
+       param_grid={&#39;min_samples_split&#39;: array([ 2, 12, 22, 32, 42, 52, 62, 72, 82, 92])},
+       pre_dispatch=&#39;2*n_jobs&#39;, refit=True, return_train_score=&#39;warn&#39;,
+       scoring=None, verbose=True)
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这幅图有一个有趣的地方，虽然得分在不断地下降，但是变异系数存在一个低谷，如果训练到此为止，似乎有理由去选择这个值，因为其有不差的评分和相对较低的变异系数。但事实真的如此吗？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_acc_4_grid(rf_grid_cv, &apos;min_samples_split&apos;)</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_73_0.png" alt="png"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了验证上面的假设，我们将取值范围集中在低谷附近，同时将它的步长从<em>10</em>降低到<em>1</em>，让我们来看看训练效果如何。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rf_param = &#123;</span><br><span class="line">    &apos;min_samples_split&apos;: np.arange(2,22),</span><br><span class="line">&#125;</span><br><span class="line">rf_grid_cv = GridSearchCV(RandomForestRegressor(n_estimators=160, max_depth=5, max_features=&apos;auto&apos;),</span><br><span class="line">                          param_grid=rf_param, cv=3, verbose=True, n_jobs=-1)</span><br><span class="line">rf_grid_cv.fit(x_train, y_train)</span><br></pre></td></tr></table></figure></p>
+<pre><code>Fitting 3 folds for each of 20 candidates, totalling 60 fits
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  42 tasks      | elapsed:   21.7s
+[Parallel(n_jobs=-1)]: Done  60 out of  60 | elapsed:   28.4s finished
+
+GridSearchCV(cv=3, error_score=&#39;raise-deprecating&#39;,
+       estimator=RandomForestRegressor(bootstrap=True, criterion=&#39;mse&#39;, max_depth=5,
+           max_features=&#39;auto&#39;, max_leaf_nodes=None,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=160, n_jobs=None,
+           oob_score=False, random_state=None, verbose=0, warm_start=False),
+       fit_params=None, iid=&#39;warn&#39;, n_jobs=-1,
+       param_grid={&#39;min_samples_split&#39;: array([ 2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
+       19, 20, 21])},
+       pre_dispatch=&#39;2*n_jobs&#39;, refit=True, return_train_score=&#39;warn&#39;,
+       scoring=None, verbose=True)
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;没错，上面解释过的现象又再次出现了，这里的波谷并不是全局的波谷，可以明显地发现其振荡的现象，但其总体趋势是在升高。因此可以得出结论，<code>min_samples_split</code>在这里并不适合调节，只需要将其设置为默认值就行了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_acc_4_grid(rf_grid_cv, &apos;min_samples_split&apos;)</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_75_0.png" alt="png"></p>
+<ul>
+<li>max_leaf_nodes</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>max_leaf_nodes</code>规定了最大叶节点数，与<code>min_samples_split</code>相反， <code>max_leaf_nodes</code>越大模型越复杂，方差越高。甚至可以不限制它的数量，任由其生长，基于此，我们这里选用一个较大的范围去观察它的整体趋势，然后再如同前面一样在细粒度上去进行调节。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">rf_param = &#123;</span><br><span class="line">    &apos;max_leaf_nodes&apos;: np.arange(2, 1000, 10)</span><br><span class="line">&#125;</span><br><span class="line">rf_grid_cv = GridSearchCV(RandomForestRegressor(n_estimators=160, max_depth=5, max_features=&apos;auto&apos;,</span><br><span class="line">                                               min_samples_split=2),  </span><br><span class="line">                          param_grid=rf_param, cv=3, verbose=True, n_jobs=-1)</span><br><span class="line">rf_grid_cv.fit(x_train, y_train)</span><br></pre></td></tr></table></figure></p>
+<pre><code>Fitting 3 folds for each of 100 candidates, totalling 300 fits
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  42 tasks      | elapsed:   25.9s
+[Parallel(n_jobs=-1)]: Done 192 tasks      | elapsed:  2.0min
+[Parallel(n_jobs=-1)]: Done 300 out of 300 | elapsed:  3.0min finished
+
+GridSearchCV(cv=3, error_score=&#39;raise-deprecating&#39;,
+       estimator=RandomForestRegressor(bootstrap=True, criterion=&#39;mse&#39;, max_depth=5,
+           max_features=&#39;auto&#39;, max_leaf_nodes=None,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=160, n_jobs=None,
+           oob_score=False, random_state=None, verbose=0, warm_start=False),
+       fit_params=None, iid=&#39;warn&#39;, n_jobs=-1,
+       param_grid={&#39;max_leaf_nodes&#39;: array([  2,  12, ..., 982, 992])},
+       pre_dispatch=&#39;2*n_jobs&#39;, refit=True, return_train_score=&#39;warn&#39;,
+       scoring=None, verbose=True)
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;和前面大多数参数的表现一样，这里也是在取值较小时似乎就已经达到了比较不错的效果，后面的取值对结果也没有提升，反而徒增资源的消耗。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_acc_4_grid(rf_grid_cv, &apos;max_leaf_nodes&apos;)</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_78_0.png" alt="png"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;依葫芦画瓢地，我们缩小参数返回进行细粒度的调参，可以发现其在取值为<em>22</em>时表现已趋于稳定。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">rf_param = &#123;</span><br><span class="line">    &apos;max_leaf_nodes&apos;: np.arange(2, 200, 10)</span><br><span class="line">&#125;</span><br><span class="line">rf_grid_cv = GridSearchCV(RandomForestRegressor(n_estimators=160, max_depth=5, max_features=&apos;auto&apos;,</span><br><span class="line">                                               min_samples_split=2),  </span><br><span class="line">                          param_grid=rf_param, cv=3, verbose=True, n_jobs=-1)</span><br><span class="line">rf_grid_cv.fit(x_train, y_train)</span><br></pre></td></tr></table></figure></p>
+<pre><code>Fitting 3 folds for each of 20 candidates, totalling 60 fits
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  42 tasks      | elapsed:   26.0s
+[Parallel(n_jobs=-1)]: Done  60 out of  60 | elapsed:   35.6s finished
+
+GridSearchCV(cv=3, error_score=&#39;raise-deprecating&#39;,
+       estimator=RandomForestRegressor(bootstrap=True, criterion=&#39;mse&#39;, max_depth=5,
+           max_features=&#39;auto&#39;, max_leaf_nodes=None,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=160, n_jobs=None,
+           oob_score=False, random_state=None, verbose=0, warm_start=False),
+       fit_params=None, iid=&#39;warn&#39;, n_jobs=-1,
+       param_grid={&#39;max_leaf_nodes&#39;: array([  2,  12,  22,  32,  42,  52,  62,  72,  82,  92, 102, 112, 122,
+       132, 142, 152, 162, 172, 182, 192])},
+       pre_dispatch=&#39;2*n_jobs&#39;, refit=True, return_train_score=&#39;warn&#39;,
+       scoring=None, verbose=True)
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_acc_4_grid(rf_grid_cv, &apos;max_leaf_nodes&apos;)</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_80_0.png" alt="png"></p>
+<ul>
+<li>min_weight_fraction_leaf</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;叶节点最小权重总值限制了叶子节点所有样本权重的最小值，如果小于这个值，则会和其他叶子节点一起被剪枝，提高模型偏差，降低方差。如果样本的分布存在偏斜或者有较多的缺失值可以考虑引入权重。由于之前已经在特征工程中处理了相应的问题，所以这里的调参对提升模型不会有什么作用，但是并不妨碍我们一窥究竟。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">rf_param = &#123;</span><br><span class="line">    &apos;min_weight_fraction_leaf&apos;: np.linspace(0, 0.5, 10)</span><br><span class="line">&#125;</span><br><span class="line">rf_grid_cv = GridSearchCV(RandomForestRegressor(n_estimators=160, max_depth=5, max_features=&apos;auto&apos;,</span><br><span class="line">                                               min_samples_split=2, max_leaf_nodes=22 ),</span><br><span class="line">                          param_grid=rf_param, cv=3, verbose=True, n_jobs=-1)</span><br><span class="line">rf_grid_cv.fit(x_train, y_train)</span><br></pre></td></tr></table></figure></p>
+<pre><code>Fitting 3 folds for each of 10 candidates, totalling 30 fits
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  30 out of  30 | elapsed:    7.9s finished
+
+GridSearchCV(cv=3, error_score=&#39;raise-deprecating&#39;,
+       estimator=RandomForestRegressor(bootstrap=True, criterion=&#39;mse&#39;, max_depth=5,
+           max_features=&#39;auto&#39;, max_leaf_nodes=22,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=160, n_jobs=None,
+           oob_score=False, random_state=None, verbose=0, warm_start=False),
+       fit_params=None, iid=&#39;warn&#39;, n_jobs=-1,
+       param_grid={&#39;min_weight_fraction_leaf&#39;: array([0.     , 0.05556, 0.11111, 0.16667, 0.22222, 0.27778, 0.33333,
+       0.38889, 0.44444, 0.5    ])},
+       pre_dispatch=&#39;2*n_jobs&#39;, refit=True, return_train_score=&#39;warn&#39;,
+       scoring=None, verbose=True)
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我想这是这篇文章到此为止第二个如此直观的图了，那么我便不在做过多的解释，直接确定取值了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_acc_4_grid(rf_grid_cv, &apos;min_weight_fraction_leaf&apos;)</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_83_0.png" alt="png"></p>
+<ul>
+<li>min_samples_leaf</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>min_samples_leaf</code>是我们训练的最后一个关于子模型结构的参数了，它表示叶节点的最小样本树。如果返回前面去看我们已经训练过的参数，会发现一个和它非常相似的参数，就是<code>min_samples_split</code>，这两个参树可以说是直接限定定了叶节点样本个数的范围。下面让我们仿照<code>min_samples_split</code>的训练过程对<code>min_samples_leaf</code>的取值进行设定。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">rf_param = &#123;</span><br><span class="line">    &apos;min_samples_leaf&apos;: np.arange(1, 100, 10)</span><br><span class="line">&#125;</span><br><span class="line">rf_grid_cv = GridSearchCV(RandomForestRegressor(n_estimators=160, max_depth=5, max_features=&apos;auto&apos;,</span><br><span class="line">                                               min_samples_split=2, max_leaf_nodes=22, min_weight_fraction_leaf=0 ),</span><br><span class="line">                          param_grid=rf_param, cv=3, verbose=True, n_jobs=-1)</span><br><span class="line">rf_grid_cv.fit(x_train, y_train)</span><br></pre></td></tr></table></figure></p>
+<pre><code>Fitting 3 folds for each of 10 candidates, totalling 30 fits
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  30 out of  30 | elapsed:   13.5s finished
+
+GridSearchCV(cv=3, error_score=&#39;raise-deprecating&#39;,
+       estimator=RandomForestRegressor(bootstrap=True, criterion=&#39;mse&#39;, max_depth=5,
+           max_features=&#39;auto&#39;, max_leaf_nodes=22,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0, n_estimators=160, n_jobs=None,
+           oob_score=False, random_state=None, verbose=0, warm_start=False),
+       fit_params=None, iid=&#39;warn&#39;, n_jobs=-1,
+       param_grid={&#39;min_samples_leaf&#39;: array([ 1, 11, 21, 31, 41, 51, 61, 71, 81, 91])},
+       pre_dispatch=&#39;2*n_jobs&#39;, refit=True, return_train_score=&#39;warn&#39;,
+       scoring=None, verbose=True)
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如图所示，虽然在较粗粒度的层面上进行调参，但是其总体趋势确实非常明显，所以这里便不再多做赘述，直接将值取为<em>1</em>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_acc_4_grid(rf_grid_cv, &apos;min_samples_leaf&apos;)</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_86_0.png" alt="png"></p>
+<ul>
+<li>bootstrap</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;到目前为止，我们已经通过以上的步骤训练完了直接影响子模型结构的参数(除了<code>n_estimators</code>)，现在我们稍微站高一点，尝试一下对<code>booststrap</code>这个参数取不同的值，看看最后的效果如何。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>bootstrap</code>决定了是否对样本进行抽样，也就是说它对训练使用什么哪些样本起着至关重要的作用。一般而言，使用子采样会降低子模型之间的关联度，降低最终模型的方差，这也是<strong>bagging</strong>的做法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">rf_param = &#123;</span><br><span class="line">    &apos;bootstrap&apos;: [True, False]</span><br><span class="line">&#125;</span><br><span class="line">rf_grid_cv = GridSearchCV(RandomForestRegressor(n_estimators=160, max_depth=5, max_features=&apos;auto&apos;,</span><br><span class="line">                           min_samples_split=2, max_leaf_nodes=22, min_weight_fraction_leaf=0,</span><br><span class="line">                          min_samples_leaf=1),</span><br><span class="line">                          param_grid=rf_param, cv=3, verbose=True, n_jobs=-1)</span><br><span class="line">rf_grid_cv.fit(x_train, y_train)</span><br></pre></td></tr></table></figure></p>
+<pre><code>Fitting 3 folds for each of 2 candidates, totalling 6 fits
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   6 out of   6 | elapsed:    4.4s remaining:    0.0s
+[Parallel(n_jobs=-1)]: Done   6 out of   6 | elapsed:    4.4s finished
+
+GridSearchCV(cv=3, error_score=&#39;raise-deprecating&#39;,
+       estimator=RandomForestRegressor(bootstrap=True, criterion=&#39;mse&#39;, max_depth=5,
+           max_features=&#39;auto&#39;, max_leaf_nodes=22,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0, n_estimators=160, n_jobs=None,
+           oob_score=False, random_state=None, verbose=0, warm_start=False),
+       fit_params=None, iid=&#39;warn&#39;, n_jobs=-1,
+       param_grid={&#39;bootstrap&#39;: [True, False]}, pre_dispatch=&#39;2*n_jobs&#39;,
+       refit=True, return_train_score=&#39;warn&#39;, scoring=None, verbose=True)
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;经过验证，在这里展现出的结果也确实如此。那么我很有什么理由不使用默认值呢。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_acc_4_grid(rf_grid_cv, &apos;bootstrap&apos;)</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_89_0.png" alt="png"></p>
+<ul>
+<li>criterion</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在<strong>scikit-learn</strong>的<em>0.18</em>版中，<code>mae</code>作为新的计算方法被添加进来，以前都是使用<code>mse</code>来做为判断是否分裂节点的计算方法。既然如此我们也来尝试一下吧。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">rf_param = &#123;</span><br><span class="line">    &apos;criterion&apos;: [&apos;mse&apos;, &apos;mae&apos;]</span><br><span class="line">&#125;</span><br><span class="line">rf_grid_cv = GridSearchCV(RandomForestRegressor(n_estimators=160, max_depth=5, max_features=&apos;auto&apos;,</span><br><span class="line">                           min_samples_split=2, max_leaf_nodes=22, min_weight_fraction_leaf=0,</span><br><span class="line">                          min_samples_leaf=1, bootstrap=True),</span><br><span class="line">                          param_grid=rf_param, cv=3, verbose=True, n_jobs=-1)</span><br><span class="line">rf_grid_cv.fit(x_train, y_train)</span><br></pre></td></tr></table></figure></p>
+<pre><code>Fitting 3 folds for each of 2 candidates, totalling 6 fits
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   6 out of   6 | elapsed:   59.7s remaining:    0.0s
+[Parallel(n_jobs=-1)]: Done   6 out of   6 | elapsed:   59.7s finished
+
+GridSearchCV(cv=3, error_score=&#39;raise-deprecating&#39;,
+       estimator=RandomForestRegressor(bootstrap=True, criterion=&#39;mse&#39;, max_depth=5,
+           max_features=&#39;auto&#39;, max_leaf_nodes=22,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0, n_estimators=160, n_jobs=None,
+           oob_score=False, random_state=None, verbose=0, warm_start=False),
+       fit_params=None, iid=&#39;warn&#39;, n_jobs=-1,
+       param_grid={&#39;criterion&#39;: [&#39;mse&#39;, &#39;mae&#39;]}, pre_dispatch=&#39;2*n_jobs&#39;,
+       refit=True, return_train_score=&#39;warn&#39;, scoring=None, verbose=True)
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_acc_4_grid(rf_grid_cv, &apos;criterion&apos;)</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_92_0.png" alt="png"></p>
+<ul>
+<li>RandomForestRegressor</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;经过繁琐的步骤，我们终于可以着手训练一个完整的随机森林模型了。将上面的参数一一对应，直接使用训练数据划分验证测试。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rf = RandomForestRegressor(n_estimators=160, max_depth=5, max_features=&apos;auto&apos;,</span><br><span class="line">                           min_samples_split=2, max_leaf_nodes=22, min_weight_fraction_leaf=0,</span><br><span class="line">                          min_samples_leaf=1, bootstrap=True)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rf_pred = cross_val_predict(rf, x_train, y_train,</span><br><span class="line">                                 verbose=True, n_jobs=-1, cv=3)</span><br><span class="line">mse = mean_squared_error(y_train, rf_pred)</span><br><span class="line">np.sqrt(mse)</span><br></pre></td></tr></table></figure>
+<pre><code>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   3 out of   3 | elapsed:    1.7s finished
+
+0.16115609724602975
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;就这样，我们最后得到了一个自己亲手调试的集成模型。对这最后的成果我们可以做一个简要的分析。首先相比之前我多次尝试训练的随机森林，它有着一个极大的改变，那就是它的训练曲线不再是一条接近<em>1</em>的水平线了，good job！！！这说明通过调参已经有效的缓解了严重的过拟合现象；其次，我们也可以发现一些问题，模型似乎仍然存在一定程度的过拟合(两条线靠得并不太近)，同时模型的准确度似乎有着明显的下降。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_learning_curve(rf, x_train, y_train)</span><br></pre></td></tr></table></figure></p>
+<pre><code>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+
+[learning_curve] Training set sizes: [ 131  426  721 1016 1312]
+[Parallel(n_jobs=-1)]: Done  50 out of  50 | elapsed:   20.1s finished
+</code></pre><p><img src="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_96_3.png" alt="png"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;虽然最后的模型看起来并不是很完美的解决方案，但这至少可以作为一个里程碑，它证明了贪心策略的可行性的同时也产出了一个完整的集成模型。</p>
+<h2 id="GBDT"><a href="#GBDT" class="headerlink" title="GBDT"></a>GBDT</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>梯度提升树</strong>是一种<em>Boosting</em>方法，每个子模型拟合的是上一个子模型的预测结果与真实结果的残差，即先训练一个弱分类器，然后用这个弱分类器去预测数据集，得到的预测结果和真实的结果取差，然后将得到的残差作为数据集新的预测目标，下一个分类器再去拟合这个残差，如此反复，最后将所有的弱分类器加权求和得到最终分类器，所以说梯度提升树是一种基于加法模型的算法。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GBDT通常采用高偏差低方差的基函数，一般是<em>CART Tree(分类回归树)</em>。因为是基于树的集成模型，那么它同样涉及到树的生成问题，例如深度、叶子节点个数、分隔所需最小样本树等等。基于此，对这部分参数的训练可以直接仿照<em>Random Forest</em>的训练过程，所以便不再占用大量的篇幅去描述。</p>
+<ul>
+<li>subsample</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相比于随机森林，GBDT多训练了一个叫做<code>subsample</code>的参数，这个参数的中文名叫做子采样率，它表示每一次训练弱分类器所使用的样本比例，如果$\lt 1.0$表示使用随机梯度提升，能降低方差提高偏差，有效防止过拟合的发生。下面让我们看看它的训练效果。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们将值限定在一个极小数与<em>1</em>之间，然后取了<em>100</em>个值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">gbdt_param = &#123;</span><br><span class="line">    &apos;subsample&apos;: np.linspace(1e-7, 1, 100),</span><br><span class="line">&#125;</span><br><span class="line">gbdt_grid_cv = GridSearchCV(GradientBoostingRegressor(n_estimators=23, max_depth=8, max_features=&apos;auto&apos;,</span><br><span class="line">                                                      min_samples_split=2, max_leaf_nodes=12, min_weight_fraction_leaf=0,</span><br><span class="line">                                                     min_samples_leaf=1),</span><br><span class="line">                            param_grid=gbdt_param, verbose=True, cv=3, n_jobs=-1)</span><br><span class="line">gbdt_grid_cv.fit(x_train, y_train)</span><br></pre></td></tr></table></figure></p>
+<pre><code>Fitting 3 folds for each of 100 candidates, totalling 300 fits
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  90 tasks      | elapsed:    8.1s
+[Parallel(n_jobs=-1)]: Done 240 tasks      | elapsed:   29.4s
+[Parallel(n_jobs=-1)]: Done 300 out of 300 | elapsed:   39.7s finished
+
+GridSearchCV(cv=3, error_score=&#39;raise-deprecating&#39;,
+       estimator=GradientBoostingRegressor(alpha=0.9, criterion=&#39;friedman_mse&#39;, init=None,
+             learning_rate=0.1, loss=&#39;ls&#39;, max_depth=8,
+             max_features=&#39;auto&#39;, max_leaf_nodes=12,
+             min_impurity_decrease=0.0, min_impurity_split=None,
+             min_samples_leaf=1, min_sampl...       subsample=1.0, tol=0.0001, validation_fraction=0.1, verbose=0,
+             warm_start=False),
+       fit_params=None, iid=&#39;warn&#39;, n_jobs=-1,
+       param_grid={&#39;subsample&#39;: array([1.00000e-07, 1.01011e-02, ..., 9.89899e-01, 1.00000e+00])},
+       pre_dispatch=&#39;2*n_jobs&#39;, refit=True, return_train_score=&#39;warn&#39;,
+       scoring=None, verbose=True)
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们可以发现随着<code>subsample</code>的取值越大，得分总体呈上升趋势并趋于平稳，变异系数整体呈下降趋势，然后开始震荡。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_acc_4_grid(gbdt_grid_cv, &apos;subsample&apos;)</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_129_0.png" alt="png"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;同理，让我们把目光集中在急速下降的地方，放大它的内部表现。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">gbdt_param = &#123;</span><br><span class="line">    &apos;subsample&apos;: np.linspace(1e-7,2.22222e-01, 100),</span><br><span class="line">&#125;</span><br><span class="line">gbdt_grid_cv = GridSearchCV(GradientBoostingRegressor(n_estimators=23, max_depth=8, max_features=&apos;auto&apos;,</span><br><span class="line">                                                      min_samples_split=2, max_leaf_nodes=12, min_weight_fraction_leaf=0,</span><br><span class="line">                                                     min_samples_leaf=1),</span><br><span class="line">                            param_grid=gbdt_param, verbose=True, cv=3, n_jobs=-1)</span><br><span class="line">gbdt_grid_cv.fit(x_train, y_train)</span><br></pre></td></tr></table></figure></p>
+<pre><code>Fitting 3 folds for each of 100 candidates, totalling 300 fits
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done 136 tasks      | elapsed:    9.1s
+[Parallel(n_jobs=-1)]: Done 286 tasks      | elapsed:   24.6s
+[Parallel(n_jobs=-1)]: Done 300 out of 300 | elapsed:   25.8s finished
+
+GridSearchCV(cv=3, error_score=&#39;raise-deprecating&#39;,
+       estimator=GradientBoostingRegressor(alpha=0.9, criterion=&#39;friedman_mse&#39;, init=None,
+             learning_rate=0.1, loss=&#39;ls&#39;, max_depth=8,
+             max_features=&#39;auto&#39;, max_leaf_nodes=12,
+             min_impurity_decrease=0.0, min_impurity_split=None,
+             min_samples_leaf=1, min_sampl...       subsample=1.0, tol=0.0001, validation_fraction=0.1, verbose=0,
+             warm_start=False),
+       fit_params=None, iid=&#39;warn&#39;, n_jobs=-1,
+       param_grid={&#39;subsample&#39;: array([1.00000e-07, 2.24477e-03, ..., 2.19977e-01, 2.22222e-01])},
+       pre_dispatch=&#39;2*n_jobs&#39;, refit=True, return_train_score=&#39;warn&#39;,
+       scoring=None, verbose=True)
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;和上面的趋势几乎如出一辙。这同样说明该参数不太适合在过小的粒度上进行调节。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_acc_4_grid(gbdt_grid_cv, &apos;subsample&apos;)</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_131_0.png" alt="png"></p>
+<ul>
+<li>GBDT<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;没错，我们又得到了一个集成模型，现在让我们再看看这个模型的表现。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gbdt = GradientBoostingRegressor(n_estimators=23, max_depth=8, max_features=&apos;auto&apos;,</span><br><span class="line">                                                      min_samples_split=2, max_leaf_nodes=12, min_weight_fraction_leaf=0,</span><br><span class="line">                                                     min_samples_leaf=1, subsample=1)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gbdt_pred = cross_val_predict(gbdt, x_train, y_train)</span><br><span class="line">mse = mean_squared_error(y_train, gbdt_pred)</span><br><span class="line">np.sqrt(mse)</span><br></pre></td></tr></table></figure>
+<pre><code>0.1558966244053635
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_learning_curve(gbdt, x_train, y_train)</span><br></pre></td></tr></table></figure>
+<pre><code>[learning_curve] Training set sizes: [ 131  426  721 1016 1312]
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  50 out of  50 | elapsed:    8.1s finished
+</code></pre><p><img src="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_134_2.png" alt="png"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相比于随机森林而言，它的均方误差变小了,同时准确率也有所提高。</p>
+<h3 id="GBDT历史版本"><a href="#GBDT历史版本" class="headerlink" title="GBDT历史版本"></a>GBDT历史版本</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;同时，这里将之前使用<code>RandomizedSearchCV</code>的版本罗列了出来，可以发现两者的巨大差异，虽然该版本的均方误差更低，但是其明显的过拟合现象就说明这不是一个好的模型了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.ensemble import GradientBoostingRegressor</span><br><span class="line">from sklearn.model_selection import RandomizedSearchCV</span><br><span class="line"></span><br><span class="line"># gbdt_param = &#123;</span><br><span class="line">#     &apos;n_estimators&apos;: np.arange(1000, 5000, 100),</span><br><span class="line">#     &apos;max_depth&apos;: np.arange(2, 10),</span><br><span class="line">#     &apos;subsample&apos;: np.linspace(0.1, 1, 20),</span><br><span class="line">#     &apos;max_features&apos;:[&apos;auto&apos;, &apos;sqrt&apos;, &apos;log2&apos;]</span><br><span class="line"># &#125;</span><br><span class="line"></span><br><span class="line"># gbdt_grid_cv = RandomizedSearchCV(GradientBoostingRegressor(n_estimators=100), param_distributions=gbdt_param, n_jobs=-1,</span><br><span class="line">#                                  verbose=True, random_state=42, cv=3)</span><br><span class="line"># gbdt_grid_cv.fit(x_train, y_train)</span><br><span class="line">gbdt = GradientBoostingRegressor(alpha=0.9, criterion=&apos;friedman_mse&apos;, init=None,</span><br><span class="line">             learning_rate=0.1, loss=&apos;ls&apos;, max_depth=4,</span><br><span class="line">             max_features=&apos;auto&apos;, max_leaf_nodes=None,</span><br><span class="line">             min_impurity_decrease=0.0, min_impurity_split=None,</span><br><span class="line">             min_samples_leaf=1, min_samples_split=2,</span><br><span class="line">             min_weight_fraction_leaf=0.0, n_estimators=3900,</span><br><span class="line">             n_iter_no_change=None, presort=&apos;auto&apos;, random_state=None,</span><br><span class="line">             subsample=0.5736842105263158, tol=0.0001,</span><br><span class="line">             validation_fraction=0.1, verbose=0, warm_start=False)</span><br><span class="line">gbdt.fit(x_train, y_train)</span><br></pre></td></tr></table></figure></p>
+<pre><code>GradientBoostingRegressor(alpha=0.9, criterion=&#39;friedman_mse&#39;, init=None,
+             learning_rate=0.1, loss=&#39;ls&#39;, max_depth=4,
+             max_features=&#39;auto&#39;, max_leaf_nodes=None,
+             min_impurity_decrease=0.0, min_impurity_split=None,
+             min_samples_leaf=1, min_samples_split=2,
+             min_weight_fraction_leaf=0.0, n_estimators=3900,
+             n_iter_no_change=None, presort=&#39;auto&#39;, random_state=None,
+             subsample=0.5736842105263158, tol=0.0001,
+             validation_fraction=0.1, verbose=0, warm_start=False)
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># gbdt_grid_cv.best_estimator_</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># gbdt_grid_cv.best_score_</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.model_selection import cross_val_predict</span><br><span class="line">from sklearn.metrics import mean_squared_error</span><br><span class="line"># gbdt = gbdt_grid_cv.best_estimator_</span><br><span class="line">gbdt_pred = cross_val_predict(gbdt, x_train, y_train,</span><br><span class="line">                             verbose=True, n_jobs=-1, cv=5)</span><br><span class="line">mse = mean_squared_error(y_train, gbdt_pred)</span><br><span class="line">np.sqrt(mse)</span><br></pre></td></tr></table></figure>
+<pre><code>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   58.5s finished
+
+0.12245307114524771
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_learning_curve(gbdt, x_train, y_train)</span><br></pre></td></tr></table></figure>
+<pre><code>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+
+[learning_curve] Training set sizes: [ 131  426  721 1016 1312]
+
+[Parallel(n_jobs=-1)]: Done  50 out of  50 | elapsed:  4.5min finished
+</code></pre><p><img src="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_139_3.png" alt="png"></p>
+<h2 id="XGBoost"><a href="#XGBoost" class="headerlink" title="XGBoost"></a>XGBoost</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在，我们已经使用相同的方式训练了两个集成模型。另外，我还尝试了一些其他模型，比如这里的<a href="https://xgboost.readthedocs.io/en/latest/" target="_blank" rel="noopener"><strong>XGBoost</strong></a>。如果我们还按照上面的行文方式，那么就会变成记流水账了。既然训练方法和过程都已经熟悉，那么这里便直接给出训练后的结果，转而简单介绍一下XGBoost的原理。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>XGBoost</em>是在<em>GBDT</em>的基础上改进而来的一种<em>Boosting</em>算法，虽然是<em>Boosting</em>，但是其可以通过使用特征上的并行计算提升训练效率。它在训练之前会对数据进行排序，然后保存为<em>block</em>结构以便在后序地迭代中使用。同样因为该结构的存在，在节点分裂需要计算每个特征值的增益的时候，就可以多线程地进行。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>XGBoost</em>相比与<em>GBDT</em>还在代价函数中还加入了正则化方法用于控制模型的复杂度，正则化通过降低模型的方差达到防止过拟合的目的。<em>XGBoost</em>不仅仅只是使用<em>CART</em>（<code>booster=&#39;gbtree&#39;</code>）作为基分类器,还同时引入了线性分类器（<code>booster=&#39;gblinear&#39;</code>）,当使用线性分类器时就如同带有<em>l1</em>或<em>l2</em>正则的逻辑斯蒂回归（分类）和线性回归（回归）。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除此之外，<em>XGBoost</em>还支持列抽样、自动学习缺失值的分裂方向等。<em>XGBoost</em>是一个非常优秀的模型，我这里只是大概做了一个梳理，想要完全掌握这个算法我实在是还差得很远。具体的内容可以查看<a href="https://xgboost.readthedocs.io/en/latest/tutorials/model.html" target="_blank" rel="noopener">官方文档</a>，也可以去翻看相关论文进行更深度的学习。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">xg = XGBRegressor(objective=&apos;reg:squarederror&apos;, booster=&apos;gbtree&apos;, n_estimators=470,</span><br><span class="line">                                       max_depth=2, reg_lambda=0, reg_alpha=0.08163, colsample_bylevel=0.06122,</span><br><span class="line">                                      colsample_bynode=0, colsample_bytree=1, min_child_weight=1)</span><br><span class="line">xg_pred = cross_val_predict(xg, x_train, y_train,</span><br><span class="line">                             verbose=True, n_jobs=-1, cv=5)</span><br><span class="line">mse = mean_squared_error(y_train, xg_pred)</span><br><span class="line">np.sqrt(mse)</span><br></pre></td></tr></table></figure></p>
+<pre><code>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:   12.1s finished
+
+0.1472574980184566
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最后我们来看看<em>XGBoost</em>模型的表现情况，可以发现它比之前的<em>GBDT</em>在结果上有不小的提升，两条曲线非常接近，也没有严重的过拟合问题，可以说是一个不错的结果了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_learning_curve(xg, x_train, y_train)</span><br></pre></td></tr></table></figure></p>
+<pre><code>[learning_curve] Training set sizes: [ 131  426  721 1016 1312]
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  50 out of  50 | elapsed:  1.1min finished
+</code></pre><p><img src="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_175_2.png" alt="png"></p>
+<h2 id="stack"><a href="#stack" class="headerlink" title="stack"></a>stack</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在文章的开头我们对集成学习做了一个概述，其中省略了如何将子模型结果进行结合的方法，现在便对其做一个补充。在对具体的结合策略进行表述之前，先来说说使用结合策略可以带来哪些好处：</p>
+<ol>
+<li>因为目标的假设空间很大，可能有多个假设在训练集上达到相同的性能，因此结合多个学习器可以减小单个学习器因误选而导致泛化性能不佳的风险</li>
+<li>由于局部极小值的存在，而单个学习器在有的局部极小值对应的泛化性能很差，多次训练学习器并对结果进行结合可以降低陷入糟糕局部极小值的风险</li>
+<li>目标的真实假设空间可能不在当前算法所考虑的假设空间中，多个学习器可以将相应的假设空间扩大从而摒除单个学习器无效的情况</li>
+</ol>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;综上所述，结合策略的使用可以提高泛化性能，扩大相应的假设空间，使得模型的整体效果变得更好。下面就让我们看看有哪些具体的策略吧。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先最容易想到的便是针对回归的<strong>平均法</strong>和针对分类的<strong>投票法</strong>。其中平均法又分为简单平均和加权平均。所谓简单平均就是求所有学习器的总平均值，加权平均就是对每一个分类器分配一个权重($\sum ^{T}_{i=1}w_i = 1$)再求和，而简单平均是加权平均权重为$\frac{1}{T}$的特例。投票法与平均法类似，分为绝对多数投票法、相对多数投票法和加权投票法，其中加权投票法和加权平均法类似，只是一个取的是加权后的计数最大值作为最终标记而另一个取的是平均值作为预测结果。绝对多数投票法和相对多数投票法可以说是兄弟了，它们都会通过标记计数大小来预测结果，但是绝对多数取的是预测过半的标记，如果没有则可以拒绝预测，而相对多数投票法就是少数服从多数的完美诠释，即取数量最多的标记作为预测结果，如果绝对多数投票法不允许拒绝预测，要求必须有一个预测值，那么它将退化为相对多数投票法。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除此之外，还有一种更为强大的结合策略就是<strong>学习法</strong>。学习法通过额外的学习器(次级学习器)来结合基学习器(初级学习器)的预测结果。其中的典型代表就是下面使用的<strong>Stacking</strong><sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>，其一般步骤如下：</p>
+<ol>
+<li>从数据集训练出基学习器</li>
+<li>使用初级学习器生成新的数据集，新数据集中的特征为初级学习器的输出，标记不变</li>
+<li>在新的数据集上使用次级学习器训练</li>
+</ol>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学习法在使用过程中为了降低过拟合的风险，在训练初级学习器时使用交叉验证的方式，通过训练初级学习器时未使用的数据来生成新的数据集。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下面是<em>Stacking</em>的一个<a href="https://www.kaggle.com/serigne/stacked-regressions-top-4-on-leaderboard" target="_blank" rel="noopener">实现版本</a>，其实我一开始也并没有太懂为什么要这样处理，直到我回过头再去审视这段代码，才有了一定的体会。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们首先来看一下它的构造。在初始化阶段(<code>__init__</code>)我们传入了<code>base_models</code>作为初级学习器，<code>final_models</code>作为次级学习器，即用<code>base_models</code>生成数据，<code>final_model</code>做最后的预测，<code>n_folds</code>表示交叉验证中使用的折数。</p>
+<ul>
+<li><code>fit</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这里<code>fit</code>不再只是单纯地去训练模型了，它还包括了生成数据集的步骤。前两行代码首先使用<code>base_models</code>生成了一个空列表用于存储训练使用的<em>model</em>，使用<code>clone</code>函数是因为对象传递进来是引用，如果直接在上面进行操作会影响外部的模型，所以要创建一个备份用于该类内使用。接下来便是创建交叉验证的划分折数，然后根据初级学习器的数量创建一个大小为(n, n_models)<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>的<code>numpy</code>数组用于存储新的数据集。第一层<code>for</code>循环遍历初级学习器，第二层<code>循环</code>使用交叉验证训练初级学习器，并保存每一折的训练后的模型，然后使用初级学习器对为参与训练的数据进行预测，最后使用预测值填充上面的<code>numpy</code>数组对应的位置。在数据生成之后，再用这些数据去训练次级学习器。</li>
+<li><code>predict</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;预测阶段同样需要做一些预处理，顺序地从保存模型的列表中取出对应的模型列表(即对应模型每一折的训练成果)，然后计算该类模型预测的平均值，最后将所有的模型预测结合起来作为最后预测需要的数据，然后再调用次级学习器进行预测。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.base import BaseEstimator, TransformerMixin, RegressorMixin, clone</span><br><span class="line">from sklearn.model_selection import KFold</span><br><span class="line"></span><br><span class="line">class StackModel(BaseEstimator, TransformerMixin, RegressorMixin):</span><br><span class="line">    def __init__(self, base_models, final_model, n_folds=5):</span><br><span class="line">        self.base_models = base_models</span><br><span class="line">        self.final_model = final_model</span><br><span class="line">        self.n_folds = n_folds</span><br><span class="line"></span><br><span class="line">    def fit(self, X, y):</span><br><span class="line">        self.base_models_ = [list() for i in self.base_models]</span><br><span class="line">        self.final_model_ = clone(self.final_model)</span><br><span class="line">        kfold = KFold(n_splits=self.n_folds, shuffle=True, random_state=42)</span><br><span class="line"></span><br><span class="line">        out_predictions = np.zeros((X.shape[0], len(self.base_models)))</span><br><span class="line">        for i, model in enumerate(self.base_models):</span><br><span class="line">            for train_index, holdout_index in kfold.split(X, y):</span><br><span class="line">                instance = clone(model)</span><br><span class="line">                self.base_models_[i].append(instance)</span><br><span class="line">                instance.fit(X[train_index], y[train_index])</span><br><span class="line">                y_pred = instance.predict(X[holdout_index])</span><br><span class="line">                out_predictions[holdout_index, i] = y_pred</span><br><span class="line"></span><br><span class="line">        self.final_model_.fit(out_predictions, y)</span><br><span class="line">        return self</span><br><span class="line"></span><br><span class="line">    def predict(self, X):</span><br><span class="line">        final_feature = np.column_stack([</span><br><span class="line">            np.column_stack([model.predict(X) for model in base_models]).mean(axis=1)</span><br><span class="line">            for base_models in self.base_models_</span><br><span class="line">        ])</span><br><span class="line">        return self.final_model_.predict(final_feature)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们已经证实在简单模型中<code>Lasso</code>在该数据集上的表现更好，同时由于<em>Stacking</em>用多响应线性回归作为次级学习算法效果会比较好，所以这里选用该模型作为次级学习器。其它的初级学习器为我们之前使用或调参之后的模型。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.linear_model import  Lasso, ElasticNet</span><br><span class="line">from sklearn.kernel_ridge import KernelRidge</span><br><span class="line">from sklearn.ensemble import GradientBoostingRegressor</span><br><span class="line"></span><br><span class="line">ridge = KernelRidge(degree=2, alpha=0.05, kernel=&apos;polynomial&apos;)</span><br><span class="line">lasso = Lasso(alpha=0.0005)</span><br><span class="line">en = ElasticNet(max_iter=5000, selection=&apos;random&apos;)</span><br><span class="line">gbdt = GradientBoostingRegressor(n_estimators=49, max_depth=5, max_features=&apos;auto&apos;,</span><br><span class="line">                                                      min_samples_split=2, max_leaf_nodes=7, min_weight_fraction_leaf=0,</span><br><span class="line">                                                     min_samples_leaf=1, subsample=1)</span><br><span class="line"></span><br><span class="line">stack_models = StackModel(base_models=(ridge, gbdt, en), final_model=lasso)</span><br><span class="line">stack_models.fit(x_train, y_train)</span><br></pre></td></tr></table></figure></p>
+<pre><code>StackModel(base_models=(KernelRidge(alpha=0.05, coef0=1, degree=2, gamma=None, kernel=&#39;polynomial&#39;,
+      kernel_params=None), GradientBoostingRegressor(alpha=0.9, criterion=&#39;friedman_mse&#39;, init=None,
+             learning_rate=0.1, loss=&#39;ls&#39;, max_depth=5,
+             max_features=&#39;auto&#39;, max_leaf_nodes=7,
+  ...False, precompute=False,
+      random_state=None, selection=&#39;random&#39;, tol=0.0001, warm_start=False)),
+      final_model=Lasso(alpha=0.0005, copy_X=True, fit_intercept=True, max_iter=1000,
+   normalize=False, positive=False, precompute=False, random_state=None,
+   selection=&#39;cyclic&#39;, tol=0.0001, warm_start=False),
+      n_folds=5)
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显而易见的，使用<em>Stacking</em>之后的均方误差更小，而其得分也达到了<em>90%</em>以上，可以说相当于之前的集成模型或者单一模型有着飞跃性的提升。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.metrics import mean_squared_error</span><br><span class="line">from sklearn.model_selection import cross_val_predict</span><br><span class="line">stack_pred = stack_models.predict(x_train)</span><br><span class="line">mse = mean_squared_error(stack_pred, y_train)</span><br><span class="line">np.sqrt(mse)</span><br></pre></td></tr></table></figure></p>
+<pre><code>0.08064604349182854
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_learning_curve(stack_models, x_train, y_train)</span><br></pre></td></tr></table></figure>
+<pre><code>[learning_curve] Training set sizes: [ 131  426  721 1016 1312]
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  50 out of  50 | elapsed:   49.9s finished
+</code></pre><p><img src="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/Predict%20House%20Prices_186_2.png" alt="png"></p>
+<h1 id="预测"><a href="#预测" class="headerlink" title="预测"></a>预测</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;终于到了验证成果的时候了，在做预测之前，我们先加载需要预测的数据，并使用与处理训练数据相同的规则对数据进行特征处理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">test = pd.read_csv(&apos;house_price/test.csv&apos;)</span><br><span class="line">index = np.array(test[[&apos;Id&apos;]])[:,0]</span><br><span class="line">test = test.set_index([&apos;Id&apos;])</span><br><span class="line">x_test = full_pipeline.transform(test)</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一如既往地，训练模型、数据预测，结合，最后将预测结果按照指定的格式输出到文件。这里需要稍微说一下的是结合策略，因为在上面的模型中，<em>XGBoost</em>应该是除了<em>Stacking</em>之外的表现最好的模型，所以在这里将这两者的结果进行加权平均，得出最后的预测值。这里的比例是随机选取的，当然也可以通过构建新的模型来训练这个比重，这里便不再多做赘述。最后还有一个需要注意的地方，那就是对模型预测的结果还取了指数，这是因为在之前分析训练集时为了解决目标值分布偏移的问题而对其进行了取对数操作，这使得所有的预测结果其实都是以此为基准的，为了得到真实的结果那么自然需要进行还原。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">stack_models.fit(x_train, y_train)</span><br><span class="line">stack_pre =  stack_models.predict(x_test)</span><br><span class="line">xg.fit(x_train, y_train)</span><br><span class="line">xg_pre = xg.predict(x_test)</span><br><span class="line">ensemble_pred = stack_pre*0.8 + xg_pre*0.2</span><br><span class="line">pred_df = pd.DataFrame(&#123;&apos;Id&apos;:index,</span><br><span class="line">                       &apos;SalePrice&apos;:np.expm1(ensemble_pred)&#125;)</span><br><span class="line">pred_df.to_csv(&apos;./house_price/prediction.csv&apos;, index=&apos;&apos;)</span><br></pre></td></tr></table></figure></p>
+<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;转眼之间两个月已经过去了，总算是把内容都呈现了出来。虽然说两篇文章没有什么实质性的内容，但对我而言已经是一个良好的总结了。在这两个月多月里，我基本上是坚持每天码字。有时候写到不懂的地方就需要花费大量的时间去查资料，这导致最后行文可能只有一两行。特别是最后这一段时间，工作繁忙而没有时间做一个很好的梳理并保持之前的连续性。虽然有诸多困难，但好在功夫不负有心人，也算是圆满完成了当时定下的目标，这点让我倍感欣慰。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这个过程中，我查阅了大量的资料，从书本到网络博客，参考了很多牛人的思想。其中有两本书可以说是我整个实践过程中的基石，其中一本是周志华老师的《机器学习》，它丰富和完善了我的理论知识，另一本是之前提到的 Aurélien Géron的《Hands-On Machine Learning with Scikit-Learn &amp; TensorFlow》，它教会我如何去使用<strong>Scikit-Learn</strong>。在此我衷心地感谢在这个过程中给我提供帮助的书和博客的作者。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最后便是接下来的一些规划了，这已经算是一个实战项目了，但由于基础理论知识的相对薄弱，导致在训练过程中对各个参数的意义一知半解。我接下来打算对我接触到的所有基础内容做一个概览似的总结，方便后序查漏补缺。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;感谢您的阅读！！！</p>
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style:none; padding-left: 0;"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">1.</span><span style="display: inline-block; vertical-align: top;">又称离散系数，这里是标准差系数，其反应的是单位均值上的各指标观测值的离散程度</span><a href="#fnref:1" rev="footnote"> ↩</a></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">2.</span><span style="display: inline-block; vertical-align: top;">本身是一种集成学习方法，这里作为一种特殊的结合策略</span><a href="#fnref:2" rev="footnote"> ↩</a></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">3.</span><span style="display: inline-block; vertical-align: top;"><em>n</em>为样本数量，<em>n_models</em>为初级学习器个数</span><a href="#fnref:3" rev="footnote"> ↩</a></li></ol></div></div>
+      
+    </div>
+    
+    
+    
+		<div>
+		  
+		    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-apple"></i>感谢您的阅读-------------</div>
+    
+</div>
+		  
+		</div>
+		<div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/">House Prices: Advanced Regression Techniques(2)</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 邓小俊 的个人博客">邓小俊</a></p>
+  <p><span>发布时间:</span>2019年06月27日 - 19:06</p>
+  <p><span>最后更新:</span>2019年08月06日 - 20:08</p>
+  <p><span>原始链接:</span><a href="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/" title="House Prices: Advanced Regression Techniques(2)">http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://coldjune.com/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+      
+		</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/kaggle/" rel="tag"><i class="fa fa-tag"></i> kaggle</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/" rel="next" title="House-Prices-Advanced-Regression-Techniques-1">
+                <i class="fa fa-chevron-left"></i> House-Prices-Advanced-Regression-Techniques-1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/12/机器学习总结/" rel="prev" title="机器学习总结">
+                机器学习总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">邓小俊</p>
+              <p class="site-description motion-element" itemprop="description">人所恐惧的不是孤独本身，而是害怕承认人本生而孤独的事实</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#集成学习概述"><span class="nav-number">1.</span> <span class="nav-text">集成学习概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模型选择"><span class="nav-number">2.</span> <span class="nav-text">模型选择</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#随机森林"><span class="nav-number">2.1.</span> <span class="nav-text">随机森林</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GBDT"><span class="nav-number">2.2.</span> <span class="nav-text">GBDT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GBDT历史版本"><span class="nav-number">2.2.1.</span> <span class="nav-text">GBDT历史版本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XGBoost"><span class="nav-number">2.3.</span> <span class="nav-text">XGBoost</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stack"><span class="nav-number">2.4.</span> <span class="nav-text">stack</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#预测"><span class="nav-number">3.</span> <span class="nav-text">预测</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写在最后"><span class="nav-number">4.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">邓小俊</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">博文包含字数&#58;</span>
+    
+    <span title="博文包含字数">277.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("EdodKu35EbSo4VoLhJYQMd09-gzGzoHsz", "qpErN7JcsIzusWGMNuw1QcxN");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+ 
+</body>
+</html>

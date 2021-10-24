@@ -1,0 +1,2300 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="true" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico#/images/favicon-16x16-next.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="架构," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="关于23种经典的设计模式总结">
+<meta name="keywords" content="架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式">
+<meta property="og:url" content="http://coldjune.com/2020/06/21/设计模式/index.html">
+<meta property="og:site_name" content="Stay Hungary">
+<meta property="og:description" content="关于23种经典的设计模式总结">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://coldjune.com/2020/06/21/设计模式/设计模式.jpeg">
+<meta property="og:image" content="http://coldjune.com/2020/06/21/设计模式/状态机.jpeg">
+<meta property="og:image" content="http://coldjune.com/2020/06/21/设计模式/查表法.jpeg">
+<meta property="og:image" content="http://coldjune.com/2020/06/21/设计模式/迭代器.jpeg">
+<meta property="og:image" content="http://coldjune.com/2020/06/21/设计模式/迭代器实现.jpeg">
+<meta property="og:image" content="http://coldjune.com/2020/06/21/设计模式/访问者模式.jpeg">
+<meta property="og:image" content="http://coldjune.com/2020/06/21/设计模式/中介模式.jpeg">
+<meta property="og:updated_time" content="2020-07-05T10:26:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式">
+<meta name="twitter:description" content="关于23种经典的设计模式总结">
+<meta name="twitter:image" content="http://coldjune.com/2020/06/21/设计模式/设计模式.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://coldjune.com/2020/06/21/设计模式/"/>
+
+
+
+
+
+  <title>设计模式 | Stay Hungary</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+		<a href="https://github.com/coldJune" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stay Hungary</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Programming is an art form</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://coldjune.com/2020/06/21/设计模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="邓小俊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay Hungary">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">设计模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-21T22:36:53+08:00">
+                2020-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/架构/" itemprop="url" rel="index">
+                    <span itemprop="name">架构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/06/21/设计模式/" class="leancloud_visitors" data-flag-title="设计模式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  12,247
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  43
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  关于23种经典的设计模式总结
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/2020/06/21/设计模式/设计模式.jpeg" alt="设计模式"></p>
+<h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><ul>
+<li>特性：封装、继承、抽象、多态</li>
+<li>面向对象编程：以类和对象作为组织代码的基本单元，将四大特性作为代码设计和实现的基石</li>
+<li>面向对象编程语言：支持类和对象的语法机制，能方便地实现面向对象编程四大特性的编程语言</li>
+</ul>
+<h2 id="封装-Encapsulation"><a href="#封装-Encapsulation" class="headerlink" title="封装(Encapsulation)"></a>封装(Encapsulation)</h2><ul>
+<li>信息隐藏或数据访问保护</li>
+<li>需要语言语法提供访问权限控制</li>
+<li>提高类中属性可控性</li>
+<li>提高类的易用性</li>
+</ul>
+<h2 id="抽象-Abstraction"><a href="#抽象-Abstraction" class="headerlink" title="抽象(Abstraction):"></a>抽象(Abstraction):</h2><ul>
+<li>隐藏方法的具体实现</li>
+<li>并不一定要为实现类定义接口类（万物皆可抽象）</li>
+</ul>
+<h2 id="继承-Inheritance"><a href="#继承-Inheritance" class="headerlink" title="继承(Inheritance):"></a>继承(Inheritance):</h2><ul>
+<li>代码复用</li>
+<li>过度使用使可读性可维护性变差</li>
+</ul>
+<h2 id="多态-Polymorphism"><a href="#多态-Polymorphism" class="headerlink" title="多态(Polymorphism):"></a>多态(Polymorphism):</h2><ul>
+<li>继承加方法重写实现</li>
+<li>接口实现</li>
+<li>提高代码的可扩展性和复用性</li>
+</ul>
+<h2 id="面向对象和面向过程"><a href="#面向对象和面向过程" class="headerlink" title="面向对象和面向过程"></a>面向对象和面向过程</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">面向对象</th>
+<th style="text-align:center">面向过程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">以类和对象作为组织代码的基本单元</td>
+<td style="text-align:center">以过程（方法、函数、操作等）作为组织代码的基本单元，是一种流程化的编程风格</td>
+</tr>
+<tr>
+<td style="text-align:center">方法和其数据结构绑定</td>
+<td style="text-align:center">方法和其数据结构分开</td>
+</tr>
+<tr>
+<td style="text-align:center">更能应对大规模复杂程序开发，使用类先建模后实现（模块化）</td>
+<td style="text-align:center">大规模复杂程序开发呈现网状结构，梳理逻辑困难</td>
+</tr>
+<tr>
+<td style="text-align:center">更易复用、扩展、维护</td>
+<td style="text-align:center">不易复用、扩展和维护（要实现代价更高）</td>
+</tr>
+<tr>
+<td style="text-align:center">更高级、人性化和智能（人的思维方式）</td>
+<td style="text-align:center">不够高级、人性化和智能（计算机思维方式，顺序编程）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="似对象实过程"><a href="#似对象实过程" class="headerlink" title="似对象实过程"></a>似对象实过程</h2><ul>
+<li>滥用set/get方法(set使封装性丧失/get返回对象使上层能够修改对象导致数据不一致)</li>
+<li>滥用全局变量和全局方法（实在要用可以细化分类，尽量哪儿使用哪儿定义/职责单一）</li>
+<li>定义数据和方法分离的类</li>
+<li>基于贫血模型的开发模式</li>
+</ul>
+<h2 id="抽象类和接口"><a href="#抽象类和接口" class="headerlink" title="抽象类和接口"></a>抽象类和接口</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">抽象类</th>
+<th style="text-align:center">接口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">不允许实例化(new报错)，只能被继承</td>
+<td style="text-align:center">不能是实例化，只能实现</td>
+</tr>
+<tr>
+<td style="text-align:center">可以包含属性和方法，方法可以实现也可以不实现(抽象方法)</td>
+<td style="text-align:center">不能包含属性，只能声明方法不能包含具体实现</td>
+</tr>
+<tr>
+<td style="text-align:center">子类继承抽象类必须实现抽象方法</td>
+<td style="text-align:center">类实现接口时必须实现接口声明的所有方法</td>
+</tr>
+<tr>
+<td style="text-align:center">一种特殊的类 (is-a)</td>
+<td style="text-align:center">表示具有某些功能(has-a)/协议(contract)</td>
+</tr>
+<tr>
+<td style="text-align:center">自下而上，现有子类代码重复然后抽象为父类</td>
+<td style="text-align:center">自上而下，先考虑接口再考虑具体实现</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><ul>
+<li>代码复用</li>
+<li>能使用多态特性(父类无法实例化，子类强制要求实现抽象方法)</li>
+</ul>
+<h4 id="无抽象类语法的问题："><a href="#无抽象类语法的问题：" class="headerlink" title="无抽象类语法的问题："></a>无抽象类语法的问题：</h4><ul>
+<li>影响父类代码可读性</li>
+<li>忘记重新父类的方法（抽象类中为抽象方法的部分）</li>
+<li>父类能被实例化，增加类被误用的风险</li>
+</ul>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><ul>
+<li>提高复用性</li>
+<li>解耦(侧重)</li>
+</ul>
+<h3 id="模拟实现抽象类和接口"><a href="#模拟实现抽象类和接口" class="headerlink" title="模拟实现抽象类和接口"></a>模拟实现抽象类和接口</h3><ul>
+<li>不能实例化(显式定义构造函数且并让其拥有访问控制，比如java修饰为protected）</li>
+<li>成员变量(不定义）</li>
+<li>子类必须实现方法(abstract/virtual修饰，不支持的语言如python直接在父类方法抛出异常)</li>
+</ul>
+<h2 id="基于接口（抽象）而非实现编程-program-to-an-interface-not-to-an-implementation-："><a href="#基于接口（抽象）而非实现编程-program-to-an-interface-not-to-an-implementation-：" class="headerlink" title="基于接口（抽象）而非实现编程(program to an interface,not to an implementation)："></a>基于接口（抽象）而非实现编程(program to an interface,not to an implementation)：</h2><ul>
+<li>抽象层面的接口指的一组协议或约定</li>
+<li>代码层面上接口可理解为编程语法的接口类或抽象类</li>
+<li>将接口和实现分离，暴露稳定的接口，封装不稳定的实现（实现更改时调用方不用更改，提高可扩展性）</li>
+</ul>
+<h3 id="如何遵循："><a href="#如何遵循：" class="headerlink" title="如何遵循："></a>如何遵循：</h3><ul>
+<li>函数命名不能暴露任何实现细节</li>
+<li>封装具体的实现细节</li>
+<li>为实现类定义抽象的接口</li>
+<li>功能如只有一种实现方式，未来也不会改动（没必要实现接口）</li>
+</ul>
+<h2 id="多用组合少用继承"><a href="#多用组合少用继承" class="headerlink" title="多用组合少用继承"></a>多用组合少用继承</h2><h3 id="不推荐继承的原因"><a href="#不推荐继承的原因" class="headerlink" title="不推荐继承的原因"></a>不推荐继承的原因</h3><ul>
+<li>继承层次过深过复杂影响代码可维护性</li>
+<li>父类修改影响所有子类</li>
+</ul>
+<h3 id="组合："><a href="#组合：" class="headerlink" title="组合："></a>组合：</h3><ul>
+<li>职责单一，可复用（通过组合、接口、委托）</li>
+<li>需要更细粒度的拆分/更多的类和接口</li>
+</ul>
+<h3 id="如何选择"><a href="#如何选择" class="headerlink" title="如何选择"></a>如何选择</h3><ul>
+<li>继承：类之间继承结构稳定、层次浅，关系不复杂，无法改变类中方法只能继承</li>
+<li>组合：系统不稳定、层次深，关系复杂</li>
+</ul>
+<h2 id="贫血模型、充血模型和领域驱动设计-DDD-："><a href="#贫血模型、充血模型和领域驱动设计-DDD-：" class="headerlink" title="贫血模型、充血模型和领域驱动设计(DDD)："></a>贫血模型、充血模型和领域驱动设计(DDD)：</h2><h3 id="贫血模型"><a href="#贫血模型" class="headerlink" title="贫血模型"></a>贫血模型</h3><ul>
+<li>只包含数据不包含业务逻辑的类（如Entity）</li>
+<li>将数据与操作分离，破坏了OOP的封装性</li>
+<li>重Service轻BO（BO只包含数据）</li>
+<li>面向SQL开发</li>
+</ul>
+<h3 id="充血模型"><a href="#充血模型" class="headerlink" title="充血模型"></a>充血模型</h3><ul>
+<li>数据和对应的业务逻辑封装在一个类里</li>
+<li>轻Service重Domain（Domain包括数据和业务逻辑）</li>
+<li>领域模型相当于可复用的业务中间件</li>
+</ul>
+<h3 id="DDD"><a href="#DDD" class="headerlink" title="DDD"></a>DDD</h3><ul>
+<li>指导如何解耦业务系统，划分业务模块，定义业务领域模型及其交互</li>
+</ul>
+<h3 id="贫血盛行原因"><a href="#贫血盛行原因" class="headerlink" title="贫血盛行原因"></a>贫血盛行原因</h3><ul>
+<li>业务系统简单，基于CRUD都能完成</li>
+<li>充血模型设计更有难度</li>
+<li>思维固化</li>
+</ul>
+<h3 id="充血模型场景"><a href="#充血模型场景" class="headerlink" title="充血模型场景"></a>充血模型场景</h3><ul>
+<li>复杂系统（包括各种利息计算模型和还款模型的金融系统）</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">贫血模型</th>
+<th style="text-align:center">充血模型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">业务逻辑全在service</td>
+<td style="text-align:center">部分业务逻辑移到domain</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">controller和repository层两者基本相同</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">保留service不移除是为了和repository层交互</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h1><h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><ul>
+<li>一个类或模块只负责完成一个职责或功能</li>
+<li>实现代码高内聚低耦合，提高代码复用性、可读性和可维护性</li>
+<li>拆分过细会降低内聚性</li>
+</ul>
+<h3 id="判断是否职责是否单一"><a href="#判断是否职责是否单一" class="headerlink" title="判断是否职责是否单一"></a>判断是否职责是否单一</h3><ul>
+<li>类中代码行数、函数或属性过多（200行/10个）</li>
+<li>类依赖的其他类过多，或者依赖类的其他类过多</li>
+<li>私有方法过多</li>
+<li>类中的大量方法集中操作类中的某几个属性</li>
+</ul>
+<h2 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h2><ul>
+<li>软件实体（类模块、类、方法等）应该对扩展开放，对修改关闭</li>
+<li>以最小修改代码的代价来完成新功能的开发</li>
+<li>同样的改动，在粗粒度下被认为是修改，细粒度下被认定为扩展</li>
+</ul>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ul>
+<li>具备扩展意识、抽象意识、封装意识</li>
+<li>事先留好扩展点</li>
+<li>多态、依赖注入、基于接口而非实现编程，以及大部分的设计模式（比如，装饰、策略、模板、职责链、状态）</li>
+</ul>
+<h2 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h2><ul>
+<li>子类对象能够替换父类对象出现的任何地方，并且保证原来程序的逻辑行为不变及正确性不被破坏</li>
+<li>按照协议设计：子类设计时要遵守父类的行为约定（输入、输出、异常的约定甚至注释中罗列的任何特殊说明）</li>
+</ul>
+<h2 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h2><ul>
+<li>客户端（接口的调用者或使用者）不应该强迫依赖它不需要的接口</li>
+</ul>
+<h3 id="接口含义"><a href="#接口含义" class="headerlink" title="接口含义"></a>接口含义</h3><ul>
+<li>一组API接口集合：某个为服务或类库的接口，部分接口只被部分调用者使用就应该将这部分接口给力出来单独提供给对应的调用者</li>
+<li>单个API接口或函数：函数的设计要功能单一，不将多个不同的功能逻辑在一个函数中实现</li>
+<li>OOP中的接口概念</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">接口隔离</th>
+<th style="text-align:center">单一职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">更侧重于接口设计</td>
+<td style="text-align:center">针对模块、类、接口</td>
+</tr>
+<tr>
+<td style="text-align:center">提供了判断接口是否单一的标准：通过调用者如何使用接口</td>
+<td style="text-align:center">拆分粒度可大可小、可粗可细，没有明确的标准</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="依赖反转原则-依赖倒置原则"><a href="#依赖反转原则-依赖倒置原则" class="headerlink" title="依赖反转原则/依赖倒置原则"></a>依赖反转原则/依赖倒置原则</h2><ul>
+<li>高层（调用者）模块不依赖低层（被调用者）模块，高层模块和低层模块应该通过抽象来互相依赖；抽象不依赖具体实现细节，具体实现细节依赖抽象</li>
+<li>控制反转：控制指对程序执行流程的控制，反转指的是使用框架前程序员自己控制程序执行；使用框架后整个执行流程通过框架控制</li>
+<li>依赖注入：不通过 new 的方式在类内部创建依赖类的对象，而是将依赖的类对象在外部创建好之后，通过构造函数、函数参数等方式传递（或注入）给类来使用</li>
+</ul>
+<h2 id="KISS原则"><a href="#KISS原则" class="headerlink" title="KISS原则"></a>KISS原则</h2><ul>
+<li>尽量保持简单</li>
+<li>本身便复杂的问题用复杂的方法解决不算违背KISS原则</li>
+</ul>
+<h3 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h3><ul>
+<li>不要使用复杂的技术或过于高级的特性</li>
+<li>善于使用已经有的工具类</li>
+<li>不要过度优化</li>
+</ul>
+<h2 id="YAGNI原则"><a href="#YAGNI原则" class="headerlink" title="YAGNI原则"></a>YAGNI原则</h2><ul>
+<li>不要设计当前用不到的功能</li>
+</ul>
+<h2 id="DRP原则"><a href="#DRP原则" class="headerlink" title="DRP原则"></a>DRP原则</h2><ul>
+<li>不要重复你自己</li>
+</ul>
+<h3 id="重复情况"><a href="#重复情况" class="headerlink" title="重复情况"></a>重复情况</h3><ul>
+<li>实现逻辑重复：实现相同但语义不同不视为违反DRP；对于重复的代码可以抽象为更细粒度的函数来解决</li>
+<li>功能语义重复：功能语义重复就算实现不同，也认为违反了DRP</li>
+<li>代码执行重复</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">代码复用性</th>
+<th style="text-align:center">代码复用</th>
+<th style="text-align:center">DRP原则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">表示代码可被复用的特性或能力</td>
+<td style="text-align:center">表示一种行为：开发新功能时复用已经存在的代码</td>
+<td style="text-align:center">不要写重复的代码</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">不重复不代表可复用</td>
+</tr>
+<tr>
+<td style="text-align:center">从代码开发者的角度</td>
+<td style="text-align:center">从代码使用者的角度</td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="提高复用性"><a href="#提高复用性" class="headerlink" title="提高复用性"></a>提高复用性</h3><blockquote>
+<p>第一次不考虑复用性，第二次用到再来重构</p>
+</blockquote>
+<ul>
+<li>减少代码耦合</li>
+<li>满足单一职责原则：粒度越细越容易被复用</li>
+<li>模块化：将功能独立的代码封装成模块</li>
+<li>业务与非业务逻辑分离：越是业务无关的代码越容易复用</li>
+<li>通用代码下沉：越底层的代码越通用，只允许上层调用下层和同层，不允许下层调用上层</li>
+<li>继承、多态、抽象、封装：越抽象越不依赖具体实现；隐藏可变细节，暴露不变接口</li>
+<li>应用模版等设计模式</li>
+<li>泛型编程</li>
+</ul>
+<h2 id="迪米特法则（最小知识原则）"><a href="#迪米特法则（最小知识原则）" class="headerlink" title="迪米特法则（最小知识原则）"></a>迪米特法则（最小知识原则）</h2><ul>
+<li>每个模块只应该了解那些与它关系密切的模块</li>
+<li>高内聚：相近的功能应该放到同一个类中，不相近的功能不放到同一个类</li>
+<li>低耦合：类与类之间的依赖关系简单清晰</li>
+</ul>
+<h1 id="规范与重构"><a href="#规范与重构" class="headerlink" title="规范与重构"></a>规范与重构</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li>重构是一种对软件内部结构的改善，目的是在不改变软件的可见行为的情况下，使其更易理解，修改成本更低</li>
+<li>持续重构</li>
+<li>重构对象</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">大规模高层次（大型重构）</th>
+<th style="text-align:center">小规模低层次（小型重构）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">对象：系统、模块、代码结构、类与类之间的关系</td>
+<td style="text-align:center">对象：类、函数、变量等代码级</td>
+</tr>
+<tr>
+<td style="text-align:center">手段：分层、模块化、解耦、抽象可复用组件</td>
+<td style="text-align:center">手段：规范命名、规范注释、消除超大类或函数、提取重复代码</td>
+</tr>
+<tr>
+<td style="text-align:center">提前做好完善的重构计划，每个阶段完成一部分在开始下一阶段，保证代码一直处于可运行逻辑正确的状态</td>
+<td style="text-align:center">因范围小，随时都可以</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">集成测试</th>
+<th style="text-align:center">单元测试</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">研发工程师自己编写，测试代码正确性</td>
+</tr>
+<tr>
+<td style="text-align:center">整个系统或某个功能模块，是端到端的测试</td>
+<td style="text-align:center">类或者函数是否按照预期逻辑执行，代码层级</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">粒度更小</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><ul>
+<li>单元测试能有效发现代码中的bug</li>
+<li>单元测试能发现代码设计上的问题</li>
+<li>单元测试是对集成测试的有力补充</li>
+<li>写单元测试的过程本身就是重构的过程</li>
+<li>阅读单元测试能快速熟悉代码</li>
+<li>单元测试是TDD可落地执行的改进方案</li>
+</ul>
+<h3 id="方法-2"><a href="#方法-2" class="headerlink" title="方法"></a>方法</h3><ul>
+<li>编写单元测试尽管繁琐但并不耗时，大多可以copy-paste</li>
+<li>可以稍微放低对单元测试代码质量的要求</li>
+<li>覆盖率作为衡量单元测试的唯一标准是不合理的</li>
+<li>单元测试不要依赖被测试代码的具体实现逻辑</li>
+<li>单元测试框架无法测试，多半是因为代码的可测试性不好</li>
+</ul>
+<h2 id="可测试性"><a href="#可测试性" class="headerlink" title="可测试性"></a>可测试性</h2><ul>
+<li>针对代码编写单元测试的难易程度</li>
+</ul>
+<h3 id="方法-3"><a href="#方法-3" class="headerlink" title="方法"></a>方法</h3><ul>
+<li>使用依赖注入而不是new</li>
+<li>多用组合少用继承</li>
+<li>mock解决外部以来的服务问题（面向接口而非实现编程）</li>
+</ul>
+<h3 id="测试不友好的代码"><a href="#测试不友好的代码" class="headerlink" title="测试不友好的代码"></a>测试不友好的代码</h3><ul>
+<li>代码中包含未决行为逻辑</li>
+<li>滥用可变全局变量</li>
+<li>滥用静态方法</li>
+<li>使用复杂的继承关系</li>
+<li>高度耦合的代码</li>
+</ul>
+<h2 id="解耦"><a href="#解耦" class="headerlink" title="解耦"></a>解耦</h2><ul>
+<li>解耦保证代码松耦合高内聚，是控制代码复杂度的有效手段</li>
+</ul>
+<h3 id="判断方法"><a href="#判断方法" class="headerlink" title="判断方法"></a>判断方法</h3><ul>
+<li>间接：看代码修改是否牵一发而动全身</li>
+<li>直接：画出模块与模块、类与类之间的依赖关系图，根据依赖关系图的复杂性判断是否需要解耦</li>
+</ul>
+<h3 id="方法-4"><a href="#方法-4" class="headerlink" title="方法"></a>方法</h3><ol>
+<li>封装和抽象</li>
+<li>中间层<ul>
+<li>引入一个中间层，包裹老的接口，提供新的接口定义</li>
+<li>新开发的代码依赖中间层提供的新接口</li>
+<li>将依赖老接口的代码改为调用新接口</li>
+<li>确保所有的代码都调用新接口之后，删除掉老的接口</li>
+</ul>
+</li>
+<li>模块化</li>
+<li>其它设计思想和原则<ul>
+<li>单一职责原则</li>
+<li>基于接口而非实现编程</li>
+<li>依赖注入</li>
+<li>多用组合少用继承</li>
+<li>迪米特法则</li>
+</ul>
+</li>
+</ol>
+<h2 id="编码规范"><a href="#编码规范" class="headerlink" title="编码规范"></a>编码规范</h2><h3 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h3><ul>
+<li>长度：以能准确达意为目标，众人熟知的用缩写，函数内临时变量可以短，类名等作用域大的用长命名</li>
+<li>利用上下文简化命名</li>
+<li>命名要可读可搜索：不用生僻难发音的单词，统一规约方便搜索</li>
+<li>命名接口和抽象类：接口加I前缀或者不加而其实现类加impl后缀；抽象类加Abstract前缀或不加；项目里保证统一</li>
+</ul>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><ul>
+<li>内容<ul>
+<li>做什么/为什么/怎么做：简单的类名不能包涵太多信息，需要注释详尽描述；注释起到总结性作用、文档的作用；总结性注释让代码结构更清晰</li>
+</ul>
+</li>
+<li>多少<ul>
+<li>太多意味着代码可读性不高，需要大量注释，且后续维护困难；类和函数要写注释，要尽量详尽、全面；函数内部注释较小，靠好的命名约束，提高可读性</li>
+</ul>
+</li>
+</ul>
+<h3 id="代码风格"><a href="#代码风格" class="headerlink" title="代码风格"></a>代码风格</h3><ol>
+<li>类和函数多大合适<ul>
+<li>函数大小不超过显示屏的垂直高度（50行）</li>
+<li>类行数过多：当一个类的代码阅读困难；实现某个功能不知道该用哪个函数；只用到一个小功能需要引入整个类</li>
+</ul>
+</li>
+<li>一行代码多长合适<ul>
+<li>一行代码最长不能超过IDE显示的宽度</li>
+</ul>
+</li>
+<li>善用空行分割单元块<ul>
+<li>成员变量与函数之间</li>
+<li>静态成员变量和普通成员变量、函数之间</li>
+<li>成员变量之间</li>
+</ul>
+</li>
+<li>四格缩进还是两格缩进<ul>
+<li>跟业内推荐的风格统一，跟著名开源项目统一</li>
+<li>推荐两格缩进：节省空间；四格缩进代码嵌套层次过深，累计缩进过多，容易导致一行折成两行</li>
+<li>不用tab键缩进，不同ide下tab键的显示宽度不同</li>
+</ul>
+</li>
+<li>打括号是否要另起一行<ul>
+<li>将括号放到语句同一行：节省代码行数</li>
+<li>跟随业内标准和开源项目</li>
+</ul>
+</li>
+<li>类中成员的排列顺序<ul>
+<li>成员变量排在函数前面</li>
+<li>成员变量和函数之间按照先静态（静态成员变量或静态函数）后普通（非静态成员变量或非静态函数）的方式排列</li>
+<li>成员变量和函数之间按照作用域范围从大到小的顺序排列，先写public成员变量或函数，然后写protected，最后是private</li>
+<li>把有调用关系的函数放一块儿，一个public调用一个private则两者放一块儿</li>
+</ul>
+</li>
+</ol>
+<h3 id="编程技巧"><a href="#编程技巧" class="headerlink" title="编程技巧"></a>编程技巧</h3><ul>
+<li>把代码分割成更小的单元块</li>
+<li>避免函数参数过多<ul>
+<li>考虑函数职责是否单一，是否能通过拆分为多个函数的方式减少参数</li>
+<li>将函数的参数封装成对象</li>
+</ul>
+</li>
+<li>勿用函数参数来控制逻辑：存在控制标志可以考虑拆分为不同函数，保持职责单一</li>
+<li>函数设计要职责单一</li>
+<li>移除过深的嵌套层次<ul>
+<li>去掉多余的if或else语句</li>
+<li>使用编程语言提供的continue、break、return关键字提前退出嵌套</li>
+<li>调整执行顺序减少嵌套</li>
+<li>将部分嵌套逻辑封装成函数调用</li>
+<li>使用多态来替代if-else、switch-case条件判断的方法</li>
+</ul>
+</li>
+<li>学会使用解释性变量<ul>
+<li>常量取代魔法数字</li>
+<li>使用解释性变量来解释复杂表达式</li>
+</ul>
+</li>
+</ul>
+<h2 id="发现代码质量问题"><a href="#发现代码质量问题" class="headerlink" title="发现代码质量问题"></a>发现代码质量问题</h2><h3 id="常规checklist"><a href="#常规checklist" class="headerlink" title="常规checklist"></a>常规checklist</h3><ul>
+<li>目录设置是否合理</li>
+<li>模块划分是否清晰</li>
+<li>代码结构是否满足“高内聚、松耦合”</li>
+<li>是否遵循经典的设计原则和设计思想（SOLID、DRY、KISS、YAGNI、LOD 等）</li>
+<li>设计模式是否应用得当、是否有过度设计</li>
+<li>代码是否容易扩展，如果要添加新功能，是否容易实现</li>
+<li>代码是否可以复用，是否可以复用已有的项目代码或类库，是否有重复造轮子</li>
+<li>代码是否容易测试，单元测试是否全面覆盖了各种正常和异常的情况</li>
+<li>代码是否易读，是否符合编码规范（比如命名和注释是否恰当、代码风格是否一致等）</li>
+</ul>
+<h3 id="业务需求checklist"><a href="#业务需求checklist" class="headerlink" title="业务需求checklist"></a>业务需求checklist</h3><ul>
+<li>代码是否实现了预期的业务需求</li>
+<li>逻辑是否正确，是否处理了各种异常情况</li>
+<li>日志打印是否得当，是否方便 debug 排查问题</li>
+<li>接口是否易用，是否支持幂等、事务等</li>
+<li>代码是否存在并发问题，是否线程安全</li>
+<li>性能是否有优化空间，比如，SQL、算法是否可以优化</li>
+<li>是否有安全漏洞，比如输入输出校验是否全面</li>
+</ul>
+<h2 id="函数出错返回什么"><a href="#函数出错返回什么" class="headerlink" title="函数出错返回什么"></a>函数出错返回什么</h2><ul>
+<li>返回错误码（有异常处理机制尽量不用错误码）</li>
+<li>返回null值（查询类表示数据不存在可用）</li>
+<li>返回空对象（空字符串和空集合）</li>
+<li>抛出异常对象</li>
+</ul>
+<h3 id="处理异常"><a href="#处理异常" class="headerlink" title="处理异常"></a>处理异常</h3><ul>
+<li>直接吞掉</li>
+<li>原封不动re-throw</li>
+<li>包装成新的异常re-throw</li>
+</ul>
+<h3 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h3><ul>
+<li>如果 func1() 抛出的异常是可以恢复，且 func2() 的调用方并不关心此异常，可以在 func2() 内将 func1() 抛出的异常吞掉</li>
+<li>如果 func1() 抛出的异常对 func2() 的调用方来说，也是可以理解的、关心的 ，并且在业务概念上有一定的相关性，可以选择直接将 func1 抛出的异常 re-throw；</li>
+<li>如果 func1() 抛出的异常太底层，对 func2() 的调用方来说，缺乏背景去理解、且业务概念上无关，可以将它重新包装成调用方可以理解的新异常，然后 re-throw</li>
+</ul>
+<h1 id="设计模式与范式：创建型"><a href="#设计模式与范式：创建型" class="headerlink" title="设计模式与范式：创建型"></a>设计模式与范式：创建型</h1><h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><blockquote>
+<p>一个类只允许创建一个对象（或者叫实例）</p>
+</blockquote>
+<h3 id="为什么使用单例模式"><a href="#为什么使用单例模式" class="headerlink" title="为什么使用单例模式"></a>为什么使用单例模式</h3><ul>
+<li>处理资源访问冲突</li>
+<li>表示全局唯一类</li>
+</ul>
+<h3 id="如何实现一个单例"><a href="#如何实现一个单例" class="headerlink" title="如何实现一个单例"></a>如何实现一个单例</h3><ul>
+<li>构造函数需要private访问权限，这样才能避免外部通过new创建实例</li>
+<li>考虑对象创建时的线程安全问题</li>
+<li>考虑是否支持延迟加载</li>
+<li>考虑getInstance()性能是否足够高（是否加锁）</li>
+</ul>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
+<li>饿汉式：在类加载的时候，instance 静态实例就已经创建并初始化好了；不支持延迟加载</li>
+<li>懒汉式：使用时再初始化，但因为加锁导致并行度低；支持延迟加载</li>
+<li>双重检测：即支持延迟加载又支持高并行</li>
+<li>静态内部类：运用静态内部类的特性，类似饿汉式但是做到了延迟加载，instance的唯一性和线程安全性都由JVM保证，所以这种方式即保证线程安全又支持懒加载</li>
+<li>枚举：通过java枚举类型本身的特性保证线程安全和实例的唯一性</li>
+</ul>
+<h3 id="单例模式存在的问题"><a href="#单例模式存在的问题" class="headerlink" title="单例模式存在的问题"></a>单例模式存在的问题</h3><ul>
+<li>对OOP特性的支持不友好</li>
+<li>单例会隐藏类之间的依赖关系</li>
+<li>单例对代码的扩展性不友好</li>
+<li>单例对代码的可测试性不友好</li>
+<li>单例不支持有参数的构造函数</li>
+</ul>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><ul>
+<li>创建完实例后再调用一个init()函数传递参数</li>
+<li>将参数放到getInstance()方法中（存在调用两次传递不同参数的问题，可以在传递两次参数不同时给予提示）</li>
+<li>将参数放到另一个全局变量中（最推荐的方式）</li>
+</ul>
+<h3 id="替代解决方案"><a href="#替代解决方案" class="headerlink" title="替代解决方案"></a>替代解决方案</h3><ul>
+<li>可以使用静态方法而不是单例保证全局唯一（但存在比单例更多的问题，不支持延迟加载，不灵活</li>
+<li>工厂模式保证类对象全局唯一性</li>
+<li>IOC容器保证类对象全局唯一性</li>
+</ul>
+<h3 id="其他知识点"><a href="#其他知识点" class="headerlink" title="其他知识点"></a>其他知识点</h3><ul>
+<li>单例类对象中的唯一性的作用范围是进程唯一的</li>
+<li>线程唯一的单例可以通过hashmap实现，key存储线程id，value存储对象；Java提供的ThreadLocal并发工具类可以实现线程单例</li>
+<li>集群间单例可以通过将对象存储在外存，通过序列化反序列化获取对象，通过加锁避免其他进程获取对象</li>
+<li>多例模式可以通过Map存储对象类型和对象之间的对应关系来控制对象个数</li>
+<li>对于Java而言，单例的作用域并非进程而是类加载器（因为双亲委托模式）</li>
+</ul>
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><h3 id="分类-1"><a href="#分类-1" class="headerlink" title="分类"></a>分类</h3><ul>
+<li>简单工厂</li>
+<li>工厂方法</li>
+<li>抽象工厂</li>
+</ul>
+<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ul>
+<li>代码中存在 if-else 分支判断，动态地根据不同的类型创建不同的对象。针对这种情况，考虑使用工厂模式，将if-else 创建对象的代码抽离出来，放到工厂类中（简单工厂模式）</li>
+<li>单个对象本身的创建过程比较复杂，比如做各种初始化操作。在这种情况下，考虑使用工厂模式，将对象的创建过程封装到工厂类中（工厂方法模式）</li>
+</ul>
+<h3 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a>作用</h3><ul>
+<li>封装变化：创建逻辑有可能变化，封装成工厂类之后，创建逻辑的变更对调用者透明</li>
+<li>代码复用：创建代码抽离到独立的工厂类之后可以复用</li>
+<li>隔离复杂性：封装复杂的创建逻辑，调用者无需了解如何创建对象</li>
+<li>控制复杂度：将创建代码抽离出来，让原本的函数或类职责更单一，代码更简洁</li>
+</ul>
+<h3 id="DI容器设计"><a href="#DI容器设计" class="headerlink" title="DI容器设计"></a>DI容器设计</h3><ul>
+<li>配置解析：容器读取配置文件，根据配置文件提供的信息来创建对象</li>
+<li>对象创建：利用反射机制动态加载创建对象</li>
+<li>对象生命周期管理：如返回单例对象还是调用一次创建一个、是否支持懒加载、配置对象init和destroy方法</li>
+</ul>
+<h2 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h2><h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<li>属性过多，避免构造方法参数列表过长</li>
+<li>属性之间有一定的依赖关系或者约束条件</li>
+<li>希望创建不可变对象，对象一旦创建后不能改变，所以不能暴露set方法设置属性值</li>
+</ul>
+<h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h3><ul>
+<li>私有化构造函数</li>
+<li>定义静态内部类Builder，暴露set方法设置属性</li>
+<li>调用Builder的build方法创建对象</li>
+</ul>
+<h3 id="和工厂模式的区别"><a href="#和工厂模式的区别" class="headerlink" title="和工厂模式的区别"></a>和工厂模式的区别</h3><ul>
+<li>工厂模式：创建不同的同一类型对象，由给定的参数来创建哪种类型的对象</li>
+<li>建造者模式：创建一种类型的复杂对象，通过可设置的参数定制化创建对象</li>
+</ul>
+<h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><ul>
+<li>基于原型来创建对象</li>
+</ul>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>对象中的数据需要进行复杂的计算才能获得</li>
+<li>需要从RPC、网络、数据库、文件系统等慢速I/O中读取</li>
+</ul>
+<h3 id="实现方式-1"><a href="#实现方式-1" class="headerlink" title="实现方式"></a>实现方式</h3><ul>
+<li>深拷贝：即复制索引也复制数据，得到的是完全独立的对象</li>
+<li>浅拷贝：只复制索引本身，不复制数据，得到的对象和原始对象共享一份数据（除非操作非常耗时，否则不推荐浅拷贝）<br><strong>在 Java 语言中，Object 类的 clone() 方法执行的就是浅拷贝。它只会拷贝对象中的基本数据类型的数据（比如，int、long），以及引用对象（SearchWord）的内存地址，不会递归地拷贝引用对象本身</strong></li>
+</ul>
+<h3 id="深拷贝实现"><a href="#深拷贝实现" class="headerlink" title="深拷贝实现"></a>深拷贝实现</h3><ul>
+<li>递归拷贝对象、对象的引用对象以及引用对象的引用对象，直到要拷贝的对象只包含基本数据类型数据，没有引用对象为止</li>
+<li>先将对象序列化再反序列化为新的对象</li>
+</ul>
+<h3 id="应用方式"><a href="#应用方式" class="headerlink" title="应用方式"></a>应用方式</h3><ul>
+<li>先通过浅拷贝复制对象，然后对需要更新的部分采用深拷贝，即利用了浅拷贝节省时间、空间的优点，又兼顾了深拷贝所具备的数据不共享性，不会因为更改而影响老数据的使用</li>
+</ul>
+<h1 id="设计模式与范式：结构型"><a href="#设计模式与范式：结构型" class="headerlink" title="设计模式与范式：结构型"></a>设计模式与范式：结构型</h1><h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><blockquote>
+<p>在不改变原始类（或叫被代理类）代码的情况下，通过引入代理类来给原始类附加功能</p>
+</blockquote>
+<h3 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h3><ul>
+<li>代理类和原始类实现相同的接口，原始类只负责业务功能，代理类负责在业务代码执行前后附加其他逻辑代码，并通过委托的方式调用原始类来执行业务代码（需要原始类和代理类有相同的接口）</li>
+<li>如果原始类与代理类没有相同的接口，并且原始类的代码并非自己维护，对于这种外部类扩展采用继承的方式，通过代理类继承原始类，然后扩展附加功能</li>
+</ul>
+<h4 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a>存在的问题</h4><ul>
+<li>代理类中需要将原始类所有方法实现一遍，并且每个方法都附加相似的代码逻辑</li>
+<li>如果要添加的附加功能的类不止一个，需要针对每个类创建一个代理类</li>
+</ul>
+<h3 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h3><ul>
+<li>不事先为每个原始类编写代理类，而是在运行的时候，动态地创建原始类对应的代理类<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MetricsCollectorProxy</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> MetricsCollector metricsCollector;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">MetricsCollectorProxy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.metricsCollector = <span class="keyword">new</span> MetricsCollector();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Object <span class="title">createProxy</span><span class="params">(Object proxiedObject)</span> </span>&#123;</span><br><span class="line">    Class&lt;?&gt;[] interfaces = proxiedObject.getClass().getInterfaces();</span><br><span class="line">    DynamicProxyHandler handler = <span class="keyword">new</span> DynamicProxyHandler(proxiedObject);</span><br><span class="line">    <span class="keyword">return</span> Proxy.newProxyInstance(proxiedObject.getClass().getClassLoader(), interfaces, handler);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">DynamicProxyHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Object proxiedObject;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DynamicProxyHandler</span><span class="params">(Object proxiedObject)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.proxiedObject = proxiedObject;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">      <span class="keyword">long</span> startTimestamp = System.currentTimeMillis();</span><br><span class="line">      Object result = method.invoke(proxiedObject, args);</span><br><span class="line">      <span class="keyword">long</span> endTimeStamp = System.currentTimeMillis();</span><br><span class="line">      <span class="keyword">long</span> responseTime = endTimeStamp - startTimestamp;</span><br><span class="line">      String apiName = proxiedObject.getClass().getName() + <span class="string">":"</span> + method.getName();</span><br><span class="line">      RequestInfo requestInfo = <span class="keyword">new</span> RequestInfo(apiName, responseTime, startTimestamp);</span><br><span class="line">      metricsCollector.recordRequest(requestInfo);</span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//MetricsCollectorProxy使用举例</span></span><br><span class="line">MetricsCollectorProxy proxy = <span class="keyword">new</span> MetricsCollectorProxy();</span><br><span class="line">IUserController userController = (IUserController) proxy.createProxy(<span class="keyword">new</span> UserController());</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="使用场景-1"><a href="#使用场景-1" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<li>业务系统的非功能性需求开发：监控、统计、鉴权、限流、事务、幂等、日志</li>
+<li>在RPC、缓存中使用</li>
+</ul>
+<h2 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h2><ul>
+<li>将抽象和实现解耦，让它们可以独立变化</li>
+<li>一个类存在两个（或多个）变化的维度，可以通过组合的方式，让两个（或多个）纬度可以独立扩展</li>
+</ul>
+<h3 id="使用场景-2"><a href="#使用场景-2" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<li>需要分离抽象和实现的业务场景（参见jdbc Driver源码）</li>
+</ul>
+<h2 id="装饰器模式"><a href="#装饰器模式" class="headerlink" title="装饰器模式"></a>装饰器模式</h2><h3 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h3><ul>
+<li>解决继承关系过于复杂的问题，通过组合来替代继承</li>
+</ul>
+<h3 id="作用-2"><a href="#作用-2" class="headerlink" title="作用"></a>作用</h3><ul>
+<li>给原始类增强功能</li>
+</ul>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>可以对原始类嵌套使用多个装饰器（装饰器类需要跟原始类继承相同的抽象类或接口）</li>
+</ul>
+<h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><ul>
+<li>将不兼容的接口转换为可兼容的接口，让原本由于接口不兼容而不能一起工作的类可以一起工作</li>
+</ul>
+<h3 id="实现方式-2"><a href="#实现方式-2" class="headerlink" title="实现方式"></a>实现方式</h3><ul>
+<li>类适配器：使用继承实现</li>
+<li>对象适配器：使用组合实现</li>
+</ul>
+<h3 id="选择依据"><a href="#选择依据" class="headerlink" title="选择依据"></a>选择依据</h3><ul>
+<li>如果待转化的接口方法不多，两种均可</li>
+<li>如果待转化的接口方法很多，而且大多数和待适配的接口相同，推荐使用类适配器，因为适配器能复用父类的方法，比起对象适配器代码量更少</li>
+<li>如果待转化的接口方法很多，而大多数与待适配的接口不同，推荐使用对象适配器，因为组合结构相对于继承更灵活</li>
+</ul>
+<h3 id="使用场景-3"><a href="#使用场景-3" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<li>封装有缺陷的接口设计</li>
+<li>统一多个类的接口设计</li>
+<li>替换以来的外部系统</li>
+<li>兼容老版本接口</li>
+<li>适配不同格式的数据</li>
+</ul>
+<h3 id="代理、桥接、装饰器、适配器-4-种设计模式的区别"><a href="#代理、桥接、装饰器、适配器-4-种设计模式的区别" class="headerlink" title="代理、桥接、装饰器、适配器 4 种设计模式的区别"></a>代理、桥接、装饰器、适配器 4 种设计模式的区别</h3><ul>
+<li>代理模式：代理模式在不改变原始类接口的条件下，为原始类定义一个代理类，主要目的是控制访问，而非加强功能，这是它跟装饰器模式最大的不同。</li>
+<li>桥接模式：桥接模式的目的是将接口部分和实现部分分离，从而让它们可以较为容易、也相对独立地加以改变。</li>
+<li>装饰器模式：装饰者模式在不改变原始类接口的情况下，对原始类功能进行增强，并且支持多个装饰器的嵌套使用。</li>
+<li>适配器模式：适配器模式是一种事后的补救策略。适配器提供跟原始类不同的接口，而代理模式、装饰器模式提供的都是跟原始类相同的接口</li>
+</ul>
+<h2 id="门面模式"><a href="#门面模式" class="headerlink" title="门面模式"></a>门面模式</h2><blockquote>
+<p>门面模式为子系统提供一组统一的接口，定义一组高层接口让子系统更易用</p>
+</blockquote>
+<h3 id="组织门面接口"><a href="#组织门面接口" class="headerlink" title="组织门面接口"></a>组织门面接口</h3><ul>
+<li>门面接口不多，可以和非门面接口放在一起不做特殊标记</li>
+<li>门面接口很多，在已有的接口上再重新抽象一层专门放置门面接口，从类、包的命名上跟原来的接口层做区分</li>
+<li>门面接口特别多，可以将门面接口放到一个新的子系统中</li>
+</ul>
+<h3 id="应用场景-1"><a href="#应用场景-1" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>通过将多个接口调用替换为一个门面接口调用来解决因需要调用多个接口造成的性能问题</li>
+<li>通过提供一组更加简单易用、更高层的接口来解决易用性问题</li>
+<li>通过门面模式包装需要保证事务性的多个接口来解决分布式事务问题</li>
+</ul>
+<h2 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h2><blockquote>
+<p>将一组对象组织（Compose）成树形结构，以表示一种“部分 - 整体”的层次结构。组合让客户端可以统一单个对象和组合对象的处理逻辑</p>
+</blockquote>
+<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><ul>
+<li>业务场景必须能表示成树形结构</li>
+</ul>
+<h2 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h2><blockquote>
+<p>当一个系统中存在大量重复对象的时候，如果这些重复的对象是不可变对象，就可以利用享元模式将对象设计成享元，在内存中只保留一份实例，供多处代码引用</p>
+</blockquote>
+<h3 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a>代码结构</h3><ul>
+<li>通过工厂模式，在工厂类中通过一个map来缓存已经创建过的享元对象来达到复用的目的</li>
+</ul>
+<h3 id="享元模式-vs-单例、缓存、对象池"><a href="#享元模式-vs-单例、缓存、对象池" class="headerlink" title="享元模式 vs 单例、缓存、对象池"></a>享元模式 vs 单例、缓存、对象池</h3><ul>
+<li>单例：在单例模式中，一个类只能创建一个对象，而在享元模式中，一个类可以创建多个对象，每个对象被多处代码引用共享</li>
+<li>缓存：平时所讲的缓存，主要是为了提高访问效率，而非复用</li>
+<li>池化技术：池化技术中的“复用”可以理解为“重复使用”，主要目的是节省时间；享元模式中的“复用”可以理解为“共享使用”，在整个生命周期中，都是被所有使用者共享的，主要目的是节省空间</li>
+</ul>
+<h3 id="享元在Integer中的使用"><a href="#享元在Integer中的使用" class="headerlink" title="享元在Integer中的使用"></a>享元在Integer中的使用</h3><ul>
+<li>在 Java Integer 的实现中，-128 到 127 之间的整型对象会被事先创建好，缓存在 IntegerCache 类中。当使用自动装箱或者 valueOf() 来创建这个数值区间的整型对象时，会复用 IntegerCache 类事先创建好的对象。IntegerCache 类就是享元工厂类，事先创建好的整型对象就是享元对象</li>
+</ul>
+<h3 id="享元在String中的使用"><a href="#享元在String中的使用" class="headerlink" title="享元在String中的使用"></a>享元在String中的使用</h3><ul>
+<li>String 类的享元模式的设计，跟 Integer 类稍微有些不同。Integer 类中要共享的对象，是在类加载的时候，就集中一次性创建好的。对于字符串来说，是在某个字符串常量第一次被用到的时候，存储到常量池中，当之后再用到的时候，直接引用常量池中已经存在</li>
+</ul>
+<h1 id="设计模式与规范：行为型"><a href="#设计模式与规范：行为型" class="headerlink" title="设计模式与规范：行为型"></a>设计模式与规范：行为型</h1><h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><blockquote>
+<p>观察者模式也称为发布订阅模式，在对象之间定义一个一对多的依赖，当一个对象状态改变的时候，所有依赖的对象都会自动收到通知</p>
+</blockquote>
+<h3 id="实现方式-3"><a href="#实现方式-3" class="headerlink" title="实现方式"></a>实现方式</h3><ul>
+<li>同步阻塞：观察者和被观察者代码在同一个线程内执行，被观察者一直阻塞，直到所有的观察者代码都执行完成之后，才执行后续的代码</li>
+<li>异步非阻塞：在每个 执行函数中，创建一个新的线程执行代码；基于 EventBus 来实现</li>
+<li>进程内的实现方式：以上两种均为进程内实现方式</li>
+<li>跨进程的实现方式：基于消息队列的方式</li>
+</ul>
+<h2 id="模版模式"><a href="#模版模式" class="headerlink" title="模版模式"></a>模版模式</h2><blockquote>
+<p>模板方法模式在一个方法中定义一个算法骨架，并将某些步骤推迟到子类中实现。模板方法模式可以让子类在不改变算法整体结构的情况下，重新定义算法中的某些步骤</p>
+</blockquote>
+<h3 id="作用-3"><a href="#作用-3" class="headerlink" title="作用"></a>作用</h3><ul>
+<li>复用<ul>
+<li>Java InputStream</li>
+<li>Java AbstractList</li>
+</ul>
+</li>
+<li>扩展：基于这个作用，模板模式常用在框架的开发中，让框架用户可以在不修改框架源码的情况下，定制化框架的功能<ul>
+<li>Java Servlet</li>
+<li>JUnit TestCase</li>
+</ul>
+</li>
+</ul>
+<h3 id="回调"><a href="#回调" class="headerlink" title="回调"></a>回调</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><ul>
+<li>A 类事先注册某个函数 F 到 B 类，A 类在调用 B 类的 P 函数的时候，B 类反过来调用 A 类注册给它的 F 函数。这里的 F 函数就是“回调函数”。A 调用 B，B 反过来又调用 A，这种调用机制就叫作“回调”。</li>
+</ul>
+<h4 id="分类-2"><a href="#分类-2" class="headerlink" title="分类"></a>分类</h4><ul>
+<li>同步回调：函数返回之前执行回调函数（像模板模式）</li>
+<li>异步回调：函数返回之后执行回调函数（像观察者模式）</li>
+</ul>
+<h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><ul>
+<li>JdbcTemplate：JdbcTemplate 通过回调的机制，将不变的执行流程抽离出来，放到模板方法 execute() 中，将可变的部分设计成回调 StatementCallback，由用户来定制。query() 函数是对 execute() 函数的二次封装，让接口用起来更加方便。</li>
+<li>setClickListener：往 setOnClickListener() 函数中注册好回调函数之后，并不需要等待回调函数执行</li>
+<li>addShutdownHook：Tomcat和JVM的shutdown hook；JVM 提供了 Runtime.addShutdownHook(Thread hook) 方法，可以注册一个 JVM 关闭的 Hook。当应用程序关闭的时候，JVM会自动调用Hook代码</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">回调</th>
+<th style="text-align:center">模板模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">应用场景几乎一致</td>
+<td style="text-align:center">应用场景几乎一致</td>
+</tr>
+<tr>
+<td style="text-align:center">基于组合关系来实现，把一个对象传递给另一个对象，是一种对象之间的关系</td>
+<td style="text-align:center">基于继承关系来实现，子类重写父类的抽象方法，是一种类之间的关系</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">像 Java 这种只支持单继承的语言，基于模板模式编写的子类，已经继承了一个父类，不再具有继承的能力</td>
+</tr>
+<tr>
+<td style="text-align:center">可以使用匿名类来创建回调对象，可以不用事先定义类</td>
+<td style="text-align:center">针对不同的实现都要定义不同的子类</td>
+</tr>
+<tr>
+<td style="text-align:center">回调就更加灵活，只需要往用到的模板方法中注入回调对象即可</td>
+<td style="text-align:center">如果某个类中定义了多个模板方法，每个方法都有对应的抽象方法，那即便我们只用到其中的一个模板方法，子类也必须实现所有的抽象方法</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><blockquote>
+<p>定义一族算法类，将每个算法分别封装起来，让它们可以互相替换。策略模式可以使算法的变化独立于使用它们的客户端</p>
+</blockquote>
+<h3 id="策略定义"><a href="#策略定义" class="headerlink" title="策略定义"></a>策略定义</h3><ul>
+<li>包含一个策略接口和一组实现这个接口的策略类。所有的策略类都实现相同的接口，客户端代码基于接口而非实现编程，可以灵活地替换不同的策略</li>
+</ul>
+<h3 id="策略创建"><a href="#策略创建" class="headerlink" title="策略创建"></a>策略创建</h3><ul>
+<li>使用策略的时候通过类型来判断创建哪个策略使用</li>
+<li>为了封装创建细节，把根据类型创建策略的逻辑抽离出来放到工厂类中</li>
+<li>无状态可以缓存策略，不用每次创建</li>
+<li>有状态需要每次创建</li>
+</ul>
+<h3 id="策略使用"><a href="#策略使用" class="headerlink" title="策略使用"></a>策略使用</h3><ul>
+<li>运行时动态确定使用哪种策略，即在程序运行期间根据配置、用户输入、计算结果等不确定因素动态决定使用哪种策略</li>
+</ul>
+<h3 id="解决if-esle过多的问题"><a href="#解决if-esle过多的问题" class="headerlink" title="解决if-esle过多的问题"></a>解决if-esle过多的问题</h3><ul>
+<li>不每次创建的策略实际是使用查表法，根据类型查表替代根据类型分支判断</li>
+<li>每次创建的策略实际是将原本的if-else分支判断转移到工厂之中</li>
+</ul>
+<h3 id="作用-4"><a href="#作用-4" class="headerlink" title="作用"></a>作用</h3><ul>
+<li>解耦策略的定义、创建和使用，控制代码的复杂度，让每个部分都不至于过于复杂、代码量过多</li>
+<li>对于复杂代码来说，还能让其满足开闭原则，添加新策略的时候，最小化、集中化代码改动，减少引入 bug 的风险</li>
+</ul>
+<h2 id="职责链模式"><a href="#职责链模式" class="headerlink" title="职责链模式"></a>职责链模式</h2><blockquote>
+<p>将请求的发送和接收解耦，让多个接收对象都有机会处理这个请求。将这些接收对象串成一条链，并沿着这条链传递这个请求，直到链上的某个接收对象能够处理它为止</p>
+</blockquote>
+<h3 id="实现方式-4"><a href="#实现方式-4" class="headerlink" title="实现方式"></a>实现方式</h3><ul>
+<li>用链表存储处理器</li>
+<li>用数组存储处理器</li>
+</ul>
+<h3 id="应用场景-2"><a href="#应用场景-2" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>敏感词过滤</li>
+<li>过滤器（Servlet Filter）</li>
+<li>拦截器（Spring Interceptor）</li>
+</ul>
+<h3 id="为什么"><a href="#为什么" class="headerlink" title="为什么"></a>为什么</h3><ul>
+<li>可以应对代码复杂性</li>
+<li>让代码满足开闭原则，提高代码扩展性</li>
+<li>配置链更灵活，可以选择配置哪几个处理器而不是全部</li>
+</ul>
+<h3 id="Servlet-Filter"><a href="#Servlet-Filter" class="headerlink" title="Servlet Filter"></a>Servlet Filter</h3><ul>
+<li>tomcat ApplicationFilterChain：使用递归实现，可以做到双向过滤</li>
+</ul>
+<h3 id="Spring-Interceptor"><a href="#Spring-Interceptor" class="headerlink" title="Spring Interceptor"></a>Spring Interceptor</h3><ul>
+<li>因为请求和响应分开拦截，所以未使用递归</li>
+</ul>
+<h3 id="AOP、Servlet-Filter、Spring-Interceptor选择"><a href="#AOP、Servlet-Filter、Spring-Interceptor选择" class="headerlink" title="AOP、Servlet Filter、Spring Interceptor选择"></a>AOP、Servlet Filter、Spring Interceptor选择</h3><blockquote>
+<p>根据需求粒度进行选择</p>
+</blockquote>
+<ul>
+<li>Servlet Filter：与框架无关，对所有请求响应有效，能处理原始请求，但无法获取请求控制器的信息</li>
+<li>Spring Interceptor：与框架耦合，可以通过Spring提供配置，相比而言更灵活</li>
+<li>AOP：业务内拦截，更细粒度</li>
+</ul>
+<h2 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h2><h3 id="状态机实现方式"><a href="#状态机实现方式" class="headerlink" title="状态机实现方式"></a>状态机实现方式</h3><ul>
+<li>分支逻辑法：参照状态转移图，将每一个状态转移，原模原样地直译成代码。编写的代码会包含大量的 if-else 或 switch-case 分支判断逻辑，甚至是嵌套的分支判断逻辑<br><img src="/2020/06/21/设计模式/状态机.jpeg" alt="状态机"></li>
+<li>查表法：状态机用二维表来表示，在二维表中，第一维表示当前状态，第二维表示事件，值表示当前状态经过事件之后，转移到的新状态及其执行的动作<br><img src="/2020/06/21/设计模式/查表法.jpeg" alt="查表法"></li>
+<li>状态模式：通过将事件触发的状态转移和动作执行，拆分到不同的状态类中，来避免分支判断逻辑</li>
+</ul>
+<h2 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h2><p>迭代器模式将集合对象的遍历操作从集合类中拆分出来，放到迭代器类中，让两者的职责更加单一<br><img src="/2020/06/21/设计模式/迭代器.jpeg" alt="迭代器"></p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><ul>
+<li>迭代器中需要定义 hasNext()、currentItem()、next() 三个最基本的方法</li>
+<li>待遍历的容器对象通过依赖注入传递到迭代器类中</li>
+<li>容器通过 iterator() 方法来创建迭代器<br><img src="/2020/06/21/设计模式/迭代器实现.jpeg" alt="迭代器实现"></li>
+</ul>
+<h3 id="使用迭代器的原因"><a href="#使用迭代器的原因" class="headerlink" title="使用迭代器的原因"></a>使用迭代器的原因</h3><ul>
+<li>迭代器模式封装集合内部的复杂数据结构，开发者不需要了解如何遍历，直接使用容器提供的迭代器即可</li>
+<li>迭代器模式将集合对象的遍历操作从集合类中拆分出来，放到迭代器类中，让两者的职责更加单一</li>
+<li>迭代器模式让添加新的遍历算法更加容易，更符合开闭原则。除此之外，因为迭代器都实现自相同的接口，在开发中，基于接口而非实现编程，替换迭代器也变得更加容易</li>
+</ul>
+<h3 id="修改集合导致未决行为"><a href="#修改集合导致未决行为" class="headerlink" title="修改集合导致未决行为"></a>修改集合导致未决行为</h3><ul>
+<li>遍历时不允许增删元素（无法得知结束点，实现困难）</li>
+<li>增删元素后让遍历报错（设置modCount和expectedModCount，修改之后更新modCount，迭代时每次检查两个值，不相等则报错）</li>
+</ul>
+<h3 id="安全删除集合元素（Java）"><a href="#安全删除集合元素（Java）" class="headerlink" title="安全删除集合元素（Java）"></a>安全删除集合元素（Java）</h3><ul>
+<li>增加一个lastRet成员变量来记录游标指向的前一个元素，通过迭代器去删除这个元素的时候，更新迭代器中的游标和 lastRet 值，来保证不会因为删除元素而导致某个元素遍历不到</li>
+</ul>
+<h3 id="实现支持快照功能的迭代器"><a href="#实现支持快照功能的迭代器" class="headerlink" title="实现支持快照功能的迭代器"></a>实现支持快照功能的迭代器</h3><ul>
+<li>在迭代器类中定义一个成员变量 snapshot 来存储快照。每当创建迭代器的时候，都拷贝一份容器中的元素到快照中，后续的遍历操作都基于这个迭代器自己持有的快照来进行（由于拷贝，会增加内存消耗）</li>
+<li>为每个元素保存两个时间戳，一个是添加时间戳 addTimestamp，一个是删除时间戳 delTimestamp。当元素被加入到集合中的时候，将 addTimestamp 设置为当前时间，将 delTimestamp 设置成最大长整型值（Long.MAX_VALUE）。当元素被删除时，将 delTimestamp 更新为当前时间，表示已经被删除，只做标记删除（三个数组，一个元素数组，两个时间戳数组，为了支持随机下表访问，再增加一个元素数组，一个真实删除，一个作为快照数组逻辑删除）</li>
+</ul>
+<h2 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h2><blockquote>
+<p>允许一个或多个操作应用到一组对象上，解耦操作和对象本身</p>
+</blockquote>
+<p><img src="/2020/06/21/设计模式/访问者模式.jpeg" alt="访问者模式"></p>
+<h3 id="设计意图"><a href="#设计意图" class="headerlink" title="设计意图"></a>设计意图</h3><ul>
+<li>解耦操作和对象本身</li>
+<li>保持类职责单一</li>
+<li>满足开闭原则</li>
+<li>应对代码的复杂性</li>
+</ul>
+<h3 id="设计难点"><a href="#设计难点" class="headerlink" title="设计难点"></a>设计难点</h3><ul>
+<li>难点在代码实现。原因是函数重载在大部分面向对象编程语言中是静态绑定的。调用类的哪个重载函数，是在编译期间，由参数的声明类型决定的，而非运行时，根据参数的实际类型决定的</li>
+</ul>
+<h3 id="应用场景-3"><a href="#应用场景-3" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>访问者模式针对的是一组类型不同的对象（PdfFile、PPTFile、WordFile）。尽管这组对象的类型是不同的，但是它们继承相同的父类（ResourceFile）或者实现相同的接口。在不同的应用场景下，我们需要对这组对象进行一系列不相关的业务操作（抽取文本、压缩等），但为了避免不断添加功能导致类（PdfFile、PPTFile、WordFile）不断膨胀，职责越来越不单一，以及避免频繁地添加功能导致的频繁代码修改，我们使用访问者模式，将对象与操作解耦，将这些业务操作抽离出来，定义在独立细分的访问者类（Extractor、Compressor）中<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">ResourceFile</span> </span>&#123;</span><br><span class="line">  <span class="keyword">protected</span> String filePath;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">ResourceFile</span><span class="params">(String filePath)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.filePath = filePath;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">abstract</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(Visitor vistor)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PdfFile</span> <span class="keyword">extends</span> <span class="title">ResourceFile</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">PdfFile</span><span class="params">(String filePath)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>(filePath);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(Visitor visitor)</span> </span>&#123;</span><br><span class="line">    visitor.visit(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//...PPTFile、WordFile跟PdfFile类似，这里就省略了...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Visitor</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">visit</span><span class="params">(PdfFile pdfFile)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">visit</span><span class="params">(PPTFile pdfFile)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">visit</span><span class="params">(WordFile pdfFile)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Extractor</span> <span class="keyword">implements</span> <span class="title">Visitor</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visit</span><span class="params">(PPTFile pptFile)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    System.out.println(<span class="string">"Extract PPT."</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visit</span><span class="params">(PdfFile pdfFile)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    System.out.println(<span class="string">"Extract PDF."</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visit</span><span class="params">(WordFile wordFile)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    System.out.println(<span class="string">"Extract WORD."</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Compressor</span> <span class="keyword">implements</span> <span class="title">Visitor</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visit</span><span class="params">(PPTFile pptFile)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    System.out.println(<span class="string">"Compress PPT."</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visit</span><span class="params">(PdfFile pdfFile)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    System.out.println(<span class="string">"Compress PDF."</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visit</span><span class="params">(WordFile wordFile)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    System.out.println(<span class="string">"Compress WORD."</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ToolApplication</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Extractor extractor = <span class="keyword">new</span> Extractor();</span><br><span class="line">    List&lt;ResourceFile&gt; resourceFiles = listAllResourceFiles(args[<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">for</span> (ResourceFile resourceFile : resourceFiles) &#123;</span><br><span class="line">      resourceFile.accept(extractor);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Compressor compressor = <span class="keyword">new</span> Compressor();</span><br><span class="line">    <span class="keyword">for</span>(ResourceFile resourceFile : resourceFiles) &#123;</span><br><span class="line">      resourceFile.accept(compressor);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> List&lt;ResourceFile&gt; <span class="title">listAllResourceFiles</span><span class="params">(String resourceDirectory)</span> </span>&#123;</span><br><span class="line">    List&lt;ResourceFile&gt; resourceFiles = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="comment">//...根据后缀(pdf/ppt/word)由工厂方法创建不同的类对象(PdfFile/PPTFile/WordFile)</span></span><br><span class="line">    resourceFiles.add(<span class="keyword">new</span> PdfFile(<span class="string">"a.pdf"</span>));</span><br><span class="line">    resourceFiles.add(<span class="keyword">new</span> WordFile(<span class="string">"b.word"</span>));</span><br><span class="line">    resourceFiles.add(<span class="keyword">new</span> PPTFile(<span class="string">"c.ppt"</span>));</span><br><span class="line">    <span class="keyword">return</span> resourceFiles;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="单分派（Single-Dispatch）"><a href="#单分派（Single-Dispatch）" class="headerlink" title="单分派（Single Dispatch）"></a>单分派（Single Dispatch）</h3><ul>
+<li>执行哪个对象的哪个方法，只跟“对象”的运行时类型有关</li>
+<li>执行哪个对象的方法，根据对象的运行时类型来决定</li>
+<li>执行对象的哪个方法，根据方法参数的编译时类型来决定</li>
+</ul>
+<h3 id="双分派（Double-Dispatch）"><a href="#双分派（Double-Dispatch）" class="headerlink" title="双分派（Double Dispatch）"></a>双分派（Double Dispatch）</h3><ul>
+<li>执行哪个对象的哪个方法，跟“对象”和“方法参数”两者的运行时类型有关</li>
+<li>执行哪个对象的方法，根据对象的运行时类型来决定</li>
+<li>执行对象的哪个方法，根据方法参数的运行时类型来决定。</li>
+</ul>
+<h2 id="备忘录模式"><a href="#备忘录模式" class="headerlink" title="备忘录模式"></a>备忘录模式</h2><blockquote>
+<p>在不违背封装原则的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，以便之后恢复对象为先前的状态</p>
+</blockquote>
+<h3 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h3><ul>
+<li>存储副本以便后期恢复</li>
+<li>在不违背封装原则的前提下，进行对象的备份和恢复</li>
+</ul>
+<h3 id="应用场景-4"><a href="#应用场景-4" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>防丢失</li>
+<li>撤销</li>
+<li>恢复</li>
+</ul>
+<h3 id="与备份的区别"><a href="#与备份的区别" class="headerlink" title="与备份的区别"></a>与备份的区别</h3><ul>
+<li>备忘录模式：侧重于代码的设计和实现</li>
+<li>备份：侧重架构设计和产品设计</li>
+</ul>
+<h3 id="大对象备份问题"><a href="#大对象备份问题" class="headerlink" title="大对象备份问题"></a>大对象备份问题</h3><ul>
+<li>只备份必要的恢复信息，结合最新的数据来恢复</li>
+<li>全量备份和增量备份相结合</li>
+<li>低频全量备份，高频增量备份，两者结合来做恢复</li>
+</ul>
+<h2 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h2><blockquote>
+<p>命令模式将请求（命令）封装为一个对象，这样可以使用不同的请求参数化其他对象（将不同请求依赖注入到其他对象），并且能够支持请求（命令）的排队执行、记录日志、撤销等（附加控制）功能</p>
+</blockquote>
+<h3 id="应用场景-5"><a href="#应用场景-5" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>用来控制命令的执行，比如，异步、延迟、排队执行命令、撤销重做命令、存储命令、给命令记录日志等等</li>
+</ul>
+<h3 id="与策略模式的区别"><a href="#与策略模式的区别" class="headerlink" title="与策略模式的区别"></a>与策略模式的区别</h3><ul>
+<li>策略模式：不同的策略具有相同的目的、不同的实现、互相之间可以替换</li>
+<li>命令模式：不同的命令具有不同的目的，对应不同的处理逻辑，并且互相之间不可替换</li>
+</ul>
+<h2 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h2><blockquote>
+<p>解释器模式为某个语言定义它的语法（或者叫文法）表示，并定义一个解释器用来处理这个语法</p>
+</blockquote>
+<h3 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h3><ul>
+<li>思想：将语法解析的工作拆分到各个小类中，以此来避免大而全的解析类</li>
+<li>做法：语法规则拆分成一些小的独立的单元，然后对每个单元进行解析，最终合并为对整个语法规则的解析</li>
+<li></li>
+</ul>
+<h2 id="中介模式"><a href="#中介模式" class="headerlink" title="中介模式"></a>中介模式</h2><blockquote>
+<p>中介模式定义了一个单独的（中介）对象，来封装一组对象之间的交互。将这组对象之间的交互委派给与中介对象交互，来避免对象之间的直接交互</p>
+</blockquote>
+<p><img src="/2020/06/21/设计模式/中介模式.jpeg" alt="中介模式"></p>
+<h3 id="与观察者模式的区别"><a href="#与观察者模式的区别" class="headerlink" title="与观察者模式的区别"></a>与观察者模式的区别</h3><ul>
+<li>观察者模式：参与者之间的交互比较有条理，一般都是单向的，一个参与者只有一个身份，要么是观察者，要么是被观察者</li>
+<li>中介模式：参与者之间的交互关系错综复杂，既可以是消息的发送者、也可以同时是消息的接收者</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+		<div>
+		  
+		    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-apple"></i>感谢您的阅读-------------</div>
+    
+</div>
+		  
+		</div>
+		<div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2020/06/21/设计模式/">设计模式</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 邓小俊 的个人博客">邓小俊</a></p>
+  <p><span>发布时间:</span>2020年06月21日 - 22:06</p>
+  <p><span>最后更新:</span>2020年07月05日 - 18:07</p>
+  <p><span>原始链接:</span><a href="/2020/06/21/设计模式/" title="设计模式">http://coldjune.com/2020/06/21/设计模式/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://coldjune.com/2020/06/21/设计模式/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+      
+		</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/架构/" rel="tag"><i class="fa fa-tag"></i> 架构</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/04/高并发设计/" rel="next" title="高并发设计">
+                <i class="fa fa-chevron-left"></i> 高并发设计
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/16/面试记录/" rel="prev" title="面试记录">
+                面试记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">邓小俊</p>
+              <p class="site-description motion-element" itemprop="description">人所恐惧的不是孤独本身，而是害怕承认人本生而孤独的事实</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#面向对象"><span class="nav-number">1.</span> <span class="nav-text">面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#封装-Encapsulation"><span class="nav-number">1.1.</span> <span class="nav-text">封装(Encapsulation)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象-Abstraction"><span class="nav-number">1.2.</span> <span class="nav-text">抽象(Abstraction):</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承-Inheritance"><span class="nav-number">1.3.</span> <span class="nav-text">继承(Inheritance):</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多态-Polymorphism"><span class="nav-number">1.4.</span> <span class="nav-text">多态(Polymorphism):</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象和面向过程"><span class="nav-number">1.5.</span> <span class="nav-text">面向对象和面向过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#似对象实过程"><span class="nav-number">1.6.</span> <span class="nav-text">似对象实过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象类和接口"><span class="nav-number">1.7.</span> <span class="nav-text">抽象类和接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象类"><span class="nav-number">1.7.1.</span> <span class="nav-text">抽象类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#无抽象类语法的问题："><span class="nav-number">1.7.1.1.</span> <span class="nav-text">无抽象类语法的问题：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口"><span class="nav-number">1.7.2.</span> <span class="nav-text">接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟实现抽象类和接口"><span class="nav-number">1.7.3.</span> <span class="nav-text">模拟实现抽象类和接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于接口（抽象）而非实现编程-program-to-an-interface-not-to-an-implementation-："><span class="nav-number">1.8.</span> <span class="nav-text">基于接口（抽象）而非实现编程(program to an interface,not to an implementation)：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何遵循："><span class="nav-number">1.8.1.</span> <span class="nav-text">如何遵循：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多用组合少用继承"><span class="nav-number">1.9.</span> <span class="nav-text">多用组合少用继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#不推荐继承的原因"><span class="nav-number">1.9.1.</span> <span class="nav-text">不推荐继承的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合："><span class="nav-number">1.9.2.</span> <span class="nav-text">组合：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何选择"><span class="nav-number">1.9.3.</span> <span class="nav-text">如何选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贫血模型、充血模型和领域驱动设计-DDD-："><span class="nav-number">1.10.</span> <span class="nav-text">贫血模型、充血模型和领域驱动设计(DDD)：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#贫血模型"><span class="nav-number">1.10.1.</span> <span class="nav-text">贫血模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#充血模型"><span class="nav-number">1.10.2.</span> <span class="nav-text">充血模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DDD"><span class="nav-number">1.10.3.</span> <span class="nav-text">DDD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#贫血盛行原因"><span class="nav-number">1.10.4.</span> <span class="nav-text">贫血盛行原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#充血模型场景"><span class="nav-number">1.10.5.</span> <span class="nav-text">充血模型场景</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计原则"><span class="nav-number">2.</span> <span class="nav-text">设计原则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单一职责原则"><span class="nav-number">2.1.</span> <span class="nav-text">单一职责原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断是否职责是否单一"><span class="nav-number">2.1.1.</span> <span class="nav-text">判断是否职责是否单一</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开闭原则"><span class="nav-number">2.2.</span> <span class="nav-text">开闭原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">2.2.1.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#里氏替换原则"><span class="nav-number">2.3.</span> <span class="nav-text">里氏替换原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口隔离原则"><span class="nav-number">2.4.</span> <span class="nav-text">接口隔离原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#接口含义"><span class="nav-number">2.4.1.</span> <span class="nav-text">接口含义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖反转原则-依赖倒置原则"><span class="nav-number">2.5.</span> <span class="nav-text">依赖反转原则/依赖倒置原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KISS原则"><span class="nav-number">2.6.</span> <span class="nav-text">KISS原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法-1"><span class="nav-number">2.6.1.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#YAGNI原则"><span class="nav-number">2.7.</span> <span class="nav-text">YAGNI原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DRP原则"><span class="nav-number">2.8.</span> <span class="nav-text">DRP原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重复情况"><span class="nav-number">2.8.1.</span> <span class="nav-text">重复情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提高复用性"><span class="nav-number">2.8.2.</span> <span class="nav-text">提高复用性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迪米特法则（最小知识原则）"><span class="nav-number">2.9.</span> <span class="nav-text">迪米特法则（最小知识原则）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#规范与重构"><span class="nav-number">3.</span> <span class="nav-text">规范与重构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">3.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单元测试"><span class="nav-number">3.2.</span> <span class="nav-text">单元测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#作用"><span class="nav-number">3.2.1.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法-2"><span class="nav-number">3.2.2.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可测试性"><span class="nav-number">3.3.</span> <span class="nav-text">可测试性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法-3"><span class="nav-number">3.3.1.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试不友好的代码"><span class="nav-number">3.3.2.</span> <span class="nav-text">测试不友好的代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解耦"><span class="nav-number">3.4.</span> <span class="nav-text">解耦</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断方法"><span class="nav-number">3.4.1.</span> <span class="nav-text">判断方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法-4"><span class="nav-number">3.4.2.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编码规范"><span class="nav-number">3.5.</span> <span class="nav-text">编码规范</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命名"><span class="nav-number">3.5.1.</span> <span class="nav-text">命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注释"><span class="nav-number">3.5.2.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码风格"><span class="nav-number">3.5.3.</span> <span class="nav-text">代码风格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编程技巧"><span class="nav-number">3.5.4.</span> <span class="nav-text">编程技巧</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发现代码质量问题"><span class="nav-number">3.6.</span> <span class="nav-text">发现代码质量问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常规checklist"><span class="nav-number">3.6.1.</span> <span class="nav-text">常规checklist</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#业务需求checklist"><span class="nav-number">3.6.2.</span> <span class="nav-text">业务需求checklist</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数出错返回什么"><span class="nav-number">3.7.</span> <span class="nav-text">函数出错返回什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#处理异常"><span class="nav-number">3.7.1.</span> <span class="nav-text">处理异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原则"><span class="nav-number">3.7.2.</span> <span class="nav-text">原则</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计模式与范式：创建型"><span class="nav-number">4.</span> <span class="nav-text">设计模式与范式：创建型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式"><span class="nav-number">4.1.</span> <span class="nav-text">单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么使用单例模式"><span class="nav-number">4.1.1.</span> <span class="nav-text">为什么使用单例模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何实现一个单例"><span class="nav-number">4.1.2.</span> <span class="nav-text">如何实现一个单例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分类"><span class="nav-number">4.1.3.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式存在的问题"><span class="nav-number">4.1.4.</span> <span class="nav-text">单例模式存在的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案"><span class="nav-number">4.1.4.1.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#替代解决方案"><span class="nav-number">4.1.5.</span> <span class="nav-text">替代解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他知识点"><span class="nav-number">4.1.6.</span> <span class="nav-text">其他知识点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂模式"><span class="nav-number">4.2.</span> <span class="nav-text">工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分类-1"><span class="nav-number">4.2.1.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景"><span class="nav-number">4.2.2.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用-1"><span class="nav-number">4.2.3.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DI容器设计"><span class="nav-number">4.2.4.</span> <span class="nav-text">DI容器设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建造者模式"><span class="nav-number">4.3.</span> <span class="nav-text">建造者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景"><span class="nav-number">4.3.1.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现方式"><span class="nav-number">4.3.2.</span> <span class="nav-text">实现方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#和工厂模式的区别"><span class="nav-number">4.3.3.</span> <span class="nav-text">和工厂模式的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型模式"><span class="nav-number">4.4.</span> <span class="nav-text">原型模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景"><span class="nav-number">4.4.1.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现方式-1"><span class="nav-number">4.4.2.</span> <span class="nav-text">实现方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深拷贝实现"><span class="nav-number">4.4.3.</span> <span class="nav-text">深拷贝实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用方式"><span class="nav-number">4.4.4.</span> <span class="nav-text">应用方式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计模式与范式：结构型"><span class="nav-number">5.</span> <span class="nav-text">设计模式与范式：结构型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代理模式"><span class="nav-number">5.1.</span> <span class="nav-text">代理模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#静态代理"><span class="nav-number">5.1.1.</span> <span class="nav-text">静态代理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#存在的问题"><span class="nav-number">5.1.1.1.</span> <span class="nav-text">存在的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态代理"><span class="nav-number">5.1.2.</span> <span class="nav-text">动态代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景-1"><span class="nav-number">5.1.3.</span> <span class="nav-text">使用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#桥接模式"><span class="nav-number">5.2.</span> <span class="nav-text">桥接模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景-2"><span class="nav-number">5.2.1.</span> <span class="nav-text">使用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰器模式"><span class="nav-number">5.3.</span> <span class="nav-text">装饰器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决问题"><span class="nav-number">5.3.1.</span> <span class="nav-text">解决问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用-2"><span class="nav-number">5.3.2.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">5.3.3.</span> <span class="nav-text">特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适配器模式"><span class="nav-number">5.4.</span> <span class="nav-text">适配器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现方式-2"><span class="nav-number">5.4.1.</span> <span class="nav-text">实现方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择依据"><span class="nav-number">5.4.2.</span> <span class="nav-text">选择依据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景-3"><span class="nav-number">5.4.3.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代理、桥接、装饰器、适配器-4-种设计模式的区别"><span class="nav-number">5.4.4.</span> <span class="nav-text">代理、桥接、装饰器、适配器 4 种设计模式的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#门面模式"><span class="nav-number">5.5.</span> <span class="nav-text">门面模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#组织门面接口"><span class="nav-number">5.5.1.</span> <span class="nav-text">组织门面接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景-1"><span class="nav-number">5.5.2.</span> <span class="nav-text">应用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合模式"><span class="nav-number">5.6.</span> <span class="nav-text">组合模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前提"><span class="nav-number">5.6.1.</span> <span class="nav-text">前提</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#享元模式"><span class="nav-number">5.7.</span> <span class="nav-text">享元模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码结构"><span class="nav-number">5.7.1.</span> <span class="nav-text">代码结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#享元模式-vs-单例、缓存、对象池"><span class="nav-number">5.7.2.</span> <span class="nav-text">享元模式 vs 单例、缓存、对象池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#享元在Integer中的使用"><span class="nav-number">5.7.3.</span> <span class="nav-text">享元在Integer中的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#享元在String中的使用"><span class="nav-number">5.7.4.</span> <span class="nav-text">享元在String中的使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计模式与规范：行为型"><span class="nav-number">6.</span> <span class="nav-text">设计模式与规范：行为型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#观察者模式"><span class="nav-number">6.1.</span> <span class="nav-text">观察者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现方式-3"><span class="nav-number">6.1.1.</span> <span class="nav-text">实现方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模版模式"><span class="nav-number">6.2.</span> <span class="nav-text">模版模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#作用-3"><span class="nav-number">6.2.1.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回调"><span class="nav-number">6.2.2.</span> <span class="nav-text">回调</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原理"><span class="nav-number">6.2.2.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分类-2"><span class="nav-number">6.2.2.2.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#应用"><span class="nav-number">6.2.2.3.</span> <span class="nav-text">应用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#策略模式"><span class="nav-number">6.3.</span> <span class="nav-text">策略模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#策略定义"><span class="nav-number">6.3.1.</span> <span class="nav-text">策略定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#策略创建"><span class="nav-number">6.3.2.</span> <span class="nav-text">策略创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#策略使用"><span class="nav-number">6.3.3.</span> <span class="nav-text">策略使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决if-esle过多的问题"><span class="nav-number">6.3.4.</span> <span class="nav-text">解决if-esle过多的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用-4"><span class="nav-number">6.3.5.</span> <span class="nav-text">作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#职责链模式"><span class="nav-number">6.4.</span> <span class="nav-text">职责链模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现方式-4"><span class="nav-number">6.4.1.</span> <span class="nav-text">实现方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景-2"><span class="nav-number">6.4.2.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么"><span class="nav-number">6.4.3.</span> <span class="nav-text">为什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet-Filter"><span class="nav-number">6.4.4.</span> <span class="nav-text">Servlet Filter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Interceptor"><span class="nav-number">6.4.5.</span> <span class="nav-text">Spring Interceptor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOP、Servlet-Filter、Spring-Interceptor选择"><span class="nav-number">6.4.6.</span> <span class="nav-text">AOP、Servlet Filter、Spring Interceptor选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态模式"><span class="nav-number">6.5.</span> <span class="nav-text">状态模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#状态机实现方式"><span class="nav-number">6.5.1.</span> <span class="nav-text">状态机实现方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代器模式"><span class="nav-number">6.6.</span> <span class="nav-text">迭代器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">6.6.1.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用迭代器的原因"><span class="nav-number">6.6.2.</span> <span class="nav-text">使用迭代器的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改集合导致未决行为"><span class="nav-number">6.6.3.</span> <span class="nav-text">修改集合导致未决行为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全删除集合元素（Java）"><span class="nav-number">6.6.4.</span> <span class="nav-text">安全删除集合元素（Java）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现支持快照功能的迭代器"><span class="nav-number">6.6.5.</span> <span class="nav-text">实现支持快照功能的迭代器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问者模式"><span class="nav-number">6.7.</span> <span class="nav-text">访问者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设计意图"><span class="nav-number">6.7.1.</span> <span class="nav-text">设计意图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计难点"><span class="nav-number">6.7.2.</span> <span class="nav-text">设计难点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景-3"><span class="nav-number">6.7.3.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单分派（Single-Dispatch）"><span class="nav-number">6.7.4.</span> <span class="nav-text">单分派（Single Dispatch）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双分派（Double-Dispatch）"><span class="nav-number">6.7.5.</span> <span class="nav-text">双分派（Double Dispatch）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#备忘录模式"><span class="nav-number">6.8.</span> <span class="nav-text">备忘录模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#要求"><span class="nav-number">6.8.1.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景-4"><span class="nav-number">6.8.2.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与备份的区别"><span class="nav-number">6.8.3.</span> <span class="nav-text">与备份的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大对象备份问题"><span class="nav-number">6.8.4.</span> <span class="nav-text">大对象备份问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令模式"><span class="nav-number">6.9.</span> <span class="nav-text">命令模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景-5"><span class="nav-number">6.9.1.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与策略模式的区别"><span class="nav-number">6.9.2.</span> <span class="nav-text">与策略模式的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解释器模式"><span class="nav-number">6.10.</span> <span class="nav-text">解释器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现-1"><span class="nav-number">6.10.1.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中介模式"><span class="nav-number">6.11.</span> <span class="nav-text">中介模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#与观察者模式的区别"><span class="nav-number">6.11.1.</span> <span class="nav-text">与观察者模式的区别</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">邓小俊</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">博文包含字数&#58;</span>
+    
+    <span title="博文包含字数">277.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("EdodKu35EbSo4VoLhJYQMd09-gzGzoHsz", "qpErN7JcsIzusWGMNuw1QcxN");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+
+
+  
+
+  
+
+ 
+</body>
+</html>

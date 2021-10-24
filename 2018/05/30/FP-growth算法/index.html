@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="true" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico#/images/favicon-16x16-next.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="机器学习,机器学习实战,频繁项集,无监督学习," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="FP-growth算法概述 基于Apriori构建，将数据集存储在一个特定的称作FP树的结构之后发现频繁项集或者频繁项对，即常在一块出现的元素项的集合FP树  FP-growth算法的优缺点 优点：一般要快于Apriori 缺点：实现比较困难，在某些数据集上性能会下降 适用数据类型：标称型数据  工作原理FP-growth算法将数据存储在一种称为FP树的紧凑数据结构中。FP代表 频繁模式(Freq">
+<meta name="keywords" content="机器学习,机器学习实战,频繁项集,无监督学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FP-growth算法">
+<meta property="og:url" content="http://coldjune.com/2018/05/30/FP-growth算法/index.html">
+<meta property="og:site_name" content="Stay Hungary">
+<meta property="og:description" content="FP-growth算法概述 基于Apriori构建，将数据集存储在一个特定的称作FP树的结构之后发现频繁项集或者频繁项对，即常在一块出现的元素项的集合FP树  FP-growth算法的优缺点 优点：一般要快于Apriori 缺点：实现比较困难，在某些数据集上性能会下降 适用数据类型：标称型数据  工作原理FP-growth算法将数据存储在一种称为FP树的紧凑数据结构中。FP代表 频繁模式(Freq">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://coldjune.com/2018/05/30/FP-growth算法/简单示例数据.png">
+<meta property="og:image" content="http://coldjune.com/2018/05/30/FP-growth算法/一棵FP树.png">
+<meta property="og:image" content="http://coldjune.com/2018/05/30/FP-growth算法/带头指针表的FP树.png">
+<meta property="og:image" content="http://coldjune.com/2018/05/30/FP-growth算法/将非频繁项移除并且重排序后的事务数据集.png">
+<meta property="og:image" content="http://coldjune.com/2018/05/30/FP-growth算法/FP树构建过程.png">
+<meta property="og:image" content="http://coldjune.com/2018/05/30/FP-growth算法/带头指针表的FP树.png">
+<meta property="og:image" content="http://coldjune.com/2018/05/30/FP-growth算法/每个频繁项的前缀路径.png">
+<meta property="og:image" content="http://coldjune.com/2018/05/30/FP-growth算法/元素项t的条件FP树构建过程.png">
+<meta property="og:updated_time" content="2018-05-30T15:42:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FP-growth算法">
+<meta name="twitter:description" content="FP-growth算法概述 基于Apriori构建，将数据集存储在一个特定的称作FP树的结构之后发现频繁项集或者频繁项对，即常在一块出现的元素项的集合FP树  FP-growth算法的优缺点 优点：一般要快于Apriori 缺点：实现比较困难，在某些数据集上性能会下降 适用数据类型：标称型数据  工作原理FP-growth算法将数据存储在一种称为FP树的紧凑数据结构中。FP代表 频繁模式(Freq">
+<meta name="twitter:image" content="http://coldjune.com/2018/05/30/FP-growth算法/简单示例数据.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://coldjune.com/2018/05/30/FP-growth算法/"/>
+
+
+
+
+
+  <title>FP-growth算法 | Stay Hungary</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+		<a href="https://github.com/coldJune" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stay Hungary</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Programming is an art form</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://coldjune.com/2018/05/30/FP-growth算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="邓小俊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay Hungary">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">FP-growth算法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-30T09:02:16+08:00">
+                2018-05-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/05/30/FP-growth算法/" class="leancloud_visitors" data-flag-title="FP-growth算法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,901
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="FP-growth算法概述"><a href="#FP-growth算法概述" class="headerlink" title="FP-growth算法概述"></a>FP-growth算法概述</h2><blockquote>
+<p>基于Apriori构建，将数据集存储在一个特定的称作FP树的结构之后发现频繁项集或者频繁项对，即常在一块出现的元素项的集合FP树</p>
+</blockquote>
+<h3 id="FP-growth算法的优缺点"><a href="#FP-growth算法的优缺点" class="headerlink" title="FP-growth算法的优缺点"></a>FP-growth算法的优缺点</h3><ul>
+<li>优点：一般要快于Apriori</li>
+<li>缺点：实现比较困难，在某些数据集上性能会下降</li>
+<li>适用数据类型：标称型数据</li>
+</ul>
+<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p>FP-growth算法将数据存储在一种称为FP树的紧凑数据结构中。FP代表 <strong>频繁模式(Frequent Pattern)</strong>。一棵FP树与计算机科学中的其他树结构类似，但是它通过连接(link)来连接相似元素，被连起来的元素项可以看成一个链表。一个元素项可以在一棵FP树中出现多次。FP树会存储项集的出现频率，而每个项集会以路径的方式存储在树中。存在相似元素的集合会共享树的一部分。只有当集合之间完全不同时，树才会分叉。树节点上给出集合中的单个元素及其在序列中的出现次数，路径会给出该序列的出现次数。相似项之间的连接即 <strong>节点连接(node link)</strong>，用于快速发现相似项的位置。</p>
+<ul>
+<li>简单示例数据<br><img src="/2018/05/30/FP-growth算法/简单示例数据.png" alt="简单示例数据"></li>
+<li>一棵FP树<br><img src="/2018/05/30/FP-growth算法/一棵FP树.png" alt="一棵FP树"><br>上图中元素项$z$出现了5次，集合$\{r,z\}$出现了1次，$\{t,s,y,x,z\}$出现了2次，$\{t,r,y,x,z\}$出现了一次。元素$z$的右边标的是5，表示z出现了5次，刚才的集合已经给出了4次出现，所以$z$单独出现1次。</li>
+</ul>
+<p>FP-growth算法工作流程如下：</p>
+<ol>
+<li>构建FP树<ul>
+<li>扫描第一遍数据，对所有元素项的出现次数进行计数(如果某元素不频繁，那么该元素的超集也不频繁)</li>
+</ul>
+</li>
+<li>第二遍扫描，利用FP树挖掘频繁项集</li>
+</ol>
+<h3 id="FP-growth算法的一般流程"><a href="#FP-growth算法的一般流程" class="headerlink" title="FP-growth算法的一般流程"></a>FP-growth算法的一般流程</h3><ol>
+<li>收集数据：用任何方法</li>
+<li>准备数据：由于存储的是集合，所以需要离散数据。处理连续数据需要将它们量化为离散值</li>
+<li>分析数据：使用任意方法</li>
+<li>训练算法：构建一个FP树，并对树进行挖掘</li>
+<li>测试算法：没有测试过程</li>
+<li>使用算法：可用于识别经常出现的元素项，从而用于指定决策、推荐元素或进行预测</li>
+</ol>
+<h2 id="FP-growth算法实现"><a href="#FP-growth算法实现" class="headerlink" title="FP-growth算法实现"></a>FP-growth算法实现</h2><h3 id="构建FP树"><a href="#构建FP树" class="headerlink" title="构建FP树"></a>构建FP树</h3><ul>
+<li>FP树类定义<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 树结构</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name_value, num_occur, parent_node)</span>:</span></span><br><span class="line">        <span class="string">"""初始化方法</span></span><br><span class="line"><span class="string">        :param name_value: 节点名称</span></span><br><span class="line"><span class="string">        :param num_occur: 对应节点元素的个数</span></span><br><span class="line"><span class="string">        :param parent_node: 父节点</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.name = name_value</span><br><span class="line">        self.count = num_occur</span><br><span class="line">        <span class="comment"># 链接相似的元素项</span></span><br><span class="line">        self.node_link = <span class="keyword">None</span></span><br><span class="line">        self.parent = parent_node</span><br><span class="line">        self.children = &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inc</span><span class="params">(self, num_occur)</span>:</span></span><br><span class="line">        <span class="string">"""计数值</span></span><br><span class="line"><span class="string">        :param num_occur: 数量</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.count += num_occur</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">display</span><span class="params">(self, ind=<span class="number">1</span>)</span>:</span></span><br><span class="line">        <span class="string">"""显示树结构</span></span><br><span class="line"><span class="string">        :param ind: 子树锁进个数</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        print(<span class="string">' '</span>*ind, self.name, <span class="string">' '</span>, self.count)</span><br><span class="line">        <span class="keyword">for</span> child <span class="keyword">in</span> self.children.values():</span><br><span class="line">            child.display(ind+<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>除了给出的FP树之外，还需要一个头指针表来指向给定类型的第一个实例。利用头指针表，可以快速访问FP树中一个给定类型的所有元素。这里使用一个字典作为数据结构来保存头指针表，除了存放指针外，头指针表还可以用来保存FP树中每类元素的总数。</p>
+<ul>
+<li>带头指针表的FP树<br><img src="/2018/05/30/FP-growth算法/带头指针表的FP树.png" alt="带头指针表的FP树"></li>
+</ul>
+<p>第一次遍历数据集会获得每个元素项的出现频率，然后去掉不满足最小支持度的元素项。下一步构建FP树，在构建时，读入每个项集并将其添加到一条已存在的路径中，如果该路径不存在，则创建一条新路径。由于每个事务都是无序集合，假设有集合$\{z,x,y\}$和$\{y,z,r\}$，在FP树中相同项($y$)只表示一次。为了解决这个问题，在将集合添加到树之前，需要对每个集合基于元素项的绝对出现频率来进行排序。</p>
+<ul>
+<li>将非频繁项移除并且重排序后的事务数据集<br><img src="/2018/05/30/FP-growth算法/将非频繁项移除并且重排序后的事务数据集.png" alt="将非频繁项移除并且重排序后的事务数据集"></li>
+</ul>
+<p>对事务记录过滤和排序后，就可以构建FP树。从空集($\phi$)开始，向其中不断添加频繁项集。过滤、排序后的事务依次添加到树中，如果树中已存在现有元素，则增加现有元素的值；如果元素不存在，则向树添加一个分枝。</p>
+<ul>
+<li>FP树构建过程<br><img src="/2018/05/30/FP-growth算法/FP树构建过程.png" alt="FP树构建过程"></li>
+<li><p>FP树构建函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">create_tree(data_set, min_sup=<span class="number">1</span>):</span><br><span class="line">   <span class="string">"""构建FP树</span></span><br><span class="line"><span class="string">   :param data_set: 数据集</span></span><br><span class="line"><span class="string">   :param min_sup: 最小支持度</span></span><br><span class="line"><span class="string">   :return:</span></span><br><span class="line"><span class="string">   """</span></span><br><span class="line">   <span class="comment"># 用字典创建头指针表</span></span><br><span class="line">   header_table = &#123;&#125;</span><br><span class="line">   <span class="keyword">for</span> trans <span class="keyword">in</span> data_set:</span><br><span class="line">       <span class="comment"># 扫描数据集</span></span><br><span class="line">       <span class="keyword">for</span> item <span class="keyword">in</span> trans:</span><br><span class="line">           <span class="comment"># 统计每个元素项出现的频度</span></span><br><span class="line">           <span class="comment"># 将信息存储在头指针标中</span></span><br><span class="line">           header_table[item] = header_table.get(item, <span class="number">0</span>) + data_set[trans]</span><br><span class="line">   keys = header_table.keys()</span><br><span class="line">   <span class="keyword">for</span> key <span class="keyword">in</span> list(keys):</span><br><span class="line">       <span class="keyword">if</span> header_table[key] &lt; min_sup:</span><br><span class="line">           <span class="comment"># 删除头指针表中出现次数少于最小支持度的项</span></span><br><span class="line">           <span class="keyword">del</span>(header_table[key])</span><br><span class="line">   <span class="comment"># 对头指针表中的数据去重</span></span><br><span class="line">   freq_item_set = set(header_table.keys())</span><br><span class="line">   <span class="keyword">if</span> len(freq_item_set) == <span class="number">0</span>:</span><br><span class="line">       <span class="comment"># 如果去重后的数据为空则返回None</span></span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">None</span>, <span class="keyword">None</span></span><br><span class="line">   <span class="keyword">for</span> key <span class="keyword">in</span> header_table:</span><br><span class="line">       <span class="comment"># 扩展头指针表</span></span><br><span class="line">       <span class="comment"># 用于保存元素项的计数值及指向第一个元素项的指针</span></span><br><span class="line">       header_table[key] = [header_table[key], <span class="keyword">None</span>]</span><br><span class="line">   <span class="comment"># 创建只包含空集合的根节点</span></span><br><span class="line">   ret_tree = TreeNode(<span class="string">'Null Set'</span>, <span class="number">1</span>, <span class="keyword">None</span>)</span><br><span class="line">   <span class="keyword">for</span> tran_set, count <span class="keyword">in</span> data_set.items():</span><br><span class="line">       <span class="comment"># 遍历数据集</span></span><br><span class="line">       local_d = &#123;&#125;</span><br><span class="line">       <span class="keyword">for</span> item <span class="keyword">in</span> tran_set:</span><br><span class="line">           <span class="keyword">if</span> item <span class="keyword">in</span> freq_item_set:</span><br><span class="line">               <span class="comment"># 统计元素全局频率</span></span><br><span class="line">               local_d[item] = header_table[item][<span class="number">0</span>]</span><br><span class="line">       <span class="keyword">if</span> len(local_d) &gt; <span class="number">0</span>:</span><br><span class="line">           <span class="comment"># 如果元素大于0</span></span><br><span class="line">           <span class="comment"># 根据全局频率对每个事务中的元素进行排序</span></span><br><span class="line">           ordered_items = [v[<span class="number">0</span>] <span class="keyword">for</span> v <span class="keyword">in</span> sorted(local_d.items(),</span><br><span class="line">                                                 key=<span class="keyword">lambda</span> p: p[<span class="number">1</span>], reverse=<span class="keyword">True</span>)]</span><br><span class="line">           <span class="comment"># 更新树</span></span><br><span class="line">           update_tree(ordered_items, ret_tree, header_table, count)</span><br><span class="line">   <span class="keyword">return</span> ret_tree, header_table</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">update_tree</span><span class="params">(items, in_tree, header_table, count)</span>:</span></span><br><span class="line">   <span class="string">"""更新树</span></span><br><span class="line"><span class="string">   :param items: 一个项集</span></span><br><span class="line"><span class="string">   :param in_tree: 树</span></span><br><span class="line"><span class="string">   :param header_table: 头指针表</span></span><br><span class="line"><span class="string">   :param count: 该项集对应的计数</span></span><br><span class="line"><span class="string">   :return:</span></span><br><span class="line"><span class="string">   """</span></span><br><span class="line">   <span class="keyword">if</span> items[<span class="number">0</span>] <span class="keyword">in</span> in_tree.children:</span><br><span class="line">       <span class="comment"># 测试事务的第一恶搞元素是否作为子节点</span></span><br><span class="line">       <span class="comment"># 如果是，更新该元素项的计数</span></span><br><span class="line">       in_tree.children[items[<span class="number">0</span>]].inc(count)</span><br><span class="line">   <span class="keyword">else</span>:</span><br><span class="line">       <span class="comment"># 如果不存在</span></span><br><span class="line">       <span class="comment"># 创一个新的子节点添加到树中</span></span><br><span class="line">       in_tree.children[items[<span class="number">0</span>]] = TreeNode(items[<span class="number">0</span>], count, in_tree)</span><br><span class="line">       <span class="keyword">if</span> header_table[items[<span class="number">0</span>]][<span class="number">1</span>] <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">           <span class="comment"># 如果头指针没有指向</span></span><br><span class="line">           <span class="comment"># 将其添加到头指针指向</span></span><br><span class="line">           header_table[items[<span class="number">0</span>]][<span class="number">1</span>] = in_tree.children[items[<span class="number">0</span>]]</span><br><span class="line">       <span class="keyword">else</span>:</span><br><span class="line">           <span class="comment"># 否则在该元素项头指针列表后面进行更新</span></span><br><span class="line">           update_header(header_table[items[<span class="number">0</span>]][<span class="number">1</span>], in_tree.children[items[<span class="number">0</span>]])</span><br><span class="line">   <span class="keyword">if</span> len(items) &gt; <span class="number">1</span>:</span><br><span class="line">       <span class="comment"># 迭代调用</span></span><br><span class="line">       <span class="comment"># 每次去掉列表中的第一个元素</span></span><br><span class="line">       update_tree(items[<span class="number">1</span>::], in_tree.children[items[<span class="number">0</span>]], header_table, count)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">update_header</span><span class="params">(node_to_test, target_node)</span>:</span></span><br><span class="line">   <span class="string">"""更新头指针列表</span></span><br><span class="line"><span class="string">   :param node_to_test: 指针为止</span></span><br><span class="line"><span class="string">   :param target_node: 当前节点</span></span><br><span class="line"><span class="string">   :return:</span></span><br><span class="line"><span class="string">   """</span></span><br><span class="line">   <span class="keyword">while</span> node_to_test.node_link <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">       <span class="comment"># 更新指针为止直到成为尾指针</span></span><br><span class="line">       node_to_test = node_to_test.node_link</span><br><span class="line">   <span class="comment"># 将该节点添加到尾指针后面</span></span><br><span class="line">   node_to_test.node_link = target_node</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>简单数据集及包装器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_simple_dat</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""创建简单数据集</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    simple_dat = [[<span class="string">'r'</span>, <span class="string">'z'</span>, <span class="string">'h'</span>, <span class="string">'j'</span>, <span class="string">'p'</span>],</span><br><span class="line">               [<span class="string">'z'</span>, <span class="string">'y'</span>, <span class="string">'x'</span>, <span class="string">'w'</span>, <span class="string">'v'</span>, <span class="string">'u'</span>, <span class="string">'t'</span>, <span class="string">'s'</span>],</span><br><span class="line">               [<span class="string">'z'</span>],</span><br><span class="line">               [<span class="string">'r'</span>, <span class="string">'x'</span>, <span class="string">'n'</span>, <span class="string">'o'</span>, <span class="string">'s'</span>],</span><br><span class="line">               [<span class="string">'y'</span>, <span class="string">'r'</span>, <span class="string">'x'</span>, <span class="string">'z'</span>, <span class="string">'q'</span>, <span class="string">'t'</span>, <span class="string">'p'</span>],</span><br><span class="line">               [<span class="string">'y'</span>, <span class="string">'z'</span>, <span class="string">'x'</span>, <span class="string">'e'</span>, <span class="string">'q'</span>, <span class="string">'s'</span>, <span class="string">'t'</span>, <span class="string">'m'</span>]]</span><br><span class="line">    <span class="keyword">return</span> simple_dat</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_init_set</span><span class="params">(data_set)</span>:</span></span><br><span class="line">    <span class="string">"""包装数据为字典</span></span><br><span class="line"><span class="string">    :param data_set: 数据集</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    ret_dict = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> trans <span class="keyword">in</span> data_set:</span><br><span class="line">        ret_dict[frozenset(trans)] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> ret_dict</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="挖掘频繁项集"><a href="#挖掘频繁项集" class="headerlink" title="挖掘频繁项集"></a>挖掘频繁项集</h3><h4 id="抽取条件模式基"><a href="#抽取条件模式基" class="headerlink" title="抽取条件模式基"></a>抽取条件模式基</h4><p>从FP树中抽取频繁项集的步骤：</p>
+<ol>
+<li>从FP树中获得条件模式基</li>
+<li>利用条件模式基，构建一个条件FP树</li>
+<li>迭代重复步骤(1)和步骤(2)，直到树包含一个元素项为止</li>
+</ol>
+<p><strong>条件模式基(conditional pattern base)</strong> 是以查找元素项为结尾的路径集合。每一条路径都是一条 <strong>前缀路径(prefix path)</strong>，即介于所查找元素项与根节点之间的所有内容。</p>
+<ul>
+<li>带头指针表的FP树<br><img src="/2018/05/30/FP-growth算法/带头指针表的FP树.png" alt="带头指针表的FP树"><br>上图中符号$r$的前缀路径是$\{x,s\}$、$\{z,x,y\}$和$\{z\}$。每一条前缀路径都与一个计数值关联。该计数值等于起始元素项的计数值，该计数值给了每条路径上r的数目</li>
+<li>每个频繁项的前缀路径<br><img src="/2018/05/30/FP-growth算法/每个频繁项的前缀路径.png" alt="每个频繁项的前缀路径"></li>
+<li>查找前缀路径<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ascend_tree</span><span class="params">(leaf_node, prefix_path)</span>:</span></span><br><span class="line">    <span class="string">"""上溯FP树</span></span><br><span class="line"><span class="string">    :param leaf_node: 树节点</span></span><br><span class="line"><span class="string">    :param prefix_path: 前缀路径</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> leaf_node.parent <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">        <span class="comment"># 如果树节点的父节点不为空</span></span><br><span class="line">        <span class="comment"># 添加前缀路径</span></span><br><span class="line">        prefix_path.append(leaf_node.name)</span><br><span class="line">        <span class="comment"># 上溯父节点</span></span><br><span class="line">        ascend_tree(leaf_node.parent, prefix_path)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_prefix_path</span><span class="params">(base_path, tree_node)</span>:</span></span><br><span class="line">    <span class="string">"""寻找前缀路径</span></span><br><span class="line"><span class="string">    :param base_path: 基本路径</span></span><br><span class="line"><span class="string">    :param tree_node: 树节点</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 条件模式基字典</span></span><br><span class="line">    cond_paths = &#123;&#125;</span><br><span class="line">    <span class="keyword">while</span> tree_node <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">        <span class="comment"># 如果树节点不为空</span></span><br><span class="line">        prefix_path = []</span><br><span class="line">        <span class="comment"># 从该节点上溯</span></span><br><span class="line">        ascend_tree(tree_node, prefix_path)</span><br><span class="line">        <span class="keyword">if</span> len(prefix_path) &gt; <span class="number">1</span>:</span><br><span class="line">            <span class="comment"># 更新该条件模式基的数目</span></span><br><span class="line">            cond_paths[frozenset(prefix_path[<span class="number">1</span>:])] = tree_node.count</span><br><span class="line">        <span class="comment"># 指向链表的下一个元素</span></span><br><span class="line">        tree_node = tree_node.node_link</span><br><span class="line">    <span class="keyword">return</span> cond_paths</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="构建条件FP树"><a href="#构建条件FP树" class="headerlink" title="构建条件FP树"></a>构建条件FP树</h4><p>对于每一个频繁项都要创建一棵条件FP树，使用每一个频繁项的条件模式基作为输入数据，通过相同的建树代码构建条件树。然后递归发现频繁项、发现条件模式基以及另外的条件数</p>
+<ul>
+<li>元素项t的条件FP树构建过程<br><img src="/2018/05/30/FP-growth算法/元素项t的条件FP树构建过程.png" alt="元素项t的条件FP树构建过程"><br>最初树以空集作为根节点。接下来原始的集合$\{y,x,s,z\}$中的集合$\{y,x,z\}$被添加进来。因为不满足最小支持度要求，字符$s$并没有加入。类似地$\{y,x,z\}$也从原始集合$\{y,x,r,z\}$中添加进来</li>
+<li>查找频繁项集<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mine_tree</span><span class="params">(in_tree, header_table, min_sup, pre_fix, freq_item_list)</span>:</span></span><br><span class="line">    <span class="string">"""查找频繁项集</span></span><br><span class="line"><span class="string">    :param in_tree: 树</span></span><br><span class="line"><span class="string">    :param header_table: 头指针列表</span></span><br><span class="line"><span class="string">    :param min_sup: 最小支持度</span></span><br><span class="line"><span class="string">    :param pre_fix: 前缀路径</span></span><br><span class="line"><span class="string">    :param freq_item_list: 频繁项列表</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 对头指针表中的元素按照其出现频率进行排序</span></span><br><span class="line">    big_list = [v[<span class="number">0</span>] <span class="keyword">for</span> v <span class="keyword">in</span> sorted(header_table.items(), key=<span class="keyword">lambda</span> p: p[<span class="number">0</span>])]</span><br><span class="line">    <span class="keyword">for</span> base_pat <span class="keyword">in</span> big_list:</span><br><span class="line">        <span class="comment"># 将频繁项添加到频繁项列表</span></span><br><span class="line">        new_freq_set = pre_fix.copy()</span><br><span class="line">        new_freq_set.add(base_pat)</span><br><span class="line">        freq_item_list.append(new_freq_set)</span><br><span class="line">        <span class="comment"># 查找条件模式基</span></span><br><span class="line">        cond_patt_bases = find_prefix_path(base_pat, header_table[base_pat][<span class="number">1</span>])</span><br><span class="line">        <span class="comment"># 创建条件基对应的FP树</span></span><br><span class="line">        my_cond_tree, my_head = create_tree(cond_patt_bases, min_sup)</span><br><span class="line">        <span class="keyword">if</span> my_head <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="comment"># 如果树中有元素项递归调用</span></span><br><span class="line">            print(<span class="string">'conditional tree for: '</span>, new_freq_set)</span><br><span class="line">            my_cond_tree.display()</span><br><span class="line">            mine_tree(my_cond_tree, my_head, min_sup, new_freq_set, freq_item_list)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="示例：从新闻网站点击流中挖掘"><a href="#示例：从新闻网站点击流中挖掘" class="headerlink" title="示例：从新闻网站点击流中挖掘"></a>示例：从新闻网站点击流中挖掘</h2><ul>
+<li>提取新闻频繁项集<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">10</span>]: parsed_dat = [line.split() <span class="keyword">for</span> line <span class="keyword">in</span> open(<span class="string">'data/kosarak.dat'</span>).readlines()]<span class="comment">#将数据集导入列表</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">11</span>]: init_set = fp_growth.create_init_set(parsed_dat)<span class="comment">#初始集合格式化</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">12</span>]: my_fp_tree, my_header = fp_growth.create_tree(init_set, <span class="number">100000</span>)<span class="comment">#构建FP树，寻找至少被10万人浏览过的新闻</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: my_freq_list = []<span class="comment">#创建空列表保存频繁项集</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: fp_growth.mine_tree(my_fp_tree,my_header,<span class="number">100000</span>,set([]),my_freq_list)</span><br><span class="line">conditional tree <span class="keyword">for</span>:  &#123;<span class="string">'1'</span>&#125;</span><br><span class="line">  Null Set   <span class="number">1</span></span><br><span class="line">   <span class="number">6</span>   <span class="number">107404</span></span><br><span class="line">conditional tree <span class="keyword">for</span>:  &#123;<span class="string">'11'</span>&#125;</span><br><span class="line">  Null Set   <span class="number">1</span></span><br><span class="line">   <span class="number">6</span>   <span class="number">261773</span></span><br><span class="line">conditional tree <span class="keyword">for</span>:  &#123;<span class="string">'3'</span>&#125;</span><br><span class="line">  Null Set   <span class="number">1</span></span><br><span class="line">   <span class="number">6</span>   <span class="number">186289</span></span><br><span class="line">    <span class="number">11</span>   <span class="number">117401</span></span><br><span class="line">   <span class="number">11</span>   <span class="number">9718</span></span><br><span class="line">conditional tree <span class="keyword">for</span>:  &#123;<span class="string">'11'</span>, <span class="string">'3'</span>&#125;</span><br><span class="line">  Null Set   <span class="number">1</span></span><br><span class="line">   <span class="number">6</span>   <span class="number">117401</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">15</span>]: len(my_freq_list)</span><br><span class="line">Out[<span class="number">15</span>]: <span class="number">9</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">16</span>]: my_freq_list</span><br><span class="line">Out[<span class="number">16</span>]:</span><br><span class="line">[&#123;<span class="string">'1'</span>&#125;,</span><br><span class="line"> &#123;<span class="string">'1'</span>, <span class="string">'6'</span>&#125;,</span><br><span class="line"> &#123;<span class="string">'11'</span>&#125;,</span><br><span class="line"> &#123;<span class="string">'11'</span>, <span class="string">'6'</span>&#125;,</span><br><span class="line"> &#123;<span class="string">'3'</span>&#125;,</span><br><span class="line"> &#123;<span class="string">'11'</span>, <span class="string">'3'</span>&#125;,</span><br><span class="line"> &#123;<span class="string">'11'</span>, <span class="string">'3'</span>, <span class="string">'6'</span>&#125;,</span><br><span class="line"> &#123;<span class="string">'3'</span>, <span class="string">'6'</span>&#125;,</span><br><span class="line"> &#123;<span class="string">'6'</span>&#125;]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+		<div>
+		  
+		    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-apple"></i>感谢您的阅读-------------</div>
+    
+</div>
+		  
+		</div>
+		<div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/05/30/FP-growth算法/">FP-growth算法</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 邓小俊 的个人博客">邓小俊</a></p>
+  <p><span>发布时间:</span>2018年05月30日 - 09:05</p>
+  <p><span>最后更新:</span>2018年05月30日 - 23:05</p>
+  <p><span>原始链接:</span><a href="/2018/05/30/FP-growth算法/" title="FP-growth算法">http://coldjune.com/2018/05/30/FP-growth算法/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://coldjune.com/2018/05/30/FP-growth算法/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+      
+		</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"><i class="fa fa-tag"></i> 机器学习</a>
+          
+            <a href="/tags/机器学习实战/" rel="tag"><i class="fa fa-tag"></i> 机器学习实战</a>
+          
+            <a href="/tags/频繁项集/" rel="tag"><i class="fa fa-tag"></i> 频繁项集</a>
+          
+            <a href="/tags/无监督学习/" rel="tag"><i class="fa fa-tag"></i> 无监督学习</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/29/Apriori算法/" rel="next" title="Apriori算法">
+                <i class="fa fa-chevron-left"></i> Apriori算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/30/PCA/" rel="prev" title="PCA">
+                PCA <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">邓小俊</p>
+              <p class="site-description motion-element" itemprop="description">人所恐惧的不是孤独本身，而是害怕承认人本生而孤独的事实</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#FP-growth算法概述"><span class="nav-number">1.</span> <span class="nav-text">FP-growth算法概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FP-growth算法的优缺点"><span class="nav-number">1.1.</span> <span class="nav-text">FP-growth算法的优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作原理"><span class="nav-number">1.2.</span> <span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FP-growth算法的一般流程"><span class="nav-number">1.3.</span> <span class="nav-text">FP-growth算法的一般流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FP-growth算法实现"><span class="nav-number">2.</span> <span class="nav-text">FP-growth算法实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构建FP树"><span class="nav-number">2.1.</span> <span class="nav-text">构建FP树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#挖掘频繁项集"><span class="nav-number">2.2.</span> <span class="nav-text">挖掘频繁项集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#抽取条件模式基"><span class="nav-number">2.2.1.</span> <span class="nav-text">抽取条件模式基</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#构建条件FP树"><span class="nav-number">2.2.2.</span> <span class="nav-text">构建条件FP树</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示例：从新闻网站点击流中挖掘"><span class="nav-number">3.</span> <span class="nav-text">示例：从新闻网站点击流中挖掘</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">邓小俊</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">博文包含字数&#58;</span>
+    
+    <span title="博文包含字数">277.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("EdodKu35EbSo4VoLhJYQMd09-gzGzoHsz", "qpErN7JcsIzusWGMNuw1QcxN");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+ 
+</body>
+</html>

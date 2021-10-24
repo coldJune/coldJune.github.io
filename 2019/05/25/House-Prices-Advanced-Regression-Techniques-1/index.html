@@ -1,0 +1,2563 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="true" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico#/images/favicon-16x16-next.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="kaggle," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这是我第一个真正意义上完成的机器学习项目">
+<meta name="keywords" content="kaggle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="House-Prices-Advanced-Regression-Techniques-1">
+<meta property="og:url" content="http://coldjune.com/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/index.html">
+<meta property="og:site_name" content="Stay Hungary">
+<meta property="og:description" content="这是我第一个真正意义上完成的机器学习项目">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://coldjune.com/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_5_0.png">
+<meta property="og:image" content="http://coldjune.com/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_7_1.png">
+<meta property="og:image" content="http://coldjune.com/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_8_1.png">
+<meta property="og:image" content="http://coldjune.com/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_12_1.png">
+<meta property="og:image" content="http://coldjune.com/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/箱线图.jpeg">
+<meta property="og:image" content="http://coldjune.com/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_13_1.png">
+<meta property="og:image" content="http://coldjune.com/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_15_1.png">
+<meta property="og:image" content="http://coldjune.com/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_18_0.png">
+<meta property="og:image" content="http://coldjune.com/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_30_2.png">
+<meta property="og:image" content="http://coldjune.com/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_33_2.png">
+<meta property="og:image" content="http://coldjune.com/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_29_3.png">
+<meta property="og:image" content="http://coldjune.com/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_33_3.png">
+<meta property="og:image" content="http://coldjune.com/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_47_3.png">
+<meta property="og:updated_time" content="2019-07-20T08:01:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="House-Prices-Advanced-Regression-Techniques-1">
+<meta name="twitter:description" content="这是我第一个真正意义上完成的机器学习项目">
+<meta name="twitter:image" content="http://coldjune.com/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_5_0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://coldjune.com/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/"/>
+
+
+
+
+
+  <title>House-Prices-Advanced-Regression-Techniques-1 | Stay Hungary</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+		<a href="https://github.com/coldJune" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stay Hungary</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Programming is an art form</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://coldjune.com/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="邓小俊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay Hungary">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">House-Prices-Advanced-Regression-Techniques-1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-25T08:57:50+08:00">
+                2019-05-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/" class="leancloud_visitors" data-flag-title="House-Prices-Advanced-Regression-Techniques-1">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  12,176
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  55
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  这是我第一个真正意义上完成的机器学习项目
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我真正接触Kaggle是在做《Hands-On Machine Learning with Scikit-Learn and TensorFlow》的一道练习题的时候，那道练习题使用的数据是Kaggle上一个分类数据集——<a href="https://www.kaggle.com/c/titanic" target="_blank" rel="noopener">Titanic: Machine Learning from Disaster</a>，当我登录这个页面的时候后发现这是一个非常热门的项目，其参与团队(个人)已经达到了11223个，这对我这样一个初来乍到的人是一个不小的冲击，抱着决定在这个平台试一试的心态我开始寻找适合我的项目。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques" target="_blank" rel="noopener">House-Prices-Advanced-Regression-Techniques</a>是Kaggle上的一个知识性竞赛，作为一个回归问题，它提供了适量的数据以及特征供学习者使用；而作为机器学习的入门项目它帮助了很多人完成了从0到1的过程，现在上面有4746个团队(个人)提交了自己的预测结果。我作为一名学习者，也通过自己的努力在上面获得了自己的分数——<em>0.12702</em>，这是使用<code>KernelRidge</code>实现的模型进行预测的结果，这并不算一个很好的评分，大概排在1757名左右(前40%)，但对我来说确实一个很大的进步，这标示着从无到有的过程。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kaggle对于数据初学者来说确实是一个非常适合的平台，kaggler们都不吝啬自己的知识，发布着自己的kernel，表述自己的想法，借此帮助每一个需要帮助的社区成员。能完成这个项目对我来说意义非凡，在这里我特别感谢kaggle上的两位kaggler以及他们的对自己项目的无私奉献，他们分别是<a href="https://www.kaggle.com/pmarcelino" target="_blank" rel="noopener">@Pedro Marcelino</a>和他的kenel——<a href="https://www.kaggle.com/pmarcelino/comprehensive-data-exploration-with-python" target="_blank" rel="noopener">Comprehensive data exploration with Python</a>,他对数据的分析以及把控让现在的我难以望其项背，给了我非常大的启发；以及<a href="https://www.kaggle.com/serigne" target="_blank" rel="noopener">@Serigne</a>和他的kernel——<a href="https://www.kaggle.com/serigne/stacked-regressions-top-4-on-leaderboard" target="_blank" rel="noopener">Stacked Regressions : Top 4% on LeaderBoard</a>,他同样用了<a href="https://www.kaggle.com/pmarcelino" target="_blank" rel="noopener">@Pedro Marcelino</a>的数据分析方法，但是他在数据分析的基础上增加了模型的训练以及分析过程，帮助我学会把控自己的模型。再次对他们表示真挚的感谢。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;虽然这个项目的准确程度还可以有很大的提升，但就我现在的能力而言我决定让它暂且休息一下，好回头看看，总结总结得失。</p>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在我个人的学习过程中，对于机器学习的理解一直都是觉得算法有多么多么重要，但当我真正着手去做的时候，发现事实其实与我想象中的大相径庭。不可否认，算法是构建模型的关键步骤，是不可逾越的一道关隘，但是其对最终模型的起到的作用其实并没有想象中的那么重要。这不经让我想到微软发布的那个关于数据和算法对模型影响的论文——<a href="http://static.googleusercontent.com/media/research.google.com/fr//pubs/archive/35179.pdf" target="_blank" rel="noopener">The Unreasonable Effectiveness of Data</a>，这篇论文说明了当数据量达到一定程度时，算法的优劣将被摒弃，颇有一些殊途同归的意思。而按我的理解，当数据的质量达到一定程度时，算法的优劣差异也会被一定程度上的减弱。我想这也是那么多前辈强调特征工程重要性的原因。</p>
+<h2 id="数据篇"><a href="#数据篇" class="headerlink" title="数据篇"></a>数据篇</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;当我们拿到一份数据的时侯不是将它直接塞入算法，让算法产出一个模型，而应该是先对数据有一个全局的insight，了解数据的组成成分，包括以下几点：</p>
+<ol>
+<li>目标<br>&nbsp;&nbsp;&nbsp;&nbsp;即分类任务或者回归任务，观察需要预测的目标的分布，可以借用<code>seaborn</code>库进行可视化</li>
+<li>特征值<br>&nbsp;&nbsp;&nbsp;&nbsp;即实例的属性，确定属性值是离散的类别标签还是连续的数值型数据，对不同类型的数据需要进行不同的处理</li>
+<li>异常值<br>&nbsp;&nbsp;&nbsp;&nbsp;不是所有的数据分布都是合理的，在数据集中可能存在部分数据的分布超过一定的阈值，这部分数据被称作异常值或者离群点，对异常值的处理需要非常谨慎，这部分数据对模型的好坏起着非常关键的作用。</li>
+<li>空值<br>&nbsp;&nbsp;&nbsp;&nbsp;空值一般是指那种数据集中缺失的值，这部分值可能代表数据的特性，如表示某种特征，也可能只是单纯的缺失值。如果是单纯的值缺失，数值类型可以使用中位数进行填充，而类别标签可以用当前特征表示某种类别数量最多的类别值填充；而如果是表示某种特征，则可以使用<code>None</code>填充类别标签，用<code>0</code>填充数值特征，表示该缺失类别<h3 id="观测"><a href="#观测" class="headerlink" title="观测"></a>观测</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kaggle有一个非常友好的地方，那就是在每一个项目里面都有关于这个数据集的描述，这个项目的描述文件可以在<a href="https://github.com/coldJune/machineLearning/blob/master/kaggle/house_price/data_description.txt" target="_blank" rel="noopener">data_description.txt</a>中看到。结合描述文件和一些python代码可以对数据有一个比较清晰的认知，了解特征的特性、取值和分布，了解目标的特性以及特征和目标之间的直接关系，下面的代码用表的方式直观地展现了数据的一些特性。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入相关数据包</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sbn</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ignore_warn</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">    <span class="comment"># 忽略警告输出</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line">warnings.warn = ignore_warn</span><br><span class="line"><span class="comment"># 设置最大显示列数</span></span><br><span class="line">pd.set_option(<span class="string">"display.max_columns"</span>,<span class="number">500</span>)</span><br><span class="line"><span class="comment"># 导入数据</span></span><br><span class="line">data = pd.read_csv(<span class="string">'./house_price/train.csv'</span>)</span><br><span class="line"><span class="comment">#展示数据的前5行</span></span><br><span class="line">data.head()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<div style="overflow:scroll;">
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Id</th>
+      <th>MSSubClass</th>
+      <th>MSZoning</th>
+      <th>LotFrontage</th>
+      <th>LotArea</th>
+      <th>Street</th>
+      <th>Alley</th>
+      <th>LotShape</th>
+      <th>LandContour</th>
+      <th>Utilities</th>
+      <th>LotConfig</th>
+      <th>LandSlope</th>
+      <th>Neighborhood</th>
+      <th>Condition1</th>
+      <th>Condition2</th>
+      <th>BldgType</th>
+      <th>HouseStyle</th>
+      <th>OverallQual</th>
+      <th>OverallCond</th>
+      <th>YearBuilt</th>
+      <th>YearRemodAdd</th>
+      <th>RoofStyle</th>
+      <th>RoofMatl</th>
+      <th>Exterior1st</th>
+      <th>Exterior2nd</th>
+      <th>MasVnrType</th>
+      <th>MasVnrArea</th>
+      <th>ExterQual</th>
+      <th>ExterCond</th>
+      <th>Foundation</th>
+      <th>BsmtQual</th>
+      <th>BsmtCond</th>
+      <th>BsmtExposure</th>
+      <th>BsmtFinType1</th>
+      <th>BsmtFinSF1</th>
+      <th>BsmtFinType2</th>
+      <th>BsmtFinSF2</th>
+      <th>BsmtUnfSF</th>
+      <th>TotalBsmtSF</th>
+      <th>Heating</th>
+      <th>HeatingQC</th>
+      <th>CentralAir</th>
+      <th>Electrical</th>
+      <th>1stFlrSF</th>
+      <th>2ndFlrSF</th>
+      <th>LowQualFinSF</th>
+      <th>GrLivArea</th>
+      <th>BsmtFullBath</th>
+      <th>BsmtHalfBath</th>
+      <th>FullBath</th>
+      <th>HalfBath</th>
+      <th>BedroomAbvGr</th>
+      <th>KitchenAbvGr</th>
+      <th>KitchenQual</th>
+      <th>TotRmsAbvGrd</th>
+      <th>Functional</th>
+      <th>Fireplaces</th>
+      <th>FireplaceQu</th>
+      <th>GarageType</th>
+      <th>GarageYrBlt</th>
+      <th>GarageFinish</th>
+      <th>GarageCars</th>
+      <th>GarageArea</th>
+      <th>GarageQual</th>
+      <th>GarageCond</th>
+      <th>PavedDrive</th>
+      <th>WoodDeckSF</th>
+      <th>OpenPorchSF</th>
+      <th>EnclosedPorch</th>
+      <th>3SsnPorch</th>
+      <th>ScreenPorch</th>
+      <th>PoolArea</th>
+      <th>PoolQC</th>
+      <th>Fence</th>
+      <th>MiscFeature</th>
+      <th>MiscVal</th>
+      <th>MoSold</th>
+      <th>YrSold</th>
+      <th>SaleType</th>
+      <th>SaleCondition</th>
+      <th>SalePrice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>60</td>
+      <td>RL</td>
+      <td>65.0</td>
+      <td>8450</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>Reg</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>Inside</td>
+      <td>Gtl</td>
+      <td>CollgCr</td>
+      <td>Norm</td>
+      <td>Norm</td>
+      <td>1Fam</td>
+      <td>2Story</td>
+      <td>7</td>
+      <td>5</td>
+      <td>2003</td>
+      <td>2003</td>
+      <td>Gable</td>
+      <td>CompShg</td>
+      <td>VinylSd</td>
+      <td>VinylSd</td>
+      <td>BrkFace</td>
+      <td>196.0</td>
+      <td>Gd</td>
+      <td>TA</td>
+      <td>PConc</td>
+      <td>Gd</td>
+      <td>TA</td>
+      <td>No</td>
+      <td>GLQ</td>
+      <td>706</td>
+      <td>Unf</td>
+      <td>0</td>
+      <td>150</td>
+      <td>856</td>
+      <td>GasA</td>
+      <td>Ex</td>
+      <td>Y</td>
+      <td>SBrkr</td>
+      <td>856</td>
+      <td>854</td>
+      <td>0</td>
+      <td>1710</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>Gd</td>
+      <td>8</td>
+      <td>Typ</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>Attchd</td>
+      <td>2003.0</td>
+      <td>RFn</td>
+      <td>2</td>
+      <td>548</td>
+      <td>TA</td>
+      <td>TA</td>
+      <td>Y</td>
+      <td>0</td>
+      <td>61</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2008</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>208500</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>20</td>
+      <td>RL</td>
+      <td>80.0</td>
+      <td>9600</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>Reg</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>FR2</td>
+      <td>Gtl</td>
+      <td>Veenker</td>
+      <td>Feedr</td>
+      <td>Norm</td>
+      <td>1Fam</td>
+      <td>1Story</td>
+      <td>6</td>
+      <td>8</td>
+      <td>1976</td>
+      <td>1976</td>
+      <td>Gable</td>
+      <td>CompShg</td>
+      <td>MetalSd</td>
+      <td>MetalSd</td>
+      <td>None</td>
+      <td>0.0</td>
+      <td>TA</td>
+      <td>TA</td>
+      <td>CBlock</td>
+      <td>Gd</td>
+      <td>TA</td>
+      <td>Gd</td>
+      <td>ALQ</td>
+      <td>978</td>
+      <td>Unf</td>
+      <td>0</td>
+      <td>284</td>
+      <td>1262</td>
+      <td>GasA</td>
+      <td>Ex</td>
+      <td>Y</td>
+      <td>SBrkr</td>
+      <td>1262</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1262</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>0</td>
+      <td>3</td>
+      <td>1</td>
+      <td>TA</td>
+      <td>6</td>
+      <td>Typ</td>
+      <td>1</td>
+      <td>TA</td>
+      <td>Attchd</td>
+      <td>1976.0</td>
+      <td>RFn</td>
+      <td>2</td>
+      <td>460</td>
+      <td>TA</td>
+      <td>TA</td>
+      <td>Y</td>
+      <td>298</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>5</td>
+      <td>2007</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>181500</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>60</td>
+      <td>RL</td>
+      <td>68.0</td>
+      <td>11250</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>Inside</td>
+      <td>Gtl</td>
+      <td>CollgCr</td>
+      <td>Norm</td>
+      <td>Norm</td>
+      <td>1Fam</td>
+      <td>2Story</td>
+      <td>7</td>
+      <td>5</td>
+      <td>2001</td>
+      <td>2002</td>
+      <td>Gable</td>
+      <td>CompShg</td>
+      <td>VinylSd</td>
+      <td>VinylSd</td>
+      <td>BrkFace</td>
+      <td>162.0</td>
+      <td>Gd</td>
+      <td>TA</td>
+      <td>PConc</td>
+      <td>Gd</td>
+      <td>TA</td>
+      <td>Mn</td>
+      <td>GLQ</td>
+      <td>486</td>
+      <td>Unf</td>
+      <td>0</td>
+      <td>434</td>
+      <td>920</td>
+      <td>GasA</td>
+      <td>Ex</td>
+      <td>Y</td>
+      <td>SBrkr</td>
+      <td>920</td>
+      <td>866</td>
+      <td>0</td>
+      <td>1786</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>Gd</td>
+      <td>6</td>
+      <td>Typ</td>
+      <td>1</td>
+      <td>TA</td>
+      <td>Attchd</td>
+      <td>2001.0</td>
+      <td>RFn</td>
+      <td>2</td>
+      <td>608</td>
+      <td>TA</td>
+      <td>TA</td>
+      <td>Y</td>
+      <td>0</td>
+      <td>42</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>9</td>
+      <td>2008</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>223500</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>70</td>
+      <td>RL</td>
+      <td>60.0</td>
+      <td>9550</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>Corner</td>
+      <td>Gtl</td>
+      <td>Crawfor</td>
+      <td>Norm</td>
+      <td>Norm</td>
+      <td>1Fam</td>
+      <td>2Story</td>
+      <td>7</td>
+      <td>5</td>
+      <td>1915</td>
+      <td>1970</td>
+      <td>Gable</td>
+      <td>CompShg</td>
+      <td>Wd Sdng</td>
+      <td>Wd Shng</td>
+      <td>None</td>
+      <td>0.0</td>
+      <td>TA</td>
+      <td>TA</td>
+      <td>BrkTil</td>
+      <td>TA</td>
+      <td>Gd</td>
+      <td>No</td>
+      <td>ALQ</td>
+      <td>216</td>
+      <td>Unf</td>
+      <td>0</td>
+      <td>540</td>
+      <td>756</td>
+      <td>GasA</td>
+      <td>Gd</td>
+      <td>Y</td>
+      <td>SBrkr</td>
+      <td>961</td>
+      <td>756</td>
+      <td>0</td>
+      <td>1717</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>1</td>
+      <td>Gd</td>
+      <td>7</td>
+      <td>Typ</td>
+      <td>1</td>
+      <td>Gd</td>
+      <td>Detchd</td>
+      <td>1998.0</td>
+      <td>Unf</td>
+      <td>3</td>
+      <td>642</td>
+      <td>TA</td>
+      <td>TA</td>
+      <td>Y</td>
+      <td>0</td>
+      <td>35</td>
+      <td>272</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2006</td>
+      <td>WD</td>
+      <td>Abnorml</td>
+      <td>140000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>60</td>
+      <td>RL</td>
+      <td>84.0</td>
+      <td>14260</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>FR2</td>
+      <td>Gtl</td>
+      <td>NoRidge</td>
+      <td>Norm</td>
+      <td>Norm</td>
+      <td>1Fam</td>
+      <td>2Story</td>
+      <td>8</td>
+      <td>5</td>
+      <td>2000</td>
+      <td>2000</td>
+      <td>Gable</td>
+      <td>CompShg</td>
+      <td>VinylSd</td>
+      <td>VinylSd</td>
+      <td>BrkFace</td>
+      <td>350.0</td>
+      <td>Gd</td>
+      <td>TA</td>
+      <td>PConc</td>
+      <td>Gd</td>
+      <td>TA</td>
+      <td>Av</td>
+      <td>GLQ</td>
+      <td>655</td>
+      <td>Unf</td>
+      <td>0</td>
+      <td>490</td>
+      <td>1145</td>
+      <td>GasA</td>
+      <td>Ex</td>
+      <td>Y</td>
+      <td>SBrkr</td>
+      <td>1145</td>
+      <td>1053</td>
+      <td>0</td>
+      <td>2198</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>4</td>
+      <td>1</td>
+      <td>Gd</td>
+      <td>9</td>
+      <td>Typ</td>
+      <td>1</td>
+      <td>TA</td>
+      <td>Attchd</td>
+      <td>2000.0</td>
+      <td>RFn</td>
+      <td>3</td>
+      <td>836</td>
+      <td>TA</td>
+      <td>TA</td>
+      <td>Y</td>
+      <td>192</td>
+      <td>84</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>12</td>
+      <td>2008</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>250000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上表将所有的特征列都展示了出来，通过和描述文件结合，可以大概知道特征存在数值和类别两种不同形式的数据。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但仅有这些明显是不够的，在远距离观察之后，让我们走近一点，细细品一品这些有趣的数据。在接近它之前，还有一点点额外的工作需要做。我们知道在用<code>pandas</code>导入数据的时候，<code>DataFrame</code>会自动为我们创建<code>index</code>,而通过对数据的遥望，我们发现数据集中有一个叫<code>Id</code>的特征列是按照有序递增的方式排列的，这个特征列在描述文件中并没有提及，由此我们可以相信这是一个与数据集分布无关的列，只是每个实例的唯一标志——当然，得出这个结论其实不需要这么复杂的分析，因为它是显而易见的。因此，我们可以放弃自动生成的<code>index</code>而使用<code>Id</code>作为新的<code>index</code>。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = data.set_index([<span class="string">'Id'</span>])</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在，可以说是万事具备只欠东风了。是时候深入了解我们的数据了。我想没有什么能比图片更具有表现力了吧，现在就让我们来通过图来观察它。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数值型的特征有一个类别特征不具备的好处，它可以直接和目标值绘制出相关性，而接下来的代码就是做这件事的。我们首先将数值型的特征筛选出来，然后分别和<code>SalePrice</code>进行关联，<code>SalePrice</code>作为<code>Y</code>轴是因变量，特征值作为<code>X</code>轴是自变量<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure(figsize=(<span class="number">24</span>, <span class="number">36</span>))</span><br><span class="line">count = <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> data[data.columns[data.dtypes != <span class="string">'object'</span>]]:</span><br><span class="line">    ax = fig.add_subplot(<span class="number">8</span>,<span class="number">5</span>, count)</span><br><span class="line">    ax.scatter(y=data[<span class="string">'SalePrice'</span>], x=data[x])</span><br><span class="line">    ax.set_xlabel(x, fontsize=<span class="number">13</span>)</span><br><span class="line">    ax.set_ylabel(<span class="string">'SalePrice'</span>, fontsize=<span class="number">13</span>)</span><br><span class="line">    ax.set_title(x)</span><br><span class="line">    count += <span class="number">1</span></span><br><span class="line">plt.subplots_adjust(hspace=<span class="number">0.9</span>, bottom=<span class="number">0.1</span>, wspace=<span class="number">0.4</span>)</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_5_0.png" alt="png"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过这些图，可以看出一些特征和目标有比较明显的线性关系，例如<code>TotalBsmtSF</code>、<code>1stFlrSF</code>和<code>2ndFlrSF</code>等，在进行特征值处理的时候就可以在这些数据上做些文章。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当然，除了数据的相关性以外，还可以看出数据的一些其它情况，例如离群点。从下面的代码中可以看出我将大部分的离群点都做过处理，但是在这里我把它注释掉了。至于原因，当然是因为这么处理之后模型训练并不理想，这是因为在训练集中虽然可以删除所有的异常值，让数据看起来非常完美，让模型的训练准确率变得很高，但是这样做是没有意义的，因为这将导致在测试的时候效果变得很差，对于测试的数据，我们总不能也将这些异常值删去不做预测吧，就像在业务场景中我们不可能抛弃一部分看起来不太合理但实际存在的客户一样，所以后面采用了其它方式处理训练集和测试集的离群点.至于保留这部分注释，也是为了保留这个思考过程。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在众多删除异常值的代码中，唯独有一行并没有删去。这一行删除的数据是<code>[0, 3]</code>这张图的那两个异常点，是参考<a href="https://www.kaggle.com/pmarcelino" target="_blank" rel="noopener">@Pedro Marcelino</a>的<a href="https://www.kaggle.com/pmarcelino/comprehensive-data-exploration-with-python" target="_blank" rel="noopener">kenel</a>后选择保留的。刚开始保留的时候我其实并不太清楚为何<a href="https://www.kaggle.com/pmarcelino" target="_blank" rel="noopener">@Pedro Marcelino</a>独独要删去这两个离群点而对其它的视而不见，后来我阅读关于这个特征的描述——<em>Above grade (ground) living area square feet</em>以及后面的相关性矩阵发现这个特征和大多数的面积特征都有关系(毕竟它表示地上生活面积)，并且在去掉这两个离群点之后重新画了图，看到其它面积的离群点也一起消失了。这无疑证明了<a href="https://www.kaggle.com/pmarcelino" target="_blank" rel="noopener">@Pedro Marcelino</a>这种处理方式的合理性。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># data.drop(data[data['LotFrontage'] &gt; 300].index, inplace=True)</span></span><br><span class="line"><span class="comment"># data.drop(data[data['LotArea'] &gt; 100000].index, inplace=True)</span></span><br><span class="line"><span class="comment"># data.drop(data[data['MasVnrArea'] &gt; 1500].index, inplace=True)</span></span><br><span class="line">data.drop(data[(data[<span class="string">'GrLivArea'</span>] &gt; <span class="number">4000</span>) &amp; (data[<span class="string">'SalePrice'</span>]&lt;<span class="number">300000</span>)].index, inplace=<span class="keyword">True</span>)</span><br><span class="line"><span class="comment"># data.drop(data[data['BsmtFullBath'] == 3].index, inplace=True)</span></span><br><span class="line"><span class="comment"># data.drop(data[data['EnclosedPorch'] &gt; 400].index, inplace=True)</span></span><br><span class="line"><span class="comment"># data.drop(data[data['PoolArea'] &gt; 200].index, inplace=True)</span></span><br><span class="line"><span class="comment"># data.drop(data[data['MiscVal'] &gt; 5000].index, inplace=True)</span></span><br><span class="line"><span class="comment"># fig = plt.figure(figsize=(24, 36))</span></span><br><span class="line"><span class="comment"># count = 1</span></span><br><span class="line"><span class="comment"># for x in data[data.columns[data.dtypes != 'object']]:</span></span><br><span class="line"><span class="comment">#     ax = fig.add_subplot(8,5, count)</span></span><br><span class="line"><span class="comment">#     ax.scatter(y=data['SalePrice'], x=data[x])</span></span><br><span class="line"><span class="comment">#     ax.set_xlabel(x, fontsize=13)</span></span><br><span class="line"><span class="comment">#     ax.set_ylabel('SalePrice', fontsize=13)</span></span><br><span class="line"><span class="comment">#     ax.set_title(x)</span></span><br><span class="line"><span class="comment">#     count += 1</span></span><br><span class="line"><span class="comment"># plt.subplots_adjust(hspace=0.9, bottom=0.1, wspace=0.4)</span></span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;处理完了明显的异常点之后，换个方向，看看我们的目标值。我们知道线性模型往往最简单的回归模型，而根据<a href="https://baike.baidu.com/item/%E5%A5%A5%E5%8D%A1%E5%A7%86%E5%89%83%E5%88%80%E5%8E%9F%E7%90%86/10900565?fr=aladdin" target="_blank" rel="noopener">奥卡姆剃刀原理</a>，当两个模型拥有一致的性能的时候，选取相对简单的那个。适用线性模型的数据往往具有<a href="https://baike.baidu.com/item/%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83/829892?fr=aladdin" target="_blank" rel="noopener">正态分布</a>的特性，为了明白线性模型是否适用于当前数据集，我们可以通过查看目标值是否满足这一特性。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过调用<code>seaborn</code>库的<code>distplot</code>函数，能够很简单明了的发现数据存在比较明显的偏斜。为了让数据分布更加符合正态分布，可以尝试对其进行取对数操作，因为取对数并不会影响数据的相对关系，并且可以减弱数据的<a href="https://baike.baidu.com/item/%E5%BC%82%E6%96%B9%E5%B7%AE%E6%80%A7/3206526?fromtitle=%E5%BC%82%E6%96%B9%E5%B7%AE&amp;fromid=17503121&amp;fr=aladdin" target="_blank" rel="noopener">异方差</a>。通过下方的第二张图可以发现，在进行对数操作之后的数据图形更加符合正态分布。</p>
+<ul>
+<li>原始<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看售价分布</span></span><br><span class="line">sbn.distplot(data[<span class="string">'SalePrice'</span>])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_7_1.png" alt="png"></p>
+<ul>
+<li>取对数<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sbn.distplot(np.log1p(data[<span class="string">'SalePrice'</span>]))</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_8_1.png" alt="png"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在，我们对数据集已经有了一个大概的了解，包括特征值和目标值，并知道了需要对目标值做相应的处理(上面的取对数操作)，是时候将目标值取出来放在旁边了。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用<code>DataFrame</code>提供的切片操作，将数据的特征和目标划分开并分别定义为<code>x_train</code>(特征)和<code>y_train</code>(目标)。在完成这个步骤之后，通过<code>info()</code>函数查看特征值的类型和数量关系，明确哪类特征有多少缺失值，方便后序处理。当我看见特征列中有部分数据存在大量缺失的时候，如<code>PoolQC</code>、<code>Fence</code>等，第一反应是直接删除这些数据，当然这种方式是欠考虑的；正如前文所述，在处理缺失值的时候我们应该考虑它是否代表该特征的部分特性以便做特殊处理。(后面未被删去的注释代码体现了这一思考过程)。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x_train, y_train = data.loc[:,:<span class="string">'SaleCondition'</span>], np.log1p(data[<span class="string">'SalePrice'</span>]).get_values()</span><br><span class="line">x_train.info()</span><br></pre></td></tr></table></figure></p>
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Int64Index: 1458 entries, 1 to 1460
+Data columns (total 79 columns):
+MSSubClass       1458 non-null int64
+MSZoning         1458 non-null object
+LotFrontage      1199 non-null float64
+LotArea          1458 non-null int64
+Street           1458 non-null object
+Alley            91 non-null object
+LotShape         1458 non-null object
+LandContour      1458 non-null object
+Utilities        1458 non-null object
+LotConfig        1458 non-null object
+LandSlope        1458 non-null object
+Neighborhood     1458 non-null object
+Condition1       1458 non-null object
+Condition2       1458 non-null object
+BldgType         1458 non-null object
+HouseStyle       1458 non-null object
+OverallQual      1458 non-null int64
+OverallCond      1458 non-null int64
+YearBuilt        1458 non-null int64
+YearRemodAdd     1458 non-null int64
+RoofStyle        1458 non-null object
+RoofMatl         1458 non-null object
+Exterior1st      1458 non-null object
+Exterior2nd      1458 non-null object
+MasVnrType       1450 non-null object
+MasVnrArea       1450 non-null float64
+ExterQual        1458 non-null object
+ExterCond        1458 non-null object
+Foundation       1458 non-null object
+BsmtQual         1421 non-null object
+BsmtCond         1421 non-null object
+BsmtExposure     1420 non-null object
+BsmtFinType1     1421 non-null object
+BsmtFinSF1       1458 non-null int64
+BsmtFinType2     1420 non-null object
+BsmtFinSF2       1458 non-null int64
+BsmtUnfSF        1458 non-null int64
+TotalBsmtSF      1458 non-null int64
+Heating          1458 non-null object
+HeatingQC        1458 non-null object
+CentralAir       1458 non-null object
+Electrical       1457 non-null object
+1stFlrSF         1458 non-null int64
+2ndFlrSF         1458 non-null int64
+LowQualFinSF     1458 non-null int64
+GrLivArea        1458 non-null int64
+BsmtFullBath     1458 non-null int64
+BsmtHalfBath     1458 non-null int64
+FullBath         1458 non-null int64
+HalfBath         1458 non-null int64
+BedroomAbvGr     1458 non-null int64
+KitchenAbvGr     1458 non-null int64
+KitchenQual      1458 non-null object
+TotRmsAbvGrd     1458 non-null int64
+Functional       1458 non-null object
+Fireplaces       1458 non-null int64
+FireplaceQu      768 non-null object
+GarageType       1377 non-null object
+GarageYrBlt      1377 non-null float64
+GarageFinish     1377 non-null object
+GarageCars       1458 non-null int64
+GarageArea       1458 non-null int64
+GarageQual       1377 non-null object
+GarageCond       1377 non-null object
+PavedDrive       1458 non-null object
+WoodDeckSF       1458 non-null int64
+OpenPorchSF      1458 non-null int64
+EnclosedPorch    1458 non-null int64
+3SsnPorch        1458 non-null int64
+ScreenPorch      1458 non-null int64
+PoolArea         1458 non-null int64
+PoolQC           6 non-null object
+Fence            281 non-null object
+MiscFeature      54 non-null object
+MiscVal          1458 non-null int64
+MoSold           1458 non-null int64
+YrSold           1458 non-null int64
+SaleType         1458 non-null object
+SaleCondition    1458 non-null object
+dtypes: float64(3), int64(33), object(43)
+memory usage: 911.2+ KB
+</code></pre><h2 id="数据分类"><a href="#数据分类" class="headerlink" title="数据分类"></a>数据分类</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;全局的审视已经告一段落了，是时候关注一些局部的细节了。正如前文已经提到的，特征一般分为两类，而现在就是要对两类数据分开讨论了。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这里，我们将会分别讨论数值型和类别型特征，包括数据分布，数值特征、数量关系等。</p>
+<h3 id="数值型数据"><a href="#数值型数据" class="headerlink" title="数值型数据"></a>数值型数据</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在之前的分析中，我们已经其实已经对数值型的数据有一个大概的了解了，现在我们需要进行具体的数值分析。数值型的数据有很多的指标可以进行分析，通过平均数、中位数、分位数、总数、标准差等可以得到不少有用的信息。而这些指标可以使用<code>describe</code>方法直接求的，下面便是计算之后的结果：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x_train.describe()</span><br></pre></td></tr></table></figure></p>
+<div style="overflow:scroll;">
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MSSubClass</th>
+      <th>LotFrontage</th>
+      <th>LotArea</th>
+      <th>OverallQual</th>
+      <th>OverallCond</th>
+      <th>YearBuilt</th>
+      <th>YearRemodAdd</th>
+      <th>MasVnrArea</th>
+      <th>BsmtFinSF1</th>
+      <th>BsmtFinSF2</th>
+      <th>BsmtUnfSF</th>
+      <th>TotalBsmtSF</th>
+      <th>1stFlrSF</th>
+      <th>2ndFlrSF</th>
+      <th>LowQualFinSF</th>
+      <th>GrLivArea</th>
+      <th>BsmtFullBath</th>
+      <th>BsmtHalfBath</th>
+      <th>FullBath</th>
+      <th>HalfBath</th>
+      <th>BedroomAbvGr</th>
+      <th>KitchenAbvGr</th>
+      <th>TotRmsAbvGrd</th>
+      <th>Fireplaces</th>
+      <th>GarageYrBlt</th>
+      <th>GarageCars</th>
+      <th>GarageArea</th>
+      <th>WoodDeckSF</th>
+      <th>OpenPorchSF</th>
+      <th>EnclosedPorch</th>
+      <th>3SsnPorch</th>
+      <th>ScreenPorch</th>
+      <th>PoolArea</th>
+      <th>MiscVal</th>
+      <th>MoSold</th>
+      <th>YrSold</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>1458.000000</td>
+      <td>1199.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1450.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.00000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1377.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+      <td>1458.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>56.893004</td>
+      <td>69.797331</td>
+      <td>10459.936900</td>
+      <td>6.093964</td>
+      <td>5.576132</td>
+      <td>1971.218107</td>
+      <td>1984.834019</td>
+      <td>102.753793</td>
+      <td>438.827160</td>
+      <td>46.613169</td>
+      <td>567.096708</td>
+      <td>1052.537037</td>
+      <td>1158.851166</td>
+      <td>345.762003</td>
+      <td>5.852538</td>
+      <td>1510.465706</td>
+      <td>0.423868</td>
+      <td>0.057613</td>
+      <td>1.563786</td>
+      <td>0.38203</td>
+      <td>2.866255</td>
+      <td>1.046639</td>
+      <td>6.510974</td>
+      <td>0.611111</td>
+      <td>1978.464052</td>
+      <td>1.766118</td>
+      <td>472.050069</td>
+      <td>94.084362</td>
+      <td>46.245542</td>
+      <td>21.984225</td>
+      <td>3.414266</td>
+      <td>15.081619</td>
+      <td>2.433471</td>
+      <td>43.548697</td>
+      <td>6.323045</td>
+      <td>2007.816187</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>42.329437</td>
+      <td>23.203458</td>
+      <td>9859.198156</td>
+      <td>1.376369</td>
+      <td>1.113359</td>
+      <td>30.193754</td>
+      <td>20.641760</td>
+      <td>179.442156</td>
+      <td>432.969094</td>
+      <td>161.420729</td>
+      <td>442.087187</td>
+      <td>414.982320</td>
+      <td>372.039498</td>
+      <td>435.423924</td>
+      <td>48.655960</td>
+      <td>507.878508</td>
+      <td>0.517404</td>
+      <td>0.238907</td>
+      <td>0.549891</td>
+      <td>0.50271</td>
+      <td>0.816323</td>
+      <td>0.220483</td>
+      <td>1.615880</td>
+      <td>0.641988</td>
+      <td>24.682879</td>
+      <td>0.747104</td>
+      <td>212.239248</td>
+      <td>125.350021</td>
+      <td>65.312932</td>
+      <td>61.155666</td>
+      <td>29.337173</td>
+      <td>55.792877</td>
+      <td>38.209947</td>
+      <td>496.460799</td>
+      <td>2.700167</td>
+      <td>1.328826</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>20.000000</td>
+      <td>21.000000</td>
+      <td>1300.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1872.000000</td>
+      <td>1950.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>334.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>334.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>2.000000</td>
+      <td>0.000000</td>
+      <td>1900.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>2006.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>20.000000</td>
+      <td>59.000000</td>
+      <td>7544.500000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>1954.000000</td>
+      <td>1967.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>223.000000</td>
+      <td>795.250000</td>
+      <td>882.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1128.500000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.00000</td>
+      <td>2.000000</td>
+      <td>1.000000</td>
+      <td>5.000000</td>
+      <td>0.000000</td>
+      <td>1961.000000</td>
+      <td>1.000000</td>
+      <td>331.500000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>5.000000</td>
+      <td>2007.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>50.000000</td>
+      <td>69.000000</td>
+      <td>9475.000000</td>
+      <td>6.000000</td>
+      <td>5.000000</td>
+      <td>1972.500000</td>
+      <td>1994.000000</td>
+      <td>0.000000</td>
+      <td>382.000000</td>
+      <td>0.000000</td>
+      <td>477.500000</td>
+      <td>991.000000</td>
+      <td>1086.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1461.500000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>2.000000</td>
+      <td>0.00000</td>
+      <td>3.000000</td>
+      <td>1.000000</td>
+      <td>6.000000</td>
+      <td>1.000000</td>
+      <td>1980.000000</td>
+      <td>2.000000</td>
+      <td>479.500000</td>
+      <td>0.000000</td>
+      <td>24.500000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>6.000000</td>
+      <td>2008.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>70.000000</td>
+      <td>80.000000</td>
+      <td>11600.000000</td>
+      <td>7.000000</td>
+      <td>6.000000</td>
+      <td>2000.000000</td>
+      <td>2004.000000</td>
+      <td>164.750000</td>
+      <td>711.000000</td>
+      <td>0.000000</td>
+      <td>808.000000</td>
+      <td>1296.750000</td>
+      <td>1390.750000</td>
+      <td>728.000000</td>
+      <td>0.000000</td>
+      <td>1776.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>2.000000</td>
+      <td>1.00000</td>
+      <td>3.000000</td>
+      <td>1.000000</td>
+      <td>7.000000</td>
+      <td>1.000000</td>
+      <td>2002.000000</td>
+      <td>2.000000</td>
+      <td>576.000000</td>
+      <td>168.000000</td>
+      <td>68.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>8.000000</td>
+      <td>2009.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>190.000000</td>
+      <td>313.000000</td>
+      <td>215245.000000</td>
+      <td>10.000000</td>
+      <td>9.000000</td>
+      <td>2010.000000</td>
+      <td>2010.000000</td>
+      <td>1600.000000</td>
+      <td>2188.000000</td>
+      <td>1474.000000</td>
+      <td>2336.000000</td>
+      <td>3206.000000</td>
+      <td>3228.000000</td>
+      <td>2065.000000</td>
+      <td>572.000000</td>
+      <td>4476.000000</td>
+      <td>3.000000</td>
+      <td>2.000000</td>
+      <td>3.000000</td>
+      <td>2.00000</td>
+      <td>8.000000</td>
+      <td>3.000000</td>
+      <td>14.000000</td>
+      <td>3.000000</td>
+      <td>2010.000000</td>
+      <td>4.000000</td>
+      <td>1390.000000</td>
+      <td>857.000000</td>
+      <td>547.000000</td>
+      <td>552.000000</td>
+      <td>508.000000</td>
+      <td>480.000000</td>
+      <td>738.000000</td>
+      <td>15500.000000</td>
+      <td>12.000000</td>
+      <td>2010.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过<strong>count</strong>行可以比上面的全局更直观地看到哪些数据存在缺失，哪些没有；<strong>mean</strong>可以知道相应特征的平均值；<strong>std</strong>是指的标准差；<strong>min</strong>和<strong>max</strong>分别表示最小值和最大值；剩下对应的行是相对应的分位数。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过最大最小值可以得到数据的分布区间，比如<code>LotArea</code>的最大值为   <em>215245</em>而最小值为<em>1300</em>而<code>Fireplaces</code>最大值为<em>3</em>最小值为<em>0</em>。不同的区间会导致模型的性能不佳，所以需要进行标准化。标准化的方法有很多，有<strong>Min-Max标准化</strong><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>和<strong>Z-score标准化</strong>，而这里用的是<code>StandardScaler</code>提供的<strong>Z-score标准化</strong>:</p>
+<script type="math/tex; mode=display">z = \frac{x - u}{s}</script><ul>
+<li>z: 标准化后的值</li>
+<li>x: 原始值</li>
+<li>u: 对应特征列的平均值</li>
+<li>s: 对应特征列的标准差</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上述的的标准化已经基本使用到了除了分位数的所有指标，那么分位数又有什么用呢？先让我们画出箱线图吧。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure(figsize=(<span class="number">24</span>, <span class="number">24</span>))</span><br><span class="line">count = <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> x_train[x_train.columns[x_train.dtypes != <span class="string">'object'</span>]]:</span><br><span class="line">    ax = fig.add_subplot(<span class="number">8</span>,<span class="number">5</span>, count)</span><br><span class="line">    ax.boxplot(x_train[x])</span><br><span class="line">    ax.set_title(x)</span><br><span class="line">    count += <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_12_1.png" alt="png"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面的图就是是所有数值型特征的箱线图，我想你也看到了这些图基本上都具有一箱三线多点的特征。提到箱线图就不得不说一下它的依据了，它是根据计算<strong>IQR(四分位距)</strong>来绘制的，这里先列出它的计算公式：</p>
+<script type="math/tex; mode=display">IQR = Q_3 -Q_1</script><ul>
+<li>$Q_3$表示上四分位数即$\frac{3}{4}$分位数</li>
+<li>$Q_1$表示下四分位数即$\frac{1}{4}$分位数</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱线图中的矩形表示的就是<strong>IQR</strong>，矩形的上下边界分别就是指的$Q_3$和$Q_1$，而矩形中间的一条线是<strong>中位数</strong>；上下的线段分别叫做上极限和下极限，而超出这个界限的那些点就被视为异常点，下面是上下极限的计算方法：</p>
+<ul>
+<li>上极限$upper = Q_3+ 1.5IQR$</li>
+<li>下极限$down = Q_1 - 1.5IQR$<br>下面是我在网上找的一张关于箱线图的详解<br><img src="/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/箱线图.jpeg" alt="png"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱线图可以比较直观的观察数据的分布，知道其是否出现异常值，有多少异常值，数据是否偏斜等。通过上面的图，可以发现几乎每个特征都存在异常值，还有部分数据存在严重的偏斜。对于异常值，我们有多种处理方式：</li>
+</ul>
+<ol>
+<li>删除异常值</li>
+<li>用平均数或中位数修正</li>
+<li>采用处理缺失值的方法</li>
+<li>取对数减少极值影响</li>
+<li>压缩极值到上下极限</li>
+<li>不处理</li>
+</ol>
+<p>可以根据不同情况选取上述方式。而偏斜的数据我们之前其实已经做过处理，便是使用自然对数。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们已经通过箱线图观测到了异常值，也发现部分数据存在偏斜，那么接下来使用直方图来观察数据，明晰具体数据都存在怎样的偏斜。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x_train.hist(figsize=(<span class="number">24</span>, <span class="number">24</span>))</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_13_1.png" alt="png"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过上图我们可以看到部分数据具有明显的正态分布，比如<code>OverallQual</code>、<code>TotRmsAbvGrd</code>，再结合箱线图发现他们的中位数缺失是靠近数据的中点的，这样的数据除了标准化就不用进行太多处理；但是像<code>BsmtUnfSF</code>和<code>2ndFlrSF</code>等就存在数据偏斜的问题，这部分数据除了需要进行归一化，可能还需要进行取对数平滑等操作来降低其可能带来的误差；除了上述的分布以外，我们还可以看到诸如<code>YrSold</code>的均匀分布和<code>3SsnPorch</code>这样的比较极端的分布，对于均匀分布我们不需要做太多处理，而对于那些比较极端分布可以根据数据的数量关系和对目标的影响来决定是否保留或做其它处理。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前我们使用散点图观察了数值型特征和目标之间的相关性并且排除了两个异常点，现在我们需要了解的是特征之间的相关性。关于相关性我们依然可以沿用散点图来进行观测，但是这里一共有<strong>36</strong>个特征，如果要绘制出两两之间的散点图，那么一共需要绘制<strong>1260</strong>张图，这是非常不利于观察和总结的。因此我们这里摒弃了这种方式，而是使用<code>seaborn</code>的<code>heatmap</code>方法来绘制出相关性矩阵的热力图。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="number">24</span>, <span class="number">24</span>))</span><br><span class="line">sbn.heatmap(x_train.corr(), linewidths=<span class="number">0.5</span>, annot=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_15_1.png" alt="png"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过上图我们可以看到有部分特征具有很高的相关性，比如<code>YearBuilt</code>和<code>GarageYrBlt``TotRmsAbvGrd</code>和<code>GrLiveArea</code>等。对于相关性高的数据，我们可以采用整合数据为新的特征列、留一去一等方式，这需要根据实际情况来决定。但是相关性矩阵有一个缺点就是其只能表示线性相关，而不能体现其它相关性，如多项式、指数等，但是往往线性相关就已经能能够说明问题。对于诸如多项式之类的可以在训练中使用核技巧(<em>如果必要</em>)来弥补这部分缺陷。</p>
+<h3 id="非数值型数据"><a href="#非数值型数据" class="headerlink" title="非数值型数据"></a>非数值型数据</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如你所见，数值型特征有很多分析方法，通过图表可以对数据有很清晰的认知，同时基于认识可以规划出相应的处理方式。说完了数值型特征，那么就要处理非数值型的特征了。虽然非数值型的数据没有那么多分析方法，但是其复杂度却并不少，同样需要考虑异常值、数据分布等。下面先让我们看看数据的分布。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure(figsize=(<span class="number">24</span>, <span class="number">48</span>))</span><br><span class="line">count = <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> x_train.columns[x_train.dtypes == <span class="string">'object'</span>]:</span><br><span class="line">    ax = fig.add_subplot(<span class="number">15</span>, <span class="number">3</span>, count)</span><br><span class="line">    temp_feature = x_train[x].value_counts()</span><br><span class="line">    feature_bar = ax.bar(range(temp_feature.shape[<span class="number">0</span>]), temp_feature.values,  align=<span class="string">'center'</span>)</span><br><span class="line">    ax.set_xticks(np.arange(temp_feature.shape[<span class="number">0</span>]))</span><br><span class="line">    <span class="keyword">if</span> temp_feature.shape[<span class="number">0</span>] &gt; <span class="number">10</span>:</span><br><span class="line">        indexs = [index[<span class="number">-2</span>:] <span class="keyword">for</span> index <span class="keyword">in</span> temp_feature.index]</span><br><span class="line">        ax.set_xticklabels(indexs)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        ax.set_xticklabels(temp_feature.index)</span><br><span class="line">    <span class="keyword">for</span> bar <span class="keyword">in</span> feature_bar:</span><br><span class="line">        height = bar.get_height()</span><br><span class="line">        ax.text(bar.get_x()+bar.get_width()/<span class="number">2</span><span class="number">-0.1</span>, <span class="number">1.1</span>*height, str(height))</span><br><span class="line"><span class="comment">#     ax.set_ylim(0, 1.2 * temp_feature.values[0])</span></span><br><span class="line">    ax.set_title(x+<span class="string">'('</span>+str(np.sum(temp_feature))+<span class="string">')'</span>)</span><br><span class="line">    count+=<span class="number">1</span></span><br><span class="line">    </span><br><span class="line">plt.subplots_adjust(hspace=<span class="number">0.9</span>, bottom=<span class="number">0.1</span>)</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_18_0.png" alt="png"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;柱状图以每个特征的取值为横坐标，相应取值的数量为纵坐标，可以比较清晰地看到数据的数量关系。其中<code>Utilities</code>中共有1457条取值为<code>AllPub</code>的数据，1条取值为<code>NoSeWa</code>的数据，对训练并不会有什么帮助，因此可以删去这个特征。而其它的特征虽然也存在明显的偏斜，但是为了保证训练出来的模型不至于过拟合，还是应该适当保留这些特征而不应为了使数据完美而删去这部分特征。</p>
+<h2 id="处理数据"><a href="#处理数据" class="headerlink" title="处理数据"></a>处理数据</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于数据的分析已经告一段落，接下来需要做的是结合之前的分析确定数据的处理方式了。这里使用创建<strong>Transformers</strong>类的方式来统筹数据处理，让我们依此来看下面类的作用：</p>
+<ol>
+<li><code>FeaturePreProcessing</code><br>这个类用于对所有的特征进行预处理，主要是转换数据的类别，因为有些数据虽然是数值类型，但是其表示的意义是一种类别关系，如果把其当成数字特征就隐含了大小关系，而这种特征是没有这种关系的，就会使模型进度下降，所以需要将这类数据的类型从<code>float</code>或<code>int</code>转换为<code>str</code>。同时，这里添加了使用<code>TotalBsmtSF</code>、<code>1stFlrSF</code>和<code>2ndFlrSF</code>添加了一个<code>TotalSF</code>组合特征，这是因为通过描述文件提供的信息可以得知这三个特征包含了一个的所有楼层建面信息。</li>
+<li><code>FeatureSelect</code><br><code>FeatureSelect</code>类的作用比较简单，其目的只是单纯地为了分离数值型特征和非数值型特征以便后面分别进行处理。</li>
+<li><code>NumericalImputer</code><br>对于数值型的数据，在之前进行处理的时候一开始是直接使用<code>sklearn</code>的<code>SimpleImputer</code>进行处理的，但后来比对描述文件，发现对空值不能这么一概而论，所以增加了这个类用于处理特定的数值特征空值(<em>用0填充</em>)</li>
+<li><p><code>StringImputer</code><br>犹如分析时一样，处理完了数值型的特征便是处理非数值型的了。非数值型的特征缺失值有两种处理方式，第一种是根据描述文件表述的意思将<code>NA</code>替换为<code>None</code>，第二种是根据频率最高的填充。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.base <span class="keyword">import</span> BaseEstimator, TransformerMixin</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> learning_curve</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FeaturePreProcessing</span><span class="params">(BaseEstimator, TransformerMixin)</span>:</span></span><br><span class="line">    <span class="string">"""预处理所有特征"""</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, X, y=None)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">transform</span><span class="params">(self, X, y=None)</span>:</span></span><br><span class="line">        X[<span class="string">'MSSubClass'</span>] = X[<span class="string">'MSSubClass'</span>].astype(<span class="string">'str'</span>)</span><br><span class="line">        X[<span class="string">'YrSold'</span>] = X[<span class="string">'YrSold'</span>].astype(<span class="string">'str'</span>)</span><br><span class="line">        X[<span class="string">'MoSold'</span>] = X[<span class="string">'MoSold'</span>].astype(<span class="string">'str'</span>)</span><br><span class="line">        X[<span class="string">'OverallQual'</span>] = X[<span class="string">'OverallQual'</span>].astype(<span class="string">'str'</span>)</span><br><span class="line">        X[<span class="string">'OverallCond'</span>] = X[<span class="string">'OverallCond'</span>].astype(<span class="string">'str'</span>)</span><br><span class="line">        X[<span class="string">'TotalSF'</span>] = X[<span class="string">'TotalBsmtSF'</span>] + X[<span class="string">'1stFlrSF'</span>] + X[<span class="string">'2ndFlrSF'</span>]</span><br><span class="line">        <span class="keyword">return</span> X</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FeatureSelect</span><span class="params">(BaseEstimator, TransformerMixin)</span>:</span></span><br><span class="line">    <span class="string">"""特征选取"""</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, obj=True)</span>:</span></span><br><span class="line">        self.obj = obj</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, X, y=None)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">transform</span><span class="params">(self, X, y=None)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> X[X.columns[X.dtypes == <span class="string">'object'</span>]] <span class="keyword">if</span> self.obj <span class="keyword">else</span> X[X.columns[X.dtypes != <span class="string">'object'</span>]]</span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NumericalImputer</span><span class="params">(BaseEstimator, TransformerMixin)</span>:</span></span><br><span class="line">    <span class="string">"""数值型特征填充空值"""</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, X, y=None)</span>:</span></span><br><span class="line">        self.attributes = [<span class="string">'BsmtFinSF1'</span>, <span class="string">'BsmtFinSF2'</span>, <span class="string">'BsmtUnfSF'</span>, <span class="string">'TotalBsmtSF'</span>, <span class="string">'BsmtFullBath'</span>, <span class="string">'BsmtHalfBath'</span>, </span><br><span class="line">                           <span class="string">'Fireplaces'</span>, </span><br><span class="line">                           <span class="string">'MasVnrArea'</span>,</span><br><span class="line">                           <span class="string">'GarageCars'</span>, <span class="string">'GarageArea'</span>, <span class="string">'GarageYrBlt'</span>]</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">transform</span><span class="params">(self, X, y=None)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> attribute <span class="keyword">in</span> self.attributes:</span><br><span class="line">            X[attribute].fillna(<span class="number">0.0</span>, inplace=<span class="keyword">True</span>)</span><br><span class="line">        <span class="comment"># 添加总面积特征</span></span><br><span class="line">        <span class="comment"># X['TotalSF'] = X['TotalBsmtSF'] + X['1stFlrSF'] + X['2ndFlrSF']</span></span><br><span class="line">        <span class="keyword">return</span> X</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringImputer</span><span class="params">(BaseEstimator, TransformerMixin)</span>:</span></span><br><span class="line">    <span class="string">"""填充String类型的空值"""</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, X, y=None)</span>:</span></span><br><span class="line">        self.most_frequent_ = pd.Series([X[c].value_counts().index[<span class="number">0</span>] <span class="keyword">for</span> c <span class="keyword">in</span> X],</span><br><span class="line">                        index=X.columns)</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">transform</span><span class="params">(self, X, y=None)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Alley: Type of alley access to property</span></span><br><span class="line"><span class="string">           Grvl Gravel</span></span><br><span class="line"><span class="string">           Pave Paved</span></span><br><span class="line"><span class="string">           NA  No alley access</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        X[<span class="string">'Alley'</span>].fillna(<span class="string">'None'</span>, inplace=<span class="keyword">True</span>)</span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        MasVnrType: Masonry veneer type</span></span><br><span class="line"><span class="string">           BrkCmn   Brick Common</span></span><br><span class="line"><span class="string">           BrkFace  Brick Face</span></span><br><span class="line"><span class="string">           CBlock   Cinder Block</span></span><br><span class="line"><span class="string">           None None</span></span><br><span class="line"><span class="string">           Stone    Stone</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        X[<span class="string">'MasVnrType'</span>].fillna(<span class="string">'None'</span>, inplace=<span class="keyword">True</span>)</span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        BsmtCond: Evaluates the general condition of the basement</span></span><br><span class="line"><span class="string">           Ex   Excellent</span></span><br><span class="line"><span class="string">           Gd   Good</span></span><br><span class="line"><span class="string">           TA   Typical - slight dampness allowed</span></span><br><span class="line"><span class="string">           Fa   Fair - dampness or some cracking or settling</span></span><br><span class="line"><span class="string">           Po   Poor - Severe cracking, settling, or wetness</span></span><br><span class="line"><span class="string">           NA   No Basement</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        X[<span class="string">'BsmtCond'</span>].fillna(<span class="string">'None'</span>, inplace=<span class="keyword">True</span>)</span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        BsmtExposure: Refers to walkout or garden level walls</span></span><br><span class="line"><span class="string">           Gd   Good Exposure</span></span><br><span class="line"><span class="string">           Av   Average Exposure (split levels or foyers typically score average or above)  </span></span><br><span class="line"><span class="string">           Mn   Mimimum Exposure</span></span><br><span class="line"><span class="string">           No   No Exposure</span></span><br><span class="line"><span class="string">           NA   No Basement</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        X[<span class="string">'BsmtExposure'</span>].fillna(<span class="string">'None'</span>, inplace=<span class="keyword">True</span>)</span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        BsmtFinType1: Rating of basement finished area</span></span><br><span class="line"><span class="string">           GLQ  Good Living Quarters</span></span><br><span class="line"><span class="string">           ALQ  Average Living Quarters</span></span><br><span class="line"><span class="string">           BLQ  Below Average Living Quarters   </span></span><br><span class="line"><span class="string">           Rec  Average Rec Room</span></span><br><span class="line"><span class="string">           LwQ  Low Quality</span></span><br><span class="line"><span class="string">           Unf  Unfinshed</span></span><br><span class="line"><span class="string">           NA   No Basement</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        X[<span class="string">'BsmtFinType1'</span>].fillna(<span class="string">'None'</span>, inplace=<span class="keyword">True</span>)</span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        BsmtFinType2: Rating of basement finished area (if multiple types)</span></span><br><span class="line"><span class="string">           GLQ  Good Living Quarters</span></span><br><span class="line"><span class="string">           ALQ  Average Living Quarters</span></span><br><span class="line"><span class="string">           BLQ  Below Average Living Quarters   </span></span><br><span class="line"><span class="string">           Rec  Average Rec Room</span></span><br><span class="line"><span class="string">           LwQ  Low Quality</span></span><br><span class="line"><span class="string">           Unf  Unfinshed</span></span><br><span class="line"><span class="string">           NA   No Basement</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        X[<span class="string">'BsmtFinType2'</span>].fillna(<span class="string">'None'</span>, inplace=<span class="keyword">True</span>)</span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        FireplaceQu: Fireplace quality</span></span><br><span class="line"><span class="string">           Ex   Excellent - Exceptional Masonry Fireplace</span></span><br><span class="line"><span class="string">           Gd   Good - Masonry Fireplace in main level</span></span><br><span class="line"><span class="string">           TA   Average - Prefabricated Fireplace in main living area or Masonry Fireplace in basement</span></span><br><span class="line"><span class="string">           Fa   Fair - Prefabricated Fireplace in basement</span></span><br><span class="line"><span class="string">           Po   Poor - Ben Franklin Stove</span></span><br><span class="line"><span class="string">           NA   No Fireplace</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        X[<span class="string">'FireplaceQu'</span>].fillna(<span class="string">'None'</span>, inplace=<span class="keyword">True</span>)</span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        GarageType: Garage location</span></span><br><span class="line"><span class="string">           2Types   More than one type of garage</span></span><br><span class="line"><span class="string">           Attchd   Attached to home</span></span><br><span class="line"><span class="string">           Basment  Basement Garage</span></span><br><span class="line"><span class="string">           BuiltIn  Built-In (Garage part of house - typically has room above garage)</span></span><br><span class="line"><span class="string">           CarPort  Car Port</span></span><br><span class="line"><span class="string">           Detchd   Detached from home</span></span><br><span class="line"><span class="string">           NA   No Garage</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        X[<span class="string">'GarageType'</span>].fillna(<span class="string">'None'</span>, inplace=<span class="keyword">True</span>)</span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        GarageFinish: Interior finish of the garage</span></span><br><span class="line"><span class="string">           Fin  Finished</span></span><br><span class="line"><span class="string">           RFn  Rough Finished  </span></span><br><span class="line"><span class="string">           Unf  Unfinished</span></span><br><span class="line"><span class="string">           NA   No Garage</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        X[<span class="string">'GarageFinish'</span>].fillna(<span class="string">'None'</span>, inplace=<span class="keyword">True</span>)</span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        GarageQual: Garage quality</span></span><br><span class="line"><span class="string">           Ex   Excellent</span></span><br><span class="line"><span class="string">           Gd   Good</span></span><br><span class="line"><span class="string">           TA   Typical/Average</span></span><br><span class="line"><span class="string">           Fa   Fair</span></span><br><span class="line"><span class="string">           Po   Poor</span></span><br><span class="line"><span class="string">           NA   No Garage</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        X[<span class="string">'GarageQual'</span>].fillna(<span class="string">'None'</span>, inplace=<span class="keyword">True</span>)</span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        GarageCond: Garage condition</span></span><br><span class="line"><span class="string">           Ex   Excellent</span></span><br><span class="line"><span class="string">           Gd   Good</span></span><br><span class="line"><span class="string">           TA   Typical/Average</span></span><br><span class="line"><span class="string">           Fa   Fair</span></span><br><span class="line"><span class="string">           Po   Poor</span></span><br><span class="line"><span class="string">           NA   No Garage</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        X[<span class="string">'GarageCond'</span>].fillna(<span class="string">'None'</span>, inplace=<span class="keyword">True</span>)</span><br><span class="line"><span class="comment">#         X['GarageYrBlt'].fillna('None', inplace=True)</span></span><br><span class="line">        <span class="string">"""  </span></span><br><span class="line"><span class="string">        PoolQC: Pool quality</span></span><br><span class="line"><span class="string">           Ex Excellent</span></span><br><span class="line"><span class="string">           Gd Good</span></span><br><span class="line"><span class="string">           TA Average/Typical</span></span><br><span class="line"><span class="string">           Fa Fair</span></span><br><span class="line"><span class="string">           NA No Pool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        X[<span class="string">'PoolQC'</span>].fillna(<span class="string">'None'</span>, inplace=<span class="keyword">True</span>)</span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Fence: Fence quality</span></span><br><span class="line"><span class="string">           GdPrv  Good Privacy</span></span><br><span class="line"><span class="string">           MnPrv  Minimum Privacy</span></span><br><span class="line"><span class="string">           GdWo  Good Wood</span></span><br><span class="line"><span class="string">           MnWw Minimum Wood/Wire</span></span><br><span class="line"><span class="string">           NA No Fence</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        X[<span class="string">'Fence'</span>].fillna(<span class="string">'None'</span>, inplace=<span class="keyword">True</span>)</span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        MiscFeature: Miscellaneous feature not covered in other categories</span></span><br><span class="line"><span class="string">           Elev Elevator</span></span><br><span class="line"><span class="string">           Gar2 2nd Garage (if not described in garage section)</span></span><br><span class="line"><span class="string">           Othr Other</span></span><br><span class="line"><span class="string">           Shed Shed (over 100 SF)</span></span><br><span class="line"><span class="string">           TenC Tennis Court</span></span><br><span class="line"><span class="string">           NA None</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        X[<span class="string">'MiscFeature'</span>].fillna(<span class="string">'None'</span>, inplace=<span class="keyword">True</span>)</span><br><span class="line">        <span class="keyword">return</span> X.fillna(self.most_frequent_)</span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DropFeature</span><span class="params">(BaseEstimator, TransformerMixin)</span>:</span></span><br><span class="line">    <span class="string">"""删除部分特征"""</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, features)</span>:</span></span><br><span class="line">        self.features = features</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, X, y=None)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">transform</span><span class="params">(self, X, y=None)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> X.drop(self.features, axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RemoveOutlier</span><span class="params">(BaseEstimator, TransformerMixin)</span>:</span></span><br><span class="line">    <span class="string">"""处理异常值"""</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, X, y=None)</span>:</span></span><br><span class="line">        q1 = X.quantile(<span class="number">0.25</span>)</span><br><span class="line">        q3 = X.quantile(<span class="number">0.75</span>)</span><br><span class="line">        iqr = q3 - q1</span><br><span class="line">        self.upper = q3 + <span class="number">1.5</span> * iqr</span><br><span class="line">        self.down = q1 - <span class="number">1.5</span> * iqr</span><br><span class="line">        self.median = X.median()</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">transform</span><span class="params">(self, X, y=None)</span>:</span></span><br><span class="line">        X.where(X &lt;= self.upper, self.upper, axis=<span class="number">1</span>, inplace=<span class="keyword">True</span>)</span><br><span class="line">        X.where(X &gt;= self.down, self.down, axis=<span class="number">1</span>, inplace=<span class="keyword">True</span>)</span><br><span class="line"><span class="comment">#         X['MiscVal'].where(X['MiscVal'] &lt;= 5000, 5000, inplace=True)</span></span><br><span class="line"><span class="comment">#         X['LotFrontage'].where(X['LotFrontage'] &lt;= 300, 300, inplace=True)</span></span><br><span class="line"><span class="comment">#         X['LotArea'].where(X['LotArea'] &lt;= 100000, 100000, inplace=True )</span></span><br><span class="line"><span class="comment">#         X['MasVnrArea'].where(X['MasVnrArea'] &lt;= 1500, 1500, inplace=True)</span></span><br><span class="line"><span class="comment">#         X['GrLivArea'].where(X['GrLivArea'] &lt;= 4000, 4000, inplace=True)</span></span><br><span class="line"><span class="comment">#         X['EnclosedPorch'].where(X['EnclosedPorch'] &lt;= 400, 400, inplace=True)</span></span><br><span class="line"><span class="comment">#         X['MiscVal'].where(X['MiscVal'] &lt;= 5000, 5000, inplace=True)</span></span><br><span class="line">        <span class="keyword">return</span> X</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_learning_curve</span><span class="params">(model, X, y)</span>:</span></span><br><span class="line">    train_size, train_scores, test_scores = learning_curve(model, X, y, </span><br><span class="line">                                                           n_jobs=<span class="number">-1</span>, verbose=<span class="keyword">True</span>, cv=<span class="number">10</span>, random_state=<span class="number">42</span>)</span><br><span class="line"></span><br><span class="line">    train_scores_mean = np.mean(train_scores, axis=<span class="number">1</span>)</span><br><span class="line">    train_scores_std = np.std(train_scores, axis=<span class="number">1</span>)</span><br><span class="line">    test_scores_mean = np.mean(test_scores, axis=<span class="number">1</span>)</span><br><span class="line">    test_scores_std = np.std(test_scores, axis=<span class="number">1</span>)</span><br><span class="line">    plt.grid()</span><br><span class="line"></span><br><span class="line">    plt.fill_between(train_size, train_scores_mean - train_scores_std,</span><br><span class="line">                    train_scores_mean + train_scores_std, alpha=<span class="number">0.1</span>,</span><br><span class="line">                    color=<span class="string">'r'</span>)</span><br><span class="line">    plt.fill_between(train_size, test_scores_mean - test_scores_std,</span><br><span class="line">                    test_scores_mean + test_scores_std, alpha=<span class="number">0.1</span>,</span><br><span class="line">                    color=<span class="string">'b'</span>)</span><br><span class="line">    plt.plot(train_size, train_scores_mean, <span class="string">'r-'</span>, label=<span class="string">'train'</span>)</span><br><span class="line">    plt.plot(train_size, test_scores_mean, <span class="string">'b--'</span>,label=<span class="string">'val'</span>)</span><br><span class="line">    plt.ylim(<span class="number">0.5</span>, <span class="number">1.05</span>)</span><br><span class="line">    plt.yticks( np.linspace(<span class="number">0.5</span>, <span class="number">1</span>, <span class="number">11</span>))</span><br><span class="line">    plt.xlabel(<span class="string">'Train Size'</span>, fontsize=<span class="number">14</span>)</span><br><span class="line">    plt.ylabel(<span class="string">'acc'</span>, fontsize=<span class="number">14</span>)</span><br><span class="line">    plt.legend(loc=<span class="string">'lower right'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>DropFeature</code><br>在进行数据分析的时候，我们有提到特征删除的情况，这个类就是为了处理这种情况，将筛选出需要删除的特征列作为它的处理对象，最后返回去除对应特征的特征</p>
+</li>
+<li><code>RemoveOutlier</code><br>正如整个代码所呈现的，该类中存在大量被注释的代码，这些就是前文所提到的删除异常值的尝试，但由于其不理想的效果，最后替换为根据<strong>IQR</strong>来处理异常值，即将界限外的值统一压缩到界限上。</li>
+<li><code>plot_learning_curve</code><br>最后的是一个公用方法，其采用的是<code>sklearn.model_selection</code>的<code>learning_curve</code>方法计算出测试分数和训练分数，并根据这两个值画出对应的学习曲线，用这个曲线可以直观地评估模型的优劣，以便对模型做进一步分析。<br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前提到数据的处理是通过创建相应的<strong>Transformers</strong>来完成的，而为什么需要这么做却没有进行说明。<strong>Transformers</strong>的作用主要是对数据集进行处理和转换，具体的可以查看<em><a href="https://scikit-learn.org/stable/modules/generated/sklearn.base.TransformerMixin.html#sklearn.base.TransformerMixin" target="_blank" rel="noopener">sklearn</a></em>的官方文档。<strong>Transformers</strong>可以统一训练集、测试集乃至最后的预测数据处理方式，而不用单独对每一个数据集建立重复的处理代码，这显著地提高了代码的复用性；同时<strong>Transformers</strong>可以与<code>Pipeline</code>有效结合在一起，将整个数据处理简化成一个管道顺序进行，从而使数据处理更加简洁易懂。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> Pipeline</span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> FeatureUnion</span><br><span class="line"><span class="keyword">from</span> sklearn.impute <span class="keyword">import</span> SimpleImputer</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> OneHotEncoder</span><br><span class="line"></span><br><span class="line">all_pipeline = Pipeline([</span><br><span class="line">    (<span class="string">'featurePre'</span>, FeaturePreProcessing())</span><br><span class="line">])</span><br><span class="line">numeric_pipeline = Pipeline([</span><br><span class="line"><span class="comment">#         ('drop', DropFeature(['PoolQC','YearBuilt', 'TotRmsAbvGrd', '1stFlrSF'])),</span></span><br><span class="line">        (<span class="string">'selector'</span>, FeatureSelect(<span class="keyword">False</span>)),</span><br><span class="line">        (<span class="string">'impute1'</span>, NumericalImputer()),</span><br><span class="line"><span class="comment">#         ('outlier', RemoveOutlier()),</span></span><br><span class="line">        (<span class="string">'impute'</span>, SimpleImputer(strategy=<span class="string">'median'</span>)),</span><br><span class="line">        (<span class="string">'standard'</span>, StandardScaler())</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">cat_pipeline = Pipeline([</span><br><span class="line">        (<span class="string">'drop'</span>, DropFeature([ <span class="string">'Utilities'</span>])),</span><br><span class="line">        (<span class="string">'selector'</span>, FeatureSelect()),</span><br><span class="line">        (<span class="string">'impute'</span>, StringImputer()),</span><br><span class="line">        (<span class="string">'oneHot'</span>, OneHotEncoder(sparse=<span class="keyword">False</span>, handle_unknown=<span class="string">'ignore'</span>))</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">full_pipeline = Pipeline([</span><br><span class="line">    (<span class="string">'all_pipeline'</span>, all_pipeline),</span><br><span class="line">    (<span class="string">'featureunion'</span>,FeatureUnion([</span><br><span class="line">        (<span class="string">'numeric_pipeline'</span>, numeric_pipeline),</span><br><span class="line">        (<span class="string">'cat_pipeline'</span>, cat_pipeline)]))</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">x_train = full_pipeline.fit_transform(x_train)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面的代码便是使用<code>Pipeline</code>对不同特征进行不同的处理，其中我们创建的自不必多说，我们需要重点解释的是<code>sklearn.preprocessing</code>中导入的<code>StandardScaler</code>和<code>OneHotEncoder</code>以及<code>sklearn.impute</code>的<code>SimpleImputer</code>。</p>
+<ol>
+<li><code>StandardScaler</code><br><code>StandardScaler</code>是一个用于标准化的<strong>Transformer</strong>，其使用的是我们前面提到的<strong>Z-score标准化</strong></li>
+<li><code>OneHotEncoder</code><br>在讨论分数值型特征的时候我们只看了数据的分布情况，而没有谈到对数据的处理方式。其实对于非数值型的特征一般分为两类，一种是将有明显大小关系的的特征转化为数值类特征，而另一种就是<code>OneHotEncoder</code>做的——将特征转化为<strong>OneHot</strong>向量。<strong>OneHot</strong>向量可以摒弃数值类数据的相关性，而只是单纯地作为不相关的类别进行使用。</li>
+<li><code>SimpleImputer</code><br>和我们自己创建的<code>StringImputer</code>功能类似，只不过其是为了填充剩下(除<code>NumericalImputer</code>处理之外的)的数值类型特征，这里使用中位数<code>median</code>作为填充策略。</li>
+</ol>
+<h1 id="模型选择"><a href="#模型选择" class="headerlink" title="模型选择"></a>模型选择</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;到目前为止我们已经花了大量的时间去分析处理数据，希望这些工作没有让你忘记我们一开始的目的——训练模型，之前所有的特征工程都是为了在最后能得到一个最优化模型，让我们能够使用这个模型预测未知的数据集。下面我将我进行过尝试的模型全部罗列了出来，让我们来一一地解读它们吧。</p>
+<h2 id="随机梯度下降"><a href="#随机梯度下降" class="headerlink" title="随机梯度下降"></a>随机梯度下降</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在使用随机梯度下降算法之前，我最先训练的是基于最小二乘法<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>的<code>LinearRegression</code>，但是其效果实在是差强人意，而<strong>sklearn</strong>提供的<code>LinearRegression</code>是基于最简单的最小二乘——<code>scipy.linalg.lstsq</code>——实现的，没有什么可以调节的参数来使模型具有更好的性能，因此我便想到使用<code>SGDRegressor</code>来替换。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> SGDRegressor</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_predict</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> PolynomialFeatures</span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> Pipeline</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> RandomizedSearchCV</span><br><span class="line"><span class="comment"># lr_pipline = Pipeline([</span></span><br><span class="line"><span class="comment">#       ('poly', PolynomialFeatures(degree=2)),</span></span><br><span class="line"><span class="comment">#     ('lr', SGDRegressor(alpha=0.001, eta0=0.01,penalty='None', learning_rate='constant'))</span></span><br><span class="line"><span class="comment"># ])</span></span><br><span class="line"><span class="comment"># lr_pipline.fit(x_train, y_train)</span></span><br><span class="line"><span class="comment"># lr_pred = cross_val_predict(lr_pipline, x_train, y_train, </span></span><br><span class="line"><span class="comment">#                             verbose=True, n_jobs=-1, cv=3)</span></span><br><span class="line"><span class="comment"># lr_mse = mean_squared_error(lr_pred, y_train)</span></span><br><span class="line"><span class="comment"># np.sqrt(lr_mse)</span></span><br><span class="line">sgd = SGDRegressor(loss=<span class="string">'huber'</span>, early_stopping=<span class="keyword">True</span>, max_iter=<span class="number">5000</span>)</span><br><span class="line">sgd_grid_params = &#123;</span><br><span class="line">    <span class="string">'penalty'</span>: [<span class="string">'None'</span>, <span class="string">'l1'</span>, <span class="string">'l2'</span>, <span class="string">'elasticnet'</span>],</span><br><span class="line">    <span class="string">'alpha'</span>: np.linspace(<span class="number">1e-3</span>, <span class="number">0.01</span>),</span><br><span class="line">    <span class="string">'l1_ratio'</span>: np.linspace(<span class="number">0</span>, <span class="number">1</span>),</span><br><span class="line">    <span class="string">'learning_rate'</span>: [<span class="string">'constant'</span>, <span class="string">'optimal'</span>, <span class="string">'invscaling'</span>, <span class="string">'adaptive'</span>],</span><br><span class="line">    <span class="string">'eta0'</span>: np.linspace(<span class="number">1e-3</span>, <span class="number">1</span>),</span><br><span class="line">    <span class="string">'power_t'</span>: np.linspace(<span class="number">1e-3</span>, <span class="number">1</span>),</span><br><span class="line">    <span class="string">'epsilon'</span>: np.linspace(<span class="number">1e-3</span>, <span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line">sgd_rnd_cv = RandomizedSearchCV(sgd, param_distributions=sgd_grid_params, cv=<span class="number">5</span>, </span><br><span class="line">                                verbose=<span class="keyword">True</span>, n_jobs=<span class="number">-1</span>)</span><br><span class="line">sgd_rnd_cv.fit(x_train, y_train)</span><br></pre></td></tr></table></figure></p>
+<pre><code>Fitting 5 folds for each of 10 candidates, totalling 50 fits
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  42 tasks      | elapsed:  3.4min
+[Parallel(n_jobs=-1)]: Done  50 out of  50 | elapsed:  4.2min finished
+
+RandomizedSearchCV(cv=5, error_score=&#39;raise-deprecating&#39;,
+          estimator=SGDRegressor(alpha=0.0001, average=False, early_stopping=True, epsilon=0.1,
+       eta0=0.01, fit_intercept=True, l1_ratio=0.15,
+       learning_rate=&#39;invscaling&#39;, loss=&#39;huber&#39;, max_iter=5000,
+       n_iter=None, n_iter_no_change=5, penalty=&#39;l2&#39;, power_t=0.25,
+       random_state=None, shuffle=True, tol=None, validation_fraction=0.1,
+       verbose=0, warm_start=False),
+          fit_params=None, iid=&#39;warn&#39;, n_iter=10, n_jobs=-1,
+          param_distributions={&#39;penalty&#39;: [&#39;None&#39;, &#39;l1&#39;, &#39;l2&#39;, &#39;elasticnet&#39;], &#39;alpha&#39;: array([0.001  , 0.00118, 0.00137, 0.00155, 0.00173, 0.00192, 0.0021 ,
+       0.00229, 0.00247, 0.00265, 0.00284, 0.00302, 0.0032 , 0.00339,
+       0.00357, 0.00376, 0.00394, 0.00412, 0.00431, 0.00449, 0.00467,
+       0.0048...51, 0.8369 ,
+       0.85729, 0.87767, 0.89806, 0.91845, 0.93884, 0.95922, 0.97961,
+       1.     ])},
+          pre_dispatch=&#39;2*n_jobs&#39;, random_state=None, refit=True,
+          return_train_score=&#39;warn&#39;, scoring=None, verbose=True)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sgd_rnd_cv.best_score_</span><br></pre></td></tr></table></figure>
+<pre><code>0.9010049934685431
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sgd_rnd_cv.best_estimator_</span><br></pre></td></tr></table></figure>
+<pre><code>SGDRegressor(alpha=0.0017346938775510204, average=False, early_stopping=True,
+       epsilon=0.6941836734693878, eta0=0.1437142857142857,
+       fit_intercept=True, l1_ratio=0.5510204081632653,
+       learning_rate=&#39;optimal&#39;, loss=&#39;huber&#39;, max_iter=5000, n_iter=None,
+       n_iter_no_change=5, penalty=&#39;l1&#39;, power_t=0.5922448979591837,
+       random_state=None, shuffle=True, tol=None, validation_fraction=0.1,
+       verbose=0, warm_start=False)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sgd_pred = cross_val_predict(sgd_rnd_cv.best_estimator_, x_train, y_train, </span><br><span class="line">                            verbose=<span class="keyword">True</span>, n_jobs=<span class="number">-1</span>, cv=<span class="number">3</span>)</span><br><span class="line">sgd_mse = mean_squared_error(sgd_pred, y_train)</span><br><span class="line">np.sqrt(sgd_mse)</span><br></pre></td></tr></table></figure>
+<pre><code>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   3 out of   3 | elapsed:   20.7s finished
+
+0.12857487720273592
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>SGDRegressor</code>使用随机梯度下降来最小化损失函数，它拥有多种参数可供调节，具体可以参考<a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDRegressor.html#sklearn.linear_model.SGDRegressor" target="_blank" rel="noopener">官方文档</a>。在我直接使用<code>SGDRegressor</code>默认参数进行训练的时候，发现误差非常大，后来加了各种参数，使用<code>RandomizedSearchCV</code>来进行参数搜索之后依然没有降低这种误差；直到我增加<code>max_iter</code>这一参数，才使得学习曲线逼近并趋近于<em>0.9</em>，这让我意识到之前之所以会出现这种量级的误差可能是训练数据集过小，导致结果无法收敛，而在<a href="https://scikit-learn.org/stable/modules/sgd.html#regression" target="_blank" rel="noopener">文档</a>中也确实明确说明了随机梯度下降适用于实例数量大于$10^4$的数据集。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_learning_curve(sgd_rnd_cv.best_estimator_, x_train, y_train)</span><br></pre></td></tr></table></figure>
+<pre><code>[learning_curve] Training set sizes: [ 131  426  721 1016 1312]
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  50 out of  50 | elapsed:  3.2min finished
+</code></pre><p><img src="/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_30_2.png" alt="png"></p>
+<h3 id="比对线性回归"><a href="#比对线性回归" class="headerlink" title="比对线性回归"></a>比对线性回归</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前提到<code>LinearRegression</code>是我尝试的第一个训练算法，但由于其不太好的表现效果被我弃置不顾，在我训练完<code>SGDRegressor</code>之后我又对<code>LinearRegression</code>进行了一些不同的尝试，比如这里将线性模型通过<code>PolynomialFeatures</code>将其变成一个二次型的多项式模型，这样的改变取得还算不错的成绩，只是其学习曲线反应出了它的明显缺陷，比如过拟合、验证结果波动等。这说明只是简单地使用多项式模型还是有不小的瑕疵的。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_predict</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> PolynomialFeatures</span><br><span class="line">lr_pipline = Pipeline([</span><br><span class="line">    (<span class="string">'poly'</span>, PolynomialFeatures(degree=<span class="number">2</span>)),</span><br><span class="line">    (<span class="string">'lr'</span>, LinearRegression())</span><br><span class="line">])</span><br><span class="line">lr_pipline.fit(x_train, y_train)</span><br><span class="line">lr_pred = cross_val_predict(lr_pipline, x_train, y_train, </span><br><span class="line">                            verbose=<span class="keyword">True</span>, n_jobs=<span class="number">-1</span>, cv=<span class="number">3</span>)</span><br><span class="line">lr_mse = mean_squared_error(lr_pred, y_train)</span><br><span class="line">np.sqrt(lr_mse)</span><br></pre></td></tr></table></figure></p>
+<pre><code>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   3 out of   3 | elapsed:   52.8s finished
+
+0.14167592407063873
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_learning_curve(lr_pipline, x_train, y_train)</span><br></pre></td></tr></table></figure>
+<pre><code>[learning_curve] Training set sizes: [ 131  426  721 1016 1312]
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  50 out of  50 | elapsed: 12.8min finished
+</code></pre><p><img src="/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_33_2.png" alt="png"></p>
+<h2 id="岭回归"><a href="#岭回归" class="headerlink" title="岭回归"></a>岭回归</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;既然说到最小二乘法，就不得不提一下它的变体了。最小二乘法通过最小化均方误差来最小化损失函数，而它的变体体现在使用不同的正则化方法。岭回归便是使用二范数<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>来进行正则化(即<strong>l2正则</strong>)：</p>
+<script type="math/tex; mode=display">\min_{w} || X w - y||_2^2 + \alpha ||w||_2^2</script><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过选取不同的$\alpha$来对系数做不同的限制$w$，当$\alpha$足够小时，会使得一些作用不大的系数变得非常小但又不会为0，这即减小了过拟合的风险又保证了模型的复杂性，不至于损失过多的特征。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里选用的是<code>sklearn.kernel_ridge</code>的<code>KernelRidge</code>，该种实现使用到了核技巧<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>来使数据线性可分。由于前面的线性回归中使用多项式回归取得了一定的效果，所以这里选用了<strong>二次的多项式核</strong>。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.kernel_ridge <span class="keyword">import</span> KernelRidge</span><br><span class="line"></span><br><span class="line">ridge = KernelRidge(degree=<span class="number">2</span>, alpha=<span class="number">0.05</span>, kernel=<span class="string">'polynomial'</span>)</span><br><span class="line">ridge_pred = cross_val_predict(ridge, x_train, y_train, </span><br><span class="line">                               cv=<span class="number">3</span>, verbose=<span class="keyword">True</span>, n_jobs=<span class="number">-1</span>)</span><br><span class="line">ridge_mse = mean_squared_error(y_train, ridge_pred)</span><br><span class="line">np.sqrt(ridge_mse)</span><br></pre></td></tr></table></figure></p>
+<pre><code>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   3 out of   3 | elapsed:    1.5s finished
+
+0.11650866851364311
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下面便是岭回归的学习曲线，我们可以发现其表现效果远好于上面的线性回归，就准确度而言也高于自己调试的随机梯度下降，但是也可以发现它的训练曲线和验证曲线相比梯度下降来说有一定间隙，可以判定其存在一定程度的过拟合。解决过拟合的方法有很多，比如增加数据量，降低模型复杂度等。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_learning_curve(ridge, x_train, y_train)</span><br></pre></td></tr></table></figure></p>
+<pre><code>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[learning_curve] Training set sizes: [ 131  426  721 1016 1312]
+[Parallel(n_jobs=-1)]: Done  50 out of  50 | elapsed:    1.3s finished
+</code></pre><p><img src="/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_29_3.png" alt="png"></p>
+<h2 id="LASSO回归"><a href="#LASSO回归" class="headerlink" title="LASSO回归"></a>LASSO回归</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;既然讨论了使用<strong>l2正则</strong>的<em>Ridge</em>，又怎么能忘了使用<strong>l1</strong>正则的<em>Lasso</em>呢。<em>Lasso和</em>Ridge*唯一不同的地方是它使用了一范数来代替而范数也就是使用绝对值来代替平方：</p>
+<script type="math/tex; mode=display">\min_{w} { \frac{1}{2n_{\text{samples}}} ||X w - y||_2 ^ 2 + \alpha ||w||_1}</script><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>l1正则</strong>在训练过程中会使得相关的系数择一保留，这使得最后的系数保留了大量的0而产生一个稀疏向量，这能有效地减少特征，降低纬度。虽然这能有效缓解过拟合的问题，但是也可能造成精度丧失，而使得模型的泛化能力不足的情况。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Lasso</span><br><span class="line">lasso = Lasso(alpha=<span class="number">0.0005</span>)</span><br><span class="line">lasso_pred = cross_val_predict(lasso, x_train, y_train, </span><br><span class="line">                               cv=<span class="number">3</span>, verbose=<span class="keyword">True</span>, n_jobs=<span class="number">-1</span>)</span><br><span class="line">lasso_mse = mean_squared_error(lasso_pred, y_train)</span><br><span class="line">np.sqrt(lasso_mse)</span><br></pre></td></tr></table></figure>
+<pre><code>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   3 out of   3 | elapsed:    0.2s finished
+
+0.1165640368257087
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们已经对<em>Lasso</em>的原理做了一个简单的介绍，下面来看看它的效果如何。在上面的代码中我们只设置了<code>alpha</code>这个关键参数，这个参数起的作用和<em>Ridge</em>中一样，在此便不在多做赘述。<em>Lasso</em>和<em>Ridge</em>最后的结果似乎非常接近，但是就模型复杂度而言<em>Ridge</em>不仅保留了所有的系数，同时还使用了核技巧将模型转化为二次型多项式，而<em>Lasso</em>完全没有任何其它的操作，根据奥卡姆剃刀原理，如果就两者中选择似乎应该优先选择<em>Lasso</em>。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们再看看学习曲线，<em>Lasso</em>和<em>Ridge</em>的学习曲线表现出的准确度和上面的均方误差一样都很接近，但是也可以明显地看到<em>Lasso</em>训练和验证两条线更为靠近，这有理由让我们相信它已经优化了<em>Ridge</em>的过拟合问题。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_learning_curve(lasso, x_train, y_train)</span><br></pre></td></tr></table></figure></p>
+<pre><code>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[learning_curve] Training set sizes: [ 131  426  721 1016 1312]
+[Parallel(n_jobs=-1)]: Done  50 out of  50 | elapsed:    2.5s finished
+</code></pre><p><img src="/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_33_3.png" alt="png"></p>
+<h2 id="Elastic-Net"><a href="#Elastic-Net" class="headerlink" title="Elastic Net"></a>Elastic Net</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>l1</strong>和<strong>l2</strong>我们都已经单独进行训练和分析，并且发现两种方式都能取得不错的效果，既然如此，何不将两种方式结合起来试试呢。<strong>Elastic Net</strong>就是将两者结合起来的产物，其公式如下：</p>
+<script type="math/tex; mode=display">\min_{w} { \frac{1}{2n_{\text{samples}}} ||X w - y||_2 ^ 2 + \alpha \rho ||w||_1 + \frac{\alpha(1-\rho)}{2} ||w||_2 ^ 2}</script><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其中$\rho$用于控制<strong>l1</strong>和<strong>l2</strong>的权衡，这样的方式使得训练过程中如果有多个相关性很高的系数会可能保留多个而不是像<strong>Lasso</strong>那样随机选取一个，同时也能拥有<strong>Ridge</strong>在应对数据旋转时的稳定性。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> ElasticNet</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_predict</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> GridSearchCV</span><br><span class="line"></span><br><span class="line">en = ElasticNet(max_iter=<span class="number">5000</span>, selection=<span class="string">'random'</span>)</span><br><span class="line">en_param = &#123;</span><br><span class="line">    <span class="string">'l1_ratio'</span>: np.linspace(<span class="number">0.01</span>, <span class="number">1</span>, <span class="number">11</span>),</span><br><span class="line">    <span class="string">'alpha'</span>: np.linspace(<span class="number">0.0005</span>, <span class="number">0.1</span>,<span class="number">11</span>)</span><br><span class="line">&#125;</span><br><span class="line">en_grid_cv = GridSearchCV(en, param_grid=en_param, verbose=<span class="keyword">True</span>, </span><br><span class="line">                                cv=<span class="number">5</span>, n_jobs=<span class="number">-1</span>)</span><br><span class="line">en_grid_cv.fit(x_train, y_train)</span><br><span class="line"><span class="comment"># en = ElasticNet(alpha=0.0005, copy_X=True, fit_intercept=True,</span></span><br><span class="line"><span class="comment">#       l1_ratio=0.3, max_iter=1000, normalize=False, positive=False,</span></span><br><span class="line"><span class="comment">#       precompute=False, random_state=None, selection='cyclic', tol=0.0001,</span></span><br><span class="line"><span class="comment">#       warm_start=False)</span></span><br><span class="line"><span class="comment"># en.fit(x_train, y_train)</span></span><br></pre></td></tr></table></figure></p>
+<pre><code>Fitting 5 folds for each of 121 candidates, totalling 605 fits
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  42 tasks      | elapsed:   13.3s
+[Parallel(n_jobs=-1)]: Done 500 tasks      | elapsed:   19.2s
+[Parallel(n_jobs=-1)]: Done 605 out of 605 | elapsed:   19.9s finished
+
+GridSearchCV(cv=5, error_score=&#39;raise-deprecating&#39;,
+       estimator=ElasticNet(alpha=1.0, copy_X=True, fit_intercept=True, l1_ratio=0.5,
+      max_iter=5000, normalize=False, positive=False, precompute=False,
+      random_state=None, selection=&#39;random&#39;, tol=0.0001, warm_start=False),
+       fit_params=None, iid=&#39;warn&#39;, n_jobs=-1,
+       param_grid={&#39;l1_ratio&#39;: array([0.01 , 0.109, 0.208, 0.307, 0.406, 0.505, 0.604, 0.703, 0.802,
+       0.901, 1.   ]), &#39;alpha&#39;: array([0.0005 , 0.01045, 0.0204 , 0.03035, 0.0403 , 0.05025, 0.0602 ,
+       0.07015, 0.0801 , 0.09005, 0.1    ])},
+       pre_dispatch=&#39;2*n_jobs&#39;, refit=True, return_train_score=&#39;warn&#39;,
+       scoring=None, verbose=True)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">en = en_grid_cv.best_estimator_</span><br><span class="line">en_grid_cv.best_estimator_</span><br></pre></td></tr></table></figure>
+<pre><code>ElasticNet(alpha=0.0005, copy_X=True, fit_intercept=True, l1_ratio=1.0,
+      max_iter=5000, normalize=False, positive=False, precompute=False,
+      random_state=None, selection=&#39;random&#39;, tol=0.0001, warm_start=False)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># en_grid_cv.best_score_</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">en_pred = cross_val_predict(en, x_train, y_train, </span><br><span class="line">                            verbose=<span class="keyword">True</span>, n_jobs=<span class="number">-1</span>, cv=<span class="number">3</span>)</span><br><span class="line">mse = mean_squared_error(y_train, en_pred)</span><br><span class="line">np.sqrt(mse)</span><br></pre></td></tr></table></figure>
+<pre><code>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   3 out of   3 | elapsed:    0.1s finished
+
+0.11655822747866447
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;虽然上面说了<strong>Elastic Net</strong>的优点，但是在针对这个数据集的时候其最后得出的模型却与预期背道而驰。它最后选择的<code>l1_ration</code>也就是$\rho$为1，这也就意味着这个模型完全没有使用<strong>l2</strong>，而是只使用了<strong>l1</strong>，最后退化成了<strong>Lasso</strong>。从最后的均方误差和学习曲线也可以看出其和<strong>Lasso</strong>非常接近。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot_learning_curve(en, x_train, y_train)</span><br></pre></td></tr></table></figure></p>
+<pre><code>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
+[learning_curve] Training set sizes: [ 131  426  721 1016 1312]
+[Parallel(n_jobs=-1)]: Done  50 out of  50 | elapsed:    2.8s finished
+</code></pre><p><img src="/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/Predict%20House%20Prices_47_3.png" alt="png"></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说是小结，其实是对突然决定分篇的一个阐述。因为后面的模型都是集成模型，但是在训练时都有明显的过拟合问题，因此我又尝试重新训练这些模型，而最后当然是以失败告终了。在不停地尝试，搜索最佳参数的过程中，我突然意识到或许我只是在碰运气，而没有具体地去分析这些参数对模型最后的影响，所以失败是不言而喻的。基于此，我决定先写到这儿，待我将剩下的模型都一一分析透彻之后再单开一篇专门来专门叙述。</p>
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style:none; padding-left: 0;"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">1.</span><span style="display: inline-block; vertical-align: top;">$z = \frac{m - min}{max - min}$</span><a href="#fnref:1" rev="footnote"> ↩</a></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">2.</span><span style="display: inline-block; vertical-align: top;">$\min_{w} || X w - y||_2^2$</span><a href="#fnref:2" rev="footnote"> ↩</a></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">3.</span><span style="display: inline-block; vertical-align: top;">空间上两个向量矩阵的直线距离</span><a href="#fnref:3" rev="footnote"> ↩</a></li><li id="fn:4"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">4.</span><span style="display: inline-block; vertical-align: top;">将低维空间的数据通过核函数映射到高维空间</span><a href="#fnref:4" rev="footnote"> ↩</a></li></ol></div></div>
+      
+    </div>
+    
+    
+    
+		<div>
+		  
+		    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-apple"></i>感谢您的阅读-------------</div>
+    
+</div>
+		  
+		</div>
+		<div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/">House-Prices-Advanced-Regression-Techniques-1</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 邓小俊 的个人博客">邓小俊</a></p>
+  <p><span>发布时间:</span>2019年05月25日 - 08:05</p>
+  <p><span>最后更新:</span>2019年07月20日 - 16:07</p>
+  <p><span>原始链接:</span><a href="/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/" title="House-Prices-Advanced-Regression-Techniques-1">http://coldjune.com/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://coldjune.com/2019/05/25/House-Prices-Advanced-Regression-Techniques-1/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+      
+		</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/kaggle/" rel="tag"><i class="fa fa-tag"></i> kaggle</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/08/Reinforcement-Learning/" rel="next" title="Reinforcement Learning">
+                <i class="fa fa-chevron-left"></i> Reinforcement Learning
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/27/House-Prices-Advanced-Regression-Techniques-2/" rel="prev" title="House Prices: Advanced Regression Techniques(2)">
+                House Prices: Advanced Regression Techniques(2) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">邓小俊</p>
+              <p class="site-description motion-element" itemprop="description">人所恐惧的不是孤独本身，而是害怕承认人本生而孤独的事实</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#准备工作"><span class="nav-number">2.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据篇"><span class="nav-number">2.1.</span> <span class="nav-text">数据篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#观测"><span class="nav-number">2.1.1.</span> <span class="nav-text">观测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据分类"><span class="nav-number">2.2.</span> <span class="nav-text">数据分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数值型数据"><span class="nav-number">2.2.1.</span> <span class="nav-text">数值型数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非数值型数据"><span class="nav-number">2.2.2.</span> <span class="nav-text">非数值型数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理数据"><span class="nav-number">2.3.</span> <span class="nav-text">处理数据</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模型选择"><span class="nav-number">3.</span> <span class="nav-text">模型选择</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#随机梯度下降"><span class="nav-number">3.1.</span> <span class="nav-text">随机梯度下降</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#比对线性回归"><span class="nav-number">3.1.1.</span> <span class="nav-text">比对线性回归</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#岭回归"><span class="nav-number">3.2.</span> <span class="nav-text">岭回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LASSO回归"><span class="nav-number">3.3.</span> <span class="nav-text">LASSO回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Elastic-Net"><span class="nav-number">3.4.</span> <span class="nav-text">Elastic Net</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">3.5.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">邓小俊</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">博文包含字数&#58;</span>
+    
+    <span title="博文包含字数">277.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("EdodKu35EbSo4VoLhJYQMd09-gzGzoHsz", "qpErN7JcsIzusWGMNuw1QcxN");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+ 
+</body>
+</html>

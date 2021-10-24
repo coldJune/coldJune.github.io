@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="true" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico#/images/favicon-16x16-next.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="Hands-On Machine Learning with Scikit-Learn and TensorFlow,sklearn,回归," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="12345678910111213141516171819202122232425262728import osimport tarfilefrom six.moves import urllibDOWNLOAD_ROOT = &quot;https://raw.githubusercontent.com/ageron/handson-ml/master/&quot;HOUSING_PATH = &quot;datasets/">
+<meta name="keywords" content="Hands-On Machine Learning with Scikit-Learn and TensorFlow,sklearn,回归">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LinearRegression">
+<meta property="og:url" content="http://coldjune.com/2018/11/27/LinearRegression/index.html">
+<meta property="og:site_name" content="Stay Hungary">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728import osimport tarfilefrom six.moves import urllibDOWNLOAD_ROOT = &quot;https://raw.githubusercontent.com/ageron/handson-ml/master/&quot;HOUSING_PATH = &quot;datasets/">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://coldjune.com/2018/11/27/LinearRegression/LinearRegression_6_0.png">
+<meta property="og:image" content="http://coldjune.com/2018/11/27/LinearRegression/LinearRegression_18_1.png">
+<meta property="og:image" content="http://coldjune.com/2018/11/27/LinearRegression/LinearRegression_19_1.png">
+<meta property="og:image" content="http://coldjune.com/2018/11/27/LinearRegression/LinearRegression_20_1.png">
+<meta property="og:image" content="http://coldjune.com/2018/11/27/LinearRegression/LinearRegression_22_1.png">
+<meta property="og:image" content="http://coldjune.com/2018/11/27/LinearRegression/LinearRegression_23_1.png">
+<meta property="og:updated_time" content="2018-12-12T12:49:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LinearRegression">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728import osimport tarfilefrom six.moves import urllibDOWNLOAD_ROOT = &quot;https://raw.githubusercontent.com/ageron/handson-ml/master/&quot;HOUSING_PATH = &quot;datasets/">
+<meta name="twitter:image" content="http://coldjune.com/2018/11/27/LinearRegression/LinearRegression_6_0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://coldjune.com/2018/11/27/LinearRegression/"/>
+
+
+
+
+
+  <title>LinearRegression | Stay Hungary</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+		<a href="https://github.com/coldJune" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stay Hungary</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Programming is an art form</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://coldjune.com/2018/11/27/LinearRegression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="邓小俊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay Hungary">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LinearRegression</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-27T10:58:37+08:00">
+                2018-11-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/11/27/LinearRegression/" class="leancloud_visitors" data-flag-title="LinearRegression">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,069
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  18
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> tarfile</span><br><span class="line"><span class="keyword">from</span> six.moves <span class="keyword">import</span> urllib</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">DOWNLOAD_ROOT = <span class="string">"https://raw.githubusercontent.com/ageron/handson-ml/master/"</span></span><br><span class="line">HOUSING_PATH = <span class="string">"datasets/housing"</span></span><br><span class="line">HOUSING_URL = DOWNLOAD_ROOT + HOUSING_PATH + <span class="string">"/housing.tgz"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fetch_housing_data</span><span class="params">(housing_url=HOUSING_URL, housing_path=HOUSING_PATH)</span>:</span></span><br><span class="line">    <span class="string">"""获取数据源并解压缩</span></span><br><span class="line"><span class="string">    :param housing_url 下载链接</span></span><br><span class="line"><span class="string">    :param housing_path 文件保存地址</span></span><br><span class="line"><span class="string">    :return</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(housing_path):</span><br><span class="line">        os.makedirs(housing_path)</span><br><span class="line">    tgz_path = os.path.join(housing_path, <span class="string">"housing.tgz"</span>)</span><br><span class="line">    print(<span class="string">"正在从："</span>+housing_url+<span class="string">"下载文件..."</span>)</span><br><span class="line">    urllib.request.urlretrieve(housing_url, tgz_path)</span><br><span class="line">    print(<span class="string">"正在解压文件..."</span>)</span><br><span class="line">    housing_tgz = tarfile.open(tgz_path)</span><br><span class="line">    housing_tgz.extractall(path=housing_path)</span><br><span class="line">    print(<span class="string">"解压完成！"</span>)</span><br><span class="line">    housing_tgz.close()</span><br><span class="line"></span><br><span class="line">fetch_housing_data()</span><br></pre></td></tr></table></figure>
+<pre><code>正在从：https://raw.githubusercontent.com/ageron/handson-ml/master/datasets/housing/housing.tgz下载文件...
+正在解压文件...
+解压完成！
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_housing_data</span><span class="params">(housing_path=HOUSING_PATH)</span>:</span></span><br><span class="line">    <span class="string">"""加载数据文件</span></span><br><span class="line"><span class="string">    :param housing_path 数据地址</span></span><br><span class="line"><span class="string">    :return</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    csv_path = os.path.join(housing_path, <span class="string">"housing.csv"</span>)</span><br><span class="line">    <span class="keyword">return</span> pd.read_csv(csv_path)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">housing = load_housing_data()</span><br><span class="line">housing.head()</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>longitude</th>
+      <th>latitude</th>
+      <th>housing_median_age</th>
+      <th>total_rooms</th>
+      <th>total_bedrooms</th>
+      <th>population</th>
+      <th>households</th>
+      <th>median_income</th>
+      <th>median_house_value</th>
+      <th>ocean_proximity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-122.23</td>
+      <td>37.88</td>
+      <td>41.0</td>
+      <td>880.0</td>
+      <td>129.0</td>
+      <td>322.0</td>
+      <td>126.0</td>
+      <td>8.3252</td>
+      <td>452600.0</td>
+      <td>NEAR BAY</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-122.22</td>
+      <td>37.86</td>
+      <td>21.0</td>
+      <td>7099.0</td>
+      <td>1106.0</td>
+      <td>2401.0</td>
+      <td>1138.0</td>
+      <td>8.3014</td>
+      <td>358500.0</td>
+      <td>NEAR BAY</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-122.24</td>
+      <td>37.85</td>
+      <td>52.0</td>
+      <td>1467.0</td>
+      <td>190.0</td>
+      <td>496.0</td>
+      <td>177.0</td>
+      <td>7.2574</td>
+      <td>352100.0</td>
+      <td>NEAR BAY</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-122.25</td>
+      <td>37.85</td>
+      <td>52.0</td>
+      <td>1274.0</td>
+      <td>235.0</td>
+      <td>558.0</td>
+      <td>219.0</td>
+      <td>5.6431</td>
+      <td>341300.0</td>
+      <td>NEAR BAY</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-122.25</td>
+      <td>37.85</td>
+      <td>52.0</td>
+      <td>1627.0</td>
+      <td>280.0</td>
+      <td>565.0</td>
+      <td>259.0</td>
+      <td>3.8462</td>
+      <td>342200.0</td>
+      <td>NEAR BAY</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">housing.info() <span class="comment">#获取数据的相关信息</span></span><br></pre></td></tr></table></figure>
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 20640 entries, 0 to 20639
+Data columns (total 10 columns):
+longitude             20640 non-null float64
+latitude              20640 non-null float64
+housing_median_age    20640 non-null float64
+total_rooms           20640 non-null float64
+total_bedrooms        20433 non-null float64
+population            20640 non-null float64
+households            20640 non-null float64
+median_income         20640 non-null float64
+median_house_value    20640 non-null float64
+ocean_proximity       20640 non-null object
+dtypes: float64(9), object(1)
+memory usage: 1.6+ MB
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">housing[<span class="string">"ocean_proximity"</span>].value_counts() <span class="comment">#统计相关类别的信息(非数值信息)</span></span><br></pre></td></tr></table></figure>
+<pre><code>&lt;1H OCEAN     9136
+INLAND        6551
+NEAR OCEAN    2658
+NEAR BAY      2290
+ISLAND           5
+Name: ocean_proximity, dtype: int64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">housing.describe()<span class="comment">#数值信息的摘要(会去除空的数据)</span></span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>longitude</th>
+      <th>latitude</th>
+      <th>housing_median_age</th>
+      <th>total_rooms</th>
+      <th>total_bedrooms</th>
+      <th>population</th>
+      <th>households</th>
+      <th>median_income</th>
+      <th>median_house_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>20640.000000</td>
+      <td>20640.000000</td>
+      <td>20640.000000</td>
+      <td>20640.000000</td>
+      <td>20433.000000</td>
+      <td>20640.000000</td>
+      <td>20640.000000</td>
+      <td>20640.000000</td>
+      <td>20640.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>-119.569704</td>
+      <td>35.631861</td>
+      <td>28.639486</td>
+      <td>2635.763081</td>
+      <td>537.870553</td>
+      <td>1425.476744</td>
+      <td>499.539680</td>
+      <td>3.870671</td>
+      <td>206855.816909</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>2.003532</td>
+      <td>2.135952</td>
+      <td>12.585558</td>
+      <td>2181.615252</td>
+      <td>421.385070</td>
+      <td>1132.462122</td>
+      <td>382.329753</td>
+      <td>1.899822</td>
+      <td>115395.615874</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>-124.350000</td>
+      <td>32.540000</td>
+      <td>1.000000</td>
+      <td>2.000000</td>
+      <td>1.000000</td>
+      <td>3.000000</td>
+      <td>1.000000</td>
+      <td>0.499900</td>
+      <td>14999.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>-121.800000</td>
+      <td>33.930000</td>
+      <td>18.000000</td>
+      <td>1447.750000</td>
+      <td>296.000000</td>
+      <td>787.000000</td>
+      <td>280.000000</td>
+      <td>2.563400</td>
+      <td>119600.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>-118.490000</td>
+      <td>34.260000</td>
+      <td>29.000000</td>
+      <td>2127.000000</td>
+      <td>435.000000</td>
+      <td>1166.000000</td>
+      <td>409.000000</td>
+      <td>3.534800</td>
+      <td>179700.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>-118.010000</td>
+      <td>37.710000</td>
+      <td>37.000000</td>
+      <td>3148.000000</td>
+      <td>647.000000</td>
+      <td>1725.000000</td>
+      <td>605.000000</td>
+      <td>4.743250</td>
+      <td>264725.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>-114.310000</td>
+      <td>41.950000</td>
+      <td>52.000000</td>
+      <td>39320.000000</td>
+      <td>6445.000000</td>
+      <td>35682.000000</td>
+      <td>6082.000000</td>
+      <td>15.000100</td>
+      <td>500001.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> matplotlib.pylab <span class="keyword">as</span> plt</span><br><span class="line">housing.hist(bins=<span class="number">50</span>, figsize=(<span class="number">20</span>,<span class="number">15</span>))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/27/LinearRegression/LinearRegression_6_0.png" alt="柱状图"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">split_train_test</span><span class="params">(data, test_ratio)</span>:</span></span><br><span class="line">    <span class="string">"""从数据中创建训练集和测试集</span></span><br><span class="line"><span class="string">    :param 数据集</span></span><br><span class="line"><span class="string">    :param 分割比例(测试集占全集的百分比)</span></span><br><span class="line"><span class="string">    :return</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    shuffled_indices = np.random.permutation(len(data))</span><br><span class="line">    test_set_size = int(len(data) * test_ratio)</span><br><span class="line">    test_indices = shuffled_indices[:test_set_size]</span><br><span class="line">    train_indices = shuffled_indices[test_set_size:]</span><br><span class="line">    <span class="keyword">return</span> data.iloc[train_indices], data.iloc[test_indices]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train_set, tesst_set = split_train_test(housing, <span class="number">0.2</span>)</span><br><span class="line">print(len(train_set), <span class="string">"train +"</span>, len(tesst_set), <span class="string">"test"</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>16512 train + 4128 test
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_set_check</span><span class="params">(identifier, test_ratio, hash)</span>:</span></span><br><span class="line">    <span class="string">"""测试集检查</span></span><br><span class="line"><span class="string">    :param identifier 标识符</span></span><br><span class="line"><span class="string">    :param test_ratio 测试集比例</span></span><br><span class="line"><span class="string">    :param hash hash函数</span></span><br><span class="line"><span class="string">    :return</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">return</span> hash(np.int64(identifier)).digest()[<span class="number">-1</span>] &lt; <span class="number">256</span> * test_ratio</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">split_train_test_by_id</span><span class="params">(data, test_ratio, id_column, hash=hashlib.md5)</span>:</span></span><br><span class="line">    <span class="string">"""通过ID分割</span></span><br><span class="line"><span class="string">    :param data 数据集</span></span><br><span class="line"><span class="string">    :param test_ratio 测试集的比例</span></span><br><span class="line"><span class="string">    :param id_column 作为id的列</span></span><br><span class="line"><span class="string">    :param hash hash函数</span></span><br><span class="line"><span class="string">    :return</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    ids = data[id_column]</span><br><span class="line">    in_test_set = ids.apply(<span class="keyword">lambda</span> id_: test_set_check(id_, test_ratio, hash))</span><br><span class="line">    <span class="keyword">return</span> data.loc[~in_test_set], data.loc[in_test_set]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">housing_with_id = housing.reset_index() <span class="comment">#housing数据无标识符，所以需要添加</span></span><br><span class="line">train_set, test_set = split_train_test_by_id(housing_with_id, <span class="number">0.2</span>, <span class="string">"index"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">housing_with_id[<span class="string">"id"</span>] = housing[<span class="string">"longitude"</span>] * <span class="number">1000</span> + housing[<span class="string">"latitude"</span>] <span class="comment">#使用联合主键作为id</span></span><br><span class="line">train_set, tesst_set = split_train_test_by_id(housing_with_id, <span class="number">0.2</span>, <span class="string">"id"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line">train_set, tesst_set = train_test_split(housing, test_size=<span class="number">0.2</span>, random_state=<span class="number">42</span>) <span class="comment">#使用sklearn自带的分割函数</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">housing[<span class="string">"income_cat"</span>] = np.ceil(housing[<span class="string">"median_income"</span>] / <span class="number">1.5</span>) <span class="comment"># 压缩median_income</span></span><br><span class="line">housing[<span class="string">"income_cat"</span>].where(housing[<span class="string">"income_cat"</span>] &lt; <span class="number">5</span>, <span class="number">5.0</span>, inplace=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> StratifiedShuffleSplit</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">split = StratifiedShuffleSplit(n_splits=<span class="number">1</span>, test_size=<span class="number">0.2</span>, random_state=<span class="number">42</span>)</span><br><span class="line"><span class="keyword">for</span> train_index, test_index <span class="keyword">in</span> split.split(housing, housing[<span class="string">"income_cat"</span>]):<span class="comment">#分层抽样</span></span><br><span class="line">    strat_train_set = housing.loc[train_index]</span><br><span class="line">    strat_test_set = housing.loc[test_index]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">housing[<span class="string">"income_cat"</span>].value_counts() / len(housing) <span class="comment">#每一层样本在总数据集中的比例</span></span><br></pre></td></tr></table></figure>
+<pre><code>3.0    0.350581
+2.0    0.318847
+4.0    0.176308
+5.0    0.114438
+1.0    0.039826
+Name: income_cat, dtype: float64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> set <span class="keyword">in</span> (strat_test_set, strat_train_set):<span class="comment">#删除incom_cat列</span></span><br><span class="line">    set.drop([<span class="string">"income_cat"</span>], axis=<span class="number">1</span>, inplace=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">housing = strat_train_set.copy()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">housing.plot(kind=<span class="string">"scatter"</span>, x=<span class="string">"longitude"</span>, y=<span class="string">"latitude"</span>)<span class="comment">#画出散点图</span></span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11b8dc4a8&gt;
+</code></pre><p><img src="/2018/11/27/LinearRegression/LinearRegression_18_1.png" alt="经纬度"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">housing.plot(kind=<span class="string">"scatter"</span>, x=<span class="string">"longitude"</span>, y=<span class="string">"latitude"</span>, alpha=<span class="number">0.1</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11bdadda0&gt;
+</code></pre><p><img src="/2018/11/27/LinearRegression/LinearRegression_19_1.png" alt="经纬度"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">housing.plot(kind=<span class="string">"scatter"</span>, x=<span class="string">"longitude"</span>, y=<span class="string">"latitude"</span>, alpha=<span class="number">0.4</span>,</span><br><span class="line">            s=housing[<span class="string">"population"</span>] / <span class="number">100</span>, label=<span class="string">"population"</span>,</span><br><span class="line">            c=<span class="string">"median_house_value"</span>, cmap=plt.get_cmap(<span class="string">"jet"</span>), colorbar=<span class="keyword">True</span>,</span><br><span class="line">            )</span><br><span class="line">plt.legend()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.legend.Legend at 0x11bef7cc0&gt;
+</code></pre><p><img src="/2018/11/27/LinearRegression/LinearRegression_20_1.png" alt="分颜色显示"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">corr_matrix = housing.corr()<span class="comment">#计算相关系数</span></span><br><span class="line">corr_matrix[<span class="string">"median_house_value"</span>].sort_values(ascending=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>median_house_value    1.000000
+median_income         0.687160
+total_rooms           0.135097
+housing_median_age    0.114110
+households            0.064506
+total_bedrooms        0.047689
+population           -0.026920
+longitude            -0.047432
+latitude             -0.142724
+Name: median_house_value, dtype: float64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pandas.plotting <span class="keyword">import</span> scatter_matrix</span><br><span class="line"></span><br><span class="line">attributes = [<span class="string">"median_house_value"</span>, <span class="string">"median_income"</span>,</span><br><span class="line">             <span class="string">"total_rooms"</span>,<span class="string">"housing_median_age"</span>]</span><br><span class="line">scatter_matrix(housing[attributes], figsize=(<span class="number">12</span>,<span class="number">8</span>)) <span class="comment">#从数据图获取相关性</span></span><br></pre></td></tr></table></figure>
+<pre><code>array([[&lt;matplotlib.axes._subplots.AxesSubplot object at 0x1166ded68&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x1166b4e80&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x1162bac18&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x11677d198&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x11676c940&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x11643ec88&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x1161eb048&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x116220940&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x1162208d0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x1165e6fd0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x11672f9e8&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x115fcdac8&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x1165824e0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x116828a58&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x116815fd0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x116602588&gt;]],
+      dtype=object)
+</code></pre><p><img src="/2018/11/27/LinearRegression/LinearRegression_22_1.png" alt="相关性"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">housing.plot(kind=<span class="string">"scatter"</span>, x=<span class="string">"median_income"</span>, y=<span class="string">"median_house_value"</span>, alpha=<span class="number">0.1</span>)<span class="comment"># 画出收入中位数与房价中位数的关系</span></span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x116240e10&gt;
+</code></pre><p><img src="/2018/11/27/LinearRegression/LinearRegression_23_1.png" alt="收入中位数和房价中位数相关性"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#尝试组合属性查看相关性</span></span><br><span class="line">housing[<span class="string">"rooms_per_household"</span>] = housing[<span class="string">"total_rooms"</span>]/housing[<span class="string">"households"</span>]</span><br><span class="line">housing[<span class="string">"bedrooms_per_room"</span>] = housing[<span class="string">"total_bedrooms"</span>]/housing[<span class="string">"total_rooms"</span>]</span><br><span class="line">housing[<span class="string">"population_per_houshold"</span>] = housing[<span class="string">"population"</span>]/housing[<span class="string">"households"</span>]</span><br><span class="line"></span><br><span class="line">corr_matrix = housing.corr()</span><br><span class="line">corr_matrix[<span class="string">"median_house_value"</span>].sort_values(ascending=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>median_house_value         1.000000
+median_income              0.687160
+rooms_per_household        0.146285
+total_rooms                0.135097
+housing_median_age         0.114110
+households                 0.064506
+total_bedrooms             0.047689
+population_per_houshold   -0.021985
+population                -0.026920
+longitude                 -0.047432
+latitude                  -0.142724
+bedrooms_per_room         -0.259984
+Name: median_house_value, dtype: float64
+</code></pre><h1 id="准备训练数据"><a href="#准备训练数据" class="headerlink" title="准备训练数据"></a>准备训练数据</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">housing = strat_train_set.drop(<span class="string">"median_house_value"</span>, axis=<span class="number">1</span>)</span><br><span class="line">housing_labels = strat_train_set[<span class="string">"median_house_value"</span>].copy()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.impute <span class="keyword">import</span> SimpleImputer</span><br><span class="line"><span class="comment">#使用中值填充空值</span></span><br><span class="line"><span class="comment">#median = housing["total_bedrooms"].median()</span></span><br><span class="line"><span class="comment">#housing["total_bedrooms"].fillna(median)</span></span><br><span class="line">imputer = SimpleImputer(strategy=<span class="string">"median"</span>)</span><br><span class="line">housing_num = housing.drop(<span class="string">"ocean_proximity"</span>, axis=<span class="number">1</span>)<span class="comment">#删除非数值项</span></span><br><span class="line">imputer.fit(housing_num)</span><br><span class="line">X = imputer.transform(housing_num)</span><br><span class="line">housing_tr = pd.DataFrame(X, columns=housing_num.columns)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(housing_num.median().values)</span><br><span class="line">imputer.statistics_<span class="comment">#每一个属性的中值保存在statistics_</span></span><br></pre></td></tr></table></figure>
+<pre><code>[-118.51     34.26     29.     2119.5     433.     1164.      408.
+    3.5409]
+
+
+
+
+
+array([-118.51  ,   34.26  ,   29.    , 2119.5   ,  433.    , 1164.    ,
+        408.    ,    3.5409])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#处理非数值属性</span></span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> LabelEncoder</span><br><span class="line">encoder = LabelEncoder()</span><br><span class="line">housing_cat = housing[<span class="string">"ocean_proximity"</span>]</span><br><span class="line">housing_cat</span><br><span class="line">housing_cat_encoded = encoder.fit_transform(housing_cat)</span><br><span class="line">housing_cat_encoded</span><br></pre></td></tr></table></figure>
+<pre><code>array([0, 0, 4, ..., 1, 0, 3])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用该映射方式会使两个相近的值比更相隔更远的值更相似</span></span><br><span class="line">print(encoder.classes_)<span class="comment">#查看映射值</span></span><br></pre></td></tr></table></figure>
+<pre><code>[&#39;&lt;1H OCEAN&#39; &#39;INLAND&#39; &#39;ISLAND&#39; &#39;NEAR BAY&#39; &#39;NEAR OCEAN&#39;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用one-hot encoding解决上述问题，即每一组只有一个属性被映射为1，其它均为0</span></span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> OneHotEncoder</span><br><span class="line">encoder = OneHotEncoder()</span><br><span class="line">housing_cat_1hot = encoder.fit_transform(housing_cat.values.reshape(<span class="number">-1</span>,<span class="number">1</span>))</span><br><span class="line">housing_cat_1hot<span class="comment">#scipy的稀疏矩阵</span></span><br></pre></td></tr></table></figure>
+<pre><code>&lt;16512x5 sparse matrix of type &#39;&lt;class &#39;numpy.float64&#39;&gt;&#39;
+    with 16512 stored elements in Compressed Sparse Row format&gt;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">housing_cat_1hot.toarray()</span><br></pre></td></tr></table></figure>
+<pre><code>array([[1., 0., 0., 0., 0.],
+       [1., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 1.],
+       ...,
+       [0., 1., 0., 0., 0.],
+       [1., 0., 0., 0., 0.],
+       [0., 0., 0., 1., 0.]])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> LabelBinarizer</span><br><span class="line">encoder = LabelBinarizer()<span class="comment">#LabelBinarizer(sparse_output=True)</span></span><br><span class="line">housing_cat_1hot = encoder.fit_transform(housing_cat)</span><br><span class="line">housing_cat_1hot <span class="comment">#默认输出NumPy数组，使用sparse_output=True在LabelBinarizer中</span></span><br></pre></td></tr></table></figure>
+<pre><code>array([[1, 0, 0, 0, 0],
+       [1, 0, 0, 0, 0],
+       [0, 0, 0, 0, 1],
+       ...,
+       [0, 1, 0, 0, 0],
+       [1, 0, 0, 0, 0],
+       [0, 0, 0, 1, 0]])
+</code></pre><h1 id="自定义转换器"><a href="#自定义转换器" class="headerlink" title="自定义转换器"></a>自定义转换器</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.base <span class="keyword">import</span> BaseEstimator, TransformerMixin</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">rooms_ix, bedrooms_ix, population_ix, household_ix = <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CombinedAttributesAddr</span><span class="params">(BaseEstimator, TransformerMixin)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, add_bedrooms_per_room = True)</span>:</span></span><br><span class="line">        self.add_bedrooms_per_room = add_bedrooms_per_room</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, X, y=None)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">transform</span><span class="params">(self, X, y=None)</span>:</span></span><br><span class="line">        rooms_per_household = X[:, rooms_ix] / X[:, household_ix]</span><br><span class="line">        popilation_per_household = X[:, population_ix] / X[:, household_ix]</span><br><span class="line">        <span class="keyword">if</span> self.add_bedrooms_per_room:</span><br><span class="line">            bedrooms_per_room = X[:, bedrooms_ix] / X[:, rooms_ix]</span><br><span class="line">            <span class="keyword">return</span> np.c_[X, rooms_per_household, popilation_per_household, bedrooms_per_room]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> np.c_[X, rooms_per_household, popilation_per_household]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">attr_adder = CombinedAttributesAddr(add_bedrooms_per_room=<span class="keyword">False</span>)</span><br><span class="line">housing_extra_attribs = attr_adder.transform(housing.values)</span><br></pre></td></tr></table></figure>
+<h1 id="转换管道"><a href="#转换管道" class="headerlink" title="转换管道"></a>转换管道</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过管道定义转换步骤和顺序</span></span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> Pipeline</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line">num_pipeline  = Pipeline([</span><br><span class="line">    (<span class="string">'imputer'</span>, SimpleImputer(strategy=<span class="string">'median'</span>)),</span><br><span class="line">    (<span class="string">'attribs_adder'</span>, CombinedAttributesAddr()),</span><br><span class="line">    (<span class="string">'std_scaler'</span>, StandardScaler()),</span><br><span class="line">])</span><br><span class="line">housing_num_tr = num_pipeline.fit_transform(housing_num)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> FeatureUnion</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DataFrameSelector</span><span class="params">(BaseEstimator, TransformerMixin)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, attribute_names)</span>:</span></span><br><span class="line">        self.attribute_names = attribute_names</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, X, y=None)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">transform</span><span class="params">(self, X, y=None)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> X[self.attribute_names].values</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">num_attribs = list(housing_num)</span><br><span class="line">cat_attribs = [<span class="string">"ocean_proximity"</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 多管道并行运行，直到都到达最终输出进行合并</span></span><br><span class="line">num_pipeline = Pipeline([</span><br><span class="line">    (<span class="string">'selector'</span>, DataFrameSelector(num_attribs)),</span><br><span class="line">    (<span class="string">'imputer'</span>, SimpleImputer(strategy=<span class="string">'median'</span>)),</span><br><span class="line">    (<span class="string">'attribs_adder'</span>, CombinedAttributesAddr()),</span><br><span class="line">    (<span class="string">'std_scaler'</span>, StandardScaler()),</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">cat_pipeline = Pipeline([</span><br><span class="line">    (<span class="string">'selector'</span>, DataFrameSelector(cat_attribs)),</span><br><span class="line">    (<span class="string">'label_binarizer'</span>, OneHotEncoder()),</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">full_pipeline = FeatureUnion(transformer_list=[</span><br><span class="line">    (<span class="string">'num_pipeline'</span>, num_pipeline),</span><br><span class="line">    (<span class="string">'cat_pipeline'</span>, cat_pipeline),</span><br><span class="line">])</span><br><span class="line">housing_prepared = full_pipeline.fit_transform(housing)</span><br><span class="line">housing_prepared</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;16512x16 sparse matrix of type &#39;&lt;class &#39;numpy.float64&#39;&gt;&#39;
+    with 198144 stored elements in Compressed Sparse Row format&gt;
+</code></pre><h1 id="训练模型"><a href="#训练模型" class="headerlink" title="训练模型"></a>训练模型</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression</span><br><span class="line"></span><br><span class="line">lin_reg = LinearRegression()</span><br><span class="line">lin_reg.fit(housing_prepared, housing_labels)</span><br></pre></td></tr></table></figure>
+<pre><code>LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None,
+         normalize=False)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">some_data = housing.iloc[:<span class="number">5</span>]</span><br><span class="line">some_labels = housing_labels.iloc[:<span class="number">5</span>]</span><br><span class="line">some_data_prepared = full_pipeline.transform(some_data)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"Predictions:\t"</span>, lin_reg.predict(some_data_prepared))</span><br><span class="line">print(<span class="string">"Labels:\t\t"</span>, list(some_labels))</span><br></pre></td></tr></table></figure>
+<pre><code>Predictions:     [210644.60465462 317768.80729055 210956.43320428  59218.98857356
+ 189747.55852838]
+Labels:         [286600.0, 340600.0, 196900.0, 46300.0, 254500.0]
+</code></pre><h1 id="计算误差"><a href="#计算误差" class="headerlink" title="计算误差"></a>计算误差</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error</span><br><span class="line">housing_predictions = lin_reg.predict(housing_prepared)</span><br><span class="line">lin_mse = mean_squared_error(housing_labels, housing_predictions)</span><br><span class="line">lin_rmse = np.sqrt(lin_mse)</span><br><span class="line">lin_rmse</span><br></pre></td></tr></table></figure>
+<pre><code>68628.19819848923
+</code></pre><h1 id="使用决策树训练模型"><a href="#使用决策树训练模型" class="headerlink" title="使用决策树训练模型"></a>使用决策树训练模型</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor</span><br><span class="line">tree_reg = DecisionTreeRegressor()</span><br><span class="line">tree_reg.fit(housing_prepared, housing_labels)</span><br></pre></td></tr></table></figure>
+<pre><code>DecisionTreeRegressor(criterion=&#39;mse&#39;, max_depth=None, max_features=None,
+           max_leaf_nodes=None, min_impurity_decrease=0.0,
+           min_impurity_split=None, min_samples_leaf=1,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           presort=False, random_state=None, splitter=&#39;best&#39;)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">housing_predictions = tree_reg.predict(housing_prepared)</span><br><span class="line">tree_mse = mean_squared_error(housing_labels, housing_predictions)</span><br><span class="line">tree_rmse = np.sqrt(tree_mse)</span><br><span class="line">tree_rmse<span class="comment">#过拟合</span></span><br></pre></td></tr></table></figure>
+<pre><code>0.0
+</code></pre><h1 id="使用交叉验证集"><a href="#使用交叉验证集" class="headerlink" title="使用交叉验证集"></a>使用交叉验证集</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line">scores = cross_val_score(tree_reg, housing_prepared,</span><br><span class="line">                        housing_labels, scoring=<span class="string">"neg_mean_squared_error"</span>, cv=<span class="number">10</span>)</span><br><span class="line">rmse_scores = np.sqrt(-scores)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">display_scores</span><span class="params">(scores)</span>:</span></span><br><span class="line">    print(<span class="string">"Scores:"</span>, scores)</span><br><span class="line">    print(<span class="string">"Mean:"</span>, scores.mean())</span><br><span class="line">    print(<span class="string">"Standard deviation:"</span>, scores.std())</span><br><span class="line"></span><br><span class="line">display_scores(rmse_scores)</span><br></pre></td></tr></table></figure>
+<pre><code>Scores: [69387.06653153 67286.59471614 70828.67634657 68637.08950797
+ 71446.95561512 75698.68535069 72708.74498639 71492.80752186
+ 76248.48154091 68464.80592567]
+Mean: 71219.99080428517
+Standard deviation: 2844.881736248285
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lin_scores = cross_val_score(lin_reg, housing_prepared,</span><br><span class="line">                            housing_labels, scoring=<span class="string">"neg_mean_squared_error"</span>, cv=<span class="number">10</span>)</span><br><span class="line">lin_rmse_scores = np.sqrt(-lin_scores)</span><br><span class="line">display_scores(lin_rmse_scores)</span><br></pre></td></tr></table></figure>
+<pre><code>Scores: [66782.73844317 66960.11809222 70347.95243904 74739.57055258
+ 68031.13389115 71193.84181183 64969.63056023 68281.61137907
+ 71552.91565846 67665.10081739]
+Mean: 69052.46136451427
+Standard deviation: 2731.674003577556
+</code></pre><h1 id="使用随机森林"><a href="#使用随机森林" class="headerlink" title="使用随机森林"></a>使用随机森林</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestRegressor</span><br><span class="line">forest_reg = RandomForestRegressor()</span><br><span class="line">forest_reg.fit(housing_prepared, housing_labels)</span><br><span class="line">housing_predictions = forest_reg.predict(housing_prepared)</span><br><span class="line">forest_rmse = mean_squared_error(housing_labels, housing_predictions)</span><br><span class="line">forest_rmse = np.sqrt(forest_rmse)</span><br><span class="line">forest_rmse</span><br></pre></td></tr></table></figure>
+<pre><code>/usr/local/lib/python3.6/site-packages/sklearn/ensemble/forest.py:246: FutureWarning: The default value of n_estimators will change from 10 in version 0.20 to 100 in 0.22.
+  &quot;10 in version 0.20 to 100 in 0.22.&quot;, FutureWarning)
+
+
+
+
+
+22163.130551903472
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line">forest_rmse_scores = cross_val_score(forest_reg, housing_prepared,</span><br><span class="line">                             housing_labels, scoring=<span class="string">"neg_mean_squared_error"</span>, cv=<span class="number">10</span>)</span><br><span class="line">forest_rmse_scores = np.sqrt(-forest_rmse_scores)</span><br><span class="line">display_scores(forest_rmse_scores)</span><br></pre></td></tr></table></figure>
+<pre><code>Scores: [52527.47724318 49900.17270529 53256.69381502 54127.96523378
+ 52565.69742633 55149.84634202 51794.92861894 51150.56514327
+ 55913.16499668 52788.63800042]
+Mean: 52917.51495249358
+Standard deviation: 1712.2101214708819
+</code></pre><h1 id="调整模型"><a href="#调整模型" class="headerlink" title="调整模型"></a>调整模型</h1><h2 id="网格查找"><a href="#网格查找" class="headerlink" title="网格查找"></a>网格查找</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#网格查找用于指定想要组合的属性，使用交叉验证集进行验证</span></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> GridSearchCV</span><br><span class="line"></span><br><span class="line">param_grid = [</span><br><span class="line">    &#123;<span class="string">'n_estimators'</span>:[<span class="number">3</span>, <span class="number">10</span>, <span class="number">30</span>], <span class="string">'max_features'</span>: [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>]&#125;,</span><br><span class="line">    &#123;<span class="string">'bootstrap'</span>: [<span class="keyword">False</span>], <span class="string">'n_estimators'</span>: [<span class="number">3</span>, <span class="number">10</span>], <span class="string">'max_features'</span>:[<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]&#125;</span><br><span class="line">]</span><br><span class="line">forest_reg = RandomForestRegressor()</span><br><span class="line">grid_search = GridSearchCV(forest_reg, param_grid, cv=<span class="number">5</span>,</span><br><span class="line">                          scoring=<span class="string">'neg_mean_squared_error'</span>)</span><br><span class="line">grid_search.fit(housing_prepared, housing_labels)</span><br><span class="line">grid_search.best_params_</span><br></pre></td></tr></table></figure>
+<pre><code>{&#39;max_features&#39;: 6, &#39;n_estimators&#39;: 30}
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grid_search.best_estimator_</span><br></pre></td></tr></table></figure>
+<pre><code>RandomForestRegressor(bootstrap=True, criterion=&#39;mse&#39;, max_depth=None,
+           max_features=6, max_leaf_nodes=None, min_impurity_decrease=0.0,
+           min_impurity_split=None, min_samples_leaf=1,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=30, n_jobs=None, oob_score=False,
+           random_state=None, verbose=0, warm_start=False)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cvres = grid_search.cv_results_</span><br><span class="line"><span class="keyword">for</span> mean_score, params <span class="keyword">in</span> zip(cvres[<span class="string">"mean_test_score"</span>], cvres[<span class="string">"params"</span>]):</span><br><span class="line">    print(np.sqrt(-mean_score), params)</span><br></pre></td></tr></table></figure>
+<pre><code>64228.003388102516 {&#39;max_features&#39;: 2, &#39;n_estimators&#39;: 3}
+55454.00031053945 {&#39;max_features&#39;: 2, &#39;n_estimators&#39;: 10}
+53155.36771883186 {&#39;max_features&#39;: 2, &#39;n_estimators&#39;: 30}
+60238.28891932349 {&#39;max_features&#39;: 4, &#39;n_estimators&#39;: 3}
+53044.27139651894 {&#39;max_features&#39;: 4, &#39;n_estimators&#39;: 10}
+50650.62627231678 {&#39;max_features&#39;: 4, &#39;n_estimators&#39;: 30}
+58658.342221629726 {&#39;max_features&#39;: 6, &#39;n_estimators&#39;: 3}
+52358.51674007991 {&#39;max_features&#39;: 6, &#39;n_estimators&#39;: 10}
+49887.67768112314 {&#39;max_features&#39;: 6, &#39;n_estimators&#39;: 30}
+58730.283997131446 {&#39;max_features&#39;: 8, &#39;n_estimators&#39;: 3}
+52432.46120216881 {&#39;max_features&#39;: 8, &#39;n_estimators&#39;: 10}
+49923.33236627694 {&#39;max_features&#39;: 8, &#39;n_estimators&#39;: 30}
+63281.22274071418 {&#39;bootstrap&#39;: False, &#39;max_features&#39;: 2, &#39;n_estimators&#39;: 3}
+54214.06059814892 {&#39;bootstrap&#39;: False, &#39;max_features&#39;: 2, &#39;n_estimators&#39;: 10}
+59820.193646740416 {&#39;bootstrap&#39;: False, &#39;max_features&#39;: 3, &#39;n_estimators&#39;: 3}
+52310.6659263699 {&#39;bootstrap&#39;: False, &#39;max_features&#39;: 3, &#39;n_estimators&#39;: 10}
+58663.61528699336 {&#39;bootstrap&#39;: False, &#39;max_features&#39;: 4, &#39;n_estimators&#39;: 3}
+51510.14057731367 {&#39;bootstrap&#39;: False, &#39;max_features&#39;: 4, &#39;n_estimators&#39;: 10}
+</code></pre><h2 id="随机查找"><a href="#随机查找" class="headerlink" title="随机查找"></a>随机查找</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#当查找范围小时使用GridSearch</span></span><br><span class="line"><span class="comment">#范围大时使用随机查找</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#分析模型和误差</span></span><br><span class="line">fearture_importances = grid_search.best_estimator_.feature_importances_</span><br><span class="line">fearture_importances</span><br></pre></td></tr></table></figure>
+<pre><code>array([7.69331738e-02, 6.97499695e-02, 4.36568780e-02, 1.82661833e-02,
+       1.66823710e-02, 1.80076874e-02, 1.62985023e-02, 3.12925764e-01,
+       6.02271320e-02, 1.09872594e-01, 7.56850138e-02, 1.48263701e-02,
+       1.56744680e-01, 4.83159596e-05, 3.56162952e-03, 6.51373535e-03])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">extra_attribs = [<span class="string">"rooms_per_hhold"</span>, <span class="string">"pop_per_hhhold"</span>, <span class="string">"bedrooms_per_room"</span>]</span><br><span class="line">cat_one_hot_attribs = list(encoder.classes_)</span><br><span class="line">attributes = num_attribs + extra_attribs + cat_one_hot_attribs</span><br><span class="line">sorted(zip(fearture_importances, attributes), reverse=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>[(0.31292576369427055, &#39;median_income&#39;),
+ (0.15674468046305143, &#39;INLAND&#39;),
+ (0.1098725938995592, &#39;pop_per_hhhold&#39;),
+ (0.07693317375274458, &#39;longitude&#39;),
+ (0.07568501377495424, &#39;bedrooms_per_room&#39;),
+ (0.06974996951561971, &#39;latitude&#39;),
+ (0.06022713204358833, &#39;rooms_per_hhold&#39;),
+ (0.043656877966590804, &#39;housing_median_age&#39;),
+ (0.01826618328336908, &#39;total_rooms&#39;),
+ (0.01800768738966343, &#39;population&#39;),
+ (0.01668237100450264, &#39;total_bedrooms&#39;),
+ (0.016298502278259873, &#39;households&#39;),
+ (0.014826370100255391, &#39;&lt;1H OCEAN&#39;),
+ (0.006513735353629898, &#39;NEAR OCEAN&#39;),
+ (0.0035616295203113124, &#39;NEAR BAY&#39;),
+ (4.831595962946045e-05, &#39;ISLAND&#39;)]
+</code></pre><h1 id="在测试集上评估"><a href="#在测试集上评估" class="headerlink" title="在测试集上评估"></a>在测试集上评估</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">final_model = grid_search.best_estimator_</span><br><span class="line">X_test = strat_test_set.drop(<span class="string">"median_house_value"</span>, axis=<span class="number">1</span>)</span><br><span class="line">y_test = strat_test_set[<span class="string">"median_house_value"</span>].copy()</span><br><span class="line"></span><br><span class="line">X_test_prepared = full_pipeline.transform(X_test)</span><br><span class="line">final_prediction = final_model.predict(X_test_prepared)</span><br><span class="line">final_mse = mean_squared_error(y_test, final_prediction)</span><br><span class="line">final_rmse = np.sqrt(final_mse)</span><br><span class="line">final_rmse</span><br></pre></td></tr></table></figure>
+<pre><code>47932.162242297694
+</code></pre><hr>
+<p><a href="https://github.com/coldJune/machineLearning/blob/master/handson-ml/LinearRegression.ipynb" target="_blank" rel="noopener">源文件</a></p>
+
+      
+    </div>
+    
+    
+    
+		<div>
+		  
+		    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-apple"></i>感谢您的阅读-------------</div>
+    
+</div>
+		  
+		</div>
+		<div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/11/27/LinearRegression/">LinearRegression</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 邓小俊 的个人博客">邓小俊</a></p>
+  <p><span>发布时间:</span>2018年11月27日 - 10:11</p>
+  <p><span>最后更新:</span>2018年12月12日 - 20:12</p>
+  <p><span>原始链接:</span><a href="/2018/11/27/LinearRegression/" title="LinearRegression">http://coldjune.com/2018/11/27/LinearRegression/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://coldjune.com/2018/11/27/LinearRegression/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+      
+		</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hands-On-Machine-Learning-with-Scikit-Learn-and-TensorFlow/" rel="tag"><i class="fa fa-tag"></i> Hands-On Machine Learning with Scikit-Learn and TensorFlow</a>
+          
+            <a href="/tags/sklearn/" rel="tag"><i class="fa fa-tag"></i> sklearn</a>
+          
+            <a href="/tags/回归/" rel="tag"><i class="fa fa-tag"></i> 回归</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/31/SVD/" rel="next" title="SVD">
+                <i class="fa fa-chevron-left"></i> SVD
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/27/Classification/" rel="prev" title="Classification">
+                Classification <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">邓小俊</p>
+              <p class="site-description motion-element" itemprop="description">人所恐惧的不是孤独本身，而是害怕承认人本生而孤独的事实</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备训练数据"><span class="nav-number">1.</span> <span class="nav-text">准备训练数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义转换器"><span class="nav-number">2.</span> <span class="nav-text">自定义转换器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#转换管道"><span class="nav-number">3.</span> <span class="nav-text">转换管道</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#训练模型"><span class="nav-number">4.</span> <span class="nav-text">训练模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算误差"><span class="nav-number">5.</span> <span class="nav-text">计算误差</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用决策树训练模型"><span class="nav-number">6.</span> <span class="nav-text">使用决策树训练模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用交叉验证集"><span class="nav-number">7.</span> <span class="nav-text">使用交叉验证集</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用随机森林"><span class="nav-number">8.</span> <span class="nav-text">使用随机森林</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调整模型"><span class="nav-number">9.</span> <span class="nav-text">调整模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#网格查找"><span class="nav-number">9.1.</span> <span class="nav-text">网格查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#随机查找"><span class="nav-number">9.2.</span> <span class="nav-text">随机查找</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在测试集上评估"><span class="nav-number">10.</span> <span class="nav-text">在测试集上评估</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">邓小俊</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">博文包含字数&#58;</span>
+    
+    <span title="博文包含字数">277.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("EdodKu35EbSo4VoLhJYQMd09-gzGzoHsz", "qpErN7JcsIzusWGMNuw1QcxN");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+
+
+  
+
+  
+
+ 
+</body>
+</html>

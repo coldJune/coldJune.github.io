@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="true" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico#/images/favicon-16x16-next.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="分类,Hands-On Machine Learning with Scikit-Learn and TensorFlow,sklearn," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="准备数据123from sklearn.datasets import fetch_mldatamnist = fetch_mldata(&quot;MNIST original&quot;, data_home=&apos;./datasets/&apos;)mnist e:\python\python36\lib\site-packages\sklearn\utils\deprecation.py:77: DeprecationWa">
+<meta name="keywords" content="分类,Hands-On Machine Learning with Scikit-Learn and TensorFlow,sklearn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Classification">
+<meta property="og:url" content="http://coldjune.com/2018/11/27/Classification/index.html">
+<meta property="og:site_name" content="Stay Hungary">
+<meta property="og:description" content="准备数据123from sklearn.datasets import fetch_mldatamnist = fetch_mldata(&quot;MNIST original&quot;, data_home=&apos;./datasets/&apos;)mnist e:\python\python36\lib\site-packages\sklearn\utils\deprecation.py:77: DeprecationWa">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://coldjune.com/2018/11/27/Classification/Classification_6_0.png">
+<meta property="og:image" content="http://coldjune.com/2018/11/27/Classification/Classification_32_0.png">
+<meta property="og:image" content="http://coldjune.com/2018/11/27/Classification/Classification_36_0.png">
+<meta property="og:image" content="http://coldjune.com/2018/11/27/Classification/Classification_38_0.png">
+<meta property="og:image" content="http://coldjune.com/2018/11/27/Classification/Classification_54_0.png">
+<meta property="og:image" content="http://coldjune.com/2018/11/27/Classification/Classification_57_0.png">
+<meta property="og:image" content="http://coldjune.com/2018/11/27/Classification/Classification_58_0.png">
+<meta property="og:image" content="http://coldjune.com/2018/11/27/Classification/Classification_65_0.png">
+<meta property="og:updated_time" content="2018-11-28T13:46:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Classification">
+<meta name="twitter:description" content="准备数据123from sklearn.datasets import fetch_mldatamnist = fetch_mldata(&quot;MNIST original&quot;, data_home=&apos;./datasets/&apos;)mnist e:\python\python36\lib\site-packages\sklearn\utils\deprecation.py:77: DeprecationWa">
+<meta name="twitter:image" content="http://coldjune.com/2018/11/27/Classification/Classification_6_0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://coldjune.com/2018/11/27/Classification/"/>
+
+
+
+
+
+  <title>Classification | Stay Hungary</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+		<a href="https://github.com/coldJune" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stay Hungary</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Programming is an art form</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://coldjune.com/2018/11/27/Classification/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="邓小俊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay Hungary">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Classification</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-27T14:15:42+08:00">
+                2018-11-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/11/27/Classification/" class="leancloud_visitors" data-flag-title="Classification">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,260
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="准备数据"><a href="#准备数据" class="headerlink" title="准备数据"></a>准备数据</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> fetch_mldata</span><br><span class="line">mnist = fetch_mldata(<span class="string">"MNIST original"</span>, data_home=<span class="string">'./datasets/'</span>)</span><br><span class="line">mnist</span><br></pre></td></tr></table></figure>
+<pre><code>e:\python\python36\lib\site-packages\sklearn\utils\deprecation.py:77: DeprecationWarning: Function fetch_mldata is deprecated; fetch_mldata was deprecated in version 0.20 and will be removed in version 0.22
+  warnings.warn(msg, category=DeprecationWarning)
+e:\python\python36\lib\site-packages\sklearn\utils\deprecation.py:77: DeprecationWarning: Function mldata_filename is deprecated; mldata_filename was deprecated in version 0.20 and will be removed in version 0.22
+  warnings.warn(msg, category=DeprecationWarning)
+
+
+
+
+
+{&#39;COL_NAMES&#39;: [&#39;label&#39;, &#39;data&#39;],
+ &#39;DESCR&#39;: &#39;mldata.org dataset: mnist-original&#39;,
+ &#39;data&#39;: array([[0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        ...,
+        [0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0]], dtype=uint8),
+ &#39;target&#39;: array([0., 0., 0., ..., 9., 9., 9.])}
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X, y = mnist[<span class="string">"data"</span>], mnist[<span class="string">"target"</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X.shape</span><br></pre></td></tr></table></figure>
+<pre><code>(70000, 784)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y.shape</span><br></pre></td></tr></table></figure>
+<pre><code>(70000,)
+</code></pre><h2 id="查看图片"><a href="#查看图片" class="headerlink" title="查看图片"></a>查看图片</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> matplotlib</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">some_digit = X[<span class="number">36000</span>]</span><br><span class="line">some_digit_image = some_digit.reshape(<span class="number">28</span>, <span class="number">28</span>)</span><br><span class="line">plt.imshow(some_digit_image, cmap=matplotlib.cm.binary,</span><br><span class="line">          interpolation=<span class="string">"nearest"</span>)</span><br><span class="line">plt.axis(<span class="string">"off"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/27/Classification/Classification_6_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y[<span class="number">36000</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>5.0
+</code></pre><h2 id="准备训练集和测试集"><a href="#准备训练集和测试集" class="headerlink" title="准备训练集和测试集"></a>准备训练集和测试集</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#划分</span></span><br><span class="line">X_train, X_test, y_train, y_test = X[:<span class="number">60000</span>], X[<span class="number">60000</span>:], y[:<span class="number">60000</span>], y[<span class="number">60000</span>:]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#混洗</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">shuffle_index = np.random.permutation(<span class="number">60000</span>)</span><br><span class="line">X_train, y_train = X_train[shuffle_index], y_train[shuffle_index]</span><br></pre></td></tr></table></figure>
+<h1 id="训练二元分类"><a href="#训练二元分类" class="headerlink" title="训练二元分类"></a>训练二元分类</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据集中所有为5的置为True,所有不为5的置为False</span></span><br><span class="line">y_train_5 = (y_train == <span class="number">5</span>)</span><br><span class="line">y_test_5 = (y_test == <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#训练</span></span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> SGDClassifier</span><br><span class="line"></span><br><span class="line">sgd_clf = SGDClassifier(random_state=<span class="number">42</span>, max_iter=<span class="number">300</span>, tol=<span class="number">1e-3</span>) <span class="comment">#设置random_state来取得有复验性的结果</span></span><br><span class="line">sgd_clf.fit(X_train, y_train_5)</span><br></pre></td></tr></table></figure>
+<pre><code>SGDClassifier(alpha=0.0001, average=False, class_weight=None,
+       early_stopping=False, epsilon=0.1, eta0=0.0, fit_intercept=True,
+       l1_ratio=0.15, learning_rate=&#39;optimal&#39;, loss=&#39;hinge&#39;, max_iter=300,
+       n_iter=None, n_iter_no_change=5, n_jobs=None, penalty=&#39;l2&#39;,
+       power_t=0.5, random_state=42, shuffle=True, tol=0.001,
+       validation_fraction=0.1, verbose=0, warm_start=False)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sgd_clf.predict([some_digit])</span><br></pre></td></tr></table></figure>
+<pre><code>array([ True])
+</code></pre><h1 id="性能评估"><a href="#性能评估" class="headerlink" title="性能评估"></a>性能评估</h1><h2 id="用交叉验证集测量精度"><a href="#用交叉验证集测量精度" class="headerlink" title="用交叉验证集测量精度"></a>用交叉验证集测量精度</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line"></span><br><span class="line">cross_val_score(sgd_clf, X_train, y_train_5, cv=<span class="number">3</span>, scoring=<span class="string">"accuracy"</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>array([0.96385, 0.9663 , 0.96225])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 预测所有的均为非5</span></span><br><span class="line"><span class="keyword">from</span> sklearn.base <span class="keyword">import</span> BaseEstimator</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Never5Classifier</span><span class="params">(BaseEstimator)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, X, y=None)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(self, X)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> np.zeros((len(X), <span class="number">1</span>), dtype=bool)</span><br><span class="line"></span><br><span class="line">never_5_clf = Never5Classifier()</span><br><span class="line">cross_val_score(never_5_clf, X_train, y_train_5, cv=<span class="number">3</span>, scoring=<span class="string">"accuracy"</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>array([0.90875, 0.9118 , 0.9084 ])
+</code></pre><h2 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用cross_val_predict()预测</span></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_predict</span><br><span class="line">y_train_pred = cross_val_predict(sgd_clf, X_train, y_train_5, cv=<span class="number">3</span>)</span><br><span class="line">y_train_pred</span><br></pre></td></tr></table></figure>
+<pre><code>array([False, False,  True, ..., False, False,  True])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成混淆矩阵</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> confusion_matrix</span><br><span class="line">confusion_matrix(y_train_5, y_train_pred)</span><br></pre></td></tr></table></figure>
+<pre><code>array([[53843,   736],
+       [ 1416,  4005]], dtype=int64)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y_train_perfect_predictions = y_train_5</span><br><span class="line">confusion_matrix(y_train_5, y_train_perfect_predictions)</span><br></pre></td></tr></table></figure>
+<pre><code>array([[54579,     0],
+       [    0,  5421]], dtype=int64)
+</code></pre><h2 id="准确率和召回率"><a href="#准确率和召回率" class="headerlink" title="准确率和召回率"></a><a href="https://github.com/coldJune/machineLearning/blob/master/machineLearningCourseraNote/Note6.pdf" target="_blank" rel="noopener">准确率和召回率</a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> precision_score, recall_score</span><br><span class="line">precision_score(y_train_5, y_train_pred)<span class="comment"># 4005/(4005+736)</span></span><br></pre></td></tr></table></figure>
+<pre><code>0.8447584897700907
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">recall_score(y_train_5, y_train_pred)<span class="comment"># 4005/(4005+1416)</span></span><br></pre></td></tr></table></figure>
+<pre><code>0.7387935805201993
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># f1score</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> f1_score</span><br><span class="line">f1_score(y_train_5, y_train_pred)</span><br></pre></td></tr></table></figure>
+<pre><code>0.7882306632552647
+</code></pre><h2 id="准确率-召回率权衡"><a href="#准确率-召回率权衡" class="headerlink" title="准确率/召回率权衡"></a>准确率/召回率权衡</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 返回该实例的度量分数</span></span><br><span class="line">y_scores = sgd_clf.decision_function([some_digit])</span><br><span class="line">y_scores</span><br></pre></td></tr></table></figure>
+<pre><code>array([4067.16672909])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">threshold = <span class="number">0</span></span><br><span class="line">y_som_digit_pred = (y_scores &gt; threshold)</span><br><span class="line">y_som_digit_pred</span><br></pre></td></tr></table></figure>
+<pre><code>array([ True])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">threshold = <span class="number">5000</span></span><br><span class="line">y_som_digit_pred = (y_scores &gt; threshold)</span><br><span class="line">y_som_digit_pred</span><br></pre></td></tr></table></figure>
+<pre><code>array([False])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y_scores = cross_val_predict(sgd_clf, X_train, y_train_5, cv=<span class="number">3</span>, method=<span class="string">"decision_function"</span>)<span class="comment">#使用decision_function代替predictions</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 画出准确率和召回率的曲线</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> precision_recall_curve</span><br><span class="line"></span><br><span class="line">precisions, recalls, thresholds = precision_recall_curve(y_train_5, y_scores)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_precision_recall_vs_threshold</span><span class="params">(precisions, recalls, thresholds)</span>:</span></span><br><span class="line">    plt.plot(thresholds, precisions[:<span class="number">-1</span>], <span class="string">"b--"</span>, label=<span class="string">"Precision"</span>)</span><br><span class="line">    plt.plot(thresholds, recalls[:<span class="number">-1</span>], <span class="string">"g-"</span>, label=<span class="string">"Recall"</span>)</span><br><span class="line">    plt.xlabel(<span class="string">"Threshold"</span>)</span><br><span class="line">    plt.legend(loc=<span class="string">"center left"</span>)</span><br><span class="line">    plt.ylim([<span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line">    plt.xlim([<span class="number">-70000</span>, <span class="number">70000</span>])</span><br><span class="line"></span><br><span class="line">plot_precision_recall_vs_threshold(precisions, recalls, thresholds)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/27/Classification/Classification_32_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#90%precision</span></span><br><span class="line">y_train_pred_90 = (y_scores &gt; <span class="number">20000</span>)</span><br><span class="line">precision_score(y_train_5, y_train_pred_90)</span><br></pre></td></tr></table></figure>
+<pre><code>0.9716981132075472
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">recall_score(y_train_5, y_train_pred_90)</span><br></pre></td></tr></table></figure>
+<pre><code>0.019000184467810367
+</code></pre><h2 id="ROC曲线"><a href="#ROC曲线" class="headerlink" title="ROC曲线"></a><a href="http://coldjune.com/2018/05/23/AdaBoost%E5%85%83%E7%AE%97%E6%B3%95/#%E6%AD%A3%E7%A1%AE%E7%8E%87%E3%80%81%E5%8F%AC%E5%9B%9E%E7%8E%87%E5%8F%8AROC%E6%9B%B2%E7%BA%BF">ROC曲线</a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> roc_curve</span><br><span class="line"></span><br><span class="line">fpr, tpr, thresholds = roc_curve(y_train_5, y_scores)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_roc_curve</span><span class="params">(fpr, tpr, label=None)</span>:</span></span><br><span class="line">    plt.plot(fpr, tpr, linewidth=<span class="number">2</span>, label=label)</span><br><span class="line">    plt.plot([<span class="number">0</span>,<span class="number">1</span>], [<span class="number">0</span>,<span class="number">1</span>], <span class="string">'k--'</span>)</span><br><span class="line">    plt.axis([<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line">    plt.xlabel(<span class="string">'False Positive Rate'</span>)</span><br><span class="line">    plt.ylabel(<span class="string">'True Positive Rate'</span>)</span><br><span class="line"></span><br><span class="line">plot_roc_curve(fpr, tpr)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/27/Classification/Classification_36_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> roc_auc_score</span><br><span class="line">roc_auc_score(y_train_5, y_scores)</span><br></pre></td></tr></table></figure>
+<pre><code>0.9665469033599001
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#随机森林的ROC曲线</span></span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier</span><br><span class="line"></span><br><span class="line">forest_clf = RandomForestClassifier(random_state=<span class="number">42</span>, n_estimators=<span class="number">10</span>)</span><br><span class="line">y_probas_forest = cross_val_predict(forest_clf, X_train, y_train_5, cv=<span class="number">3</span>, method=<span class="string">'predict_proba'</span>)</span><br><span class="line"></span><br><span class="line">y_scores_forest = y_probas_forest[:,<span class="number">1</span>]</span><br><span class="line">fpr_forest, tpr_forest, thresholds_forest = roc_curve(y_train_5, y_scores_forest)</span><br><span class="line"></span><br><span class="line">plt.plot(fpr, tpr, <span class="string">'b:'</span>, label=<span class="string">"SGD"</span>)</span><br><span class="line">plot_roc_curve(fpr_forest, tpr_forest, <span class="string">"Random Forest"</span>)</span><br><span class="line">plt.legend(loc=<span class="string">"lower right"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/27/Classification/Classification_38_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roc_auc_score(y_train_5, y_scores_forest)</span><br></pre></td></tr></table></figure>
+<pre><code>0.9923774040313053
+</code></pre><h1 id="多级分类"><a href="#多级分类" class="headerlink" title="多级分类"></a>多级分类</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sgd_clf.fit(X_train, y_train)<span class="comment">#底层训练了10个二元分类器，选择最大的</span></span><br><span class="line">sgd_clf.predict([some_digit])</span><br></pre></td></tr></table></figure>
+<pre><code>e:\python\python36\lib\site-packages\sklearn\linear_model\stochastic_gradient.py:603: ConvergenceWarning: Maximum number of iteration reached before convergence. Consider increasing max_iter to improve the fit.
+  ConvergenceWarning)
+
+
+
+
+
+array([5.])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">some_digit_scores = sgd_clf.decision_function([some_digit])</span><br><span class="line">some_digit_scores</span><br></pre></td></tr></table></figure>
+<pre><code>array([[ -1924.18040085, -24335.92781177,  -8446.0176118 ,
+         -1942.26247443, -13280.95661159,   4067.16672909,
+        -15844.49239355, -21310.04623554,  -9717.41918688,
+        -12970.31612817]])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.argmax(some_digit_scores)</span><br></pre></td></tr></table></figure>
+<pre><code>5
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sgd_clf.classes_</span><br></pre></td></tr></table></figure>
+<pre><code>array([0., 1., 2., 3., 4., 5., 6., 7., 8., 9.])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sgd_clf.classes_[<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>5.0
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用一对一的训练器</span></span><br><span class="line"><span class="keyword">from</span> sklearn.multiclass <span class="keyword">import</span> OneVsOneClassifier</span><br><span class="line"></span><br><span class="line">ovo_clf = OneVsOneClassifier(SGDClassifier(random_state=<span class="number">42</span>, max_iter=<span class="number">500</span>, tol=<span class="number">1e-3</span>))</span><br><span class="line">ovo_clf.fit(X_train, y_train)</span><br><span class="line">ovo_clf.predict([some_digit])</span><br></pre></td></tr></table></figure>
+<pre><code>array([5.])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">len(ovo_clf.estimators_)</span><br></pre></td></tr></table></figure>
+<pre><code>45
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">forest_clf.fit(X_train, y_train)</span><br><span class="line">forest_clf.predict([some_digit])</span><br></pre></td></tr></table></figure>
+<pre><code>array([5.])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">forest_clf.predict_proba([some_digit])</span><br></pre></td></tr></table></figure>
+<pre><code>array([[0. , 0. , 0. , 0. , 0. , 0.9, 0. , 0. , 0.1, 0. ]])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">cross_val_score(sgd_clf, X_train, y_train, cv=<span class="number">3</span>, scoring=<span class="string">"accuracy"</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>array([0.88242352, 0.8860443 , 0.87363104])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 缩减输入</span></span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line">scaler = StandardScaler()</span><br><span class="line">X_train_scaled = scaler.fit_transform(X_train.astype(np.float64))</span><br><span class="line">cross_val_score(sgd_clf, X_train_scaled, y_train, cv=<span class="number">3</span>, scoring=<span class="string">"accuracy"</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>e:\python\python36\lib\site-packages\sklearn\linear_model\stochastic_gradient.py:603: ConvergenceWarning: Maximum number of iteration reached before convergence. Consider increasing max_iter to improve the fit.
+  ConvergenceWarning)
+e:\python\python36\lib\site-packages\sklearn\linear_model\stochastic_gradient.py:603: ConvergenceWarning: Maximum number of iteration reached before convergence. Consider increasing max_iter to improve the fit.
+  ConvergenceWarning)
+e:\python\python36\lib\site-packages\sklearn\linear_model\stochastic_gradient.py:603: ConvergenceWarning: Maximum number of iteration reached before convergence. Consider increasing max_iter to improve the fit.
+  ConvergenceWarning)
+
+
+
+
+
+array([0.91106779, 0.91079554, 0.90988648])
+</code></pre><h1 id="误差分析"><a href="#误差分析" class="headerlink" title="误差分析"></a>误差分析</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#首先查看混淆矩阵</span></span><br><span class="line">y_train_pred = cross_val_predict(sgd_clf, X_train_scaled, y_train, cv=<span class="number">3</span>)</span><br><span class="line">conf_mx = confusion_matrix(y_train, y_train_pred)</span><br><span class="line">conf_mx</span><br></pre></td></tr></table></figure>
+<pre><code>e:\python\python36\lib\site-packages\sklearn\linear_model\stochastic_gradient.py:603: ConvergenceWarning: Maximum number of iteration reached before convergence. Consider increasing max_iter to improve the fit.
+  ConvergenceWarning)
+e:\python\python36\lib\site-packages\sklearn\linear_model\stochastic_gradient.py:603: ConvergenceWarning: Maximum number of iteration reached before convergence. Consider increasing max_iter to improve the fit.
+  ConvergenceWarning)
+e:\python\python36\lib\site-packages\sklearn\linear_model\stochastic_gradient.py:603: ConvergenceWarning: Maximum number of iteration reached before convergence. Consider increasing max_iter to improve the fit.
+  ConvergenceWarning)
+
+
+
+
+
+array([[5657,    1,   16,    9,   12,   53,   40,    6,  125,    4],
+       [   1, 6451,   43,   24,    5,   46,    6,    9,  142,   15],
+       [  36,   29, 5339,   95,   74,   26,   78,   42,  226,   13],
+       [  38,   26,  128, 5334,    2,  226,   29,   48,  216,   84],
+       [  15,   15,   47,   14, 5323,   10,   43,   23,  148,  204],
+       [  39,   19,   33,  177,   60, 4602,   83,   24,  297,   87],
+       [  28,   22,   51,    2,   40,   96, 5591,   10,   78,    0],
+       [  19,   16,   58,   32,   53,    8,    8, 5764,   63,  244],
+       [  22,   73,   56,  111,    6,  138,   39,   12, 5318,   76],
+       [  26,   22,   30,   73,  132,   33,    2,  186,  189, 5256]],
+      dtype=int64)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用图像显示矩阵</span></span><br><span class="line">plt.matshow(conf_mx)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/27/Classification/Classification_54_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#画出误差</span></span><br><span class="line">row_nums =conf_mx.sum(axis=<span class="number">1</span>, keepdims=<span class="keyword">True</span>)<span class="comment">#计算每一类实际的数量</span></span><br><span class="line">row_nums</span><br></pre></td></tr></table></figure>
+<pre><code>array([[5923],
+       [6742],
+       [5958],
+       [6131],
+       [5842],
+       [5421],
+       [5918],
+       [6265],
+       [5851],
+       [5949]], dtype=int64)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">norm_conf_mx = conf_mx/row_nums<span class="comment"># 计算错误比例</span></span><br><span class="line">norm_conf_mx</span><br></pre></td></tr></table></figure>
+<pre><code>array([[9.55090326e-01, 1.68833361e-04, 2.70133378e-03, 1.51950025e-03,
+        2.02600034e-03, 8.94816816e-03, 6.75333446e-03, 1.01300017e-03,
+        2.11041702e-02, 6.75333446e-04],
+       [1.48323939e-04, 9.56837734e-01, 6.37792940e-03, 3.55977455e-03,
+        7.41619697e-04, 6.82290122e-03, 8.89943637e-04, 1.33491546e-03,
+        2.10619994e-02, 2.22485909e-03],
+       [6.04229607e-03, 4.86740517e-03, 8.96106076e-01, 1.59449480e-02,
+        1.24202753e-02, 4.36388050e-03, 1.30916415e-02, 7.04934542e-03,
+        3.79321920e-02, 2.18194025e-03],
+       [6.19801011e-03, 4.24074376e-03, 2.08775077e-02, 8.70004893e-01,
+        3.26211059e-04, 3.68618496e-02, 4.73006035e-03, 7.82906541e-03,
+        3.52307943e-02, 1.37008645e-02],
+       [2.56761383e-03, 2.56761383e-03, 8.04519000e-03, 2.39643958e-03,
+        9.11160561e-01, 1.71174255e-03, 7.36049298e-03, 3.93700787e-03,
+        2.53337898e-02, 3.49195481e-02],
+       [7.19424460e-03, 3.50488840e-03, 6.08743774e-03, 3.26508024e-02,
+        1.10680686e-02, 8.48920863e-01, 1.53108283e-02, 4.42722745e-03,
+        5.47869397e-02, 1.60486995e-02],
+       [4.73132815e-03, 3.71747212e-03, 8.61777628e-03, 3.37952011e-04,
+        6.75904022e-03, 1.62216965e-02, 9.44744846e-01, 1.68976005e-03,
+        1.31801284e-02, 0.00000000e+00],
+       [3.03272147e-03, 2.55387071e-03, 9.25778132e-03, 5.10774142e-03,
+        8.45969673e-03, 1.27693536e-03, 1.27693536e-03, 9.20031923e-01,
+        1.00558659e-02, 3.89465283e-02],
+       [3.76004102e-03, 1.24764997e-02, 9.57101350e-03, 1.89711160e-02,
+        1.02546573e-03, 2.35857118e-02, 6.66552726e-03, 2.05093146e-03,
+        9.08904461e-01, 1.29892326e-02],
+       [4.37048243e-03, 3.69810052e-03, 5.04286435e-03, 1.22709699e-02,
+        2.21886031e-02, 5.54715078e-03, 3.36190956e-04, 3.12657590e-02,
+        3.17700454e-02, 8.83509834e-01]])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">np.fill_diagonal(norm_conf_mx, <span class="number">0</span>)<span class="comment">#将对角线置为0，只显示误差</span></span><br><span class="line">plt.matshow(norm_conf_mx)<span class="comment">#行越暗表示预测越正确，越亮表示误差越高</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/27/Classification/Classification_57_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#画出所有的3和5</span></span><br><span class="line">cl_3, cl_5 = <span class="number">3</span>, <span class="number">5</span></span><br><span class="line">X_33 = X_train[(y_train == cl_3) &amp; (y_train_pred == cl_3)]<span class="comment">#实际为3和预测为3</span></span><br><span class="line">X_35 = X_train[(y_train == cl_3) &amp; (y_train_pred == cl_5)]<span class="comment">#实际为3和预测为5</span></span><br><span class="line">X_53 = X_train[(y_train == cl_5) &amp; (y_train_pred == cl_3)]<span class="comment">#实际为5和预测为3</span></span><br><span class="line">X_55 = X_train[(y_train == cl_5) &amp; (y_train_pred == cl_5)]<span class="comment">#实际为5和预测为5</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_digits</span><span class="params">(instances, images_per_row=<span class="number">10</span>, **options)</span>:</span></span><br><span class="line">    size = <span class="number">28</span></span><br><span class="line">    images_per_row = min(len(instances), images_per_row)</span><br><span class="line">    images = [instance.reshape(size,size) <span class="keyword">for</span> instance <span class="keyword">in</span> instances]</span><br><span class="line">    n_rows = images_per_row+<span class="number">1</span></span><br><span class="line">    row_images = []</span><br><span class="line">    n_empty = n_rows * images_per_row - len(instances)</span><br><span class="line">    images.append(np.zeros((size, size * n_empty)))</span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> range(n_rows):</span><br><span class="line">        rimages = images[row * images_per_row : (row + <span class="number">1</span>) * images_per_row]</span><br><span class="line">        row_images.append(np.concatenate(rimages, axis=<span class="number">1</span>))</span><br><span class="line">    image = np.concatenate(row_images, axis=<span class="number">0</span>)</span><br><span class="line">    plt.imshow(image, cmap=matplotlib.cm.binary, **options)</span><br><span class="line">    plt.axis(<span class="string">"off"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">8</span>,<span class="number">8</span>))</span><br><span class="line">plt.subplot(<span class="number">221</span>)</span><br><span class="line">plot_digits(X_33[:<span class="number">25</span>], images_per_row=<span class="number">5</span>)</span><br><span class="line">plt.subplot(<span class="number">222</span>)</span><br><span class="line">plot_digits(X_35[:<span class="number">25</span>], images_per_row=<span class="number">5</span>)</span><br><span class="line">plt.subplot(<span class="number">223</span>)</span><br><span class="line">plot_digits(X_53[:<span class="number">25</span>], images_per_row=<span class="number">5</span>)</span><br><span class="line">plt.subplot(<span class="number">224</span>)</span><br><span class="line">plot_digits(X_55[:<span class="number">25</span>], images_per_row=<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/27/Classification/Classification_58_0.png" alt="png"></p>
+<h1 id="多标签分类"><a href="#多标签分类" class="headerlink" title="多标签分类"></a>多标签分类</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line">y_train_large = (y_train &gt;= <span class="number">7</span>)</span><br><span class="line">y_train_odd = (y_train %<span class="number">2</span> == <span class="number">1</span>)</span><br><span class="line">y_multilabel = np.c_[y_train_large, y_train_odd]</span><br><span class="line"></span><br><span class="line">knn_clf = KNeighborsClassifier()</span><br><span class="line">knn_clf.fit(X_train, y_multilabel)</span><br></pre></td></tr></table></figure>
+<pre><code>KNeighborsClassifier(algorithm=&#39;auto&#39;, leaf_size=30, metric=&#39;minkowski&#39;,
+           metric_params=None, n_jobs=None, n_neighbors=5, p=2,
+           weights=&#39;uniform&#39;)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knn_clf.predict([some_digit])</span><br></pre></td></tr></table></figure>
+<pre><code>array([[False,  True]])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#计算F1</span></span><br><span class="line">y_train_knn_pred = cross_val_predict(knn_clf, X_train, y_train, cv=<span class="number">3</span>)</span><br><span class="line">f1_score(y_train, y_train_knn_pred, average=<span class="string">"macro"</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>0.9686571237993065
+</code></pre><h1 id="多路输出"><a href="#多路输出" class="headerlink" title="多路输出"></a>多路输出</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在图片数据上添加噪声</span></span><br><span class="line"><span class="keyword">import</span> numpy.random <span class="keyword">as</span> rnd</span><br><span class="line"></span><br><span class="line">noise = rnd.randint(<span class="number">0</span>, <span class="number">100</span>, (len(X_train), <span class="number">784</span>))</span><br><span class="line">X_train_mod = X_train + noise</span><br><span class="line"></span><br><span class="line">noise = rnd.randint(<span class="number">0</span>, <span class="number">100</span>, (len(X_test), <span class="number">784</span>))</span><br><span class="line">X_test_mod = X_test + noise</span><br><span class="line"></span><br><span class="line">y_train_mod = X_train</span><br><span class="line">y_test_mod = X_test</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_digit</span><span class="params">(data)</span>:</span></span><br><span class="line">    image = data.reshape(<span class="number">28</span>, <span class="number">28</span>)</span><br><span class="line">    plt.imshow(image, cmap = matplotlib.cm.binary,</span><br><span class="line">               interpolation=<span class="string">"nearest"</span>)</span><br><span class="line">    plt.axis(<span class="string">"off"</span>)</span><br><span class="line"></span><br><span class="line">knn_clf.fit(X_train_mod, y_train_mod)</span><br><span class="line">clean_digit = knn_clf.predict([X_test_mod[<span class="number">2</span>]])</span><br><span class="line">plot_digit(clean_digit)</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/27/Classification/Classification_65_0.png" alt="png"></p>
+<hr>
+<p><a href="https://github.com/coldJune/machineLearning/blob/master/handson-ml/Classification.ipynb" target="_blank" rel="noopener">源文件</a></p>
+
+      
+    </div>
+    
+    
+    
+		<div>
+		  
+		    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-apple"></i>感谢您的阅读-------------</div>
+    
+</div>
+		  
+		</div>
+		<div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/11/27/Classification/">Classification</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 邓小俊 的个人博客">邓小俊</a></p>
+  <p><span>发布时间:</span>2018年11月27日 - 14:11</p>
+  <p><span>最后更新:</span>2018年11月28日 - 21:11</p>
+  <p><span>原始链接:</span><a href="/2018/11/27/Classification/" title="Classification">http://coldjune.com/2018/11/27/Classification/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://coldjune.com/2018/11/27/Classification/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+      
+		</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/分类/" rel="tag"><i class="fa fa-tag"></i> 分类</a>
+          
+            <a href="/tags/Hands-On-Machine-Learning-with-Scikit-Learn-and-TensorFlow/" rel="tag"><i class="fa fa-tag"></i> Hands-On Machine Learning with Scikit-Learn and TensorFlow</a>
+          
+            <a href="/tags/sklearn/" rel="tag"><i class="fa fa-tag"></i> sklearn</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/27/LinearRegression/" rel="next" title="LinearRegression">
+                <i class="fa fa-chevron-left"></i> LinearRegression
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/29/Training-Models/" rel="prev" title="Training Models">
+                Training Models <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">邓小俊</p>
+              <p class="site-description motion-element" itemprop="description">人所恐惧的不是孤独本身，而是害怕承认人本生而孤独的事实</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备数据"><span class="nav-number">1.</span> <span class="nav-text">准备数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看图片"><span class="nav-number">1.1.</span> <span class="nav-text">查看图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备训练集和测试集"><span class="nav-number">1.2.</span> <span class="nav-text">准备训练集和测试集</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#训练二元分类"><span class="nav-number">2.</span> <span class="nav-text">训练二元分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#性能评估"><span class="nav-number">3.</span> <span class="nav-text">性能评估</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用交叉验证集测量精度"><span class="nav-number">3.1.</span> <span class="nav-text">用交叉验证集测量精度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#混淆矩阵"><span class="nav-number">3.2.</span> <span class="nav-text">混淆矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准确率和召回率"><span class="nav-number">3.3.</span> <span class="nav-text">准确率和召回率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准确率-召回率权衡"><span class="nav-number">3.4.</span> <span class="nav-text">准确率/召回率权衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROC曲线"><span class="nav-number">3.5.</span> <span class="nav-text">ROC曲线</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多级分类"><span class="nav-number">4.</span> <span class="nav-text">多级分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#误差分析"><span class="nav-number">5.</span> <span class="nav-text">误差分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多标签分类"><span class="nav-number">6.</span> <span class="nav-text">多标签分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多路输出"><span class="nav-number">7.</span> <span class="nav-text">多路输出</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">邓小俊</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">博文包含字数&#58;</span>
+    
+    <span title="博文包含字数">277.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("EdodKu35EbSo4VoLhJYQMd09-gzGzoHsz", "qpErN7JcsIzusWGMNuw1QcxN");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+
+
+  
+
+  
+
+ 
+</body>
+</html>

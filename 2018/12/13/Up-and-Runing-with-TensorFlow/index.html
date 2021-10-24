@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="true" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico#/images/favicon-16x16-next.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="Hands-On Machine Learning with Scikit-Learn and TensorFlow,TensorFlow," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Hello World123456import tensorflow as tf# 非立即执行而是创建一个图x = tf.Variable(3, name=&quot;x&quot;)y = tf.Variable(4, name=&quot;y&quot;)f = x*x*y + y + 2 123456# 打开session执行sess = tf.Session()sess.run(x.initializer)sess.run(y">
+<meta name="keywords" content="Hands-On Machine Learning with Scikit-Learn and TensorFlow,TensorFlow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Up and Runing with TensorFlow">
+<meta property="og:url" content="http://coldjune.com/2018/12/13/Up-and-Runing-with-TensorFlow/index.html">
+<meta property="og:site_name" content="Stay Hungary">
+<meta property="og:description" content="Hello World123456import tensorflow as tf# 非立即执行而是创建一个图x = tf.Variable(3, name=&quot;x&quot;)y = tf.Variable(4, name=&quot;y&quot;)f = x*x*y + y + 2 123456# 打开session执行sess = tf.Session()sess.run(x.initializer)sess.run(y">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-17T10:56:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Up and Runing with TensorFlow">
+<meta name="twitter:description" content="Hello World123456import tensorflow as tf# 非立即执行而是创建一个图x = tf.Variable(3, name=&quot;x&quot;)y = tf.Variable(4, name=&quot;y&quot;)f = x*x*y + y + 2 123456# 打开session执行sess = tf.Session()sess.run(x.initializer)sess.run(y">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://coldjune.com/2018/12/13/Up-and-Runing-with-TensorFlow/"/>
+
+
+
+
+
+  <title>Up and Runing with TensorFlow | Stay Hungary</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+		<a href="https://github.com/coldJune" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stay Hungary</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Programming is an art form</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://coldjune.com/2018/12/13/Up-and-Runing-with-TensorFlow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="邓小俊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay Hungary">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Up and Runing with TensorFlow</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-13T17:28:38+08:00">
+                2018-12-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/12/13/Up-and-Runing-with-TensorFlow/" class="leancloud_visitors" data-flag-title="Up and Runing with TensorFlow">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,157
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 非立即执行而是创建一个图</span></span><br><span class="line">x = tf.Variable(<span class="number">3</span>, name=<span class="string">"x"</span>)</span><br><span class="line">y = tf.Variable(<span class="number">4</span>, name=<span class="string">"y"</span>)</span><br><span class="line">f = x*x*y + y + <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开session执行</span></span><br><span class="line">sess = tf.Session()</span><br><span class="line">sess.run(x.initializer)</span><br><span class="line">sess.run(y.initializer)</span><br><span class="line">result = sess.run(f)</span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
+<pre><code>42
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关闭session</span></span><br><span class="line">sess.close()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用块结构运行</span></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    x.initializer.run()</span><br><span class="line">    y.initializer.run()</span><br><span class="line">    result = f.eval()</span><br><span class="line">    print(result)</span><br></pre></td></tr></table></figure>
+<pre><code>42
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用global_variables_initialzer创建全局初始化</span></span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    init.run()</span><br><span class="line">    result = f.eval()</span><br><span class="line">    print(result)</span><br></pre></td></tr></table></figure>
+<pre><code>42
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用交互式session</span></span><br><span class="line">sess = tf.InteractiveSession()</span><br><span class="line">init.run()</span><br><span class="line">result = f.eval()</span><br><span class="line">print(result)</span><br><span class="line">sess.close()</span><br></pre></td></tr></table></figure>
+<pre><code>42
+</code></pre><h1 id="管理图"><a href="#管理图" class="headerlink" title="管理图"></a>管理图</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x1 = tf.Variable(<span class="number">1</span>)</span><br><span class="line">x1.graph <span class="keyword">is</span> tf.get_default_graph()</span><br></pre></td></tr></table></figure>
+<pre><code>True
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建独立的图</span></span><br><span class="line">graph = tf.Graph()</span><br><span class="line"><span class="keyword">with</span> graph.as_default():</span><br><span class="line">    x2 = tf.Variable(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x2.graph <span class="keyword">is</span> graph</span><br></pre></td></tr></table></figure>
+<pre><code>True
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x2.graph <span class="keyword">is</span> tf.get_default_graph()</span><br></pre></td></tr></table></figure>
+<pre><code>False
+</code></pre><h1 id="节点的生命周期"><a href="#节点的生命周期" class="headerlink" title="节点的生命周期"></a>节点的生命周期</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">w = tf.constant(<span class="number">3</span>)</span><br><span class="line">x = w + <span class="number">2</span></span><br><span class="line">y = x + <span class="number">5</span></span><br><span class="line">z = x + <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#未重复利用结果w和x</span></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    print(y.eval())</span><br><span class="line">    print(z.eval())</span><br></pre></td></tr></table></figure>
+<pre><code>10
+8
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将y和z放在同一个图中以重复利用w和x</span></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    y_val, z_val = sess.run([y, z])</span><br><span class="line">    print(y_val)</span><br><span class="line">    print(z_val)</span><br></pre></td></tr></table></figure>
+<pre><code>10
+8
+</code></pre><h1 id="使用TensorFlow训练线性回归"><a href="#使用TensorFlow训练线性回归" class="headerlink" title="使用TensorFlow训练线性回归"></a>使用TensorFlow训练线性回归</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> fetch_california_housing</span><br><span class="line"></span><br><span class="line">housing = fetch_california_housing()</span><br><span class="line">m, n = housing.data.shape</span><br><span class="line">housing_data_plus_bias = np.c_[np.ones((m, <span class="number">1</span>)), housing.data]</span><br><span class="line"></span><br><span class="line">X = tf.constant(housing_data_plus_bias, dtype=tf.float32, name=<span class="string">"X"</span>)</span><br><span class="line">y = tf.constant(housing.target.reshape(<span class="number">-1</span>,<span class="number">1</span>), dtype=tf.float32, name=<span class="string">"y"</span>)</span><br><span class="line">XT = tf.transpose(X)</span><br><span class="line"><span class="comment"># 使用正规方程计算theta</span></span><br><span class="line">theta = tf.matmul(tf.matmul(tf.matrix_inverse(tf.matmul(XT, X)), XT), y)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    theta_value = theta.eval()</span><br><span class="line">    print(theta_value[:<span class="number">5</span>])</span><br></pre></td></tr></table></figure>
+<pre><code>[[-3.7185181e+01]
+ [ 4.3633747e-01]
+ [ 9.3952334e-03]
+ [-1.0711310e-01]
+ [ 6.4479220e-01]]
+</code></pre><h1 id="实现梯度下降"><a href="#实现梯度下降" class="headerlink" title="实现梯度下降"></a>实现梯度下降</h1><h2 id="手动计算梯度"><a href="#手动计算梯度" class="headerlink" title="手动计算梯度"></a>手动计算梯度</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line"></span><br><span class="line">scaler = StandardScaler()</span><br><span class="line">scale_housing_data = scaler.fit_transform(housing.data)</span><br><span class="line">scale_housing_data_bias = np.c_[np.ones((m, <span class="number">1</span>)), scale_housing_data]</span><br><span class="line"></span><br><span class="line">n_epochs = <span class="number">1000</span></span><br><span class="line">learning_rate = <span class="number">0.01</span></span><br><span class="line"></span><br><span class="line">X = tf.constant(scale_housing_data_bias, dtype=tf.float32, name=<span class="string">"X"</span>)</span><br><span class="line">y = tf.constant(housing.target.reshape(<span class="number">-1</span>,<span class="number">1</span>), dtype=tf.float32, name=<span class="string">"y"</span>)</span><br><span class="line">theta = tf.Variable(tf.random_normal([n+<span class="number">1</span>, <span class="number">1</span>], <span class="number">-1.0</span>, <span class="number">1.0</span>), name=<span class="string">"theta"</span>)</span><br><span class="line">y_pred = tf.matmul(X, theta, name=<span class="string">"predictions"</span>)</span><br><span class="line">error = y_pred - y</span><br><span class="line">mse = tf.reduce_mean(tf.square(error), name=<span class="string">"mse"</span>)</span><br><span class="line">gradients = <span class="number">2</span>/m * tf.matmul(tf.transpose(X), error)</span><br><span class="line">training_op = tf.assign(theta, theta-learning_rate*gradients)</span><br><span class="line"></span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(init)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(n_epochs):</span><br><span class="line">        <span class="keyword">if</span> epoch % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">            print(<span class="string">"Epoch"</span>, epoch, <span class="string">"MSE="</span>, mse.eval())</span><br><span class="line">        sess.run(training_op)</span><br><span class="line"></span><br><span class="line">    best_theta = theta.eval()</span><br><span class="line">    print(best_theta[:<span class="number">5</span>])</span><br></pre></td></tr></table></figure>
+<pre><code>Epoch 0 MSE= 8.3278
+Epoch 100 MSE= 0.78606343
+Epoch 200 MSE= 0.64422286
+Epoch 300 MSE= 0.6223913
+Epoch 400 MSE= 0.6058846
+Epoch 500 MSE= 0.59219676
+Epoch 600 MSE= 0.58081675
+Epoch 700 MSE= 0.57135147
+Epoch 800 MSE= 0.5634769
+Epoch 900 MSE= 0.5569242
+[[2.0685523 ]
+ [0.6491688 ]
+ [0.08126644]
+ [0.06857597]
+ [0.03242581]]
+</code></pre><h2 id="使用自动微分"><a href="#使用自动微分" class="headerlink" title="使用自动微分"></a>使用自动微分</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gradients = tf.gradients(mse, [theta])[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="使用优化器"><a href="#使用优化器" class="headerlink" title="使用优化器"></a>使用优化器</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 梯度下降优化器</span></span><br><span class="line">optimizer = tf.train.GradientDescentOptimizer(learning_rate=learning_rate)</span><br><span class="line">training_op = optimizer.minimize(mse)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 动量优化器</span></span><br><span class="line">optimizer = tf.train.MomentumOptimizer(learning_rate=learning_rate, momentum=<span class="number">0.9</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="输送数据"><a href="#输送数据" class="headerlink" title="输送数据"></a>输送数据</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用占位符</span></span><br><span class="line">A = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, <span class="number">3</span>))</span><br><span class="line">B = A + <span class="number">5</span></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    B_val_1 = B.eval(feed_dict=&#123;A: [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]]&#125;)</span><br><span class="line">    B_val_2 = B.eval(feed_dict=&#123;A: [[<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]]&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(B_val_1)</span><br></pre></td></tr></table></figure>
+<pre><code>[[6. 7. 8.]]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(B_val_2)</span><br></pre></td></tr></table></figure>
+<pre><code>[[ 9. 10. 11.]
+ [12. 13. 14.]]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 小批量梯度下降</span></span><br><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n+<span class="number">1</span>), name=<span class="string">"X"</span>)</span><br><span class="line">y = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, <span class="number">1</span>), name=<span class="string">"y"</span>)</span><br><span class="line"></span><br><span class="line">batch_size = <span class="number">100</span></span><br><span class="line">n_batches = int(np.ceil(m / batch_size))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fetch_batch</span><span class="params">(epoch, batch_index, batch_size)</span>:</span></span><br><span class="line">    np.random.seed(epoch * n_batches + batch_index)</span><br><span class="line">    indices = np.random.randint(m, size=batch_size)</span><br><span class="line">    X_batch = scale_housing_data_bias[indices]</span><br><span class="line">    y_batch = housing.target.reshape(<span class="number">-1</span>, <span class="number">1</span>)[indices]</span><br><span class="line">    <span class="keyword">return</span> X_batch, y_batch</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(init)</span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(n_epochs):</span><br><span class="line">        <span class="keyword">for</span> batch_index <span class="keyword">in</span> range(n_batches):</span><br><span class="line">            X_batch, y_batch = fetch_batch(epoch, batch_index, batch_size)</span><br><span class="line">            sess.run(training_op, feed_dict=&#123;X: X_batch, y: y_batch&#125;)</span><br><span class="line"></span><br><span class="line">    best_theta = theta.eval()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">best_theta</span><br></pre></td></tr></table></figure>
+<pre><code>array([[ 2.0685525 ],
+       [ 0.8296056 ],
+       [ 0.11874896],
+       [-0.26550332],
+       [ 0.3056771 ],
+       [-0.00450377],
+       [-0.03932568],
+       [-0.89991784],
+       [-0.87057173]], dtype=float32)
+</code></pre><h1 id="保存和加载模型"><a href="#保存和加载模型" class="headerlink" title="保存和加载模型"></a>保存和加载模型</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">n_epochs = <span class="number">1000</span></span><br><span class="line">learning_rate = <span class="number">0.01</span></span><br><span class="line"></span><br><span class="line">X = tf.constant(scale_housing_data_bias, dtype=tf.float32, name=<span class="string">"X"</span>)</span><br><span class="line">y = tf.constant(housing.target.reshape(<span class="number">-1</span>, <span class="number">1</span>), dtype=tf.float32, name=<span class="string">"y"</span>)</span><br><span class="line">theta = tf.Variable(tf.random_normal([n+<span class="number">1</span>, <span class="number">1</span>], <span class="number">-1.0</span>, <span class="number">1.0</span>, seed=<span class="number">42</span>), name=<span class="string">"theta"</span>)</span><br><span class="line">y_pred = tf.matmul(X, theta, name=<span class="string">"predictions"</span>)</span><br><span class="line">error = y_pred - y</span><br><span class="line">mse = tf.reduce_mean(tf.square(error), name=<span class="string">"mse"</span>)</span><br><span class="line">optimizer = tf.train.GradientDescentOptimizer(learning_rate=learning_rate)</span><br><span class="line">training_op = optimizer.minimize(mse)</span><br><span class="line"></span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">saver = tf.train.Saver()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(init)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(n_epochs):</span><br><span class="line">        <span class="keyword">if</span> epoch % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">            print(<span class="string">"epoch"</span>, epoch, <span class="string">"MSE="</span>, mse.eval())</span><br><span class="line">            save_path = saver.save(sess, <span class="string">"tmp/my_model.ckpt"</span>)</span><br><span class="line">        sess.run(training_op)</span><br><span class="line"></span><br><span class="line">    best_theta = theta.eval()</span><br><span class="line">    save_path = saver.save(sess, <span class="string">'tmp/my_model_final.ckpt'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>epoch 0 MSE= 34.112576
+epoch 100 MSE= 1.2404147
+epoch 200 MSE= 0.62713087
+epoch 300 MSE= 0.58235973
+epoch 400 MSE= 0.5691915
+epoch 500 MSE= 0.5602364
+epoch 600 MSE= 0.55325645
+epoch 700 MSE= 0.54772204
+epoch 800 MSE= 0.54330814
+epoch 900 MSE= 0.53977317
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">best_theta</span><br></pre></td></tr></table></figure>
+<pre><code>array([[ 2.0685523 ],
+       [ 0.68664634],
+       [ 0.10857289],
+       [ 0.03570269],
+       [ 0.04292491],
+       [-0.00635225],
+       [-0.0354162 ],
+       [-1.1083173 ],
+       [-1.0608274 ]], dtype=float32)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 加载模型</span></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    saver.restore(sess, <span class="string">"tmp/my_model_final.ckpt"</span>)</span><br><span class="line">    best_theta_restored = theta.eval()</span><br></pre></td></tr></table></figure>
+<pre><code>INFO:tensorflow:Restoring parameters from tmp/my_model_final.ckpt
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.allclose(best_theta, best_theta_restored)</span><br></pre></td></tr></table></figure>
+<pre><code>True
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#保存指定变量</span></span><br><span class="line">saver = tf.train.Saver(&#123;<span class="string">"weights"</span>: theta&#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="使用TensorBoard"><a href="#使用TensorBoard" class="headerlink" title="使用TensorBoard"></a>使用TensorBoard</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line">now = datetime.utcnow().strftime(<span class="string">"%Y%m%d%H%M%S"</span>)</span><br><span class="line">root_logdir = <span class="string">"tf_logs"</span></span><br><span class="line">logdir = <span class="string">"&#123;&#125;/run-&#123;&#125;/"</span>.format(root_logdir, now)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">n_epochs = <span class="number">1000</span></span><br><span class="line">learning_rate = <span class="number">0.01</span></span><br><span class="line"></span><br><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n + <span class="number">1</span>), name=<span class="string">"X"</span>)</span><br><span class="line">y = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, <span class="number">1</span>), name=<span class="string">"y"</span>)</span><br><span class="line">theta = tf.Variable(tf.random_uniform([n + <span class="number">1</span>, <span class="number">1</span>], <span class="number">-1.0</span>, <span class="number">1.0</span>, seed=<span class="number">42</span>), name=<span class="string">"theta"</span>)</span><br><span class="line">y_pred = tf.matmul(X, theta, name=<span class="string">"predictions"</span>)</span><br><span class="line">error = y_pred - y</span><br><span class="line">mse = tf.reduce_mean(tf.square(error), name=<span class="string">"mse"</span>)</span><br><span class="line">optimizer = tf.train.GradientDescentOptimizer(learning_rate=learning_rate)</span><br><span class="line">training_op = optimizer.minimize(mse)</span><br><span class="line"></span><br><span class="line">init = tf.global_variables_initializer()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mse_summary = tf.summary.scalar(<span class="string">"MSE"</span>, mse)</span><br><span class="line">file_writer = tf.summary.FileWriter(logdir, tf.get_default_graph())</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">n_epochs = <span class="number">10</span></span><br><span class="line">batch_size = <span class="number">100</span></span><br><span class="line">n_batches = int(np.ceil(m / batch_size))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(init)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(n_epochs):</span><br><span class="line">        <span class="keyword">for</span> batch_index <span class="keyword">in</span> range(n_batches):</span><br><span class="line">            X_batch, y_batch = fetch_batch(epoch, batch_index, batch_size)</span><br><span class="line">            <span class="keyword">if</span> batch_index% <span class="number">10</span> == <span class="number">0</span>:</span><br><span class="line">                summary_str = mse_summary.eval(feed_dict=&#123;X: X_batch, y: y_batch&#125;)</span><br><span class="line">                step = epoch * n_batches + batch_index</span><br><span class="line">                file_writer.add_summary(summary_str, step)</span><br><span class="line">            sess.run(training_op, feed_dict=&#123;X: X_batch, y: y_batch&#125;)</span><br><span class="line">    best_theta = theta.eval()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file_writer.close()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">best_theta</span><br></pre></td></tr></table></figure>
+<pre><code>array([[ 2.070016  ],
+       [ 0.8204561 ],
+       [ 0.1173173 ],
+       [-0.22739051],
+       [ 0.3113402 ],
+       [ 0.00353193],
+       [-0.01126994],
+       [-0.91643935],
+       [-0.8795008 ]], dtype=float32)
+</code></pre><h1 id="名称作用域"><a href="#名称作用域" class="headerlink" title="名称作用域"></a>名称作用域</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"loss"</span>) <span class="keyword">as</span> scope:</span><br><span class="line">    error = y_pred - y</span><br><span class="line">    mse = tf.reduce_mean(tf.square(error), name=<span class="string">"mse"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(error.op.name)</span><br></pre></td></tr></table></figure>
+<pre><code>loss/sub
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(mse.op.name)</span><br></pre></td></tr></table></figure>
+<pre><code>loss/mse
+</code></pre><h1 id="模块性"><a href="#模块性" class="headerlink" title="模块性"></a>模块性</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.reset_default_graph()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">n_features = <span class="number">3</span></span><br><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n_features), name=<span class="string">"X"</span>)</span><br><span class="line"></span><br><span class="line">w1 = tf.Variable(tf.random_normal((n_features, <span class="number">1</span>)), name=<span class="string">"weights1"</span>)</span><br><span class="line">w2 = tf.Variable(tf.random_normal((n_features, <span class="number">1</span>)), name=<span class="string">"weights2"</span>)</span><br><span class="line">b1 = tf.Variable(<span class="number">0.0</span>, name=<span class="string">"bias1"</span>)</span><br><span class="line">b2 = tf.Variable(<span class="number">0.0</span>, name=<span class="string">"bias2"</span>)</span><br><span class="line"></span><br><span class="line">z1 = tf.add(tf.matmul(X, w1), b1, name=<span class="string">"z1"</span>)</span><br><span class="line">z2 = tf.add(tf.matmul(X, w2), b2, name=<span class="string">"z2"</span>)</span><br><span class="line"></span><br><span class="line">relu1 = tf.maximum(z1, <span class="number">0</span>, name=<span class="string">"relu1"</span>)</span><br><span class="line">relu2 = tf.maximum(z2, <span class="number">0</span>, name=<span class="string">"relu2"</span>)</span><br><span class="line"></span><br><span class="line">output = tf.add(relu1, relu2, name=<span class="string">"output"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Don't Repeat Yourself</span></span><br><span class="line">tf.reset_default_graph()</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">relu</span><span class="params">(X)</span>:</span></span><br><span class="line">    w_shape = (int(X.get_shape()[<span class="number">1</span>]), <span class="number">1</span>)</span><br><span class="line">    w = tf.Variable(tf.random_normal(w_shape), name=<span class="string">"weights"</span>)</span><br><span class="line">    b = tf.Variable(<span class="number">0.0</span>, name=<span class="string">"bias"</span>)</span><br><span class="line">    z = tf.add(tf.matmul(X, w), b, name=<span class="string">"z"</span>)</span><br><span class="line">    <span class="keyword">return</span> tf.maximum(z, <span class="number">0</span>, name=<span class="string">"relu"</span>)</span><br><span class="line"></span><br><span class="line">n_features = <span class="number">3</span></span><br><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n_features), name=<span class="string">"X"</span>)</span><br><span class="line">relus = [relu(X) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>)]</span><br><span class="line">output = tf.add_n(relus, name=<span class="string">"output"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file_writer = tf.summary.FileWriter(<span class="string">"logs/relu1"</span>, tf.get_default_graph())</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">tf.reset_default_graph()</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">relu</span><span class="params">(X)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> tf.name_scope(<span class="string">"relu"</span>):</span><br><span class="line">        w_shape = (int(X.get_shape()[<span class="number">1</span>]), <span class="number">1</span>)</span><br><span class="line">        w = tf.Variable(tf.random_normal(w_shape), name=<span class="string">"weights"</span>)</span><br><span class="line">        b = tf.Variable(<span class="number">0.0</span>, name=<span class="string">"bias"</span>)</span><br><span class="line">        z = tf.add(tf.matmul(X, w), b, name=<span class="string">"z"</span>)</span><br><span class="line">        <span class="keyword">return</span> tf.maximum(z, <span class="number">0</span>, name=<span class="string">"max"</span>)</span><br><span class="line"></span><br><span class="line">n_features = <span class="number">3</span></span><br><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n_features), name=<span class="string">"X"</span>)</span><br><span class="line">relus = [relu(X) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>)]</span><br><span class="line">output = tf.add_n(relus, name=<span class="string">"output"</span>)</span><br><span class="line">file_writer = tf.summary.FileWriter(<span class="string">"logs/relu2"</span>, tf.get_default_graph())</span><br></pre></td></tr></table></figure>
+<h1 id="共享变量"><a href="#共享变量" class="headerlink" title="共享变量"></a>共享变量</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">tf.reset_default_graph()</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">relu</span><span class="params">(X, threshold)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> tf.name_scope(<span class="string">"relu"</span>):</span><br><span class="line">        w_shape = (int(X.get_shape()[<span class="number">1</span>]), <span class="number">1</span>)</span><br><span class="line">        w = tf.Variable(tf.random_normal(w_shape), name=<span class="string">"weights"</span>)</span><br><span class="line">        b = tf.Variable(<span class="number">0.0</span>, name=<span class="string">"bias"</span>)</span><br><span class="line">        z = tf.add(tf.matmul(X, w), b, name=<span class="string">"z"</span>)</span><br><span class="line">        <span class="keyword">return</span> tf.maximum(z, threshold, name=<span class="string">"max"</span>)</span><br><span class="line"></span><br><span class="line">threshold = tf.Variable(<span class="number">0.0</span>, name=<span class="string">"threshold"</span>)</span><br><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n_features), name=<span class="string">"X"</span>)</span><br><span class="line">relus = [relu(X, threshold) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>)]</span><br><span class="line">output = tf.add_n(relus, name=<span class="string">"output"</span>)</span><br><span class="line"></span><br><span class="line">file_writer = tf.summary.FileWriter(<span class="string">"logs/relu_threshold"</span>, tf.get_default_graph())</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">"relu"</span>):</span><br><span class="line">    threshold = tf.get_variable(<span class="string">"threshold"</span>, shape=(), initializer=tf.constant_initializer(<span class="number">0.0</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">"relu"</span>, reuse=<span class="keyword">True</span>):<span class="comment">#重复使用</span></span><br><span class="line">    threshold = tf.get_variable(<span class="string">"threshold"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">"relu"</span>) <span class="keyword">as</span> scope:</span><br><span class="line">    scope.reuse_variables()</span><br><span class="line">    threshold = tf.get_variable(<span class="string">"threshold"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">tf.reset_default_graph()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">relu</span><span class="params">(X)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> tf.variable_scope(<span class="string">"relu"</span>, reuse=<span class="keyword">True</span>):</span><br><span class="line">        threshold = tf.get_variable(<span class="string">"threshold"</span>)</span><br><span class="line">        w_shape = int(X.get_shape()[<span class="number">1</span>]), <span class="number">1</span></span><br><span class="line">        w = tf.Variable(tf.random_normal(w_shape), name=<span class="string">"weights"</span>)</span><br><span class="line">        b = tf.Variable(<span class="number">0.0</span>, name=<span class="string">'bias'</span>)</span><br><span class="line">        z = tf.add(tf.matmul(X, w), b, name=<span class="string">'z'</span>)</span><br><span class="line">        <span class="keyword">return</span> tf.maximum(z, threshold, name=<span class="string">"max"</span>)</span><br><span class="line"></span><br><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n_features), name=<span class="string">"X"</span>)</span><br><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">"relu"</span>):</span><br><span class="line">    threshold = tf.get_variable(<span class="string">"threshold"</span>, shape=(), initializer=tf.constant_initializer(<span class="number">0.0</span>))</span><br><span class="line"></span><br><span class="line">relus = [relu(X) <span class="keyword">for</span> relu_index <span class="keyword">in</span> range(<span class="number">5</span>)]</span><br><span class="line">output = tf.add_n(relus, name=<span class="string">"output"</span>)</span><br><span class="line">file_writer = tf.summary.FileWriter(<span class="string">"logs/relu6"</span>, tf.get_default_graph())</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">tf.reset_default_graph()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">relu</span><span class="params">(X)</span>:</span></span><br><span class="line">    threshold = tf.get_variable(<span class="string">"threshold"</span>, shape=(), initializer=tf.constant_initializer())</span><br><span class="line">    w_shape = int(X.get_shape()[<span class="number">1</span>]), <span class="number">1</span></span><br><span class="line">    w = tf.Variable(tf.random_normal(w_shape), name=<span class="string">"weights"</span>)</span><br><span class="line">    b = tf.Variable(<span class="number">0.0</span>, name=<span class="string">'bias'</span>)</span><br><span class="line">    z = tf.add(tf.matmul(X, w), b, name=<span class="string">'z'</span>)</span><br><span class="line">    <span class="keyword">return</span> tf.maximum(z, threshold, name=<span class="string">"max"</span>)</span><br><span class="line"></span><br><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n_features), name=<span class="string">"X"</span>)</span><br><span class="line">relus = []</span><br><span class="line"><span class="keyword">for</span> relu_index <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">    <span class="keyword">with</span> tf.variable_scope(<span class="string">"relu"</span>, reuse=(relu_index &gt;= <span class="number">1</span>)) <span class="keyword">as</span> scope:</span><br><span class="line">        relus.append(relu(X))</span><br><span class="line">output = tf.add_n(relus, name=<span class="string">"output"</span>)</span><br><span class="line">file_writer = tf.summary.FileWriter(<span class="string">"logs/relu7"</span>, tf.get_default_graph())</span><br></pre></td></tr></table></figure>
+<hr>
+<p><a href="https://github.com/coldJune/machineLearning/blob/master/handson-ml/Up%20and%20Runing%20with%20TensorFlow.ipynb" target="_blank" rel="noopener">源文件</a></p>
+
+      
+    </div>
+    
+    
+    
+		<div>
+		  
+		    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-apple"></i>感谢您的阅读-------------</div>
+    
+</div>
+		  
+		</div>
+		<div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/12/13/Up-and-Runing-with-TensorFlow/">Up and Runing with TensorFlow</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 邓小俊 的个人博客">邓小俊</a></p>
+  <p><span>发布时间:</span>2018年12月13日 - 17:12</p>
+  <p><span>最后更新:</span>2018年12月17日 - 18:12</p>
+  <p><span>原始链接:</span><a href="/2018/12/13/Up-and-Runing-with-TensorFlow/" title="Up and Runing with TensorFlow">http://coldjune.com/2018/12/13/Up-and-Runing-with-TensorFlow/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://coldjune.com/2018/12/13/Up-and-Runing-with-TensorFlow/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+      
+		</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hands-On-Machine-Learning-with-Scikit-Learn-and-TensorFlow/" rel="tag"><i class="fa fa-tag"></i> Hands-On Machine Learning with Scikit-Learn and TensorFlow</a>
+          
+            <a href="/tags/TensorFlow/" rel="tag"><i class="fa fa-tag"></i> TensorFlow</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/12/Dimensionality-Reduction/" rel="next" title="Dimensionality Reduction">
+                <i class="fa fa-chevron-left"></i> Dimensionality Reduction
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/17/Introduction-to-Artificial-Neural-Networks/" rel="prev" title="Introduction to Artificial Neural Networks">
+                Introduction to Artificial Neural Networks <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">邓小俊</p>
+              <p class="site-description motion-element" itemprop="description">人所恐惧的不是孤独本身，而是害怕承认人本生而孤独的事实</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hello-World"><span class="nav-number">1.</span> <span class="nav-text">Hello World</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#管理图"><span class="nav-number">2.</span> <span class="nav-text">管理图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#节点的生命周期"><span class="nav-number">3.</span> <span class="nav-text">节点的生命周期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用TensorFlow训练线性回归"><span class="nav-number">4.</span> <span class="nav-text">使用TensorFlow训练线性回归</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现梯度下降"><span class="nav-number">5.</span> <span class="nav-text">实现梯度下降</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#手动计算梯度"><span class="nav-number">5.1.</span> <span class="nav-text">手动计算梯度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用自动微分"><span class="nav-number">5.2.</span> <span class="nav-text">使用自动微分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用优化器"><span class="nav-number">5.3.</span> <span class="nav-text">使用优化器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输送数据"><span class="nav-number">6.</span> <span class="nav-text">输送数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#保存和加载模型"><span class="nav-number">7.</span> <span class="nav-text">保存和加载模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用TensorBoard"><span class="nav-number">8.</span> <span class="nav-text">使用TensorBoard</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#名称作用域"><span class="nav-number">9.</span> <span class="nav-text">名称作用域</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模块性"><span class="nav-number">10.</span> <span class="nav-text">模块性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#共享变量"><span class="nav-number">11.</span> <span class="nav-text">共享变量</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">邓小俊</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">博文包含字数&#58;</span>
+    
+    <span title="博文包含字数">277.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("EdodKu35EbSo4VoLhJYQMd09-gzGzoHsz", "qpErN7JcsIzusWGMNuw1QcxN");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+
+
+  
+
+  
+
+ 
+</body>
+</html>

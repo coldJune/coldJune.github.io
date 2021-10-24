@@ -1,0 +1,1988 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="true" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico#/images/favicon-16x16-next.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="tensorflow,Hands-On Machine Learning with Scikit-Learn and TensorFlow,神经网络," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="准备123456789101112import numpy as npimport tensorflow as tf%matplotlib inlineimport matplotlib.pyplot as pltdef reset_graph(seed=42):    tf.reset_default_graph()    tf.set_random_seed(seed)    np.rando">
+<meta name="keywords" content="tensorflow,Hands-On Machine Learning with Scikit-Learn and TensorFlow,神经网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Training Deep Neural Nets">
+<meta property="og:url" content="http://coldjune.com/2018/12/20/Training-Deep-Neural-Nets/index.html">
+<meta property="og:site_name" content="Stay Hungary">
+<meta property="og:description" content="准备123456789101112import numpy as npimport tensorflow as tf%matplotlib inlineimport matplotlib.pyplot as pltdef reset_graph(seed=42):    tf.reset_default_graph()    tf.set_random_seed(seed)    np.rando">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://coldjune.com/2018/12/20/Training-Deep-Neural-Nets/Training%20Deep%20Neural%20Nets_4_0.png">
+<meta property="og:image" content="http://coldjune.com/2018/12/20/Training-Deep-Neural-Nets/Training%20Deep%20Neural%20Nets_12_0.png">
+<meta property="og:image" content="http://coldjune.com/2018/12/20/Training-Deep-Neural-Nets/Training%20Deep%20Neural%20Nets_29_0.png">
+<meta property="og:updated_time" content="2018-12-27T14:12:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Training Deep Neural Nets">
+<meta name="twitter:description" content="准备123456789101112import numpy as npimport tensorflow as tf%matplotlib inlineimport matplotlib.pyplot as pltdef reset_graph(seed=42):    tf.reset_default_graph()    tf.set_random_seed(seed)    np.rando">
+<meta name="twitter:image" content="http://coldjune.com/2018/12/20/Training-Deep-Neural-Nets/Training%20Deep%20Neural%20Nets_4_0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://coldjune.com/2018/12/20/Training-Deep-Neural-Nets/"/>
+
+
+
+
+
+  <title>Training Deep Neural Nets | Stay Hungary</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+		<a href="https://github.com/coldJune" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stay Hungary</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Programming is an art form</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://coldjune.com/2018/12/20/Training-Deep-Neural-Nets/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="邓小俊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay Hungary">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Training Deep Neural Nets</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-20T11:18:36+08:00">
+                2018-12-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/12/20/Training-Deep-Neural-Nets/" class="leancloud_visitors" data-flag-title="Training Deep Neural Nets">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  6,633
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  41
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reset_graph</span><span class="params">(seed=<span class="number">42</span>)</span>:</span></span><br><span class="line">    tf.reset_default_graph()</span><br><span class="line">    tf.set_random_seed(seed)</span><br><span class="line">    np.random.seed(seed)</span><br></pre></td></tr></table></figure>
+<h1 id="Vanishing-Exploding-Gradients-Problems"><a href="#Vanishing-Exploding-Gradients-Problems" class="headerlink" title="Vanishing/Exploding Gradients Problems"></a>Vanishing/Exploding Gradients Problems</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">logit</span><span class="params">(z)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> / (<span class="number">1</span> + np.exp(-z))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">z = np.linspace(<span class="number">-5</span>, <span class="number">5</span>, <span class="number">200</span>)</span><br><span class="line"></span><br><span class="line">plt.plot([<span class="number">-5</span>, <span class="number">5</span>], [<span class="number">0</span>, <span class="number">0</span>], <span class="string">'k-'</span>)</span><br><span class="line">plt.plot([<span class="number">-5</span>, <span class="number">5</span>], [<span class="number">1</span>, <span class="number">1</span>], <span class="string">'k--'</span>)</span><br><span class="line">plt.plot([<span class="number">0</span>, <span class="number">0</span>], [<span class="number">-0.2</span>, <span class="number">1.2</span>], <span class="string">'k-'</span>)</span><br><span class="line">plt.plot([<span class="number">-5</span>, <span class="number">5</span>], [<span class="number">-3</span>/<span class="number">4</span>, <span class="number">7</span>/<span class="number">4</span>], <span class="string">'g--'</span>)</span><br><span class="line"></span><br><span class="line">plt.plot(z, logit(z), <span class="string">'b--'</span>, linewidth=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">props = dict(facecolor=<span class="string">'black'</span>, shrink=<span class="number">0.1</span>)</span><br><span class="line"></span><br><span class="line">plt.annotate(<span class="string">'Saturating'</span>, xytext=(<span class="number">3.5</span>, <span class="number">0.7</span>), xy=(<span class="number">5</span>, <span class="number">1</span>),</span><br><span class="line">             arrowprops=props, fontsize=<span class="number">14</span>, ha=<span class="string">'center'</span>)</span><br><span class="line">plt.annotate(<span class="string">'Saturating'</span>, xytext=(<span class="number">-3.5</span>, <span class="number">0.3</span>), xy=(<span class="number">-5</span>, <span class="number">0</span>),</span><br><span class="line">             arrowprops=props, fontsize=<span class="number">14</span>, ha=<span class="string">'center'</span>)</span><br><span class="line">plt.annotate(<span class="string">'Linear'</span>, xytext=(<span class="number">2</span>, <span class="number">0.2</span>), xy=(<span class="number">0</span>, <span class="number">0.5</span>),</span><br><span class="line">             arrowprops=props, fontsize=<span class="number">14</span>, ha=<span class="string">'center'</span>)</span><br><span class="line"></span><br><span class="line">plt.grid(<span class="keyword">True</span>)</span><br><span class="line">plt.title(<span class="string">"Sigmoid activation function"</span>, fontsize=<span class="number">14</span>)</span><br><span class="line">plt.axis([<span class="number">-5</span>, <span class="number">5</span>, <span class="number">-0.2</span>, <span class="number">1.2</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/12/20/Training-Deep-Neural-Nets/Training%20Deep%20Neural%20Nets_4_0.png" alt="png"></p>
+<h2 id="Xavier和-He-初始化"><a href="#Xavier和-He-初始化" class="headerlink" title="Xavier和 He 初始化"></a>Xavier和 He 初始化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">reset_graph()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">n_inputs = <span class="number">28</span> * <span class="number">28</span></span><br><span class="line">n_hidden1 = <span class="number">300</span></span><br><span class="line"></span><br><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n_inputs), name=<span class="string">"X"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">he_init = tf.variance_scaling_initializer()</span><br><span class="line">hidden1 = tf.layers.dense(X, n_hidden1, activation=tf.nn.relu,</span><br><span class="line">                         kernel_initializer=he_init, name=<span class="string">"hidden1"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="不饱和激活函数"><a href="#不饱和激活函数" class="headerlink" title="不饱和激活函数"></a>不饱和激活函数</h2><h3 id="Leaky-ReLU"><a href="#Leaky-ReLU" class="headerlink" title="Leaky ReLU"></a>Leaky ReLU</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">leaky_relu</span><span class="params">(z, alpha=<span class="number">0.01</span>)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> np.maximum(alpha*z, z)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(z, leaky_relu(z,<span class="number">0.05</span>), <span class="string">'b-'</span>, linewidth=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">plt.plot([<span class="number">-5</span>, <span class="number">5</span>], [<span class="number">0</span>, <span class="number">0</span>], <span class="string">'k-'</span>)</span><br><span class="line">plt.plot([<span class="number">0</span>, <span class="number">0</span>], [<span class="number">-0.5</span>, <span class="number">4.2</span>], <span class="string">'k-'</span>)</span><br><span class="line"></span><br><span class="line">plt.annotate(<span class="string">'Leak'</span>, xytext=(<span class="number">-4.5</span>, <span class="number">0.5</span>), xy=(<span class="number">-5</span>, <span class="number">-0.2</span>), arrowprops=props, ha=<span class="string">"center"</span>)</span><br><span class="line">plt.title(<span class="string">"Leaky ReLU activation function"</span>, fontsize=<span class="number">14</span>)</span><br><span class="line">plt.axis([<span class="number">-5</span>, <span class="number">5</span>, <span class="number">-0.5</span>, <span class="number">4.2</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/12/20/Training-Deep-Neural-Nets/Training%20Deep%20Neural%20Nets_12_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">reset_graph()</span><br><span class="line"></span><br><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n_inputs), name=<span class="string">"X"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">leaky_relu</span><span class="params">(z, name=None)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> tf.maximum(<span class="number">0.01</span> * z, z, name=name)</span><br><span class="line"></span><br><span class="line">hidden1 = tf.layers.dense(X, n_hidden1, activation=leaky_relu, name=<span class="string">"hidden1"</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用Leaky ReLU训练MNIST</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">reset_graph()</span><br><span class="line"></span><br><span class="line">n_inputs = <span class="number">28</span> * <span class="number">28</span></span><br><span class="line">n_hidden1 = <span class="number">300</span></span><br><span class="line">n_hidden2 = <span class="number">100</span></span><br><span class="line">n_outputs = <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n_inputs), name=<span class="string">"X"</span>)</span><br><span class="line">y = tf.placeholder(tf.int32, shape=(<span class="keyword">None</span>), name=<span class="string">"y"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"dnn"</span>):</span><br><span class="line">    hidden1 = tf.layers.dense(X, n_hidden1, activation=leaky_relu, name=<span class="string">"hidden1"</span>)</span><br><span class="line">    hidden2 = tf.layers.dense(hidden1, n_hidden2, activation=leaky_relu, name=<span class="string">"hidden2"</span>)</span><br><span class="line">    logits = tf.layers.dense(hidden2, n_outputs, name=<span class="string">"outputs"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"loss"</span>):</span><br><span class="line">    xentropy = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y, logits=logits)</span><br><span class="line">    loss = tf.reduce_mean(xentropy, name=<span class="string">"loss"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">learning_rate = <span class="number">0.01</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"train"</span>):</span><br><span class="line">    optimizer = tf.train.GradientDescentOptimizer(learning_rate)</span><br><span class="line">    training_op = optimizer.minimize(loss)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span>  tf.name_scope(<span class="string">"eval"</span>):</span><br><span class="line">    correct = tf.nn.in_top_k(logits, y, <span class="number">1</span>)</span><br><span class="line">    accurancy = tf.reduce_mean(tf.cast(correct, tf.float32))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">saver = tf.train.Saver()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>加载数据</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(X_train, y_train), (X_test, y_test) = tf.keras.datasets.mnist.load_data()</span><br><span class="line"></span><br><span class="line">X_train = X_train.astype(np.float32).reshape(<span class="number">-1</span>, <span class="number">28</span>*<span class="number">28</span>) / <span class="number">255.0</span></span><br><span class="line">X_test = X_test.astype(np.float32).reshape(<span class="number">-1</span>, <span class="number">28</span>*<span class="number">28</span>) / <span class="number">255.0</span></span><br><span class="line"></span><br><span class="line">y_train = y_train.astype(np.int32)</span><br><span class="line">y_test = y_test.astype(np.int32)</span><br><span class="line"></span><br><span class="line">X_valid, X_train = X_train[:<span class="number">5000</span>], X_train[<span class="number">5000</span>:]</span><br><span class="line">y_valid, y_train = y_train[:<span class="number">5000</span>], y_train[<span class="number">5000</span>:]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shuffle_batch</span><span class="params">(X, y, batch_size)</span>:</span></span><br><span class="line">    rnd_idx = np.random.permutation(len(X))</span><br><span class="line">    n_batches = len(X) // batch_size</span><br><span class="line">    <span class="keyword">for</span> batch_idx <span class="keyword">in</span> np.array_split(rnd_idx, n_batches):</span><br><span class="line">        X_batch, y_batch = X[batch_idx], y[batch_idx]</span><br><span class="line">        <span class="keyword">yield</span> X_batch, y_batch</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">n_epochs = <span class="number">40</span></span><br><span class="line">batch_size = <span class="number">50</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    init.run()</span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(n_epochs):</span><br><span class="line">        <span class="keyword">for</span> X_batch, y_batch <span class="keyword">in</span> shuffle_batch(X_train, y_train, batch_size):</span><br><span class="line">            sess.run(training_op, feed_dict=&#123;X: X_batch, y: y_batch&#125;)</span><br><span class="line">        <span class="keyword">if</span> epoch % <span class="number">5</span> == <span class="number">0</span>:</span><br><span class="line">            acc_batch = accurancy.eval(feed_dict=&#123;X: X_batch, y: y_batch&#125;)</span><br><span class="line">            acc_valid = accurancy.eval(feed_dict=&#123;X: X_valid, y: y_valid&#125;)</span><br><span class="line">            print(epoch, <span class="string">"Batch accuracy:"</span>, acc_batch, <span class="string">"Validation accurancy:"</span>, acc_valid)</span><br><span class="line">    save_path = saver.save(sess, <span class="string">"dnn/leaky_relu_model_final.ckpt"</span>)</span><br><span class="line">file_write = tf.summary.FileWriter(<span class="string">"dnn/leaky_relu"</span>, tf.get_default_graph())</span><br></pre></td></tr></table></figure>
+<pre><code>0 Batch accuracy: 0.86 Validation accurancy: 0.9044
+5 Batch accuracy: 0.94 Validation accurancy: 0.9494
+10 Batch accuracy: 0.92 Validation accurancy: 0.9656
+15 Batch accuracy: 0.94 Validation accurancy: 0.971
+20 Batch accuracy: 1.0 Validation accurancy: 0.9762
+25 Batch accuracy: 1.0 Validation accurancy: 0.9772
+30 Batch accuracy: 0.98 Validation accurancy: 0.9782
+35 Batch accuracy: 1.0 Validation accurancy: 0.9788
+</code></pre><h3 id="ELU"><a href="#ELU" class="headerlink" title="ELU"></a>ELU</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">elu</span><span class="params">(z, alpha=<span class="number">1</span>)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> np.where(z &lt; <span class="number">0</span>, alpha * (np.exp(z)<span class="number">-1</span>), z)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(z, elu(z), <span class="string">"b-"</span>, linewidth=<span class="number">2</span>)</span><br><span class="line">plt.plot([<span class="number">-5</span>, <span class="number">5</span>], [<span class="number">0</span>, <span class="number">0</span>], <span class="string">"k-"</span>)</span><br><span class="line">plt.plot([<span class="number">0</span>, <span class="number">0</span>], [<span class="number">-2.2</span>, <span class="number">3.2</span>], <span class="string">"k-"</span>)</span><br><span class="line">plt.plot([<span class="number">-5</span>, <span class="number">5</span>], [<span class="number">-1</span>, <span class="number">-1</span>], <span class="string">"k--"</span>)</span><br><span class="line">plt.title(<span class="string">r"ELU activation funtion($\alpha=1$)"</span>, fontsize=<span class="number">14</span>)</span><br><span class="line">plt.axis([<span class="number">-5</span>, <span class="number">5</span>, <span class="number">-2.2</span>, <span class="number">3.2</span>])</span><br><span class="line">plt.grid(<span class="keyword">True</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/12/20/Training-Deep-Neural-Nets/Training%20Deep%20Neural%20Nets_29_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">reset_graph()</span><br><span class="line"></span><br><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n_inputs), name=<span class="string">"X"</span>)</span><br><span class="line"></span><br><span class="line">hidden1 = tf.layers.dense(X, n_hidden1, activation=tf.nn.elu, name=<span class="string">"hidden1"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="批量标准化-Batch-Normalization"><a href="#批量标准化-Batch-Normalization" class="headerlink" title="批量标准化(Batch Normalization)"></a>批量标准化(Batch Normalization)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">reset_graph()</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">n_inputs = <span class="number">28</span> * <span class="number">28</span></span><br><span class="line">n_hidden1 = <span class="number">300</span></span><br><span class="line">n_hidden2 = <span class="number">100</span></span><br><span class="line">n_outputs = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n_inputs), name=<span class="string">"X"</span>)</span><br><span class="line">training = tf.placeholder_with_default(<span class="keyword">False</span>, shape=(), name=<span class="string">"training"</span>)</span><br><span class="line"></span><br><span class="line">hidden1 = tf.layers.dense(X, n_hidden1, name=<span class="string">"hidden1"</span>)</span><br><span class="line">bn1 = tf.layers.batch_normalization(hidden1, training=training, momentum=<span class="number">0.9</span>)</span><br><span class="line">bn1_act = tf.nn.elu(bn1)</span><br><span class="line"></span><br><span class="line">hidden2 = tf.layers.dense(bn1_act, n_hidden2, name=<span class="string">"hidden2"</span>)</span><br><span class="line">bn2 = tf.layers.batch_normalization(hidden2, training=training, momentum=<span class="number">0.9</span>)</span><br><span class="line">bn2_act = tf.nn.elu(bn2)</span><br><span class="line"></span><br><span class="line">logits_before_bn = tf.layers.dense(bn2_act, n_outputs, name=<span class="string">"outputs"</span>)</span><br><span class="line">logits = tf.layers.batch_normalization(logits_before_bn, training=training, momentum=<span class="number">0.9</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">reset_graph()</span><br><span class="line"></span><br><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n_inputs), name=<span class="string">"X"</span>)</span><br><span class="line">training = tf.placeholder_with_default(<span class="keyword">False</span>, shape=(), name=<span class="string">"training"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> partial</span><br><span class="line"></span><br><span class="line">my_batch_norm_layer = partial(tf.layers.batch_normalization,</span><br><span class="line">                             training=training, momentum=<span class="number">0.9</span>)</span><br><span class="line"></span><br><span class="line">hidden1 = tf.layers.dense(X, n_hidden1, name=<span class="string">"hidden1"</span>)</span><br><span class="line">bn1 = my_batch_norm_layer(hidden1)</span><br><span class="line">bn1_act = tf.nn.elu(bn1)</span><br><span class="line"></span><br><span class="line">hidden2 = tf.layers.dense(bn1_act, n_hidden2, name=<span class="string">"hidden2"</span>)</span><br><span class="line">bn2 = my_batch_norm_layer(hidden2)</span><br><span class="line">bn2_act = tf.nn.elu(bn2)</span><br><span class="line"></span><br><span class="line">logits_before_bn = tf.layers.dense(bn2_act, n_outputs, name=<span class="string">"outputs"</span>)</span><br><span class="line">logits = my_batch_norm_layer(logits_before_bn)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">reset_graph()</span><br><span class="line"></span><br><span class="line">batch_norm_momentum = <span class="number">0.9</span></span><br><span class="line"></span><br><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n_inputs), name=<span class="string">"X"</span>)</span><br><span class="line">y = tf.placeholder(tf.int32, shape=(<span class="keyword">None</span>), name=<span class="string">"y"</span>)</span><br><span class="line">training = tf.placeholder_with_default(<span class="keyword">False</span>, shape=(), name=<span class="string">"training"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"dnn"</span>):</span><br><span class="line">    he_init = tf.variance_scaling_initializer()</span><br><span class="line"></span><br><span class="line">    my_batch_norm_layer = partial(</span><br><span class="line">        tf.layers.batch_normalization,</span><br><span class="line">        training=training,</span><br><span class="line">        momentum=batch_norm_momentum</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    my_dense_layer = partial(</span><br><span class="line">        tf.layers.dense,</span><br><span class="line">        kernel_initializer=he_init</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    hidden1 = my_dense_layer(X, n_hidden1, name=<span class="string">"hidden1"</span>)</span><br><span class="line">    bn1 = tf.nn.elu(my_batch_norm_layer(hidden1))</span><br><span class="line"></span><br><span class="line">    hidden2 = my_dense_layer(bn1, n_hidden2, name=<span class="string">"hidden2"</span>)</span><br><span class="line">    bn2 = tf.nn.elu(my_batch_norm_layer(hidden2))</span><br><span class="line"></span><br><span class="line">    logits_before_bn = my_dense_layer(bn2, n_outputs, name=<span class="string">"outputs"</span>)</span><br><span class="line">    logits = my_batch_norm_layer(logits_before_bn)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"loss"</span>):</span><br><span class="line">    xentropy = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y, logits=logits)</span><br><span class="line">    loss = tf.reduce_mean(xentropy, name=<span class="string">"loss"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"train"</span>):</span><br><span class="line">    optimizer = tf.train.GradientDescentOptimizer(learning_rate)</span><br><span class="line">    training_op = optimizer.minimize(loss)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"eval"</span>):</span><br><span class="line">    correct = tf.nn.in_top_k(logits, y, <span class="number">1</span>)</span><br><span class="line">    accuracy = tf.reduce_mean(tf.cast(correct, tf.float32))</span><br><span class="line"></span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">saver = tf.train.Saver()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">n_epochs = <span class="number">20</span></span><br><span class="line">batch_size = <span class="number">200</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">extra_update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    init.run()</span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(n_epochs):</span><br><span class="line">        <span class="keyword">for</span> X_batch, y_batch <span class="keyword">in</span> shuffle_batch(X_train, y_train, batch_size):</span><br><span class="line">            sess.run([training_op, extra_update_ops],</span><br><span class="line">                     feed_dict=&#123;training: <span class="keyword">True</span>, X: X_batch, y: y_batch&#125;)</span><br><span class="line">        accuracy_val = accuracy.eval(feed_dict=&#123;X: X_valid, y: y_valid&#125;)</span><br><span class="line">        print(epoch, <span class="string">"Validation accuracy:"</span>, accuracy_val)</span><br><span class="line">    save_path = saver.save(sess, <span class="string">"dnn/elu_model_final.ckpt"</span>)</span><br><span class="line">    file_writer = tf.summary.FileWriter(<span class="string">"dnn/elu"</span>, tf.get_default_graph())</span><br></pre></td></tr></table></figure>
+<pre><code>0 Validation accuracy: 0.8952
+1 Validation accuracy: 0.9202
+2 Validation accuracy: 0.9318
+3 Validation accuracy: 0.9422
+4 Validation accuracy: 0.9468
+5 Validation accuracy: 0.954
+6 Validation accuracy: 0.9568
+7 Validation accuracy: 0.96
+8 Validation accuracy: 0.962
+9 Validation accuracy: 0.9638
+10 Validation accuracy: 0.9662
+11 Validation accuracy: 0.9682
+12 Validation accuracy: 0.9672
+13 Validation accuracy: 0.9696
+14 Validation accuracy: 0.9706
+15 Validation accuracy: 0.9704
+16 Validation accuracy: 0.9718
+17 Validation accuracy: 0.9726
+18 Validation accuracy: 0.9738
+19 Validation accuracy: 0.9742
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[v.name <span class="keyword">for</span> v <span class="keyword">in</span> tf.trainable_variables()]</span><br></pre></td></tr></table></figure>
+<pre><code>[&#39;hidden1/kernel:0&#39;,
+ &#39;hidden1/bias:0&#39;,
+ &#39;batch_normalization/gamma:0&#39;,
+ &#39;batch_normalization/beta:0&#39;,
+ &#39;hidden2/kernel:0&#39;,
+ &#39;hidden2/bias:0&#39;,
+ &#39;batch_normalization_1/gamma:0&#39;,
+ &#39;batch_normalization_1/beta:0&#39;,
+ &#39;outputs/kernel:0&#39;,
+ &#39;outputs/bias:0&#39;,
+ &#39;batch_normalization_2/gamma:0&#39;,
+ &#39;batch_normalization_2/beta:0&#39;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[v.name <span class="keyword">for</span> v <span class="keyword">in</span> tf.global_variables()]</span><br></pre></td></tr></table></figure>
+<pre><code>[&#39;hidden1/kernel:0&#39;,
+ &#39;hidden1/bias:0&#39;,
+ &#39;batch_normalization/gamma:0&#39;,
+ &#39;batch_normalization/beta:0&#39;,
+ &#39;batch_normalization/moving_mean:0&#39;,
+ &#39;batch_normalization/moving_variance:0&#39;,
+ &#39;hidden2/kernel:0&#39;,
+ &#39;hidden2/bias:0&#39;,
+ &#39;batch_normalization_1/gamma:0&#39;,
+ &#39;batch_normalization_1/beta:0&#39;,
+ &#39;batch_normalization_1/moving_mean:0&#39;,
+ &#39;batch_normalization_1/moving_variance:0&#39;,
+ &#39;outputs/kernel:0&#39;,
+ &#39;outputs/bias:0&#39;,
+ &#39;batch_normalization_2/gamma:0&#39;,
+ &#39;batch_normalization_2/beta:0&#39;,
+ &#39;batch_normalization_2/moving_mean:0&#39;,
+ &#39;batch_normalization_2/moving_variance:0&#39;]
+</code></pre><h2 id="梯度裁剪"><a href="#梯度裁剪" class="headerlink" title="梯度裁剪"></a>梯度裁剪</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">reset_graph()</span><br><span class="line"></span><br><span class="line">n_inputs = <span class="number">28</span> * <span class="number">28</span></span><br><span class="line">n_hidden1 = <span class="number">300</span></span><br><span class="line">n_hidden2 = <span class="number">50</span></span><br><span class="line">n_hidden3 = <span class="number">50</span></span><br><span class="line">n_hidden4 = <span class="number">50</span></span><br><span class="line">n_hidden5 = <span class="number">50</span></span><br><span class="line">n_outputs = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n_inputs), name=<span class="string">"X"</span>)</span><br><span class="line">y = tf.placeholder(tf.int32, shape=(<span class="keyword">None</span>), name=<span class="string">"y"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"dnn"</span>):</span><br><span class="line">    hidden1 = tf.layers.dense(X, n_hidden1, activation=tf.nn.relu, name=<span class="string">"hidden1"</span>)</span><br><span class="line">    hidden2 = tf.layers.dense(hidden1, n_hidden2, activation=tf.nn.relu, name=<span class="string">"hidden2"</span>)</span><br><span class="line">    hidden3 = tf.layers.dense(hidden2, n_hidden3, activation=tf.nn.relu, name=<span class="string">"hidden3"</span>)</span><br><span class="line">    hidden4 = tf.layers.dense(hidden3, n_hidden4, activation=tf.nn.relu, name=<span class="string">"hidden4"</span>)</span><br><span class="line">    hidden5 = tf.layers.dense(hidden4, n_hidden5, activation=tf.nn.relu, name=<span class="string">"hidden5"</span>)</span><br><span class="line">    logits = tf.layers.dense(hidden5, n_outputs, name=<span class="string">"outputs"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"loss"</span>):</span><br><span class="line">    xentropy = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y, logits=logits)</span><br><span class="line">    loss = tf.reduce_mean(xentropy, name=<span class="string">"loss"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">learning_rate = <span class="number">0.01</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">threhold = <span class="number">1.0</span></span><br><span class="line"></span><br><span class="line">optimizer = tf.train.GradientDescentOptimizer(learning_rate)</span><br><span class="line">grads_and_vars = optimizer.compute_gradients(loss)</span><br><span class="line">capped_gvs = [(tf.clip_by_value(grad, -threhold, threhold), var)</span><br><span class="line">             <span class="keyword">for</span> grad, var <span class="keyword">in</span> grads_and_vars]</span><br><span class="line">training_op = optimizer.apply_gradients(capped_gvs)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"eval"</span>):</span><br><span class="line">    correct = tf.nn.in_top_k(logits, y, <span class="number">1</span>)</span><br><span class="line">    accuracy = tf.reduce_mean(tf.cast(correct, tf.float32), name=<span class="string">"accuracy"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">saver = tf.train.Saver()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">n_epochs = <span class="number">20</span></span><br><span class="line">batch_size = <span class="number">200</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    init.run()</span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(n_epochs):</span><br><span class="line">        <span class="keyword">for</span> X_batch, y_batch <span class="keyword">in</span> shuffle_batch(X_train, y_train, batch_size):</span><br><span class="line">            sess.run(training_op, feed_dict=&#123;X: X_batch, y: y_batch&#125;)</span><br><span class="line">        accuracy_val = accuracy.eval(feed_dict=&#123;X: X_valid, y: y_valid&#125;)</span><br><span class="line">        print(epoch, <span class="string">"Validation accuracy:"</span>, accuracy_val)</span><br><span class="line"></span><br><span class="line">    save_path = saver.save(sess, <span class="string">"dnn/clip_model_final.ckpt"</span>)</span><br><span class="line">filewriter = tf.summary.FileWriter(<span class="string">"dnn/clip"</span>, tf.get_default_graph())</span><br></pre></td></tr></table></figure>
+<pre><code>0 Validation accuracy: 0.2906
+1 Validation accuracy: 0.795
+2 Validation accuracy: 0.8836
+3 Validation accuracy: 0.9068
+4 Validation accuracy: 0.9136
+5 Validation accuracy: 0.9232
+6 Validation accuracy: 0.93
+7 Validation accuracy: 0.9342
+8 Validation accuracy: 0.9384
+9 Validation accuracy: 0.944
+10 Validation accuracy: 0.9454
+11 Validation accuracy: 0.9472
+12 Validation accuracy: 0.9516
+13 Validation accuracy: 0.9532
+14 Validation accuracy: 0.9542
+15 Validation accuracy: 0.9562
+16 Validation accuracy: 0.9572
+17 Validation accuracy: 0.9596
+18 Validation accuracy: 0.9588
+19 Validation accuracy: 0.9616
+</code></pre><h1 id="重利用之前训练的层"><a href="#重利用之前训练的层" class="headerlink" title="重利用之前训练的层"></a>重利用之前训练的层</h1><h2 id="重利用TensorFlow模型"><a href="#重利用TensorFlow模型" class="headerlink" title="重利用TensorFlow模型"></a>重利用TensorFlow模型</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">reset_graph()</span><br><span class="line">saver = tf.train.import_meta_graph(<span class="string">"dnn/clip_model_final.ckpt.meta"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> op <span class="keyword">in</span> tf.get_default_graph().get_operations():</span><br><span class="line">    print(op.name)</span><br></pre></td></tr></table></figure>
+<pre><code>X
+y
+hidden1/kernel/Initializer/random_uniform/shape
+hidden1/kernel/Initializer/random_uniform/min
+hidden1/kernel/Initializer/random_uniform/max
+hidden1/kernel/Initializer/random_uniform/RandomUniform
+hidden1/kernel/Initializer/random_uniform/sub
+hidden1/kernel/Initializer/random_uniform/mul
+hidden1/kernel/Initializer/random_uniform
+hidden1/kernel
+hidden1/kernel/Assign
+hidden1/kernel/read
+hidden1/bias/Initializer/zeros
+hidden1/bias
+hidden1/bias/Assign
+hidden1/bias/read
+dnn/hidden1/MatMul
+dnn/hidden1/BiasAdd
+dnn/hidden1/Relu
+hidden2/kernel/Initializer/random_uniform/shape
+hidden2/kernel/Initializer/random_uniform/min
+hidden2/kernel/Initializer/random_uniform/max
+hidden2/kernel/Initializer/random_uniform/RandomUniform
+hidden2/kernel/Initializer/random_uniform/sub
+hidden2/kernel/Initializer/random_uniform/mul
+hidden2/kernel/Initializer/random_uniform
+hidden2/kernel
+hidden2/kernel/Assign
+hidden2/kernel/read
+hidden2/bias/Initializer/zeros
+hidden2/bias
+hidden2/bias/Assign
+hidden2/bias/read
+dnn/hidden2/MatMul
+dnn/hidden2/BiasAdd
+dnn/hidden2/Relu
+hidden3/kernel/Initializer/random_uniform/shape
+hidden3/kernel/Initializer/random_uniform/min
+hidden3/kernel/Initializer/random_uniform/max
+hidden3/kernel/Initializer/random_uniform/RandomUniform
+hidden3/kernel/Initializer/random_uniform/sub
+hidden3/kernel/Initializer/random_uniform/mul
+hidden3/kernel/Initializer/random_uniform
+hidden3/kernel
+hidden3/kernel/Assign
+hidden3/kernel/read
+hidden3/bias/Initializer/zeros
+hidden3/bias
+hidden3/bias/Assign
+hidden3/bias/read
+dnn/hidden3/MatMul
+dnn/hidden3/BiasAdd
+dnn/hidden3/Relu
+hidden4/kernel/Initializer/random_uniform/shape
+hidden4/kernel/Initializer/random_uniform/min
+hidden4/kernel/Initializer/random_uniform/max
+hidden4/kernel/Initializer/random_uniform/RandomUniform
+hidden4/kernel/Initializer/random_uniform/sub
+hidden4/kernel/Initializer/random_uniform/mul
+hidden4/kernel/Initializer/random_uniform
+hidden4/kernel
+hidden4/kernel/Assign
+hidden4/kernel/read
+hidden4/bias/Initializer/zeros
+hidden4/bias
+hidden4/bias/Assign
+hidden4/bias/read
+dnn/hidden4/MatMul
+dnn/hidden4/BiasAdd
+dnn/hidden4/Relu
+hidden5/kernel/Initializer/random_uniform/shape
+hidden5/kernel/Initializer/random_uniform/min
+hidden5/kernel/Initializer/random_uniform/max
+hidden5/kernel/Initializer/random_uniform/RandomUniform
+hidden5/kernel/Initializer/random_uniform/sub
+hidden5/kernel/Initializer/random_uniform/mul
+hidden5/kernel/Initializer/random_uniform
+hidden5/kernel
+hidden5/kernel/Assign
+hidden5/kernel/read
+hidden5/bias/Initializer/zeros
+hidden5/bias
+hidden5/bias/Assign
+hidden5/bias/read
+dnn/hidden5/MatMul
+dnn/hidden5/BiasAdd
+dnn/hidden5/Relu
+outputs/kernel/Initializer/random_uniform/shape
+outputs/kernel/Initializer/random_uniform/min
+outputs/kernel/Initializer/random_uniform/max
+outputs/kernel/Initializer/random_uniform/RandomUniform
+outputs/kernel/Initializer/random_uniform/sub
+outputs/kernel/Initializer/random_uniform/mul
+outputs/kernel/Initializer/random_uniform
+outputs/kernel
+outputs/kernel/Assign
+outputs/kernel/read
+outputs/bias/Initializer/zeros
+outputs/bias
+outputs/bias/Assign
+outputs/bias/read
+dnn/outputs/MatMul
+dnn/outputs/BiasAdd
+loss/SparseSoftmaxCrossEntropyWithLogits/Shape
+loss/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits
+loss/Const
+loss/loss
+gradients/Shape
+gradients/grad_ys_0
+gradients/Fill
+gradients/loss/loss_grad/Reshape/shape
+gradients/loss/loss_grad/Reshape
+gradients/loss/loss_grad/Shape
+gradients/loss/loss_grad/Tile
+gradients/loss/loss_grad/Shape_1
+gradients/loss/loss_grad/Shape_2
+gradients/loss/loss_grad/Const
+gradients/loss/loss_grad/Prod
+gradients/loss/loss_grad/Const_1
+gradients/loss/loss_grad/Prod_1
+gradients/loss/loss_grad/Maximum/y
+gradients/loss/loss_grad/Maximum
+gradients/loss/loss_grad/floordiv
+gradients/loss/loss_grad/Cast
+gradients/loss/loss_grad/truediv
+gradients/zeros_like
+gradients/loss/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/PreventGradient
+gradients/loss/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/ExpandDims/dim
+gradients/loss/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/ExpandDims
+gradients/loss/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits_grad/mul
+gradients/dnn/outputs/BiasAdd_grad/BiasAddGrad
+gradients/dnn/outputs/BiasAdd_grad/tuple/group_deps
+gradients/dnn/outputs/BiasAdd_grad/tuple/control_dependency
+gradients/dnn/outputs/BiasAdd_grad/tuple/control_dependency_1
+gradients/dnn/outputs/MatMul_grad/MatMul
+gradients/dnn/outputs/MatMul_grad/MatMul_1
+gradients/dnn/outputs/MatMul_grad/tuple/group_deps
+gradients/dnn/outputs/MatMul_grad/tuple/control_dependency
+gradients/dnn/outputs/MatMul_grad/tuple/control_dependency_1
+gradients/dnn/hidden5/Relu_grad/ReluGrad
+gradients/dnn/hidden5/BiasAdd_grad/BiasAddGrad
+gradients/dnn/hidden5/BiasAdd_grad/tuple/group_deps
+gradients/dnn/hidden5/BiasAdd_grad/tuple/control_dependency
+gradients/dnn/hidden5/BiasAdd_grad/tuple/control_dependency_1
+gradients/dnn/hidden5/MatMul_grad/MatMul
+gradients/dnn/hidden5/MatMul_grad/MatMul_1
+gradients/dnn/hidden5/MatMul_grad/tuple/group_deps
+gradients/dnn/hidden5/MatMul_grad/tuple/control_dependency
+gradients/dnn/hidden5/MatMul_grad/tuple/control_dependency_1
+gradients/dnn/hidden4/Relu_grad/ReluGrad
+gradients/dnn/hidden4/BiasAdd_grad/BiasAddGrad
+gradients/dnn/hidden4/BiasAdd_grad/tuple/group_deps
+gradients/dnn/hidden4/BiasAdd_grad/tuple/control_dependency
+gradients/dnn/hidden4/BiasAdd_grad/tuple/control_dependency_1
+gradients/dnn/hidden4/MatMul_grad/MatMul
+gradients/dnn/hidden4/MatMul_grad/MatMul_1
+gradients/dnn/hidden4/MatMul_grad/tuple/group_deps
+gradients/dnn/hidden4/MatMul_grad/tuple/control_dependency
+gradients/dnn/hidden4/MatMul_grad/tuple/control_dependency_1
+gradients/dnn/hidden3/Relu_grad/ReluGrad
+gradients/dnn/hidden3/BiasAdd_grad/BiasAddGrad
+gradients/dnn/hidden3/BiasAdd_grad/tuple/group_deps
+gradients/dnn/hidden3/BiasAdd_grad/tuple/control_dependency
+gradients/dnn/hidden3/BiasAdd_grad/tuple/control_dependency_1
+gradients/dnn/hidden3/MatMul_grad/MatMul
+gradients/dnn/hidden3/MatMul_grad/MatMul_1
+gradients/dnn/hidden3/MatMul_grad/tuple/group_deps
+gradients/dnn/hidden3/MatMul_grad/tuple/control_dependency
+gradients/dnn/hidden3/MatMul_grad/tuple/control_dependency_1
+gradients/dnn/hidden2/Relu_grad/ReluGrad
+gradients/dnn/hidden2/BiasAdd_grad/BiasAddGrad
+gradients/dnn/hidden2/BiasAdd_grad/tuple/group_deps
+gradients/dnn/hidden2/BiasAdd_grad/tuple/control_dependency
+gradients/dnn/hidden2/BiasAdd_grad/tuple/control_dependency_1
+gradients/dnn/hidden2/MatMul_grad/MatMul
+gradients/dnn/hidden2/MatMul_grad/MatMul_1
+gradients/dnn/hidden2/MatMul_grad/tuple/group_deps
+gradients/dnn/hidden2/MatMul_grad/tuple/control_dependency
+gradients/dnn/hidden2/MatMul_grad/tuple/control_dependency_1
+gradients/dnn/hidden1/Relu_grad/ReluGrad
+gradients/dnn/hidden1/BiasAdd_grad/BiasAddGrad
+gradients/dnn/hidden1/BiasAdd_grad/tuple/group_deps
+gradients/dnn/hidden1/BiasAdd_grad/tuple/control_dependency
+gradients/dnn/hidden1/BiasAdd_grad/tuple/control_dependency_1
+gradients/dnn/hidden1/MatMul_grad/MatMul
+gradients/dnn/hidden1/MatMul_grad/MatMul_1
+gradients/dnn/hidden1/MatMul_grad/tuple/group_deps
+gradients/dnn/hidden1/MatMul_grad/tuple/control_dependency
+gradients/dnn/hidden1/MatMul_grad/tuple/control_dependency_1
+clip_by_value/Minimum/y
+clip_by_value/Minimum
+clip_by_value/y
+clip_by_value
+clip_by_value_1/Minimum/y
+clip_by_value_1/Minimum
+clip_by_value_1/y
+clip_by_value_1
+clip_by_value_2/Minimum/y
+clip_by_value_2/Minimum
+clip_by_value_2/y
+clip_by_value_2
+clip_by_value_3/Minimum/y
+clip_by_value_3/Minimum
+clip_by_value_3/y
+clip_by_value_3
+clip_by_value_4/Minimum/y
+clip_by_value_4/Minimum
+clip_by_value_4/y
+clip_by_value_4
+clip_by_value_5/Minimum/y
+clip_by_value_5/Minimum
+clip_by_value_5/y
+clip_by_value_5
+clip_by_value_6/Minimum/y
+clip_by_value_6/Minimum
+clip_by_value_6/y
+clip_by_value_6
+clip_by_value_7/Minimum/y
+clip_by_value_7/Minimum
+clip_by_value_7/y
+clip_by_value_7
+clip_by_value_8/Minimum/y
+clip_by_value_8/Minimum
+clip_by_value_8/y
+clip_by_value_8
+clip_by_value_9/Minimum/y
+clip_by_value_9/Minimum
+clip_by_value_9/y
+clip_by_value_9
+clip_by_value_10/Minimum/y
+clip_by_value_10/Minimum
+clip_by_value_10/y
+clip_by_value_10
+clip_by_value_11/Minimum/y
+clip_by_value_11/Minimum
+clip_by_value_11/y
+clip_by_value_11
+GradientDescent/learning_rate
+GradientDescent/update_hidden1/kernel/ApplyGradientDescent
+GradientDescent/update_hidden1/bias/ApplyGradientDescent
+GradientDescent/update_hidden2/kernel/ApplyGradientDescent
+GradientDescent/update_hidden2/bias/ApplyGradientDescent
+GradientDescent/update_hidden3/kernel/ApplyGradientDescent
+GradientDescent/update_hidden3/bias/ApplyGradientDescent
+GradientDescent/update_hidden4/kernel/ApplyGradientDescent
+GradientDescent/update_hidden4/bias/ApplyGradientDescent
+GradientDescent/update_hidden5/kernel/ApplyGradientDescent
+GradientDescent/update_hidden5/bias/ApplyGradientDescent
+GradientDescent/update_outputs/kernel/ApplyGradientDescent
+GradientDescent/update_outputs/bias/ApplyGradientDescent
+GradientDescent
+eval/in_top_k/InTopKV2/k
+eval/in_top_k/InTopKV2
+eval/Cast
+eval/Const
+eval/accuracy
+init
+save/Const
+save/SaveV2/tensor_names
+save/SaveV2/shape_and_slices
+save/SaveV2
+save/control_dependency
+save/RestoreV2/tensor_names
+save/RestoreV2/shape_and_slices
+save/RestoreV2
+save/Assign
+save/Assign_1
+save/Assign_2
+save/Assign_3
+save/Assign_4
+save/Assign_5
+save/Assign_6
+save/Assign_7
+save/Assign_8
+save/Assign_9
+save/Assign_10
+save/Assign_11
+save/restore_all
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#选择需要的</span></span><br><span class="line">X = tf.get_default_graph().get_tensor_by_name(<span class="string">"X:0"</span>)</span><br><span class="line">y = tf.get_default_graph().get_tensor_by_name(<span class="string">"y:0"</span>)</span><br><span class="line"></span><br><span class="line">accuracy = tf.get_default_graph().get_tensor_by_name(<span class="string">"eval/accuracy:0"</span>)</span><br><span class="line"></span><br><span class="line">training_op = tf.get_default_graph().get_operation_by_name(<span class="string">"GradientDescent"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将重要的操作放在单独的集合中</span></span><br><span class="line"><span class="keyword">for</span> op <span class="keyword">in</span> (X, y, accuracy, training_op):</span><br><span class="line">    tf.add_to_collection(<span class="string">"my_important_ops"</span>, op)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 或许这些操作</span></span><br><span class="line">X, y, accuracy, training_op = tf.get_collection(<span class="string">"my_important_ops"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    saver.restore(sess, <span class="string">"dnn/clip_model_final.ckpt"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(n_epochs):</span><br><span class="line">        <span class="keyword">for</span> X_batch, y_batch <span class="keyword">in</span> shuffle_batch(X_train, y_train, batch_size):</span><br><span class="line">            sess.run(training_op, feed_dict=&#123;X: X_batch, y: y_batch&#125;)</span><br><span class="line">        accuracy_val = accuracy.eval(feed_dict=&#123;X: X_valid, y: y_valid&#125;)</span><br><span class="line">        print(epoch, <span class="string">"Validation accuracy:"</span>, accuracy_val)</span><br><span class="line">    save_path = saver.save(sess, <span class="string">"dnn/my_new_model_final.ckpt"</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>INFO:tensorflow:Restoring parameters from dnn/clip_model_final.ckpt
+0 Validation accuracy: 0.9626
+1 Validation accuracy: 0.963
+2 Validation accuracy: 0.9632
+3 Validation accuracy: 0.9658
+4 Validation accuracy: 0.965
+5 Validation accuracy: 0.9628
+6 Validation accuracy: 0.966
+7 Validation accuracy: 0.9678
+8 Validation accuracy: 0.9672
+9 Validation accuracy: 0.9678
+10 Validation accuracy: 0.97
+11 Validation accuracy: 0.97
+12 Validation accuracy: 0.966
+13 Validation accuracy: 0.9706
+14 Validation accuracy: 0.972
+15 Validation accuracy: 0.9708
+16 Validation accuracy: 0.9724
+17 Validation accuracy: 0.9706
+18 Validation accuracy: 0.972
+19 Validation accuracy: 0.9684
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重利用低层</span></span><br><span class="line">reset_graph()</span><br><span class="line">n_hidden4 = <span class="number">20</span></span><br><span class="line">n_outputs = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">saver = tf.train.import_meta_graph(<span class="string">"dnn/clip_model_final.ckpt.meta"</span>)</span><br><span class="line"></span><br><span class="line">X = tf.get_default_graph().get_tensor_by_name(<span class="string">"X:0"</span>)</span><br><span class="line">y = tf.get_default_graph().get_tensor_by_name(<span class="string">"y:0"</span>)</span><br><span class="line"></span><br><span class="line">hidden3 = tf.get_default_graph().get_tensor_by_name(<span class="string">"dnn/hidden3/Relu:0"</span>)</span><br><span class="line"></span><br><span class="line">new_hidden4 = tf.layers.dense(hidden3, n_hidden4,</span><br><span class="line">                              activation=tf.nn.relu, name=<span class="string">"new_hidden4"</span>)</span><br><span class="line">new_logits = tf.layers.dense(new_hidden4, n_outputs, name=<span class="string">"new_outputs"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"new_loss"</span>):</span><br><span class="line">    xentropy = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y, logits=new_logits)</span><br><span class="line">    loss = tf.reduce_mean(xentropy, name=<span class="string">"losss"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"new_eval"</span>):</span><br><span class="line">    correct = tf.nn.in_top_k(new_logits, y, <span class="number">1</span>)</span><br><span class="line">    accuracy = tf.reduce_mean(tf.cast(correct, tf.float32), name=<span class="string">"accuracy"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"new_train"</span>):</span><br><span class="line">    optimizer = tf.train.GradientDescentOptimizer(learning_rate)</span><br><span class="line">    training_op = optimizer.minimize(loss)</span><br><span class="line"></span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">new_saver = tf.train.Saver()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    init.run()</span><br><span class="line">    saver.restore(sess, <span class="string">"dnn/clip_model_final.ckpt"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(n_epochs):</span><br><span class="line">        <span class="keyword">for</span> X_batch, y_batch <span class="keyword">in</span> shuffle_batch(X_train, y_train, batch_size):</span><br><span class="line">            sess.run(training_op, feed_dict=&#123;X: X_batch, y: y_batch&#125;)</span><br><span class="line">        accuracy_val = accuracy.eval(feed_dict=&#123;X: X_valid, y: y_valid&#125;)</span><br><span class="line">        print(epoch, <span class="string">"Validation accuracy:"</span>, accuracy_val)</span><br><span class="line">    save_path = new_saver.save(sess, <span class="string">"dnn/my_new_low_layer_model_final.ckpt"</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>INFO:tensorflow:Restoring parameters from dnn/clip_model_final.ckpt
+0 Validation accuracy: 0.9172
+1 Validation accuracy: 0.9394
+2 Validation accuracy: 0.9464
+3 Validation accuracy: 0.95
+4 Validation accuracy: 0.955
+5 Validation accuracy: 0.9522
+6 Validation accuracy: 0.9566
+7 Validation accuracy: 0.9598
+8 Validation accuracy: 0.9608
+9 Validation accuracy: 0.9608
+10 Validation accuracy: 0.9628
+11 Validation accuracy: 0.9622
+12 Validation accuracy: 0.9646
+13 Validation accuracy: 0.9648
+14 Validation accuracy: 0.9654
+15 Validation accuracy: 0.9668
+16 Validation accuracy: 0.9676
+17 Validation accuracy: 0.9662
+18 Validation accuracy: 0.9684
+19 Validation accuracy: 0.968
+</code></pre><h2 id="冻结低层"><a href="#冻结低层" class="headerlink" title="冻结低层"></a>冻结低层</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">reset_graph()</span><br><span class="line"></span><br><span class="line">n_inputs = <span class="number">28</span> * <span class="number">28</span></span><br><span class="line">n_hidden1 = <span class="number">300</span></span><br><span class="line">n_hidden2 = <span class="number">50</span></span><br><span class="line">n_hidden3 = <span class="number">50</span></span><br><span class="line">n_hidden4 = <span class="number">20</span></span><br><span class="line">n_outputs = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n_inputs), name=<span class="string">"X"</span>)</span><br><span class="line">y = tf.placeholder(tf.int32, shape=(<span class="keyword">None</span>), name=<span class="string">"y"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"dnn"</span>):</span><br><span class="line">    hidden1 = tf.layers.dense(X, n_hidden1, activation=tf.nn.relu, name=<span class="string">"hidden1"</span>)</span><br><span class="line">    hidden2 = tf.layers.dense(hidden1, n_hidden2, activation=tf.nn.relu, name=<span class="string">"hidden2"</span>)</span><br><span class="line">    hidden3 = tf.layers.dense(hidden2, n_hidden3, activation=tf.nn.relu, name=<span class="string">"hidden3"</span>)</span><br><span class="line">    hidden4 = tf.layers.dense(hidden3, n_hidden4, activation=tf.nn.relu, name=<span class="string">"hidden4"</span>)</span><br><span class="line">    logits = tf.layers.dense(hidden4, n_outputs, name=<span class="string">"outputs"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"loss"</span>):</span><br><span class="line">    xentropy = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y, logits=logits)</span><br><span class="line">    loss = tf.reduce_mean(xentropy, name=<span class="string">"loss"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"eval"</span>):</span><br><span class="line">    correct = tf.nn.in_top_k(logits, y, <span class="number">1</span>)</span><br><span class="line">    accuracy = tf.reduce_mean(tf.cast(correct, tf.float32), name=<span class="string">"accuracy"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"train"</span>):</span><br><span class="line">    optimizer = tf.train.GradientDescentOptimizer(learning_rate)</span><br><span class="line">    train_vars = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES,</span><br><span class="line">                                   scope=<span class="string">"hidden[34]|outputs"</span>)</span><br><span class="line">    training_op = optimizer.minimize(loss, var_list=train_vars)</span><br><span class="line"></span><br><span class="line">init  = tf.global_variables_initializer()</span><br><span class="line">new_saver = tf.train.Saver()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">reuse_vars = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=<span class="string">"hidden[123]"</span>)</span><br><span class="line">restore_saver = tf.train.Saver(reuse_vars)</span><br><span class="line"></span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">saver = tf.train.Saver()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    init.run()</span><br><span class="line">    restore_saver.restore(sess, <span class="string">"dnn/clip_model_final.ckpt"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(n_epochs):</span><br><span class="line">        <span class="keyword">for</span> X_batch, y_batch <span class="keyword">in</span> shuffle_batch(X_train, y_train, batch_size):</span><br><span class="line">            sess.run(training_op, feed_dict=&#123;X: X_batch, y: y_batch&#125;)</span><br><span class="line">        accuracy_val = accuracy.eval(feed_dict=&#123;X: X_valid, y: y_valid&#125;)</span><br><span class="line">        print(epoch, <span class="string">"Validation accuracy:"</span>, accuracy_val)</span><br><span class="line">    save_path = new_saver.save(sess, <span class="string">"dnn/my_new_freeze_low_layer_model_final.ckpt"</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>INFO:tensorflow:Restoring parameters from dnn/clip_model_final.ckpt
+0 Validation accuracy: 0.893
+1 Validation accuracy: 0.9234
+2 Validation accuracy: 0.9358
+3 Validation accuracy: 0.941
+4 Validation accuracy: 0.947
+5 Validation accuracy: 0.9484
+6 Validation accuracy: 0.95
+7 Validation accuracy: 0.954
+8 Validation accuracy: 0.9542
+9 Validation accuracy: 0.954
+10 Validation accuracy: 0.955
+11 Validation accuracy: 0.9548
+12 Validation accuracy: 0.9572
+13 Validation accuracy: 0.957
+14 Validation accuracy: 0.9564
+15 Validation accuracy: 0.957
+16 Validation accuracy: 0.9576
+17 Validation accuracy: 0.958
+18 Validation accuracy: 0.9586
+19 Validation accuracy: 0.9582
+</code></pre><h2 id="缓冲冻结的层"><a href="#缓冲冻结的层" class="headerlink" title="缓冲冻结的层"></a>缓冲冻结的层</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">reset_graph()</span><br><span class="line"></span><br><span class="line">n_inputs = <span class="number">28</span> * <span class="number">28</span></span><br><span class="line">n_hidden1 = <span class="number">300</span></span><br><span class="line">n_hidden2 = <span class="number">50</span></span><br><span class="line">n_hidden3 = <span class="number">50</span></span><br><span class="line">n_hidden4 = <span class="number">20</span></span><br><span class="line">n_outputs = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n_inputs), name=<span class="string">"X"</span>)</span><br><span class="line">y = tf.placeholder(tf.int32, shape=(<span class="keyword">None</span>), name=<span class="string">"y"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"dnn"</span>):</span><br><span class="line">    hidden1 = tf.layers.dense(X, n_hidden1, activation=tf.nn.relu, name=<span class="string">"hidden1"</span>)</span><br><span class="line">    hidden2 = tf.layers.dense(hidden1, n_hidden2, activation=tf.nn.relu, name=<span class="string">"hidden2"</span>)</span><br><span class="line">    hidden2_stop = tf.stop_gradient(hidden2)</span><br><span class="line">    hidden3 = tf.layers.dense(hidden2_stop, n_hidden3, activation=tf.nn.relu, name=<span class="string">"hidden3"</span>)</span><br><span class="line">    hidden4 = tf.layers.dense(hidden3, n_hidden4, activation=tf.nn.relu, name=<span class="string">"hidden4"</span>)</span><br><span class="line">    logits = tf.layers.dense(hidden4, n_outputs, name=<span class="string">"outputs"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"loss"</span>):</span><br><span class="line">    xentropy = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y, logits=logits)</span><br><span class="line">    loss = tf.reduce_mean(xentropy, name=<span class="string">"loss"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"eval"</span>):</span><br><span class="line">    correct = tf.nn.in_top_k(logits, y, <span class="number">1</span>)</span><br><span class="line">    accuracy = tf.reduce_mean(tf.cast(correct, tf.float32), name=<span class="string">"accuracy"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"train"</span>):</span><br><span class="line">    optimizer = tf.train.GradientDescentOptimizer(learning_rate)</span><br><span class="line">    training_op = optimizer.minimize(loss)</span><br><span class="line"></span><br><span class="line">reuse_vars = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=<span class="string">"hidden[123]"</span>)</span><br><span class="line">restore_saver = tf.train.Saver(reuse_vars)</span><br><span class="line"></span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">saver = tf.train.Saver()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">n_batches = len(X_train) // batch_size</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    init.run()</span><br><span class="line">    restore_saver.restore(sess, <span class="string">"dnn/clip_model_final.ckpt"</span>)</span><br><span class="line"></span><br><span class="line">    h2_cache = sess.run(hidden2, feed_dict=&#123;X: X_train&#125;)</span><br><span class="line">    h2_cache_valid = sess.run(hidden2, feed_dict=&#123;X: X_valid&#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(n_epochs):</span><br><span class="line">        shuffled_idx = np.random.permutation(len(X_train))</span><br><span class="line">        hidden2_batches = np.array_split(h2_cache[shuffled_idx], n_batches)</span><br><span class="line">        y_batches = np.array_split(y_train[shuffled_idx], n_batches)</span><br><span class="line">        <span class="keyword">for</span> hidden2_batch, y_batch <span class="keyword">in</span> zip(hidden2_batches, y_batches):</span><br><span class="line">            sess.run(training_op, feed_dict=&#123;hidden2:hidden2_batch, y:y_batch&#125;)</span><br><span class="line">        accuracy_val = accuracy.eval(feed_dict=&#123;hidden2: h2_cache_valid, y: y_valid&#125;)</span><br><span class="line">        print(epoch, <span class="string">"Validation accuracy:"</span>, accuracy_val)</span><br><span class="line">    save_path = saver.save(sess, <span class="string">"dnn/my_new_cache_freeze_low_layer_model_final.ckpt"</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>INFO:tensorflow:Restoring parameters from dnn/clip_model_final.ckpt
+0 Validation accuracy: 0.9006
+1 Validation accuracy: 0.9346
+2 Validation accuracy: 0.9444
+3 Validation accuracy: 0.9478
+4 Validation accuracy: 0.9516
+5 Validation accuracy: 0.952
+6 Validation accuracy: 0.9522
+7 Validation accuracy: 0.9532
+8 Validation accuracy: 0.9546
+9 Validation accuracy: 0.9558
+10 Validation accuracy: 0.955
+11 Validation accuracy: 0.9554
+12 Validation accuracy: 0.9558
+13 Validation accuracy: 0.9572
+14 Validation accuracy: 0.957
+15 Validation accuracy: 0.9572
+16 Validation accuracy: 0.9568
+17 Validation accuracy: 0.9592
+18 Validation accuracy: 0.958
+19 Validation accuracy: 0.9598
+</code></pre><h1 id="更快的优化器"><a href="#更快的优化器" class="headerlink" title="更快的优化器"></a>更快的优化器</h1><h2 id="Momentum-optimization"><a href="#Momentum-optimization" class="headerlink" title="Momentum optimization"></a>Momentum optimization</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optimizer = tf.train.MomentumOptimizer(learning_rate=learning_rate, momentum=<span class="number">0.9</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="Nesterov-Accelerated-Gradient"><a href="#Nesterov-Accelerated-Gradient" class="headerlink" title="Nesterov Accelerated Gradient"></a>Nesterov Accelerated Gradient</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">optimizer = tf.train.MomentumOptimizer(learning_rate=learning_rate,</span><br><span class="line">                                       momentum=<span class="number">0.9</span>, use_nesterov=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="AdaGrad"><a href="#AdaGrad" class="headerlink" title="AdaGrad"></a>AdaGrad</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optimizer = tf.train.AdagradOptimizer(learning_rate=learning_rate)</span><br></pre></td></tr></table></figure>
+<h2 id="RMSProp"><a href="#RMSProp" class="headerlink" title="RMSProp"></a>RMSProp</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">optimizer = tf.train.RMSPropOptimizer(learning_rate=learning_rate, momentum=<span class="number">0.9</span>,</span><br><span class="line">                                     decay=<span class="number">0.9</span>, epsilon=<span class="number">1e-10</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="Adam-Optimization"><a href="#Adam-Optimization" class="headerlink" title="Adam Optimization"></a>Adam Optimization</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate)</span><br></pre></td></tr></table></figure>
+<h2 id="Learning-Rate-Scheduling"><a href="#Learning-Rate-Scheduling" class="headerlink" title="Learning Rate Scheduling"></a>Learning Rate Scheduling</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">reset_graph()</span><br><span class="line"></span><br><span class="line">n_inputs = <span class="number">28</span> * <span class="number">28</span></span><br><span class="line">n_hidden1 = <span class="number">300</span></span><br><span class="line">n_hidden2 = <span class="number">50</span></span><br><span class="line">n_outputs = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n_inputs), name=<span class="string">"X"</span>)</span><br><span class="line">y = tf.placeholder(tf.int32, shape=(<span class="keyword">None</span>), name=<span class="string">"y"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"dnn"</span>):</span><br><span class="line">    hidden1 = tf.layers.dense(X, n_hidden1, activation=tf.nn.relu, name=<span class="string">"hidden1"</span>)</span><br><span class="line">    hidden2 = tf.layers.dense(hidden1, n_hidden2, activation=tf.nn.relu, name=<span class="string">"hidden2"</span>)</span><br><span class="line">    logits = tf.layers.dense(hidden2, n_outputs, name=<span class="string">"outputs"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"loss"</span>):</span><br><span class="line">    xentropy = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y, logits=logits)</span><br><span class="line">    loss = tf.reduce_mean(xentropy, name=<span class="string">"loss"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"eval"</span>):</span><br><span class="line">    correct = tf.nn.in_top_k(logits, y, <span class="number">1</span>)</span><br><span class="line">    accuracy = tf.reduce_mean(tf.cast(correct, tf.float32), name=<span class="string">"accuracy"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"train"</span>):</span><br><span class="line">    initial_learning_rate = <span class="number">0.1</span></span><br><span class="line">    decay_steps = <span class="number">10000</span></span><br><span class="line">    decay_rate = <span class="number">1</span>/<span class="number">10</span></span><br><span class="line">    global_step = tf.Variable(<span class="number">0</span>, trainable=<span class="keyword">False</span>, name=<span class="string">"global_step"</span>)</span><br><span class="line">    learning_rate = tf.train.exponential_decay(initial_learning_rate, global_step,</span><br><span class="line">                                              decay_steps, decay_rate)</span><br><span class="line">    optimizer = tf.train.MomentumOptimizer(learning_rate, momentum=<span class="number">0.9</span>)</span><br><span class="line">    training_op = optimizer.minimize(loss, global_step=global_step)</span><br><span class="line"></span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">saver = tf.train.Saver()</span><br><span class="line"></span><br><span class="line">n_epochs = <span class="number">5</span></span><br><span class="line">batch_size = <span class="number">50</span></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    init.run()</span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(n_epochs):</span><br><span class="line">        <span class="keyword">for</span> X_batch, y_batch <span class="keyword">in</span> shuffle_batch(X_train, y_train, batch_size):</span><br><span class="line">            sess.run(training_op, feed_dict=&#123;X: X_batch, y: y_batch&#125;)</span><br><span class="line">        accuracy_val = accuracy.eval(feed_dict=&#123;X: X_valid, y: y_valid&#125;)</span><br><span class="line">        print(epoch, <span class="string">"Validation accuracy:"</span>, accuracy_val)</span><br><span class="line"></span><br><span class="line">    save_path = saver.save(sess, <span class="string">"dnn/learning_rate_scheduling_model_final.ckpt"</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>0 Validation accuracy: 0.9574
+1 Validation accuracy: 0.9716
+2 Validation accuracy: 0.973
+3 Validation accuracy: 0.9798
+4 Validation accuracy: 0.9816
+</code></pre><h1 id="通过正规化避免过拟合"><a href="#通过正规化避免过拟合" class="headerlink" title="通过正规化避免过拟合"></a>通过正规化避免过拟合</h1><h2 id="l-1-和-l-2-正规化"><a href="#l-1-和-l-2-正规化" class="headerlink" title="$l_1$ 和 $l_2$ 正规化"></a>$l_1$ 和 $l_2$ 正规化</h2><ul>
+<li>手动实现 $l_1$ 正规化</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">reset_graph()</span><br><span class="line"></span><br><span class="line">n_inputs = <span class="number">28</span> * <span class="number">28</span></span><br><span class="line">n_hidden1 = <span class="number">300</span></span><br><span class="line">n_outputs = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n_inputs), name=<span class="string">"X"</span>)</span><br><span class="line">y = tf.placeholder(tf.int32, shape=(<span class="keyword">None</span>), name=<span class="string">"y"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"dnn"</span>):</span><br><span class="line">    hidden1 = tf.layers.dense(X, n_hidden1, activation=tf.nn.relu, name=<span class="string">"hidden1"</span>)</span><br><span class="line">    logits = tf.layers.dense(hidden1, n_outputs, name=<span class="string">"outputs"</span>)</span><br><span class="line"></span><br><span class="line">W1 = tf.get_default_graph().get_tensor_by_name(<span class="string">"hidden1/kernel:0"</span>)</span><br><span class="line">W2 = tf.get_default_graph().get_tensor_by_name(<span class="string">"outputs/kernel:0"</span>)</span><br><span class="line"></span><br><span class="line">scale = <span class="number">0.001</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"loss"</span>):</span><br><span class="line">    xentropy = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y, logits=logits)</span><br><span class="line">    base_loss = tf.reduce_mean(xentropy, name=<span class="string">"avg_xentropy"</span>)</span><br><span class="line">    reg_losses = tf.reduce_sum(tf.abs(W1)) + tf.reduce_sum(tf.abs(W2))</span><br><span class="line">    loss = tf.add(base_loss, scale * reg_losses, name=<span class="string">"loss"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"eval"</span>):</span><br><span class="line">    correct = tf.nn.in_top_k(logits, y, <span class="number">1</span>)</span><br><span class="line">    accuracy = tf.reduce_mean(tf.cast(correct, tf.float32), name=<span class="string">"accuracy"</span>)</span><br><span class="line"></span><br><span class="line">learning_rate = <span class="number">0.01</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"train"</span>):</span><br><span class="line">    optimizer = tf.train.GradientDescentOptimizer(learning_rate)</span><br><span class="line">    training_op = optimizer.minimize(loss)</span><br><span class="line"></span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">saver = tf.train.Saver()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">n_epoches = <span class="number">20</span></span><br><span class="line">batch_size = <span class="number">200</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    init.run()</span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(n_epoches):</span><br><span class="line">        <span class="keyword">for</span> X_batch, y_batch <span class="keyword">in</span> shuffle_batch(X_train, y_train, batch_size):</span><br><span class="line">            sess.run(training_op, feed_dict=&#123;X: X_batch, y: y_batch&#125;)</span><br><span class="line">        accuracy_val = accuracy.eval(feed_dict=&#123;X: X_valid, y: y_valid&#125;)</span><br><span class="line">        print(epoch, <span class="string">"Validation accuracy:"</span>, accuracy_val)</span><br><span class="line">    save_path = saver.save(sess,<span class="string">"dnn/l_1_model_final.ckpt"</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>0 Validation accuracy: 0.831
+1 Validation accuracy: 0.871
+2 Validation accuracy: 0.8838
+3 Validation accuracy: 0.8934
+4 Validation accuracy: 0.8966
+5 Validation accuracy: 0.8988
+6 Validation accuracy: 0.9016
+7 Validation accuracy: 0.9044
+8 Validation accuracy: 0.9058
+9 Validation accuracy: 0.906
+10 Validation accuracy: 0.9068
+11 Validation accuracy: 0.9054
+12 Validation accuracy: 0.907
+13 Validation accuracy: 0.9084
+14 Validation accuracy: 0.9088
+15 Validation accuracy: 0.9064
+16 Validation accuracy: 0.9068
+17 Validation accuracy: 0.9066
+18 Validation accuracy: 0.9066
+19 Validation accuracy: 0.9052
+</code></pre><ul>
+<li>使用正规化方法</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">reset_graph()</span><br><span class="line"></span><br><span class="line">n_inputs = <span class="number">28</span> * <span class="number">28</span></span><br><span class="line">n_hidden1 = <span class="number">300</span></span><br><span class="line">n_outputs = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n_inputs), name=<span class="string">"X"</span>)</span><br><span class="line">y = tf.placeholder(tf.int32, shape=(<span class="keyword">None</span>), name=<span class="string">"y"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"dnn"</span>):</span><br><span class="line">    hidden1 = tf.layers.dense(X, n_hidden1, activation=tf.nn.relu, name=<span class="string">"hidden1"</span>)</span><br><span class="line">    logits = tf.layers.dense(hidden1, n_outputs, name=<span class="string">"outputs"</span>)</span><br><span class="line"></span><br><span class="line">W1 = tf.get_default_graph().get_tensor_by_name(<span class="string">"hidden1/kernel:0"</span>)</span><br><span class="line">W2 = tf.get_default_graph().get_tensor_by_name(<span class="string">"outputs/kernel:0"</span>)</span><br><span class="line"></span><br><span class="line">scale = <span class="number">0.001</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"loss"</span>):</span><br><span class="line">    xentropy = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y, logits=logits)</span><br><span class="line">    base_loss = tf.reduce_mean(xentropy, name=<span class="string">"avg_xentropy"</span>)</span><br><span class="line">    reg_losses = tf.reduce_sum(tf.abs(W1)) + tf.reduce_sum(tf.abs(W2))</span><br><span class="line">    loss = tf.add(base_loss, scale * reg_losses, name=<span class="string">"loss"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"eval"</span>):</span><br><span class="line">    correct = tf.nn.in_top_k(logits, y, <span class="number">1</span>)</span><br><span class="line">    accuracy = tf.reduce_mean(tf.cast(correct, tf.float32), name=<span class="string">"accuracy"</span>)</span><br><span class="line"></span><br><span class="line">learning_rate = <span class="number">0.01</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"train"</span>):</span><br><span class="line">    optimizer = tf.train.GradientDescentOptimizer(learning_rate)</span><br><span class="line">    training_op = optimizer.minimize(loss)</span><br><span class="line"></span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">saver = tf.train.Saver()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">n_epoches = <span class="number">20</span></span><br><span class="line">batch_size = <span class="number">200</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    init.run()</span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(n_epoches):</span><br><span class="line">        <span class="keyword">for</span> X_batch, y_batch <span class="keyword">in</span> shuffle_batch(X_train, y_train, batch_size):</span><br><span class="line">            sess.run(training_op, feed_dict=&#123;X: X_batch, y: y_batch&#125;)</span><br><span class="line">        accuracy_val = accuracy.eval(feed_dict=&#123;X: X_valid, y: y_valid&#125;)</span><br><span class="line">        print(epoch, <span class="string">"Validation accuracy:"</span>, accuracy_val)</span><br><span class="line">    save_path = saver.save(sess,<span class="string">"dnn/l_1_model_final.ckpt"</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>0 Validation accuracy: 0.831
+1 Validation accuracy: 0.871
+2 Validation accuracy: 0.8838
+3 Validation accuracy: 0.8934
+4 Validation accuracy: 0.8966
+5 Validation accuracy: 0.8988
+6 Validation accuracy: 0.9016
+7 Validation accuracy: 0.9044
+8 Validation accuracy: 0.9058
+9 Validation accuracy: 0.906
+10 Validation accuracy: 0.9068
+11 Validation accuracy: 0.9054
+12 Validation accuracy: 0.907
+13 Validation accuracy: 0.9084
+14 Validation accuracy: 0.9088
+15 Validation accuracy: 0.9064
+16 Validation accuracy: 0.9068
+17 Validation accuracy: 0.9066
+18 Validation accuracy: 0.9066
+19 Validation accuracy: 0.9052
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">reset_graph()</span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> partial</span><br><span class="line">n_inputs = <span class="number">28</span> * <span class="number">28</span></span><br><span class="line">n_hidden1 = <span class="number">300</span></span><br><span class="line">n_hidden2 = <span class="number">50</span></span><br><span class="line">n_outputs = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n_inputs), name=<span class="string">"X"</span>)</span><br><span class="line">y = tf.placeholder(tf.int32, shape=(<span class="keyword">None</span>), name=<span class="string">"y"</span>)</span><br><span class="line">scale = <span class="number">0.001</span></span><br><span class="line"></span><br><span class="line">my_dense_layer = partial(</span><br><span class="line">    tf.layers.dense,</span><br><span class="line">    activation=tf.nn.relu,</span><br><span class="line">    kernel_regularizer=tf.contrib.layers.l1_regularizer(scale)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"dnn"</span>):</span><br><span class="line">    hidden1 = my_dense_layer(X, n_hidden1, name=<span class="string">"hidden1"</span>)</span><br><span class="line">    hidden2 = my_dense_layer(hidden1, n_hidden2, name=<span class="string">"hidden2"</span>)</span><br><span class="line">    logits = my_dense_layer(hidden2, n_outputs, activation=<span class="keyword">None</span>, name=<span class="string">"outputs"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"loss"</span>):</span><br><span class="line">    xentropy = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y, logits=logits)</span><br><span class="line">    base_loss = tf.reduce_mean(xentropy, name=<span class="string">"avg_xentropy"</span>)</span><br><span class="line">    reg_losses = tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)</span><br><span class="line">    loss = tf.add_n([base_loss] + reg_losses, name=<span class="string">"loss"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"eval"</span>):</span><br><span class="line">    correct = tf.nn.in_top_k(logits, y, <span class="number">1</span>)</span><br><span class="line">    accuracy = tf.reduce_mean(tf.cast(correct, tf.float32), name=<span class="string">"accuracy"</span>)</span><br><span class="line"></span><br><span class="line">learning_rate = <span class="number">0.01</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"train"</span>):</span><br><span class="line">    optimizer = tf.train.GradientDescentOptimizer(learning_rate)</span><br><span class="line">    training_op = optimizer.minimize(loss)</span><br><span class="line"></span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">saver = tf.train.Saver()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">n_epoches = <span class="number">20</span></span><br><span class="line">batch_size = <span class="number">200</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    init.run()</span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(n_epoches):</span><br><span class="line">        <span class="keyword">for</span> X_batch, y_batch <span class="keyword">in</span> shuffle_batch(X_train, y_train, batch_size):</span><br><span class="line">            sess.run(training_op, feed_dict=&#123;X: X_batch, y: y_batch&#125;)</span><br><span class="line">        accuracy_val = accuracy.eval(feed_dict=&#123;X: X_valid, y: y_valid&#125;)</span><br><span class="line">        print(epoch, <span class="string">"Validation accuracy:"</span>, accuracy_val)</span><br><span class="line">    save_path = saver.save(sess,<span class="string">"dnn/l_1_function_model_final.ckpt"</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>0 Validation accuracy: 0.8274
+1 Validation accuracy: 0.8766
+2 Validation accuracy: 0.8952
+3 Validation accuracy: 0.9016
+4 Validation accuracy: 0.908
+5 Validation accuracy: 0.9096
+6 Validation accuracy: 0.9124
+7 Validation accuracy: 0.9154
+8 Validation accuracy: 0.9178
+9 Validation accuracy: 0.919
+10 Validation accuracy: 0.92
+11 Validation accuracy: 0.9224
+12 Validation accuracy: 0.9212
+13 Validation accuracy: 0.9228
+14 Validation accuracy: 0.9222
+15 Validation accuracy: 0.9218
+16 Validation accuracy: 0.9218
+17 Validation accuracy: 0.9228
+18 Validation accuracy: 0.9216
+19 Validation accuracy: 0.9214
+</code></pre><h2 id="DropOut"><a href="#DropOut" class="headerlink" title="DropOut"></a>DropOut</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">reset_graph()</span><br><span class="line"></span><br><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n_inputs), name=<span class="string">"X"</span>)</span><br><span class="line">y = tf.placeholder(tf.int32, shape=(<span class="keyword">None</span>), name=<span class="string">"y"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">training = tf.placeholder_with_default(<span class="keyword">False</span>, shape=(), name=<span class="string">"training"</span>)</span><br><span class="line"></span><br><span class="line">dropout_rate = <span class="number">0.5</span></span><br><span class="line">X_drop = tf.layers.dropout(X, dropout_rate, training=training)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"dnn"</span>):</span><br><span class="line">    hidden1 = tf.layers.dense(X_drop, n_hidden1, activation=tf.nn.relu,</span><br><span class="line">                             name=<span class="string">"hidden1"</span>)</span><br><span class="line">    hidden1_drop = tf.layers.dropout(hidden1, dropout_rate, training=training)</span><br><span class="line"></span><br><span class="line">    hidden2 = tf.layers.dense(hidden1_drop, n_hidden2, activation=tf.nn.relu,</span><br><span class="line">                             name=<span class="string">"hidden2"</span>)</span><br><span class="line">    hidden2_drop = tf.layers.dropout(hidden2, dropout_rate, training=training)</span><br><span class="line"></span><br><span class="line">    logits = tf.layers.dense(hidden2_drop, n_outputs, name=<span class="string">"outputs"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"loss"</span>):</span><br><span class="line">    xentropy = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y, logits=logits)</span><br><span class="line">    loss = tf.reduce_mean(xentropy, name=<span class="string">"loss"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"train"</span>):</span><br><span class="line">    optimizer = tf.train.MomentumOptimizer(learning_rate, momentum=<span class="number">0.9</span>)</span><br><span class="line">    training_op = optimizer.minimize(loss)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"eval"</span>):</span><br><span class="line">    correct = tf.nn.in_top_k(logits, y, <span class="number">1</span>)</span><br><span class="line">    accuracy = tf.reduce_mean(tf.cast(correct, tf.float32))</span><br><span class="line"></span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">saver = tf.train.Saver()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">n_epoches = <span class="number">20</span></span><br><span class="line">batch_size = <span class="number">200</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    init.run()</span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(n_epoches):</span><br><span class="line">        <span class="keyword">for</span> X_batch, y_batch <span class="keyword">in</span> shuffle_batch(X_train, y_train, batch_size):</span><br><span class="line">            sess.run(training_op, feed_dict=&#123;X: X_batch, y: y_batch&#125;)</span><br><span class="line">        accuracy_val = accuracy.eval(feed_dict=&#123;X: X_valid, y: y_valid&#125;)</span><br><span class="line">        print(epoch, <span class="string">"Validation accuracy:"</span>, accuracy_val)</span><br><span class="line">    save_path = saver.save(sess,<span class="string">"dnn/dropout_model_final.ckpt"</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>0 Validation accuracy: 0.923
+1 Validation accuracy: 0.9438
+2 Validation accuracy: 0.9504
+3 Validation accuracy: 0.961
+4 Validation accuracy: 0.9654
+5 Validation accuracy: 0.9694
+6 Validation accuracy: 0.9726
+7 Validation accuracy: 0.9736
+8 Validation accuracy: 0.9756
+9 Validation accuracy: 0.975
+10 Validation accuracy: 0.9768
+11 Validation accuracy: 0.9782
+12 Validation accuracy: 0.976
+13 Validation accuracy: 0.9788
+14 Validation accuracy: 0.9776
+15 Validation accuracy: 0.9802
+16 Validation accuracy: 0.9796
+17 Validation accuracy: 0.9802
+18 Validation accuracy: 0.9806
+19 Validation accuracy: 0.9806
+</code></pre><h2 id="Max-Norm"><a href="#Max-Norm" class="headerlink" title="Max Norm"></a>Max Norm</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">max_norm_regularizer</span><span class="params">(threshold, axes=<span class="number">1</span>, name=<span class="string">"max_norm"</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                        collection=<span class="string">"max_norm"</span>)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">max_norm</span><span class="params">(weights)</span>:</span></span><br><span class="line">        clipped = tf.clip_by_norm(weights, clip_norm=threshold, axes=axes)</span><br><span class="line">        clip_weights = tf.assign(weights, clipped, name=name)</span><br><span class="line">        tf.add_to_collection(collection, clip_weights)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">    <span class="keyword">return</span> max_norm</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">reset_graph()</span><br><span class="line"></span><br><span class="line">n_inputs = <span class="number">28</span> * <span class="number">28</span></span><br><span class="line">n_hidden1 = <span class="number">300</span></span><br><span class="line">n_hidden2 = <span class="number">50</span></span><br><span class="line">n_outputs = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">learning_rate = <span class="number">0.01</span></span><br><span class="line">momentum = <span class="number">0.9</span></span><br><span class="line"></span><br><span class="line">X = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, n_inputs), name=<span class="string">"X"</span>)</span><br><span class="line">y = tf.placeholder(tf.int32, shape=(<span class="keyword">None</span>), name=<span class="string">"y"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">max_norm_reg = max_norm_regularizer(threshold=<span class="number">1.0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"dnn"</span>):</span><br><span class="line">    hidden1 = tf.layers.dense(X, n_hidden1, activation=tf.nn.relu,</span><br><span class="line">                             kernel_regularizer=max_norm_reg, name=<span class="string">"hidden1"</span>)</span><br><span class="line">    hidden2 = tf.layers.dense(hidden1, n_hidden2, activation=tf.nn.relu,</span><br><span class="line">                             kernel_regularizer=max_norm_reg, name=<span class="string">"hidden2"</span>)</span><br><span class="line">    logits = tf.layers.dense(hidden2, n_outputs, name=<span class="string">"outputs"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"loss"</span>):</span><br><span class="line">    xentropy = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y, logits=logits)</span><br><span class="line">    loss = tf.reduce_mean(xentropy, name=<span class="string">"loss"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"train"</span>):</span><br><span class="line">    optimizer = tf.train.MomentumOptimizer(learning_rate, momentum)</span><br><span class="line">    training_op = optimizer.minimize(loss)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"eval"</span>):</span><br><span class="line">    correct = tf.nn.in_top_k(logits, y, <span class="number">1</span>)</span><br><span class="line">    accuracy = tf.reduce_mean(tf.cast(correct, tf.float32))</span><br><span class="line"></span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">saver = tf.train.Saver()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">n_epoches = <span class="number">20</span></span><br><span class="line">batch_size = <span class="number">50</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">clip_all_weights = tf.get_collection(<span class="string">"max_norm"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    init.run()</span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(n_epoches):</span><br><span class="line">        <span class="keyword">for</span> X_batch, y_batch <span class="keyword">in</span> shuffle_batch(X_train, y_train, batch_size):</span><br><span class="line">            sess.run(training_op, feed_dict=&#123;X: X_batch, y: y_batch&#125;)</span><br><span class="line">            sess.run(clip_all_weights)</span><br><span class="line">        acc_valid = accuracy.eval(feed_dict=&#123;X:X_valid, y: y_valid&#125;)</span><br><span class="line">        print(epoch, <span class="string">"Validation accuracy:"</span>, acc_valid)</span><br><span class="line">    save_path = saver.save(sess, <span class="string">"dnn/max_norm_model_final.ckpt"</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>0 Validation accuracy: 0.9556
+1 Validation accuracy: 0.97
+2 Validation accuracy: 0.973
+3 Validation accuracy: 0.9758
+4 Validation accuracy: 0.9762
+5 Validation accuracy: 0.9788
+6 Validation accuracy: 0.98
+7 Validation accuracy: 0.9824
+8 Validation accuracy: 0.9816
+9 Validation accuracy: 0.981
+10 Validation accuracy: 0.983
+11 Validation accuracy: 0.982
+12 Validation accuracy: 0.9808
+13 Validation accuracy: 0.9828
+14 Validation accuracy: 0.982
+15 Validation accuracy: 0.9824
+16 Validation accuracy: 0.9824
+17 Validation accuracy: 0.9824
+18 Validation accuracy: 0.982
+19 Validation accuracy: 0.9824
+</code></pre><hr>
+<p> <a href="https://github.com/coldJune/machineLearning/blob/master/handson-ml/Training%20Deep%20Neural%20Nets.ipynb" target="_blank" rel="noopener">源文件</a></p>
+
+      
+    </div>
+    
+    
+    
+		<div>
+		  
+		    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-apple"></i>感谢您的阅读-------------</div>
+    
+</div>
+		  
+		</div>
+		<div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/12/20/Training-Deep-Neural-Nets/">Training Deep Neural Nets</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 邓小俊 的个人博客">邓小俊</a></p>
+  <p><span>发布时间:</span>2018年12月20日 - 11:12</p>
+  <p><span>最后更新:</span>2018年12月27日 - 22:12</p>
+  <p><span>原始链接:</span><a href="/2018/12/20/Training-Deep-Neural-Nets/" title="Training Deep Neural Nets">http://coldjune.com/2018/12/20/Training-Deep-Neural-Nets/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://coldjune.com/2018/12/20/Training-Deep-Neural-Nets/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+      
+		</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/tensorflow/" rel="tag"><i class="fa fa-tag"></i> tensorflow</a>
+          
+            <a href="/tags/Hands-On-Machine-Learning-with-Scikit-Learn-and-TensorFlow/" rel="tag"><i class="fa fa-tag"></i> Hands-On Machine Learning with Scikit-Learn and TensorFlow</a>
+          
+            <a href="/tags/神经网络/" rel="tag"><i class="fa fa-tag"></i> 神经网络</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/17/Introduction-to-Artificial-Neural-Networks/" rel="next" title="Introduction to Artificial Neural Networks">
+                <i class="fa fa-chevron-left"></i> Introduction to Artificial Neural Networks
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/24/Convolutional-Neural-Networks/" rel="prev" title="Convolutional Neural Networks">
+                Convolutional Neural Networks <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">邓小俊</p>
+              <p class="site-description motion-element" itemprop="description">人所恐惧的不是孤独本身，而是害怕承认人本生而孤独的事实</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vanishing-Exploding-Gradients-Problems"><span class="nav-number">2.</span> <span class="nav-text">Vanishing/Exploding Gradients Problems</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Xavier和-He-初始化"><span class="nav-number">2.1.</span> <span class="nav-text">Xavier和 He 初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不饱和激活函数"><span class="nav-number">2.2.</span> <span class="nav-text">不饱和激活函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Leaky-ReLU"><span class="nav-number">2.2.1.</span> <span class="nav-text">Leaky ReLU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ELU"><span class="nav-number">2.2.2.</span> <span class="nav-text">ELU</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#批量标准化-Batch-Normalization"><span class="nav-number">2.3.</span> <span class="nav-text">批量标准化(Batch Normalization)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度裁剪"><span class="nav-number">2.4.</span> <span class="nav-text">梯度裁剪</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重利用之前训练的层"><span class="nav-number">3.</span> <span class="nav-text">重利用之前训练的层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#重利用TensorFlow模型"><span class="nav-number">3.1.</span> <span class="nav-text">重利用TensorFlow模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#冻结低层"><span class="nav-number">3.2.</span> <span class="nav-text">冻结低层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓冲冻结的层"><span class="nav-number">3.3.</span> <span class="nav-text">缓冲冻结的层</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更快的优化器"><span class="nav-number">4.</span> <span class="nav-text">更快的优化器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Momentum-optimization"><span class="nav-number">4.1.</span> <span class="nav-text">Momentum optimization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nesterov-Accelerated-Gradient"><span class="nav-number">4.2.</span> <span class="nav-text">Nesterov Accelerated Gradient</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AdaGrad"><span class="nav-number">4.3.</span> <span class="nav-text">AdaGrad</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RMSProp"><span class="nav-number">4.4.</span> <span class="nav-text">RMSProp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adam-Optimization"><span class="nav-number">4.5.</span> <span class="nav-text">Adam Optimization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Learning-Rate-Scheduling"><span class="nav-number">4.6.</span> <span class="nav-text">Learning Rate Scheduling</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#通过正规化避免过拟合"><span class="nav-number">5.</span> <span class="nav-text">通过正规化避免过拟合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#l-1-和-l-2-正规化"><span class="nav-number">5.1.</span> <span class="nav-text">$l_1$ 和 $l_2$ 正规化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DropOut"><span class="nav-number">5.2.</span> <span class="nav-text">DropOut</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Max-Norm"><span class="nav-number">5.3.</span> <span class="nav-text">Max Norm</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">邓小俊</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">博文包含字数&#58;</span>
+    
+    <span title="博文包含字数">277.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("EdodKu35EbSo4VoLhJYQMd09-gzGzoHsz", "qpErN7JcsIzusWGMNuw1QcxN");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+
+
+  
+
+  
+
+ 
+</body>
+</html>

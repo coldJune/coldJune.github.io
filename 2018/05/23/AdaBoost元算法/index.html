@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="true" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico#/images/favicon-16x16-next.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="机器学习,机器学习实战,分类,监督学习," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="元算法概述 将不同分类器组合使用  AdaBoost算法的优缺点 优点：泛化错误率低，易编码，可以应用在大部分分类器上，无参数调整 缺点：对离群点敏感 适用数据类型：数值型和标称型数据  AdaBoost的工作原理bagging自举汇聚法(bootstrap aggregating) 也称为bagging方法1，是在从原始数据集选择S次后得到S个新数据集的一种技术。新数据集和原数据集的大小相等。每">
+<meta name="keywords" content="机器学习,机器学习实战,分类,监督学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AdaBoost元算法">
+<meta property="og:url" content="http://coldjune.com/2018/05/23/AdaBoost元算法/index.html">
+<meta property="og:site_name" content="Stay Hungary">
+<meta property="og:description" content="元算法概述 将不同分类器组合使用  AdaBoost算法的优缺点 优点：泛化错误率低，易编码，可以应用在大部分分类器上，无参数调整 缺点：对离群点敏感 适用数据类型：数值型和标称型数据  AdaBoost的工作原理bagging自举汇聚法(bootstrap aggregating) 也称为bagging方法1，是在从原始数据集选择S次后得到S个新数据集的一种技术。新数据集和原数据集的大小相等。每">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://coldjune.com/2018/05/23/AdaBoost元算法/AdaBoost算法示意图.png">
+<meta property="og:image" content="http://coldjune.com/2018/05/23/AdaBoost元算法/AdaBoost马疝病监测系统的ROC曲线.png">
+<meta property="og:image" content="http://coldjune.com/2018/05/23/AdaBoost元算法/AdaBoost马疝病监测系统的ROC曲线-40个分类器.png">
+<meta property="og:image" content="http://coldjune.com/2018/05/23/AdaBoost元算法/代价矩阵.png">
+<meta property="og:updated_time" content="2018-05-30T15:42:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AdaBoost元算法">
+<meta name="twitter:description" content="元算法概述 将不同分类器组合使用  AdaBoost算法的优缺点 优点：泛化错误率低，易编码，可以应用在大部分分类器上，无参数调整 缺点：对离群点敏感 适用数据类型：数值型和标称型数据  AdaBoost的工作原理bagging自举汇聚法(bootstrap aggregating) 也称为bagging方法1，是在从原始数据集选择S次后得到S个新数据集的一种技术。新数据集和原数据集的大小相等。每">
+<meta name="twitter:image" content="http://coldjune.com/2018/05/23/AdaBoost元算法/AdaBoost算法示意图.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://coldjune.com/2018/05/23/AdaBoost元算法/"/>
+
+
+
+
+
+  <title>AdaBoost元算法 | Stay Hungary</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+		<a href="https://github.com/coldJune" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stay Hungary</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Programming is an art form</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://coldjune.com/2018/05/23/AdaBoost元算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="邓小俊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay Hungary">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">AdaBoost元算法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-23T14:51:17+08:00">
+                2018-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/05/23/AdaBoost元算法/" class="leancloud_visitors" data-flag-title="AdaBoost元算法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,409
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="元算法概述"><a href="#元算法概述" class="headerlink" title="元算法概述"></a>元算法概述</h2><blockquote>
+<p>将不同分类器组合使用</p>
+</blockquote>
+<h3 id="AdaBoost算法的优缺点"><a href="#AdaBoost算法的优缺点" class="headerlink" title="AdaBoost算法的优缺点"></a>AdaBoost算法的优缺点</h3><ul>
+<li>优点：泛化错误率低，易编码，可以应用在大部分分类器上，无参数调整</li>
+<li>缺点：对离群点敏感</li>
+<li>适用数据类型：数值型和标称型数据</li>
+</ul>
+<h3 id="AdaBoost的工作原理"><a href="#AdaBoost的工作原理" class="headerlink" title="AdaBoost的工作原理"></a>AdaBoost的工作原理</h3><h4 id="bagging"><a href="#bagging" class="headerlink" title="bagging"></a>bagging</h4><p><strong>自举汇聚法(bootstrap aggregating)</strong> 也称为bagging方法<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>，是在从原始数据集选择S次后得到S个新数据集的一种技术。新数据集和原数据集的大小相等。每个数据集都是通过在原始数据集中随机选择一个样本来进行替换而得到的(<em>放回取样</em>)，新数据允许有重复值同时原始数据集中的某些值在新数据集中可以不存在。<br>在S个数据集建好后将某个学习算法分别作用于每个数据集得到S个分类器，然后在需要对新数据分类时应用这S个分类器，然后进行多数表决，分类器中投票结果最多的类别作为最终的分类结果。</p>
+<h4 id="boosting"><a href="#boosting" class="headerlink" title="boosting"></a>boosting</h4><p>boosting和bagging是很类似的技术，两者使用的多个分类器的类型都是一致的。不过在boosting中不同的分类器是通过串行训练获得的，每个新分类器都根据已训练出的分类器的性能来进行训练。boosting是通过集中关注被已有分类器 <strong>错分</strong> 的那些数据来获得新的分类器的。<br>boosting分类的结果是基于所有分类器的 <strong>加权求和</strong> 结果的，bagging中的分类器权重是相等的，boosting中的分类器权重并不相等，每个权重代表的是其对应分类器在上一轮迭代中的成功度。</p>
+<h4 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h4><p>AdaBoost是adaptive boosting(自适应boosting)的缩写，训练过程如下：</p>
+<ol>
+<li>训练数据中的每个 <strong>样本</strong>，并赋予一个权重，这些权重构成一个向量D，权重都被初始化成相等值</li>
+<li>在训练数据上训练出一个弱分类器并计算该分类器的错误率</li>
+<li>重新调整每个样本的权重(第一次分对的样本权重将会降低，分错的样本权重将会提高)，在同一个数据集上再次训练弱分类器</li>
+</ol>
+<p>为了从所有弱分类器中得到最终的分类结果，AdaBoost为每个分类器都分配了一个权重值alpha，这些alpha值是基于每个弱分类器的错误率进行计算。错误率$\epsilon$的定义为：</p>
+<script type="math/tex; mode=display">\epsilon=\frac{未正确分类的样本数目}{所有样本数目}</script><p>alpha的计算公式如下:</p>
+<script type="math/tex; mode=display">\alpha=\frac{1}{2}ln(\frac{1-\epsilon}{\epsilon})</script><ul>
+<li>AdaBoost算法示意图<br><img src="/2018/05/23/AdaBoost元算法/AdaBoost算法示意图.png" alt="AdaBoost算法示意图"><br>左边的是数据集，其中直方图的不同宽度表示每个样例上的不同权重。在经过一个分类器后，加权的预测结果会通过三角形中的alpha值进行加权。每个三角形中输出的加权结果在原形中求和，从而得到最终的输出结果</li>
+</ul>
+<p>计算出alpha值之后，可以对权重向量D进行更新，以使得那些正确分类的样本的权重降低而错分样本的权重升高。<br>如果某个样本被正确分类，该样本的权重更改为:</p>
+<script type="math/tex; mode=display">D_i^{(t+1)}=\frac{D_i^{(t)}e^{-\alpha}}{Sum(D)}</script><p>如果某个样本被错分，该样本的权重更改为：</p>
+<script type="math/tex; mode=display">D_i^{(t+1)}=\frac{D_i^{(t)}e^{\alpha}}{Sum(D)}</script><p>在计算出D之后，AdaBoost进入下一轮迭代。AdaBoost算法会不断重复训练和调整权重的过程，知道训练错误率为0或者弱分类器的数目达到指定值为止</p>
+<h3 id="AdaBoost算法的一般流程"><a href="#AdaBoost算法的一般流程" class="headerlink" title="AdaBoost算法的一般流程"></a>AdaBoost算法的一般流程</h3><ol>
+<li>收集数据：可以使用任意方法</li>
+<li>准备数据：依赖于所使用的弱分类器类型，这里使用单层决策树，这种分类器可以处理任何数据类型。可以使用任意分类器作为弱分类器，作为弱分类器，简单分类器的效果更好</li>
+<li>分析数据：可以使用任意方法</li>
+<li>训练算法：AdaBoost的大部分时间都用在训练上，分类器将多次在同一数据集上训练弱分类器</li>
+<li>测试算法：计算分类的错误率</li>
+<li>使用算法：同SVM一样，AdaBoost预测两个类别中的一个。如果想应用到多个类别的场合，就需要对AdaBoost进行修改</li>
+</ol>
+<h2 id="AdaBoost算法的实现"><a href="#AdaBoost算法的实现" class="headerlink" title="AdaBoost算法的实现"></a>AdaBoost算法的实现</h2><h3 id="基于单层决策树构建弱分类器"><a href="#基于单层决策树构建弱分类器" class="headerlink" title="基于单层决策树构建弱分类器"></a>基于单层决策树构建弱分类器</h3><p><strong>单层决策树(decision stump，也称决策树桩)</strong> 是一种简单的决策树，它仅基于单个特征来做决策</p>
+<ul>
+<li><p>创建简单数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_simple_data</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""添加一个简单数据集</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    data_mat = np.matrix([[<span class="number">1.</span>, <span class="number">2.1</span>],</span><br><span class="line">                          [<span class="number">2.</span>, <span class="number">1.1</span>],</span><br><span class="line">                          [<span class="number">1.3</span>, <span class="number">1.</span>],</span><br><span class="line">                          [<span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">                          [<span class="number">2.</span>, <span class="number">1.</span>]])</span><br><span class="line">    class_labels = [<span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">-1.0</span>, <span class="number">-1.0</span>, <span class="number">1.0</span>]</span><br><span class="line">    <span class="keyword">return</span> data_mat, class_labels</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>伪代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">将最小错误率min_error设置为正无穷</span><br><span class="line">对数据集中的每一个特征(第一层循环):</span><br><span class="line">    对每个步长(第二层循环):</span><br><span class="line">        对每个不等号(第三层循环):</span><br><span class="line">            建立一颗单层决策树并利用加权数据集对它进行测试</span><br><span class="line">            如果错误率低于min_error，则将当前单层决策树设为最佳单层决策树</span><br><span class="line">返回最佳单层决策树</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>生成单层决策树</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">stump_classify</span><span class="params">(data_matrix, dimen, thresh_val, thresh_ineq)</span>:</span></span><br><span class="line">    <span class="string">"""通过阈值分类</span></span><br><span class="line"><span class="string">    :param data_matrix: 数据集</span></span><br><span class="line"><span class="string">    :param dimen: 特征下标</span></span><br><span class="line"><span class="string">    :param thresh_val: 阈值</span></span><br><span class="line"><span class="string">    :param thresh_ineq: 符号</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    ret_array = np.ones((np.shape(data_matrix)[<span class="number">0</span>], <span class="number">1</span>))</span><br><span class="line">    <span class="keyword">if</span> thresh_ineq == <span class="string">'lt'</span>:</span><br><span class="line">        <span class="comment"># 将小于阈值的置为-1类</span></span><br><span class="line">        ret_array[data_matrix[:, dimen] &lt;= thresh_val] = <span class="number">-1.0</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 将大于阈值的置为-1类</span></span><br><span class="line">        ret_array[data_matrix[:, dimen] &gt; thresh_val] = <span class="number">-1.0</span></span><br><span class="line">    <span class="keyword">return</span> ret_array</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_stump</span><span class="params">(data_arr, class_labels, d)</span>:</span></span><br><span class="line">    <span class="string">"""生成单层决策树</span></span><br><span class="line"><span class="string">    :param data_arr: 数据集</span></span><br><span class="line"><span class="string">    :param class_labels: 类别标签</span></span><br><span class="line"><span class="string">    :param d: 权重</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    data_mat = np.mat(data_arr)</span><br><span class="line">    label_mat = np.mat(class_labels).T</span><br><span class="line">    m, n = np.shape(data_mat)</span><br><span class="line">    <span class="comment"># 在特征的所有可能值上进行遍历</span></span><br><span class="line">    num_steps = <span class="number">10.0</span></span><br><span class="line">    <span class="comment"># 存储给定权重向量d时所得到的最佳单层决策树的相关信息</span></span><br><span class="line">    best_stump = &#123;&#125;</span><br><span class="line">    best_class_est = np.mat(np.zeros((m, <span class="number">1</span>)))</span><br><span class="line">    <span class="comment"># 设为无穷大，用于寻找可能的最小错误率</span></span><br><span class="line">    min_error = np.inf</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        <span class="comment"># 在数据的所有特征上遍历</span></span><br><span class="line">        <span class="comment"># 通过特征的最大最小值来确定步长</span></span><br><span class="line">        range_min = data_mat[:, i].min()</span><br><span class="line">        range_max = data_mat[:, i].max()</span><br><span class="line">        step_size = (range_max-range_min)/num_steps</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">-1</span>, int(num_steps)+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> inequal <span class="keyword">in</span> [<span class="string">'lt'</span>, <span class="string">'gt'</span>]:</span><br><span class="line">                thresh_val = (range_min + float(j) * step_size)</span><br><span class="line">                <span class="comment"># 计算预测的分类</span></span><br><span class="line">                predicted_vals = stump_classify(data_mat, i, thresh_val, inequal)</span><br><span class="line">                <span class="comment"># 设置预测分类和真实类别不同的值为1</span></span><br><span class="line">                err_arr = np.mat(np.ones((m, <span class="number">1</span>)))</span><br><span class="line">                err_arr[predicted_vals == label_mat] = <span class="number">0</span></span><br><span class="line">                <span class="comment"># 计算错误向量的权重和</span></span><br><span class="line">                weight_error = d.T * err_arr</span><br><span class="line">                <span class="keyword">if</span> weight_error &lt; min_error:</span><br><span class="line">                    <span class="comment"># 更新最小错误和最佳单层数</span></span><br><span class="line">                    min_error = weight_error</span><br><span class="line">                    best_class_est = predicted_vals.copy()</span><br><span class="line">                    best_stump[<span class="string">'dim'</span>] = i</span><br><span class="line">                    best_stump[<span class="string">'thresh'</span>] = thresh_val</span><br><span class="line">                    best_stump[<span class="string">'ineq'</span>] = inequal</span><br><span class="line">    <span class="keyword">return</span> best_stump, min_error, best_class_est</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="完整的AdaBoost算法"><a href="#完整的AdaBoost算法" class="headerlink" title="完整的AdaBoost算法"></a>完整的AdaBoost算法</h3><ul>
+<li><p>伪代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">对每次迭代：</span><br><span class="line">    利用build_stump()函数找到最佳的单层决策树</span><br><span class="line">    将最佳单层决策树加入到单层决策树数组</span><br><span class="line">    计算alpha</span><br><span class="line">    计算新的权重向量D</span><br><span class="line">    更新累计类别估计值</span><br><span class="line">    如果错误率等于0.0，退出循环</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>AdbBoost训练</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">adaboost_train_ds</span><span class="params">(data_arr, class_labels, num_it=<span class="number">40</span>)</span>:</span></span><br><span class="line">    <span class="string">"""基于单层决策树训练AdaBoost</span></span><br><span class="line"><span class="string">    :param data_arr: 数据集</span></span><br><span class="line"><span class="string">    :param class_labels: 类别标签</span></span><br><span class="line"><span class="string">    :param num_it: 迭代次数</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    weak_class_arr = []</span><br><span class="line">    m = np.shape(data_arr)[<span class="number">0</span>]</span><br><span class="line">    <span class="comment"># 为每一条数据初始化权重</span></span><br><span class="line">    d = np.mat(np.ones((m, <span class="number">1</span>))/m)</span><br><span class="line">    <span class="comment"># 记录每个数据点的类别估计累计值</span></span><br><span class="line">    agg_class_est = np.mat(np.zeros((m, <span class="number">1</span>)))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(num_it):</span><br><span class="line">        <span class="comment"># 建立单层决策树</span></span><br><span class="line">        best_stump, error, class_est = build_stump(data_arr, class_labels, d)</span><br><span class="line">        print(<span class="string">"D:"</span>, d.T)</span><br><span class="line">        <span class="comment"># 计算每一个单层决策树的权重</span></span><br><span class="line">        <span class="comment"># max(error,1e-16)保证在没有错误时不会除0异常</span></span><br><span class="line">        alpha = float(<span class="number">0.5</span>*np.log((<span class="number">1</span>-error)/np.longfloat(max(error, <span class="number">1e-16</span>))))</span><br><span class="line">        <span class="comment"># 保存决策树权重和单层决策树</span></span><br><span class="line">        best_stump[<span class="string">'alpha'</span>] = alpha</span><br><span class="line">        weak_class_arr.append(best_stump)</span><br><span class="line">        print(<span class="string">"class_est:"</span>, class_est.T)</span><br><span class="line">        <span class="comment"># 计算新的权重向量d</span></span><br><span class="line">        expon = np.multiply(<span class="number">-1</span>*alpha*np.mat(class_labels).T, class_est)</span><br><span class="line">        d = np.multiply(d, np.exp(expon))</span><br><span class="line">        d = d/d.sum()</span><br><span class="line">        <span class="comment"># 类别估计值</span></span><br><span class="line">        agg_class_est += alpha*class_est</span><br><span class="line">        print(<span class="string">'agg_class_est'</span>, agg_class_est.T)</span><br><span class="line">        <span class="comment"># 获取错误率</span></span><br><span class="line">        agg_errors = np.multiply(np.sign(agg_class_est) != np.mat(class_labels).T, np.ones((m, <span class="number">1</span>)))</span><br><span class="line">        print(agg_errors)</span><br><span class="line">        error_rate = agg_errors.sum()/m</span><br><span class="line">        print(<span class="string">'total error'</span>, error_rate, <span class="string">'\n'</span>)</span><br><span class="line">        <span class="keyword">if</span> error_rate == <span class="number">0.0</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> weak_class_arr</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分类函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ada_classify</span><span class="params">(dat_to_class, classifier_arr)</span>:</span></span><br><span class="line">    <span class="string">"""分类函数</span></span><br><span class="line"><span class="string">    :param dat_to_class: 待分类的数据</span></span><br><span class="line"><span class="string">    :param classifier_arr: 弱分类器数组</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    data_matrix = np.mat(dat_to_class)</span><br><span class="line">    m = np.shape(data_matrix)[<span class="number">0</span>]</span><br><span class="line">    <span class="comment"># 记录每个数据点的类别估计累计值</span></span><br><span class="line">    agg_class_est = np.mat(np.zeros((m, <span class="number">1</span>)))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(classifier_arr)):</span><br><span class="line">        <span class="comment"># 计算类别估计值</span></span><br><span class="line">        class_est = stump_classify(data_matrix,</span><br><span class="line">                                   classifier_arr[i][<span class="string">'dim'</span>],</span><br><span class="line">                                   classifier_arr[i][<span class="string">'thresh'</span>],</span><br><span class="line">                                   classifier_arr[i][<span class="string">'ineq'</span>])</span><br><span class="line">        agg_class_est += classifier_arr[i][<span class="string">'alpha'</span>]*class_est</span><br><span class="line">        print(agg_class_est)</span><br><span class="line">    <span class="keyword">return</span> np.sign(agg_class_est)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="非均衡分类问题"><a href="#非均衡分类问题" class="headerlink" title="非均衡分类问题"></a>非均衡分类问题</h2><p>大多数情况下不同类别的分类代价并不相等，所以需要分类器性能度量方法并通过图像技术来对非均衡问题下不同分类器的性能进行可视化处理</p>
+<h3 id="正确率、召回率及ROC曲线"><a href="#正确率、召回率及ROC曲线" class="headerlink" title="正确率、召回率及ROC曲线"></a>正确率、召回率及ROC曲线</h3><p>关于正确率和召回率的性能度量可以查看<a href="https://github.com/coldJune/machineLearning/blob/master/machineLearningCourseraNote/Note6.pdf" target="_blank" rel="noopener">Coursera上的MachineLearning课程资料</a><br>另一个用于度量分类中的非均衡性的工具是ROC曲线(ROC curve)，ROC代表接收者操作特征(receiver operating characteristic)</p>
+<ul>
+<li>AdaBoost马疝病监测系统的ROC曲线<br><img src="/2018/05/23/AdaBoost元算法/AdaBoost马疝病监测系统的ROC曲线.png" alt="AdaBoost马疝病监测系统的ROC曲线"><br>ROC曲线中给出了两条线，一条虚线一条实线。横轴是负阳性的比例(假阳率=负阳性/(负阳性+正阴性))，纵轴表示是正阳性的比例(真阳率=正阳性/(正阳性+假阴性))。ROC曲线给出的事当阈值变化时假阳率和真阳率的变化情况。左下角的带你对应的将所有样例判为反例的情况，而右上角的点对应将所有样例判为正例的情况。虚线是随机猜测的结果曲线。</li>
+</ul>
+<p>在理想情况下，最佳的分类器应该尽可能地处于左上角。<br><strong>曲线下的面积(Area User the Curve,AUC)</strong> 是对不同的ROC曲线进行比较的一个指标。AUC给出的事分类器的平均性能值。一个完美的分类器AUC为1.0,而随机猜测的AUC为0.5。<br>创建ROC曲线需按照以下步骤：</p>
+<ol>
+<li>将分类样例按照其预测强度排序</li>
+<li>从排名最低的样例开始。所有排名更低的样例被判为反例，排名更高的样例被判为正例。对应的点为$<1.0,1.0>$</1.0,1.0></li>
+<li>将其一到排名次低的样例中去，如果该样例属于正例，修改真阳率；如果该样例属于反例，修改假阴率</li>
+</ol>
+<ul>
+<li><p>ROC曲线绘制及AUC计算函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_roc</span><span class="params">(pred_strengths, class_labels)</span>:</span></span><br><span class="line">    <span class="string">"""画出ROC曲线</span></span><br><span class="line"><span class="string">    :param pred_strengths: 行向量组成的矩阵，表示分类器的预测强度</span></span><br><span class="line"><span class="string">    :param class_labels: 类别标签</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">    <span class="comment"># 保留绘制光标的位置</span></span><br><span class="line">    cur = (<span class="number">1.0</span>, <span class="number">1.0</span>)</span><br><span class="line">    <span class="comment"># 用于计算AUC的值</span></span><br><span class="line">    y_sum = <span class="number">0.0</span></span><br><span class="line">    <span class="comment"># 计算正例的数目</span></span><br><span class="line">    num_pos_class = sum(np.array(class_labels) == <span class="number">1.0</span>)</span><br><span class="line">    <span class="comment"># 确定x轴和y轴上的步长</span></span><br><span class="line">    y_step = <span class="number">1</span>/float(num_pos_class)</span><br><span class="line">    x_step = <span class="number">1</span>/float(len(class_labels)-num_pos_class)</span><br><span class="line">    <span class="comment"># 得到排序索引</span></span><br><span class="line">    <span class="comment"># 因为索引时按照最小到最大的顺序排列</span></span><br><span class="line">    <span class="comment"># 所以从点&lt;1.0,1.0&gt;绘到&lt;0,0&gt;</span></span><br><span class="line">    sorted_indicies = pred_strengths.argsort()</span><br><span class="line">    fig = plt.figure()</span><br><span class="line">    fig.clf()</span><br><span class="line">    ax = fig.add_subplot(<span class="number">111</span>)</span><br><span class="line">    <span class="keyword">for</span> index <span class="keyword">in</span> sorted_indicies.tolist()[<span class="number">0</span>]:</span><br><span class="line">        <span class="comment"># 在排序值上进行循环</span></span><br><span class="line">        <span class="keyword">if</span> class_labels[index] == <span class="number">1.0</span>:</span><br><span class="line">            <span class="comment"># 得到一个标签为1.0的类，在y轴上下降一个步长</span></span><br><span class="line">            <span class="comment"># 即不断降低真阳率</span></span><br><span class="line">            del_x = <span class="number">0</span></span><br><span class="line">            del_y = y_step</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># 其他类别的标签，按x轴方向上倒退一个步长</span></span><br><span class="line">            <span class="comment"># 假阴率方向</span></span><br><span class="line">            del_x = x_step</span><br><span class="line">            del_y = <span class="number">0</span></span><br><span class="line">            <span class="comment"># 对矩形的高度进行累加</span></span><br><span class="line">            y_sum += cur[<span class="number">1</span>]</span><br><span class="line">        <span class="comment"># 在当前点和新点之间画一条线</span></span><br><span class="line">        ax.plot([cur[<span class="number">0</span>], cur[<span class="number">0</span>]-del_x], [cur[<span class="number">1</span>], cur[<span class="number">1</span>]-del_y], color=<span class="string">'b'</span>)</span><br><span class="line">        <span class="comment"># 更新当前点的位置</span></span><br><span class="line">        cur = (cur[<span class="number">0</span>]-del_x, cur[<span class="number">1</span>]-del_y)</span><br><span class="line">    ax.plot([<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>], <span class="string">'b--'</span>)</span><br><span class="line">    plt.xlabel(<span class="string">'假阳率'</span>)</span><br><span class="line">    plt.ylabel(<span class="string">'真阳率'</span>)</span><br><span class="line">    plt.title(<span class="string">'AdaBoost马疝病监测系统的ROC曲线'</span>)</span><br><span class="line">    ax.axis([<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line">    plt.show()</span><br><span class="line">    <span class="comment"># 乘以x_step得到总面积</span></span><br><span class="line">    print(<span class="string">"曲线下面积为:"</span>, y_sum*x_step)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用马疝病数据绘制ROC曲线</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">13</span>]: importlib.reload(adaboost)</span><br><span class="line">Out[<span class="number">13</span>]: &lt;module <span class="string">'adaboost'</span> <span class="keyword">from</span> <span class="string">'D:\\machineLearning\\MachineLearningInAction\\adaboost\\adaboost.py'</span>&gt;</span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: data,label = adaboost.load_data_set(<span class="string">'data/horseColicTraining2.txt'</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">15</span>]: classifier_arr,agg_class_est = adaboost.adaboost_train_ds(data, label,<span class="number">40</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">16</span>]: adaboost.plot_roc(agg_class_est.T, label)</span><br><span class="line">曲线下面积为: <span class="number">0.8918191104095092</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>AdaBoost马疝病监测系统的ROC曲线-40个分类器<br><img src="/2018/05/23/AdaBoost元算法/AdaBoost马疝病监测系统的ROC曲线-40个分类器.png" alt="AdaBoost马疝病监测系统的ROC曲线-40个分类器"></p>
+</li>
+</ul>
+<h3 id="基于代价函数的分类器决策"><a href="#基于代价函数的分类器决策" class="headerlink" title="基于代价函数的分类器决策"></a>基于代价函数的分类器决策</h3><p>除了调节分类器的阈值之外，还可以使用 <strong>代价敏感的学习(cost-sensitive learning)</strong></p>
+<ul>
+<li>代价矩阵<br><img src="/2018/05/23/AdaBoost元算法/代价矩阵.png" alt="代价矩阵"><br>第一张表的代价为 <script type="math/tex">TP*0+FN*1+FP*1+TN*0</script> ，第二张表的代价为 <script type="math/tex">TP*(-5)+FN*1+FP*50+TN*0</script><sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup><br>在构建分类器时，如果知道了代价值就可以选择付出最小代价的分类器。</li>
+</ul>
+<h3 id="非均衡问题的数据抽样方法"><a href="#非均衡问题的数据抽样方法" class="headerlink" title="非均衡问题的数据抽样方法"></a>非均衡问题的数据抽样方法</h3><p>对于非均衡分类器可以对分类器的训练数据进行改造。可以通过 <strong>欠抽样(undersampling)</strong> 或者 <strong>过抽样(oversampling)</strong> 来实现。过抽样意味着复制样例，欠抽样意味着删除样例。</p>
+<hr>
+<p><a href="https://github.com/coldJune/machineLearning/tree/master/MachineLearningInAction/adaboost/adaboost.py" target="_blank" rel="noopener">示例代码</a></p>
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style:none; padding-left: 0;"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">1.</span><span style="display: inline-block; vertical-align: top;">可以使用<a href="http://statistics.berkeley.edu/sites/default/files/tech-reports/567.pdf" target="_blank" rel="noopener">随机森林</a>等更先进的bagging方法</span><a href="#fnref:1" rev="footnote"> ↩</a></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">2.</span><span style="display: inline-block; vertical-align: top;">变量的意义参考<a href="https://github.com/coldJune/machineLearning/blob/master/machineLearningCourseraNote/Note6.pdf" target="_blank" rel="noopener">准确率和召回率</a>的部分</span><a href="#fnref:2" rev="footnote"> ↩</a></li></ol></div></div>
+      
+    </div>
+    
+    
+    
+		<div>
+		  
+		    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-apple"></i>感谢您的阅读-------------</div>
+    
+</div>
+		  
+		</div>
+		<div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/05/23/AdaBoost元算法/">AdaBoost元算法</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 邓小俊 的个人博客">邓小俊</a></p>
+  <p><span>发布时间:</span>2018年05月23日 - 14:05</p>
+  <p><span>最后更新:</span>2018年05月30日 - 23:05</p>
+  <p><span>原始链接:</span><a href="/2018/05/23/AdaBoost元算法/" title="AdaBoost元算法">http://coldjune.com/2018/05/23/AdaBoost元算法/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://coldjune.com/2018/05/23/AdaBoost元算法/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+      
+		</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"><i class="fa fa-tag"></i> 机器学习</a>
+          
+            <a href="/tags/机器学习实战/" rel="tag"><i class="fa fa-tag"></i> 机器学习实战</a>
+          
+            <a href="/tags/分类/" rel="tag"><i class="fa fa-tag"></i> 分类</a>
+          
+            <a href="/tags/监督学习/" rel="tag"><i class="fa fa-tag"></i> 监督学习</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/22/支持向量机-SVM/" rel="next" title="支持向量机(SVM)">
+                <i class="fa fa-chevron-left"></i> 支持向量机(SVM)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/25/线性回归/" rel="prev" title="线性回归">
+                线性回归 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">邓小俊</p>
+              <p class="site-description motion-element" itemprop="description">人所恐惧的不是孤独本身，而是害怕承认人本生而孤独的事实</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#元算法概述"><span class="nav-number">1.</span> <span class="nav-text">元算法概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AdaBoost算法的优缺点"><span class="nav-number">1.1.</span> <span class="nav-text">AdaBoost算法的优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AdaBoost的工作原理"><span class="nav-number">1.2.</span> <span class="nav-text">AdaBoost的工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#bagging"><span class="nav-number">1.2.1.</span> <span class="nav-text">bagging</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#boosting"><span class="nav-number">1.2.2.</span> <span class="nav-text">boosting</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AdaBoost"><span class="nav-number">1.2.3.</span> <span class="nav-text">AdaBoost</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AdaBoost算法的一般流程"><span class="nav-number">1.3.</span> <span class="nav-text">AdaBoost算法的一般流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AdaBoost算法的实现"><span class="nav-number">2.</span> <span class="nav-text">AdaBoost算法的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于单层决策树构建弱分类器"><span class="nav-number">2.1.</span> <span class="nav-text">基于单层决策树构建弱分类器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整的AdaBoost算法"><span class="nav-number">2.2.</span> <span class="nav-text">完整的AdaBoost算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非均衡分类问题"><span class="nav-number">3.</span> <span class="nav-text">非均衡分类问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#正确率、召回率及ROC曲线"><span class="nav-number">3.1.</span> <span class="nav-text">正确率、召回率及ROC曲线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于代价函数的分类器决策"><span class="nav-number">3.2.</span> <span class="nav-text">基于代价函数的分类器决策</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非均衡问题的数据抽样方法"><span class="nav-number">3.3.</span> <span class="nav-text">非均衡问题的数据抽样方法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">邓小俊</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">博文包含字数&#58;</span>
+    
+    <span title="博文包含字数">277.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("EdodKu35EbSo4VoLhJYQMd09-gzGzoHsz", "qpErN7JcsIzusWGMNuw1QcxN");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+ 
+</body>
+</html>
